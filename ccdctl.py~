@@ -1,0 +1,66 @@
+#!/usr/bin/env python
+
+from PyQt4 import QtGui
+import sys
+from os import path
+
+import design
+import ccd_auto
+
+DATA_DIRECTORY = "./"
+
+###############################################################################
+
+class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
+
+    def __init__(self, parent=None):
+        super(Controller, self).__init__(parent)
+        self.setupUi(self)
+        self.exposeButton.setEnabled(False) # Move to ui
+
+        ## Connect signals and slots
+        self.imtitleLineEdit.editingFinished.connect(self.setfilename)
+        self.exposeButton.clicked.connect(self.expose)
+        self.resetButton.clicked.connect(ccd_auto.sta3800_setup)
+        
+        ## Initialize controller
+        #ccd_auto.sta3800_setup()
+
+    def setfilename(self):
+
+        filename = str(self.imtitleLineEdit.text())
+
+        ## If a valid filename set Expose Button to Enabled
+        if filename != "":
+            self.exposeButton.setEnabled(True)
+        else:
+            self.exposeButton.setEnabled(False)
+
+        ## Construct filepath for image
+        self.imfilenameLineEdit.setText(path.join(DATA_DIRECTORY,
+                                                  "{}.fits".format(filename)))
+
+
+    def expose(self):
+
+        modedict = {"Exposure" : "exp",
+                    "Dark" : "dark",
+                    "Bias" : "bias"}
+
+        mode = modedict[str(self.exptypeComboBox.currentText())]
+        exptime = self.exptimeDoubleSpinBox.value()
+        filepath = self.imfilenameLineEdit.text()
+
+        print "Running command:"
+        print "img_acq({0}, {1}, {2})".format(mode, filepath, exptime)
+        
+def main():
+
+    app = QtGui.QApplication(sys.argv)
+    form = Controller()
+    form.show()
+    app.exec_()
+
+if __name__ == "__main__":
+
+    main()
