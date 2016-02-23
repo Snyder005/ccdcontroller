@@ -6,6 +6,7 @@ from os import path
 
 import design
 import ccdsetup
+import exposure
 
 DATA_DIRECTORY = "./"
 
@@ -25,11 +26,11 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         self.testimCheckBox.toggled.connect(self.setfilename)
         
         ## Initialize controller
-        print "ccd_auto.sta3800_setup()"
+        print "ccdsetup.sta3800_setup()"
 
     def reset(self):
 
-        print "ccd_auto.sta3800_setup()"
+        print "ccdsetup.sta3800_setup()"
             
 
     def setfilename(self):
@@ -68,7 +69,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         exptime = self.exptimeDoubleSpinBox.value()
 
         #img_acq(mode, filepath, exptime)
-        print "img_acq({0}, {1}, {2}".format(mode, filepath, exptime)
+        print "exposure.img_acq({0}, {1}, {2}".format(mode, filepath, exptime)
         
 def main():
 
