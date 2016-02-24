@@ -29,7 +29,11 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         print "ccdsetup.sta3800_setup()"
 
     def reset(self):
+        """Run initial commands to set up controller"""
 
+        self.exposeButton.setEnabled(False)
+        self.imtitleLineEdit.setText("")
+        self.imfilenameLineEdit.setText("")
         print "ccdsetup.sta3800_setup()"
             
 
@@ -69,7 +73,16 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         exptime = self.exptimeDoubleSpinBox.value()
 
         #img_acq(mode, filepath, exptime)
-        print "exposure.img_acq({0}, {1}, {2}".format(mode, filepath, exptime)
+        print "exposure.img_acq({0}, {1}, {2})".format(mode, filepath, exptime)
+
+    def scan(self):
+        pass
+
+    def updatevoltage(self):
+        pass
+
+    def setvoltage(self):
+        pass
         
 def main():
 
