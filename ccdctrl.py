@@ -19,13 +19,20 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         self.setupUi(self)
         self.exposeButton.setEnabled(False) # Move to ui
 
+        ## These attributes handle autoincrement of filename
+        self.num_img = 0
+        self.curr_filename = ""
+
+        ## Dictionary for image exposure mode
+        self.modedict = {"Exposure" : "exp",
+                         "Dark" : "dark",
+                         "Bias" : "bias"}
+
         ## Connect signals and slots
         self.imtitleLineEdit.editingFinished.connect(self.setfilename)
         self.exposeButton.clicked.connect(self.expose)
         self.resetButton.clicked.connect(self.reset)
         self.testimCheckBox.toggled.connect(self.setfilename)
-        self.num_img = 0
-        self.curr_filename = ""
         
         ## Initialize controller
         ccdsetup.sta3800_setup()
@@ -45,18 +52,19 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         """Update and display filepath for the image file"""
 
         filename = str(self.imtitleLineEdit.text())
+        mode = self.modedict[str(self.exptypeComboBox.currentText())]
         
         if self.testimCheckBox.isChecked():
             self.exposeButton.setEnabled(True)
             self.imfilenameLineEdit.setText(path.join(DATA_DIRECTORY,
-                                            "test.fits"))
+                                                      "test_{0}.fits".format(mode)))
             return
         elif filename != "":
 
             if self.curr_filename != filename:
                 self.num_img = 0
             self.exposeButton.setEnabled(True)
-            self.imfilenameLineEdit.setText(path.join(DATA_DIRECTORY, "{0}_{1}.fits".format(filename, self.num_img)))
+            self.imfilenameLineEdit.setText(path.join(DATA_DIRECTORY, "{0}_{1}_{2}.fits".format(filename, mode, self.num_img)))
             self.curr_filename = filename
             return
 
@@ -68,17 +76,13 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
 
         print "Starting exposure" # Send to some prompt on GUI
 
-        modedict = {"Exposure" : "exp",
-                    "Dark" : "dark",
-                    "Bias" : "bias"}
-
         ## If test image, set filename to test.fits
         if self.testimCheckBox.isChecked():
             filepath = path.join(DATA_DIRECTORY, "test.fits")
         else:
             filepath = self.imfilenameLineEdit.text()
 
-        mode = modedict[str(self.exptypeComboBox.currentText())]
+        mode = self.modedict[str(self.exptypeComboBox.currentText())]
         exptime = self.exptimeDoubleSpinBox.value()
 
         #img_acq(mode, filepath, exptime)
