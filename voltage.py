@@ -40,7 +40,6 @@ def v_clk(V_lo, V_hi):
 
 def set_voltage(V, vname):
     """Set a particular voltage to specified value"""
-    return
 
     ## List of acceptable voltage names
     vlist = ["vdd", "vod", "vog", "vrd", "vv1", "vv2", "vv3", "vv4"]

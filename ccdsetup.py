@@ -74,7 +74,6 @@ def set_bbias(state):
     setting = state_dict[state]
 
     ## Attach to Phidget controller
-    display("Connecting to BSS controller...")
     relay = InterfaceKit()
     relay.openPhidget()
     relay.waitForAttach(10000)
