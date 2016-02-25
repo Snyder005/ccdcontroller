@@ -52,18 +52,21 @@ def par_speed(speed):
     """Set parallel clock speed"""
 
     output = subprocess.check_output(["par_speed", "{0}".format(speed)])
+    print output
     return output
     
 def patload(pat_file):
     """Convert and load a pattern file"""
     
     output = subprocess.check_output(["patload", "{0}".format(pat_file)])
+    print output
     return output
 
 def sigload(sig_file):
     """Convert and load a signal file"""
 
     output = subprocess.check_output(["sigload", "{0}".format(sig_file)])
+    print output
     return output
 
 def set_bbias(state):
@@ -95,6 +98,7 @@ def offset(chan, val):
     """Set channel to specified value"""
     
     output = subprocess.check_output(["offset", "{0}".chan, "{0}".value])
+    print output
     return output
 
 def seg_offset(seg, val):
@@ -136,6 +140,7 @@ def ch_setup():
     """Set up for generic 16 channel readout"""
 
     output = subprocess.check_output("16ch_setup")
+    print output
     return output
 
 def sta3800_timing():
@@ -153,6 +158,7 @@ def sta3800_channels():
     """Set up for 16 channel readout"""
     
     output = subprocess.check_output("sta3800_channels")
+    print output
     return output
 
 def sta3800_volts():
@@ -208,6 +214,7 @@ def gain(mode):
     """Set the gain of the SAO controller to either high or low mode"""
 
     output = subprocess.check_output(["gain", "{0}".format(mode)])
+    print output
     return output
     
 

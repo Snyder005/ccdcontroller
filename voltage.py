@@ -47,6 +47,7 @@ def set_voltage(V, vname):
     ## Check that voltage name is valid
     if vname in vlist:
         output = subprocess.check_output([vname, "{0}".format(V)])
+        print output
         return output
     else:
         raise KeyError("Voltage name not found.")
@@ -81,6 +82,5 @@ def ser_clks(SER_lo, SER_hi):
 if __name__ == '__main__':
 
     ## Module debug code here
-    output = set_voltage(15, "vrd")
-    print output
+    set_voltage(15, "vrd")
     pass
