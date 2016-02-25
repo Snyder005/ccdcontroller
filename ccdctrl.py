@@ -50,7 +50,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         elif filename != "":
             self.exposeButton.setEnabled(True)
             self.imfilenameLineEdit.setText(path.join(DATA_DIRECTORY,
-                                            "{}.fits".format(filename)))
+                                            "{0}.fits".format(filename)))
             return
 
         self.exposeButton.setEnabled(False)

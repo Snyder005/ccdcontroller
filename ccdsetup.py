@@ -51,19 +51,19 @@ def dialog(str2print):
 def par_speed(speed):
     """Set parallel clock speed"""
 
-    output = subprocess.check_output(["par_speed", "{}".format(speed)])
+    output = subprocess.check_output(["par_speed", "{0}".format(speed)])
     return output
     
 def patload(pat_file):
     """Convert and load a pattern file"""
     
-    output = subprocess.check_output(["patload", "{}".format(pat_file)])
+    output = subprocess.check_output(["patload", "{0}".format(pat_file)])
     return output
 
 def sigload(sig_file):
     """Convert and load a signal file"""
 
-    output = subprocess.check_output(["sigload", "{}".format(sig_file)])
+    output = subprocess.check_output(["sigload", "{0}".format(sig_file)])
     return output
 
 def set_bbias(state):
@@ -95,7 +95,7 @@ def set_bbias(state):
 def offset(chan, val):
     """Set channel to specified value"""
     
-    output = subprocess.check_output(["offset", "{}".chan, "{}".value])
+    output = subprocess.check_output(["offset", "{0}".chan, "{0}".value])
     return output
 
 def seg_offset(seg, val):
@@ -208,7 +208,7 @@ def sta3800_offset():
 def gain(mode):
     """Set the gain of the SAO controller to either high or low mode"""
 
-    output = subprocess.check_output(["gain", "{}".format(mode)])
+    output = subprocess.check_output(["gain", "{0}".format(mode)])
     return output
     
 
@@ -216,15 +216,11 @@ def sta3800_setup():
 
     ch_setup()
 
-    dialog("Setting up STA3800 ...")
-
     sta3800_timing()
     sta3800_channels()
     sta3800_volts()
     sta3800_offset()
     gain("high")
-
-    dialog("Done.")
 
 
 ###############################################################################
@@ -235,7 +231,8 @@ def sta3800_setup():
 
 def main():
 
-    print "Hello, World!"
+    sta3800_setup()
+
     return
 
 if __name__ == '__main__':

@@ -33,8 +33,8 @@ if "check_output" not in dir( subprocess ): # duck punch it in!
 def v_clk(V_lo, V_hi):
     """Set limits for bbs switch"""
     
-    output = subprocess.check_output(["v_clk", "{}".format(V_lo),
-                                      "{}".format(V_hi)])
+    output = subprocess.check_output(["v_clk", "{0}".format(V_lo),
+                                      "{0}".format(V_hi)])
     return output
     pass
 
@@ -47,7 +47,7 @@ def set_voltage(V, vname):
 
     ## Check that voltage name is valid
     if vname in vlist:
-        output = subprocess.check_output([vname, "{}".format(V)])
+        output = subprocess.check_output([vname, "{0}".format(V)])
         return output
     else:
         raise KeyError("Voltage name not found.")
@@ -55,22 +55,22 @@ def set_voltage(V, vname):
 def rg(RG_lo, RG_hi):
     """Set reset gate voltages"""
     
-    output = subprocess.check_output(["rg", "{}".format(RG_lo),
-                                      "{}".format(RG_hi)])
+    output = subprocess.check_output(["rg", "{0}".format(RG_lo),
+                                      "{0}".format(RG_hi)])
     return output
 
 def par_clks(PAR_lo, PAR_hi):
     """Set parallel clock rails to specified voltages"""
     
-    output = subprocess.check_output(["par_clks", "{}".format(PAR_lo),
-                                      "{}".format(PAR_hi)])
+    output = subprocess.check_output(["par_clks", "{0}".format(PAR_lo),
+                                      "{0}".format(PAR_hi)])
     return output
 
 def ser_clks(SER_lo, SER_hi):
     """Set parallel clock rails to specified voltages"""
     
-    output = subprocess.check_output(["ser_clks", "{}".format(SER_lo),
-                                      "{}".format(SER_hi)])
+    output = subprocess.check_output(["ser_clks", "{0}".format(SER_lo),
+                                      "{0}".format(SER_hi)])
     return output
 
 ###############################################################################
@@ -82,4 +82,5 @@ def ser_clks(SER_lo, SER_hi):
 if __name__ == '__main__':
 
     ## Module debug code here
+    set_voltage(15, "vrd")
     pass

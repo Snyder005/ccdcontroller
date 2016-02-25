@@ -36,8 +36,8 @@ if "check_output" not in dir( subprocess ): # duck punch it in!
 def all_stack(dtime, imcount, filebase, fileend):
     """Perform all necessary measurements for CCD characterization"""
 
-    bias_stack(imcount, "bias{}".format(fileend))
-    dark_stack(dtime, imcount, "dark{}".format(fileend))
+    bias_stack(imcount, "bias{0}".format(fileend))
+    dark_stack(dtime, imcount, "dark{0}".format(fileend))
 
     return
 
@@ -108,13 +108,13 @@ def im_acq(mode, filename = "test.fits", time=0.00):
     ## Do exposure depending on specified mode
     if mode == "bias":
         output = subprocess.check_output(["dark_acq", "0.00",
-                                          "{}".format(filename)])
+                                          "{0}".format(filename)])
     elif mode == "dark":
         output = subprocess.check_output(["dark_acq", "{}".format(exptime),
-                                          "{}".format(filename)])
+                                          "{0}".format(filename)])
     elif mode == "exp":
         output = subprocess.check_output(["exp_acq", "{}".format(exptime),
-                                          "{}".format(filename)])
+                                          "{0}".format(filename)])
 
     return
                                         
@@ -138,10 +138,10 @@ def dark_acq(time, file_name=None):
     return  # Remove to allow measurement
 
     if filename is None:
-        output = subprocess.check_output(["dark_acq", "{}".format(time)])
+        output = subprocess.check_output(["dark_acq", "{0}".format(time)])
     else:
-        output = subprocess.check_output(["dark_acq", "{}".format(time),
-                                          "{}".format(file_name)])
+        output = subprocess.check_output(["dark_acq", "{0}".format(time),
+                                          "{0}".format(file_name)])
     return output
 
 def exp_acq(exptime, filename=None):
@@ -149,10 +149,10 @@ def exp_acq(exptime, filename=None):
     return # Remove to allow measurement
 
     if filename is None:
-        output = subprocess.check_output(["exp_acq", "{}".format(exptime)])
+        output = subprocess.check_output(["exp_acq", "{0}".format(exptime)])
     else:
-        output = subprocess.check_output(["exp_acq", "{}".format(exptime),
-                                          "{}".format(file_name)])
+        output = subprocess.check_output(["exp_acq", "{0}".format(exptime),
+                                          "{0}".format(file_name)])
     return output
 
 ###############################################################################
