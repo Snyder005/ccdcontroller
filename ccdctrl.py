@@ -26,7 +26,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         self.testimCheckBox.toggled.connect(self.setfilename)
         
         ## Initialize controller
-        print "ccdsetup.sta3800_setup()"
+        ccdsetup.sta3800_setup()
 
     def reset(self):
         """Run initial commands to set up controller"""
@@ -34,7 +34,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         self.exposeButton.setEnabled(False)
         self.imtitleLineEdit.setText("")
         self.imfilenameLineEdit.setText("")
-        print "ccdsetup.sta3800_setup()"
+        ccdsetup.sta3800_setup()
             
 
     def setfilename(self):

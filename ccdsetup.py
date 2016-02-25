@@ -213,11 +213,12 @@ def gain(mode):
     return output
     
 
-def sta3800_setup():
+def sta3800_setup(use_bash=True):
 
-    output = subprocess.check_output("sta3800_setup")
-    print output
-    return
+    if use_bash:
+        output = subprocess.check_output("sta3800_setup")
+        print output
+        return
 
     ch_setup()
 
@@ -236,7 +237,7 @@ def sta3800_setup():
 
 def main():
 
-    sta3800_setup()
+    sta3800_setup(use_bash=False)
 
     return
 
