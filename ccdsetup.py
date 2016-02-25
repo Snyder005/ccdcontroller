@@ -159,7 +159,7 @@ def sta3800_channels():
 def sta3800_volts():
     """Set the default voltages for the STA3800 device"""
 
-    v_clk(0.0, 10.0)
+    voltage.v_clk(0.0, 10.0)
 
     ## For use with Kirk's switch BBS supply
     sleep(0.5)

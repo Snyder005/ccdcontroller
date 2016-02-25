@@ -82,5 +82,6 @@ def ser_clks(SER_lo, SER_hi):
 if __name__ == '__main__':
 
     ## Module debug code here
-    set_voltage(15, "vrd")
+    output = set_voltage(15, "vrd")
+    print output
     pass
