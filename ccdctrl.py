@@ -2,13 +2,13 @@
 
 from PyQt4 import QtGui
 import sys
+import argparse
 from os import path
+import os
 
 import design
 import ccdsetup
 import exposure
-
-DATA_DIRECTORY = "./"
 
 ###############################################################################
 
@@ -24,6 +24,8 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         self.exposeButton.clicked.connect(self.expose)
         self.resetButton.clicked.connect(self.reset)
         self.testimCheckBox.toggled.connect(self.setfilename)
+        self.num_img = 0
+        self.curr_filename = ""
         
         ## Initialize controller
         ccdsetup.sta3800_setup()
@@ -34,6 +36,8 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         self.exposeButton.setEnabled(False)
         self.imtitleLineEdit.setText("")
         self.imfilenameLineEdit.setText("")
+        self.num_img = 0
+        self.curr_filename = ""
         ccdsetup.sta3800_setup()
             
 
@@ -48,9 +52,12 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                                             "test.fits"))
             return
         elif filename != "":
+
+            if self.curr_filename != filename:
+                self.num_img = 0
             self.exposeButton.setEnabled(True)
-            self.imfilenameLineEdit.setText(path.join(DATA_DIRECTORY,
-                                            "{0}.fits".format(filename)))
+            self.imfilenameLineEdit.setText(path.join(DATA_DIRECTORY, "{0}_{1}.fits".format(filename, self.num_img)))
+            self.curr_filename = filename
             return
 
         self.exposeButton.setEnabled(False)
@@ -58,6 +65,8 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
 
     def expose(self):
         """Perform the specified image exposure"""
+
+        print "Starting exposure" # Send to some prompt on GUI
 
         modedict = {"Exposure" : "exp",
                     "Dark" : "dark",
@@ -73,7 +82,13 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         exptime = self.exptimeDoubleSpinBox.value()
 
         #img_acq(mode, filepath, exptime)
-        print "exposure.img_acq({0}, {1}, {2})".format(mode, filepath, exptime)
+        exposure.im_acq(mode, filepath, exptime)
+
+        print "Finished exposure" # Same as above
+
+        ## Autoincrement images
+        self.num_img += 1
+        self.setfilename()
 
     def scan(self):
         pass
@@ -92,5 +107,23 @@ def main():
     app.exec_()
 
 if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-d", "--directory", default = "./", 
+                        help="Specify data directory")
+
+    args = parser.parse_args()
+
+    ## Set the global data directory
+
+    global DATA_DIRECTORY
+    DATA_DIRECTORY = args.directory
+
+    ## Make directory if it does not exist
+    try: 
+        os.makedirs(DATA_DIRECTORY)
+    except OSError:
+        if not os.path.isdir(DATA_DIRECTORY):
+            raise
 
     main()
