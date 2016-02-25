@@ -36,11 +36,6 @@ if "check_output" not in dir( subprocess ): # duck punch it in!
 ##
 ###############################################################################
 
-def dialog(str2print):
-    """Print string to dialog or screen"""
-    
-    print str2print
-    return
 
 ###############################################################################
 ##
@@ -83,13 +78,13 @@ def set_bbias(state):
 
     ## Check if successful
     if relay.isAttached():
-        display("Done!")
+        print "Done!"
     else:
-        sys.exit("Failed to connect to Phidget controller")
+        print "Failed to connect to Phidget controller"
 
     ## Set output to 0 and close
     relay.setOutputState(0, setting)
-    display("BSS is now {}".format(state))
+    print "BSS is now {0}".format(state)
     relay.closePhidget()
 
     return
@@ -219,6 +214,10 @@ def gain(mode):
     
 
 def sta3800_setup():
+
+    output = subprocess.check_output("sta3800_setup")
+    print output
+    return
 
     ch_setup()
 
