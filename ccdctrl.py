@@ -33,6 +33,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         self.exposeButton.clicked.connect(self.expose)
         self.resetButton.clicked.connect(self.reset)
         self.testimCheckBox.toggled.connect(self.setfilename)
+        self.exptypeComboBox.currentIndexChanged.connect(self.setfilename)
         
         ## Initialize controller
         ccdsetup.sta3800_setup()
