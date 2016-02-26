@@ -17,10 +17,8 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
     def __init__(self, parent=None):
         super(Controller, self).__init__(parent)
         self.setupUi(self)
-        self.exposeButton.setEnabled(False) # Move to ui
 
         ## These attributes handle autoincrement of filename
-        self.num_img = 0
         self.curr_filename = ""
 
         ## Dictionary for image exposure mode
@@ -34,6 +32,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         self.resetButton.clicked.connect(self.reset)
         self.testimCheckBox.toggled.connect(self.setfilename)
         self.exptypeComboBox.currentIndexChanged.connect(self.setfilename)
+        self.directoryPushButton.clicked.connect(self.setdirectory)
         
         ## Initialize controller
         ccdsetup.sta3800_setup()
@@ -54,6 +53,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
 
         filename = str(self.imtitleLineEdit.text())
         mode = self.modedict[str(self.exptypeComboBox.currentText())]
+        im_num = self.imnumSpinBox.value()
         
         if self.testimCheckBox.isChecked():
             self.exposeButton.setEnabled(True)
@@ -63,25 +63,36 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         elif filename != "":
 
             if self.curr_filename != filename:
-                self.num_img = 0
+                self.imnumSpinBox.setValue(0)
             self.exposeButton.setEnabled(True)
-            self.imfilenameLineEdit.setText(path.join(DATA_DIRECTORY, "{0}_{1}_{2}.fits".format(filename, mode, self.num_img)))
+            self.imfilenameLineEdit.setText(path.join(DATA_DIRECTORY, "{0}_{1}_{2}.fits".format(filename, mode, im_num)))
             self.curr_filename = filename
             return
 
         self.exposeButton.setEnabled(False)
         self.imfilenameLineEdit.setText("")
 
+    def setdirectory(self):
+
+        ## Have user select existing directory
+        new_directory = str(QFileDialog.getExistingDirectory(self, "Select Directory"))
+
+        ## If return is not NULL, set the DATA_DIRECTORY and update filename
+        if new_directory:
+            global DATA_DIRECTORY
+            DATA_DIRECTORY = new_directory
+            self.setfilename()
+            self.statusLineEdit.setText("Data directory changed to {0}".format(new_directory))
+        
+                            
     def expose(self):
         """Perform the specified image exposure"""
 
         print "Starting exposure" # Send to some prompt on GUI
+        self.statusLineEdit.setText("Starting exposure")
 
         ## If test image, set filename to test.fits
-        if self.testimCheckBox.isChecked():
-            filepath = path.join(DATA_DIRECTORY, "test.fits")
-        else:
-            filepath = self.imfilenameLineEdit.text()
+        filepath = self.imfilenameLineEdit.text()
 
         mode = self.modedict[str(self.exptypeComboBox.currentText())]
         exptime = self.exptimeDoubleSpinBox.value()
@@ -89,11 +100,13 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         #img_acq(mode, filepath, exptime)
         exposure.im_acq(mode, filepath, exptime)
 
-        print "Finished exposure" # Same as above
+        self.statusLineEdit.setText("Exposure finished.")
 
-        ## Autoincrement images
-        self.num_img += 1
-        self.setfilename()
+        ## If auto increment turned on, change Image Number spin box
+        if self.autoincCheckBox.isChecked():
+            im_num = self.imnumSpinBox.value()
+            self.imnumSpinBox.setValue(im_num+1)
+            self.setfilename()
 
     def scan(self):
         pass

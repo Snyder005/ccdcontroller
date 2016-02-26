@@ -6,271 +6,328 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>613</width>
-    <height>272</height>
+    <width>633</width>
+    <height>437</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>ccdcontroller</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QTabWidget" name="tabWidget">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>20</x>
       <y>10</y>
-      <width>596</width>
-      <height>215</height>
+      <width>598</width>
+      <height>373</height>
      </rect>
     </property>
-    <property name="currentIndex">
-     <number>0</number>
-    </property>
-    <widget class="QWidget" name="exposurePage" native="true">
-     <attribute name="title">
-      <string>Exposure</string>
-     </attribute>
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="1" column="1">
-       <widget class="QComboBox" name="exptypeComboBox">
-        <item>
-         <property name="text">
-          <string>Exposure</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Dark</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Bias</string>
-         </property>
-        </item>
+    <layout class="QGridLayout" name="mainGrid">
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="statusLineEdit">
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0" colspan="3">
+      <widget class="QTabWidget" name="tabWidget">
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <widget class="QWidget" name="exposurePage">
+        <attribute name="title">
+         <string>Exposure</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="5" column="1">
+          <widget class="QSpinBox" name="imnumSpinBox"/>
+         </item>
+         <item row="1" column="1">
+          <widget class="QComboBox" name="exptypeComboBox">
+           <item>
+            <property name="text">
+             <string>Exposure</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Dark</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Bias</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="6" column="1">
+          <widget class="QLabel" name="imfilenameLabel">
+           <property name="text">
+            <string>Image Filename:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QPushButton" name="exposeButton">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>Expose</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="2">
+          <widget class="QCheckBox" name="autoincCheckBox">
+           <property name="text">
+            <string>Auto Increment?</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QPushButton" name="directoryPushButton">
+           <property name="text">
+            <string>Set Data Directory</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="3">
+          <widget class="QDoubleSpinBox" name="exptimeDoubleSpinBox">
+           <property name="singleStep">
+            <double>0.500000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLabel" name="imnumLabel">
+           <property name="text">
+            <string>Image Number:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLabel" name="imtitleLabel">
+           <property name="text">
+            <string>Image Title:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QCheckBox" name="testimCheckBox">
+           <property name="text">
+            <string>Test Image</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="imtypeLabel">
+           <property name="text">
+            <string>Image Type:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="3">
+          <widget class="QLabel" name="exptimeLabel">
+           <property name="text">
+            <string>Exposure Time:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1" colspan="3">
+          <widget class="QLineEdit" name="imtitleLineEdit"/>
+         </item>
+         <item row="7" column="1" colspan="3">
+          <widget class="QLineEdit" name="imfilenameLineEdit">
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="0">
+          <widget class="QPushButton" name="resetButton">
+           <property name="text">
+            <string>Reset Controller</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
-      </item>
-      <item row="1" column="2">
-       <widget class="QCheckBox" name="testimCheckBox">
-        <property name="text">
-         <string>Test Image</string>
-        </property>
+       <widget class="QWidget" name="scanPage">
+        <attribute name="title">
+         <string>Scan</string>
+        </attribute>
        </widget>
-      </item>
-      <item row="0" column="0" rowspan="3">
-       <widget class="QPushButton" name="exposeButton">
-        <property name="text">
-         <string>Expose</string>
-        </property>
+       <widget class="QWidget" name="voltagePage">
+        <attribute name="title">
+         <string>Voltages</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="0" column="0">
+          <widget class="QLabel" name="vddLabel">
+           <property name="text">
+            <string>VDD</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="vodLabel">
+           <property name="text">
+            <string>VOD</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="vogLabel">
+           <property name="text">
+            <string>VOG</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="3">
+          <widget class="QLabel" name="vrdLabel">
+           <property name="text">
+            <string>VRD</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLineEdit" name="vddLineEdit">
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="vodLineEdit">
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QLineEdit" name="vogLineEdit">
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="3">
+          <widget class="QLineEdit" name="vrdLineEdit">
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="setvddLabel">
+           <property name="text">
+            <string>Set VDD</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLabel" name="setvodLabel">
+           <property name="text">
+            <string>Set VOD</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2">
+          <widget class="QLabel" name="setvogLabel">
+           <property name="text">
+            <string>Set VOG</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="3">
+          <widget class="QLabel" name="setvrdLabel">
+           <property name="text">
+            <string>Set VRD</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QDoubleSpinBox" name="vddSpinBox">
+           <property name="decimals">
+            <number>1</number>
+           </property>
+           <property name="singleStep">
+            <double>0.500000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QDoubleSpinBox" name="vodSpinBox">
+           <property name="decimals">
+            <number>1</number>
+           </property>
+           <property name="singleStep">
+            <double>0.500000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="2">
+          <widget class="QDoubleSpinBox" name="vogSpinBox">
+           <property name="decimals">
+            <number>1</number>
+           </property>
+           <property name="singleStep">
+            <double>0.500000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="3">
+          <widget class="QDoubleSpinBox" name="vrdSpinBox">
+           <property name="decimals">
+            <number>1</number>
+           </property>
+           <property name="singleStep">
+            <double>0.500000000000000</double>
+           </property>
+           <property name="value">
+            <double>0.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="2">
+          <widget class="QPushButton" name="resetvoltageButton">
+           <property name="text">
+            <string>Reset To Defaults</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="3">
+          <widget class="QPushButton" name="setvoltageButton">
+           <property name="text">
+            <string>Set Voltages</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
-      </item>
-      <item row="6" column="1" colspan="3">
-       <widget class="QLineEdit" name="imfilenameLineEdit">
-        <property name="readOnly">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="1" colspan="3">
-       <widget class="QLineEdit" name="imtitleLineEdit"/>
-      </item>
-      <item row="0" column="3">
-       <widget class="QLabel" name="exptimeLabel">
-        <property name="text">
-         <string>Exposure Time:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QLabel" name="imtypeLabel">
-        <property name="text">
-         <string>Image Type:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QLabel" name="imtitleLabel">
-        <property name="text">
-         <string>Image Title:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="1">
-       <widget class="QLabel" name="imfilenameLabel">
-        <property name="text">
-         <string>Image Filename:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="3">
-       <widget class="QDoubleSpinBox" name="exptimeDoubleSpinBox">
-        <property name="singleStep">
-         <double>0.500000000000000</double>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="0">
-       <widget class="QPushButton" name="resetButton">
-        <property name="text">
-         <string>Reset</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-    <widget class="QWidget" name="scanPage">
-     <attribute name="title">
-      <string>Scan</string>
-     </attribute>
-    </widget>
-    <widget class="QWidget" name="voltagePage">
-     <attribute name="title">
-      <string>Voltages</string>
-     </attribute>
-     <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="0">
-       <widget class="QLabel" name="vddLabel">
-        <property name="text">
-         <string>VDD</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QLabel" name="vodLabel">
-        <property name="text">
-         <string>VOD</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="QLabel" name="vogLabel">
-        <property name="text">
-         <string>VOG</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="3">
-       <widget class="QLabel" name="vrdLabel">
-        <property name="text">
-         <string>VRD</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLineEdit" name="vddLineEdit">
-        <property name="readOnly">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QLineEdit" name="vodLineEdit">
-        <property name="readOnly">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="2">
-       <widget class="QLineEdit" name="vogLineEdit">
-        <property name="readOnly">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="3">
-       <widget class="QLineEdit" name="vrdLineEdit">
-        <property name="readOnly">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="setvddLabel">
-        <property name="text">
-         <string>Set VDD</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QLabel" name="setvodLabel">
-        <property name="text">
-         <string>Set VOD</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="2">
-       <widget class="QLabel" name="setvogLabel">
-        <property name="text">
-         <string>Set VOG</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="3">
-       <widget class="QLabel" name="setvrdLabel">
-        <property name="text">
-         <string>Set VRD</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QDoubleSpinBox" name="vddSpinBox">
-        <property name="decimals">
-         <number>1</number>
-        </property>
-        <property name="singleStep">
-         <double>0.500000000000000</double>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="QDoubleSpinBox" name="vodSpinBox">
-        <property name="decimals">
-         <number>1</number>
-        </property>
-        <property name="singleStep">
-         <double>0.500000000000000</double>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="2">
-       <widget class="QDoubleSpinBox" name="vogSpinBox">
-        <property name="decimals">
-         <number>1</number>
-        </property>
-        <property name="singleStep">
-         <double>0.500000000000000</double>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="3">
-       <widget class="QDoubleSpinBox" name="vrdSpinBox">
-        <property name="decimals">
-         <number>1</number>
-        </property>
-        <property name="singleStep">
-         <double>0.500000000000000</double>
-        </property>
-        <property name="value">
-         <double>0.000000000000000</double>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="2">
-       <widget class="QPushButton" name="resetvoltageButton">
-        <property name="text">
-         <string>Reset To Defaults</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="3">
-       <widget class="QPushButton" name="setvoltageButton">
-        <property name="text">
-         <string>Set Voltages</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="statusLabel">
+       <property name="text">
+        <string>Status:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QProgressBar" name="progressBar">
+       <property name="value">
+        <number>0</number>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -278,7 +335,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>613</width>
+     <width>633</width>
      <height>22</height>
     </rect>
    </property>
