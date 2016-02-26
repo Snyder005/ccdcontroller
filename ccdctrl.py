@@ -33,6 +33,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         self.testimCheckBox.toggled.connect(self.setfilename)
         self.exptypeComboBox.currentIndexChanged.connect(self.setfilename)
         self.directoryPushButton.clicked.connect(self.setdirectory)
+        self.imnumSpinBox.valueChanged.connect(self.setfilename)
         
         ## Initialize controller
         ccdsetup.sta3800_setup()
@@ -40,10 +41,11 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
     def reset(self):
         """Run initial commands to set up controller"""
 
+        ## Reset defaults
         self.exposeButton.setEnabled(False)
         self.imtitleLineEdit.setText("")
         self.imfilenameLineEdit.setText("")
-        self.num_img = 0
+        self.innumSpinBox.setValue(0)
         self.curr_filename = ""
         ccdsetup.sta3800_setup()
             
@@ -51,31 +53,40 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
     def setfilename(self):
         """Update and display filepath for the image file"""
 
+        ## Get filename parameters
         filename = str(self.imtitleLineEdit.text())
         mode = self.modedict[str(self.exptypeComboBox.currentText())]
         im_num = self.imnumSpinBox.value()
         
+        ## If test image, set filename to generic filename
         if self.testimCheckBox.isChecked():
             self.exposeButton.setEnabled(True)
             self.imfilenameLineEdit.setText(path.join(DATA_DIRECTORY,
                                                       "test_{0}.fits".format(mode)))
             return
+
+        ## Else, if not empty string, build new filename
         elif filename != "":
 
+            ## If filename changed, reset image number
             if self.curr_filename != filename:
                 self.imnumSpinBox.setValue(0)
+
             self.exposeButton.setEnabled(True)
             self.imfilenameLineEdit.setText(path.join(DATA_DIRECTORY, "{0}_{1}_{2}.fits".format(filename, mode, im_num)))
             self.curr_filename = filename
             return
 
+        ## If empty turn of expose button and erase filename
         self.exposeButton.setEnabled(False)
         self.imfilenameLineEdit.setText("")
+
+        
 
     def setdirectory(self):
 
         ## Have user select existing directory
-        new_directory = str(QFileDialog.getExistingDirectory(self, "Select Directory"))
+        new_directory = str(QtGui.QFileDialog.getExistingDirectory(self, "Select Directory"))
 
         ## If return is not NULL, set the DATA_DIRECTORY and update filename
         if new_directory:
@@ -88,25 +99,26 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
     def expose(self):
         """Perform the specified image exposure"""
 
-        print "Starting exposure" # Send to some prompt on GUI
-        self.statusLineEdit.setText("Starting exposure")
+        ## This will only work if in separate worker thread
+#        self.statusLineEdit.setText("Starting exposure") 
 
-        ## If test image, set filename to test.fits
+        ## Get exposure parameters
         filepath = self.imfilenameLineEdit.text()
-
         mode = self.modedict[str(self.exptypeComboBox.currentText())]
         exptime = self.exptimeDoubleSpinBox.value()
 
-        #img_acq(mode, filepath, exptime)
         exposure.im_acq(mode, filepath, exptime)
 
-        self.statusLineEdit.setText("Exposure finished.")
+        self.statusLineEdit.setText("Exposure {0} finished.".format(filepath))
 
         ## If auto increment turned on, change Image Number spin box
         if self.autoincCheckBox.isChecked():
-            im_num = self.imnumSpinBox.value()
-            self.imnumSpinBox.setValue(im_num+1)
-            self.setfilename()
+            if not self.testimCheckBox.isChecked():
+                im_num = self.imnumSpinBox.value()
+                self.imnumSpinBox.setValue(im_num+1)
+                self.setfilename()
+
+        exposure.display(filepath)
 
     def scan(self):
         pass

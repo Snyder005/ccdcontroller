@@ -110,10 +110,10 @@ def im_acq(mode, filename = "test.fits", time=0.00):
         output = subprocess.check_output(["dark_acq", "0.00",
                                           "{0}".format(filename)])
     elif mode == "dark":
-        output = subprocess.check_output(["dark_acq", "{}".format(exptime),
+        output = subprocess.check_output(["dark_acq", "{0}".format(time),
                                           "{0}".format(filename)])
     elif mode == "exp":
-        output = subprocess.check_output(["exp_acq", "{}".format(exptime),
+        output = subprocess.check_output(["exp_acq", "{0}".format(time),
                                           "{0}".format(filename)])
 
     return
@@ -153,6 +153,14 @@ def exp_acq(exptime, filename=None):
     else:
         output = subprocess.check_output(["exp_acq", "{0}".format(exptime),
                                           "{0}".format(file_name)])
+    return output
+
+def display(filename):
+
+    output = subprocess.check_output(["ds9", "-mosaicimage", "iraf", 
+                                      "{0}".format(filename), "-zoom",
+                                      "to", "fit"])
+
     return output
 
 ###############################################################################
