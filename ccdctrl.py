@@ -36,6 +36,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         self.imnumSpinBox.valueChanged.connect(self.setfilename)
         
         ## Initialize controller
+        ccdsetup.sta3800_off()
         ccdsetup.sta3800_setup()
 
     def reset(self):
@@ -47,6 +48,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         self.imfilenameLineEdit.setText("")
         self.innumSpinBox.setValue(0)
         self.curr_filename = ""
+        ccdsetup.sta3800_off()
         ccdsetup.sta3800_setup()
             
 
@@ -57,6 +59,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         filename = str(self.imtitleLineEdit.text())
         mode = self.modedict[str(self.exptypeComboBox.currentText())]
         im_num = self.imnumSpinBox.value()
+        exptime = self.exptimeDoubleSpinBox.value()
         
         ## If test image, set filename to generic filename
         if self.testimCheckBox.isChecked():
@@ -73,16 +76,15 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                 self.imnumSpinBox.setValue(0)
 
             self.exposeButton.setEnabled(True)
-            self.imfilenameLineEdit.setText(path.join(DATA_DIRECTORY, "{0}_{1}_{2}.fits".format(filename, mode, im_num)))
+            self.imfilenameLineEdit.setText(path.join(DATA_DIRECTORY, "{0}_{1}_{2}_{3}.fits".format(filename, mode, exptime, im_num)))
             self.curr_filename = filename
             return
 
-        ## If empty turn of expose button and erase filename
+        ## If empty turn off expose button and erase filename
         self.exposeButton.setEnabled(False)
         self.imfilenameLineEdit.setText("")
 
         
-
     def setdirectory(self):
 
         ## Have user select existing directory

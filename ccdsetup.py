@@ -216,6 +216,7 @@ def gain(mode):
 def sta3800_setup(use_bash=True):
 
     if use_bash:
+        print "Turning on the sta3800 system."
         output = subprocess.check_output("sta3800_setup")
         print output
         return
@@ -227,6 +228,14 @@ def sta3800_setup(use_bash=True):
     sta3800_volts()
     sta3800_offset()
     gain("high")
+
+def sta3800_off(use_bash=True):
+
+    if use_bash:
+        print "Turning off the sta3800 system."
+        output = subprocess.check_output("sta3800_off")
+        print output
+        return
 
 
 ###############################################################################
@@ -247,7 +256,7 @@ if __name__ == '__main__':
                                      prog='CCD Autochar')
     parser.add_argument("-c", "--config", default=None, metavar='',
                         help="Specify config filepath")
-    parser.add_argument("-v", "--version", action='version', version='%(prog)s 0.1')
+    parser.add_argument("-v", "--version", action='version', version='%(prog)s 1.1')
     args = parser.parse_args()
 
     main()
