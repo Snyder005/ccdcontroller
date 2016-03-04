@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>633</width>
-    <height>437</height>
+    <width>630</width>
+    <height>466</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,8 +19,8 @@
      <rect>
       <x>20</x>
       <y>10</y>
-      <width>598</width>
-      <height>373</height>
+      <width>591</width>
+      <height>401</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="mainGrid">
@@ -42,7 +42,11 @@
         </attribute>
         <layout class="QGridLayout" name="gridLayout">
          <item row="5" column="1">
-          <widget class="QSpinBox" name="imnumSpinBox"/>
+          <widget class="QSpinBox" name="imnumSpinBox">
+           <property name="maximum">
+            <number>999</number>
+           </property>
+          </widget>
          </item>
          <item row="1" column="1">
           <widget class="QComboBox" name="exptypeComboBox">
@@ -53,12 +57,37 @@
            </item>
            <item>
             <property name="text">
+             <string>Exposure Stack</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Exposure Series</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
              <string>Dark</string>
             </property>
            </item>
            <item>
             <property name="text">
+             <string>Dark Stack</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Dark Series</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
              <string>Bias</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Bias Stack</string>
             </property>
            </item>
           </widget>
@@ -156,160 +185,295 @@
            </property>
           </widget>
          </item>
+         <item row="4" column="3">
+          <widget class="QLabel" name="imstackLabel">
+           <property name="text">
+            <string>Image Stack Number</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="3">
+          <widget class="QSpinBox" name="imstackSpinBox">
+           <property name="maximum">
+            <number>999</number>
+           </property>
+          </widget>
+         </item>
         </layout>
-       </widget>
-       <widget class="QWidget" name="scanPage">
-        <attribute name="title">
-         <string>Scan</string>
-        </attribute>
        </widget>
        <widget class="QWidget" name="voltagePage">
         <attribute name="title">
          <string>Voltages</string>
         </attribute>
-        <layout class="QGridLayout" name="gridLayout_2">
-         <item row="0" column="0">
-          <widget class="QLabel" name="vddLabel">
-           <property name="text">
-            <string>VDD</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QLabel" name="vodLabel">
-           <property name="text">
-            <string>VOD</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="2">
-          <widget class="QLabel" name="vogLabel">
-           <property name="text">
-            <string>VOG</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="3">
-          <widget class="QLabel" name="vrdLabel">
-           <property name="text">
-            <string>VRD</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLineEdit" name="vddLineEdit">
-           <property name="readOnly">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QLineEdit" name="vodLineEdit">
-           <property name="readOnly">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="2">
-          <widget class="QLineEdit" name="vogLineEdit">
-           <property name="readOnly">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="3">
-          <widget class="QLineEdit" name="vrdLineEdit">
-           <property name="readOnly">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="setvddLabel">
-           <property name="text">
-            <string>Set VDD</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QLabel" name="setvodLabel">
-           <property name="text">
-            <string>Set VOD</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="2">
-          <widget class="QLabel" name="setvogLabel">
-           <property name="text">
-            <string>Set VOG</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="3">
-          <widget class="QLabel" name="setvrdLabel">
-           <property name="text">
-            <string>Set VRD</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QDoubleSpinBox" name="vddSpinBox">
-           <property name="decimals">
-            <number>1</number>
-           </property>
-           <property name="singleStep">
-            <double>0.500000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QDoubleSpinBox" name="vodSpinBox">
-           <property name="decimals">
-            <number>1</number>
-           </property>
-           <property name="singleStep">
-            <double>0.500000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="2">
-          <widget class="QDoubleSpinBox" name="vogSpinBox">
-           <property name="decimals">
-            <number>1</number>
-           </property>
-           <property name="singleStep">
-            <double>0.500000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="3">
-          <widget class="QDoubleSpinBox" name="vrdSpinBox">
-           <property name="decimals">
-            <number>1</number>
-           </property>
-           <property name="singleStep">
-            <double>0.500000000000000</double>
-           </property>
-           <property name="value">
-            <double>0.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="2">
-          <widget class="QPushButton" name="resetvoltageButton">
-           <property name="text">
-            <string>Reset To Defaults</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="3">
-          <widget class="QPushButton" name="setvoltageButton">
-           <property name="text">
-            <string>Set Voltages</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
+        <widget class="QWidget" name="layoutWidget">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>561</width>
+           <height>281</height>
+          </rect>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="0">
+           <widget class="QLabel" name="vddLabel">
+            <property name="text">
+             <string>VDD</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLabel" name="vodLabel">
+            <property name="text">
+             <string>VOD</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="vogLabel">
+            <property name="text">
+             <string>VOG</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QLabel" name="vrdLabel">
+            <property name="text">
+             <string>VRD</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="4">
+           <widget class="QLabel" name="rghiLabel">
+            <property name="text">
+             <string>RG HI</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="5">
+           <widget class="QLabel" name="rgloLabel">
+            <property name="text">
+             <string>RG LO</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLineEdit" name="vddLineEdit">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="vodLineEdit">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QLineEdit" name="vogLineEdit">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3">
+           <widget class="QLineEdit" name="vrdLineEdit">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="4">
+           <widget class="QLineEdit" name="rghiLineEdit">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="5">
+           <widget class="QLineEdit" name="rgloLineEdit">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="setvddLabel">
+            <property name="text">
+             <string>Set VDD</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLabel" name="setvodLabel">
+            <property name="text">
+             <string>Set VOD</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QLabel" name="setvogLabel">
+            <property name="text">
+             <string>Set VOG</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="3">
+           <widget class="QLabel" name="setvrdLabel">
+            <property name="text">
+             <string>Set VRD</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="4">
+           <widget class="QLabel" name="setrghiLabel">
+            <property name="text">
+             <string>Set RG HI</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="5">
+           <widget class="QLabel" name="setrgloLabel">
+            <property name="text">
+             <string>Set RG LO</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QDoubleSpinBox" name="vddSpinBox">
+            <property name="decimals">
+             <number>1</number>
+            </property>
+            <property name="singleStep">
+             <double>0.500000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QDoubleSpinBox" name="vodSpinBox">
+            <property name="decimals">
+             <number>1</number>
+            </property>
+            <property name="singleStep">
+             <double>0.500000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="2">
+           <widget class="QDoubleSpinBox" name="vogSpinBox">
+            <property name="decimals">
+             <number>1</number>
+            </property>
+            <property name="singleStep">
+             <double>0.500000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="3">
+           <widget class="QDoubleSpinBox" name="vrdSpinBox">
+            <property name="decimals">
+             <number>1</number>
+            </property>
+            <property name="singleStep">
+             <double>0.500000000000000</double>
+            </property>
+            <property name="value">
+             <double>0.000000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="4">
+           <widget class="QDoubleSpinBox" name="rghiSpinBox"/>
+          </item>
+          <item row="3" column="5">
+           <widget class="QDoubleSpinBox" name="rgloSpinBox"/>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="parhiLabel">
+            <property name="text">
+             <string>PAR HI</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QLabel" name="parloLabel">
+            <property name="text">
+             <string>PAR LO</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="2">
+           <widget class="QLabel" name="serhiLabel">
+            <property name="text">
+             <string>SER HI</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="3">
+           <widget class="QLabel" name="serloLabel">
+            <property name="text">
+             <string>SER LO</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLineEdit" name="parhiLineEdit">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QLineEdit" name="parloLineEdit">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="2">
+           <widget class="QLineEdit" name="serhiLineEdit">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="3">
+           <widget class="QLineEdit" name="serloLineEdit">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QDoubleSpinBox" name="parhiSpinBox"/>
+          </item>
+          <item row="6" column="1">
+           <widget class="QDoubleSpinBox" name="parloSpinBox"/>
+          </item>
+          <item row="6" column="2">
+           <widget class="QDoubleSpinBox" name="serhiSpinBox"/>
+          </item>
+          <item row="6" column="3">
+           <widget class="QDoubleSpinBox" name="serloSpinBox"/>
+          </item>
+          <item row="7" column="2" colspan="2">
+           <widget class="QPushButton" name="resetvoltageButton">
+            <property name="text">
+             <string>Reset To Defaults</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="4" colspan="2">
+           <widget class="QPushButton" name="setvoltageButton">
+            <property name="text">
+             <string>Set Voltages</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
        </widget>
       </widget>
      </item>
@@ -335,7 +499,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>633</width>
+     <width>630</width>
      <height>22</height>
     </rect>
    </property>
