@@ -24,7 +24,12 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         ## Dictionary for image exposure mode
         self.modedict = {"Exposure" : "exp",
                          "Dark" : "dark",
-                         "Bias" : "bias"}
+                         "Bias" : "bias",
+                         "Exposure Stack" : "expstack",
+                         "Bias Stack" : "biasstack",
+                         "Dark Stack" : "darkstack",
+                         "Exposure Series" : "expseries",
+                         "Dark Series" : "darkseries"}
 
         ## Connect signals and slots
         self.imtitleLineEdit.editingFinished.connect(self.setfilename)
@@ -42,14 +47,19 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
     def reset(self):
         """Run initial commands to set up controller"""
 
-        ## Reset defaults
-        self.exposeButton.setEnabled(False)
-        self.imtitleLineEdit.setText("")
-        self.imfilenameLineEdit.setText("")
-        self.innumSpinBox.setValue(0)
-        self.curr_filename = ""
-        ccdsetup.sta3800_off()
-        ccdsetup.sta3800_setup()
+        reply = QtGui.QMessageBox.question(self, 'Confirmation', 'Are you sure you want to reset the STA3800 controller?',
+                                           QtGui.QMessageBox.Yes | QtGui.QMessageBox.No, QtGui.QMessage.No)
+
+        if reply == QtGui.QMessageBox.Yes:
+
+            ## Reset defaults
+            self.exposeButton.setEnabled(False)
+            self.imtitleLineEdit.setText("")
+            self.imfilenameLineEdit.setText("")
+            self.innumSpinBox.setValue(0)
+            self.curr_filename = ""
+            ccdsetup.sta3800_off()
+            ccdsetup.sta3800_setup()
             
 
     def setfilename(self):
@@ -65,7 +75,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         if self.testimCheckBox.isChecked():
             self.exposeButton.setEnabled(True)
             self.imfilenameLineEdit.setText(path.join(DATA_DIRECTORY,
-                                                      "test_{0}.fits".format(mode)))
+                                                      "test.{0}.fits".format(mode)))
             return
 
         ## Else, if not empty string, build new filename
@@ -76,7 +86,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                 self.imnumSpinBox.setValue(0)
 
             self.exposeButton.setEnabled(True)
-            self.imfilenameLineEdit.setText(path.join(DATA_DIRECTORY, "{0}_{1}_{2}_{3}.fits".format(filename, mode, exptime, im_num)))
+            self.imfilenameLineEdit.setText(path.join(DATA_DIRECTORY, "{0}.{1}.{2}s.{3}.fits".format(filename, mode, exptime, im_num)))
             self.curr_filename = filename
             return
 
@@ -130,6 +140,18 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
 
     def setvoltage(self):
         pass
+
+    def closeEvent(self, event):
+        """Try to 
+
+        quit_msg = "Are you sure you want to exit the program?"
+        reply = QtGui.QMessageBox.question(self, 'Message', 
+                                           quit_msg, QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+        
+        if reply == QtGui.QMessageBox.Yes:
+            event.accept()
+        else:
+            event.ignore()
         
 def main():
 
@@ -139,6 +161,9 @@ def main():
     app.exec_()
 
 if __name__ == "__main__":
+
+
+    ## Change this to read from a config file
 
     parser = argparse.ArgumentParser()
     parser.add_argument("-d", "--directory", default = "./", 

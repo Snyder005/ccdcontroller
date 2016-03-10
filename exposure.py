@@ -91,12 +91,12 @@ def scan(filebase, *args, **kwargs):
 
 ###############################################################################
 ##
-##  Single Frame
+##  Exposures
 ##
 ###############################################################################
 
-def im_acq(mode, filename = "test.fits", time=0.00):
-    """Perform an image exposure"""
+def im_acq(mode, filebase="test", time=0.00):
+    """Perform an image exposure of given mode."""
 
     ## Delete output file, if it already exists
     try:
@@ -108,52 +108,48 @@ def im_acq(mode, filename = "test.fits", time=0.00):
     ## Do exposure depending on specified mode
     if mode == "bias":
         output = subprocess.check_output(["dark_acq", "0.00",
-                                          "{0}".format(filename)])
+                                          "{0}.fits".format(filebase)])
     elif mode == "dark":
         output = subprocess.check_output(["dark_acq", "{0}".format(time),
-                                          "{0}".format(filename)])
+                                          "{0}.fits".format(filebase)])
     elif mode == "exp":
         output = subprocess.check_output(["exp_acq", "{0}".format(time),
-                                          "{0}".format(filename)])
+                                          "{0}.fits".format(filebase)])
 
     return
-                                        
-        
-def bias_acq(file_name='bias.fits'):
-    """Acquire a bias frame"""
 
-    ## Delete output file, if it exists
-    try:
-        os.remove(file_name)
-    except OSError as er:
-        if er.errno != errno.ENOENT:
-            raise
-        pass
+def stack(mode, filebase, imcount, time, start=0):
+    """Perform a stack of images of a given mode."""
 
-    ## Do dark frame with 0.0 exposure time
-    dark_acq(0.00, file_name)
+    total = start + imcount
 
-def dark_acq(time, file_name=None):
-    """Acquire a dark frame"""
-    return  # Remove to allow measurement
+    i = start
 
-    if filename is None:
-        output = subprocess.check_output(["dark_acq", "{0}".format(time)])
-    else:
-        output = subprocess.check_output(["dark_acq", "{0}".format(time),
-                                          "{0}".format(file_name)])
-    return output
+    while i < total:
 
-def exp_acq(exptime, filename=None):
-    """Acquire and exposure image"""
-    return # Remove to allow measurement
+        filename = "{0}.{1}".format(filebase, i)
+        im_acq(mode, filename, time)
+        i += 1
 
-    if filename is None:
-        output = subprocess.check_output(["exp_acq", "{0}".format(exptime)])
-    else:
-        output = subprocess.check_output(["exp_acq", "{0}".format(exptime),
-                                          "{0}".format(file_name)])
-    return output
+    return
+
+def series(mode, filebase, mintime, maxtime, step):
+    """Perform a series of images of a given mode."""
+
+    time = mintime
+
+    while dtime <= maxtime:
+        filename = "{0}.{1}".format(filebase, time)
+        im_acq(mode, filename, time)
+        dtime += step
+    
+
+
+###############################################################################
+##
+##  Exposures
+##
+###############################################################################
 
 def display(filename):
 
@@ -168,6 +164,21 @@ def display(filename):
 ##  Stacks
 ##
 ###############################################################################
+
+def stack(mode, filebase, imcount, dtime, start=0):
+
+    total = start + imcount
+
+    i = start
+
+    while i < total:
+
+        filename = "{0}_{1}.fits".format(filebase, i)
+        im_acq(mode, filename, dtime)
+        i += 1
+
+    return
+    
 
 def bias_stack(imcount, filebase):
     """Collect a stack of bias frames"""
