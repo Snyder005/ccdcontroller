@@ -159,53 +159,6 @@ def display(filename):
 
     return output
 
-###############################################################################
-##
-##  Stacks
-##
-###############################################################################
-
-def stack(mode, filebase, imcount, dtime, start=0):
-
-    total = start + imcount
-
-    i = start
-
-    while i < total:
-
-        filename = "{0}_{1}.fits".format(filebase, i)
-        im_acq(mode, filename, dtime)
-        i += 1
-
-    return
-    
-
-def bias_stack(imcount, filebase):
-    """Collect a stack of bias frames"""
-
-    i = 0
-
-    while i < imcount: # Check if equality is allowed
-        filename = "{0}_{1}.fits".format(filebase, i)
-        print filename
-        bias_acq(filename)
-        i += 1
-
-    return
-
-def dark_stack(dtime, imcount, filebase, start=0):
-
-    total = start + imcount
-
-    i = start
-
-    while i < total: # Check if equality is allowed
-        filename = "{0}_{1}.fits".format(filebase, i)
-        print filename
-        dark_acq(dtime, filename)
-        i += 1
-
-    return
 
 ###############################################################################
 ##

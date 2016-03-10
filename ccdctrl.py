@@ -31,14 +31,13 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                          "Exposure Series" : "expseries",
                          "Dark Series" : "darkseries"}
 
-        ## Connect signals and slots
-        self.imtitleLineEdit.editingFinished.connect(self.setfilename)
+        ## Connect signals and slots for functions
         self.exposeButton.clicked.connect(self.expose)
         self.resetButton.clicked.connect(self.reset)
-        self.testimCheckBox.toggled.connect(self.setfilename)
-        self.exptypeComboBox.currentIndexChanged.connect(self.setfilename)
         self.directoryPushButton.clicked.connect(self.setdirectory)
-        self.imnumSpinBox.valueChanged.connect(self.setfilename)
+
+        ## Connect signals to update filepath
+        
         
         ## Initialize controller
         ccdsetup.sta3800_off()
@@ -53,11 +52,11 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         if reply == QtGui.QMessageBox.Yes:
 
             ## Reset defaults
-            self.exposeButton.setEnabled(False)
-            self.imtitleLineEdit.setText("")
-            self.imfilenameLineEdit.setText("")
-            self.innumSpinBox.setValue(0)
-            self.curr_filename = ""
+#            self.exposeButton.setEnabled(False)
+#            self.imtitleLineEdit.setText("")
+#            self.imfilenameLineEdit.setText("")
+#            self.innumSpinBox.setValue(0)
+#            self.curr_filename = ""
             ccdsetup.sta3800_off()
             ccdsetup.sta3800_setup()
             
@@ -96,6 +95,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
 
         
     def setdirectory(self):
+        """Open prompt for user to select a new directory to save data."""
 
         ## Have user select existing directory
         new_directory = str(QtGui.QFileDialog.getExistingDirectory(self, "Select Directory"))
@@ -104,11 +104,52 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         if new_directory:
             global DATA_DIRECTORY
             DATA_DIRECTORY = new_directory
-            self.setfilename()
+#            self.setfilename()
             self.statusLineEdit.setText("Data directory changed to {0}".format(new_directory))
+
+    def expose(self):
+        """Execute a shell script to perform a measurement, depending on the desired
+           exposure type."""
+
+        # Add a try/except here to catch failures of the shell script
+
+        ## Determine type of exposure (exp, series, stack)
+        exptype = str(self.exptypeComboBox.currentText())
+        mode = self.modedict[exptype]
+        filebase = self.imfilenameLineEdit.text() # Change this to actual filebase
+
+        ## Check if single exposure
+        if exptype in ["Exposure", "Dark", "Bias"]:
+
+            ## Get necessary arguments
+            exptime = self.exptimeSpinBox.value()
+            
+            exposure.im_acq(mode, filebase, exptime)
+
+        ## Check if a stack of exposures of same type
+        elif exptype in ["Exposure Stack", "Dark Stack", "Bias Stack"]:
+
+            ## Get necessary arguments
+            exptime = self.exptimeSpinBox.value()
+            imcount = self.imstackSpinBox.value() # Make sure this is type(int)
+            start = self.imnumSpinBox.value() # Make sure this is type(int)
+
+            exposure.stack(mode, filebase, imcount, exptime, start)
+
+        ## Check if a series of exposures of increase exposure time
+        elif exptype in ["Exposure Series", "Dark Series"]:
+
+            ## Get necessary arguments
+            mintime = self.minexpSpinBox.value()
+            maxtime = self.maxexpSpinBox.value()
+            step = self.tstepSpinBox.value()
+
+            # Could add checks here for appropriate values
+
+            exposure.series(mode, filebase, mintime, maxtime, step)
         
                             
-    def expose(self):
+    def expose_old(self):
         """Perform the specified image exposure"""
 
         ## This will only work if in separate worker thread
@@ -132,17 +173,12 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
 
         exposure.display(filepath)
 
-    def scan(self):
-        pass
-
-    def updatevoltage(self):
-        pass
-
-    def setvoltage(self):
+    def setvoltages(self):
+        """Change the value of the specified voltages."""
         pass
 
     def closeEvent(self, event):
-        """Try to 
+        """Try a basic confirmation.  Wish to eventually expand this to save settings."""
 
         quit_msg = "Are you sure you want to exit the program?"
         reply = QtGui.QMessageBox.question(self, 'Message', 
