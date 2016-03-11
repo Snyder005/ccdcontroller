@@ -199,8 +199,6 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             else:
                 self.exptimeSpinBox.setEnabled(True)
 
-            
-
     def closeEvent(self, event):
         """Try a basic confirmation.  Wish to eventually expand this to save settings."""
 
