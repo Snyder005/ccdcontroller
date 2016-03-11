@@ -5,6 +5,7 @@ import sys
 import argparse
 from os import path
 import os
+import atexit
 
 import design
 import ccdsetup
@@ -209,17 +210,28 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                                            QtGui.QMessageBox.No)
         
         if reply == QtGui.QMessageBox.Yes:
-            ccdsetup.sta3800_off()
+            #ccdsetup.sta3800_off()
+
+            # Save settings to config file
             event.accept()
         else:
             event.ignore()
+
+def safe_shutdown():
+    """Run controller shut off command after GUI is closed"""
+
+    ccdsetup.sta3800_off()
         
 def main():
 
+    ## Set up GUI
     app = QtGui.QApplication(sys.argv)
     form = Controller()
     form.show()
     app.exec_()
+    
+    ## Shut down GUI
+    atexit.register(safe_shutdown)
 
 if __name__ == "__main__":
 
