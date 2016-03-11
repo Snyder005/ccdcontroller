@@ -25,11 +25,11 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         self.modedict = {"Exposure" : "exp",
                          "Dark" : "dark",
                          "Bias" : "bias",
-                         "Exposure Stack" : "expstack",
-                         "Bias Stack" : "biasstack",
-                         "Dark Stack" : "darkstack",
-                         "Exposure Series" : "expseries",
-                         "Dark Series" : "darkseries"}
+                         "Exposure Stack" : "exp",
+                         "Bias Stack" : "bias",
+                         "Dark Stack" : "dark",
+                         "Exposure Series" : "exp",
+                         "Dark Series" : "dark"}
 
         ## Connect signals and slots for functions
         self.exposeButton.clicked.connect(self.expose)
@@ -37,7 +37,9 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         self.directoryPushButton.clicked.connect(self.setdirectory)
 
         ## Connect signals to update filepath
-        
+        self.imfilenameLineEdit.setText(DATA_DIRECTORY)
+        self.testimCheckBox.clicked.connect(self.setfilename)
+        self.imtitleLineEdit.editingFinished.connect(self.setfilename)
         
         ## Initialize controller
         ccdsetup.sta3800_off()
@@ -47,7 +49,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         """Run initial commands to set up controller"""
 
         reply = QtGui.QMessageBox.question(self, 'Confirmation', 'Are you sure you want to reset the STA3800 controller?',
-                                           QtGui.QMessageBox.Yes | QtGui.QMessageBox.No, QtGui.QMessage.No)
+                                           QtGui.QMessageBox.Yes | QtGui.QMessageBox.No, QtGui.QMessageBox.No)
 
         if reply == QtGui.QMessageBox.Yes:
 
@@ -60,39 +62,29 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             ccdsetup.sta3800_off()
             ccdsetup.sta3800_setup()
             
-
     def setfilename(self):
-        """Update and display filepath for the image file"""
 
-        ## Get filename parameters
         filename = str(self.imtitleLineEdit.text())
         mode = self.modedict[str(self.exptypeComboBox.currentText())]
-        im_num = self.imnumSpinBox.value()
-        exptime = self.exptimeDoubleSpinBox.value()
-        
-        ## If test image, set filename to generic filename
+
         if self.testimCheckBox.isChecked():
+
             self.exposeButton.setEnabled(True)
-            self.imfilenameLineEdit.setText(path.join(DATA_DIRECTORY,
-                                                      "test.{0}.fits".format(mode)))
+            self.imfilenameLineEdit.setText(path.join(DATA_DIRECTORY, "test"))
+            
             return
 
-        ## Else, if not empty string, build new filename
         elif filename != "":
 
-            ## If filename changed, reset image number
-            if self.curr_filename != filename:
-                self.imnumSpinBox.setValue(0)
-
             self.exposeButton.setEnabled(True)
-            self.imfilenameLineEdit.setText(path.join(DATA_DIRECTORY, "{0}.{1}.{2}s.{3}.fits".format(filename, mode, exptime, im_num)))
+            self.imfilenameLineEdit.setText(path.join(DATA_DIRECTORY, 
+                                                      filename))
             self.curr_filename = filename
+
             return
 
-        ## If empty turn off expose button and erase filename
         self.exposeButton.setEnabled(False)
-        self.imfilenameLineEdit.setText("")
-
+        self.imfilenameLineEdit.setText(DATA_DIRECTORY)
         
     def setdirectory(self):
         """Open prompt for user to select a new directory to save data."""
@@ -104,7 +96,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         if new_directory:
             global DATA_DIRECTORY
             DATA_DIRECTORY = new_directory
-#            self.setfilename()
+            self.setfilename()
             self.statusLineEdit.setText("Data directory changed to {0}".format(new_directory))
 
     def expose(self):
@@ -116,15 +108,20 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         ## Determine type of exposure (exp, series, stack)
         exptype = str(self.exptypeComboBox.currentText())
         mode = self.modedict[exptype]
-        filebase = self.imfilenameLineEdit.text() # Change this to actual filebase
-
+        filebase = "{0}.{1}.{2}s".format(self.imfilenameLineEdit.text(),
+                                         mode, self.exptimeSpinBox.value())
+                                            
         ## Check if single exposure
         if exptype in ["Exposure", "Dark", "Bias"]:
 
             ## Get necessary arguments
-            exptime = self.exptimeSpinBox.value()
-            
-            exposure.im_acq(mode, filebase, exptime)
+            exptime = self.exptimeSpinBox.value()  
+            filebase = "{0}.{1}.{2}s".format(self.imfilenameLineEdit.text(),
+                                             mode, exptime)    
+
+            ## Perform exposure
+            filename = exposure.im_acq(mode, filebase, exptime)
+            self.statusLineEdit.setText("Exposure {0} finished.".format(filename))
 
         ## Check if a stack of exposures of same type
         elif exptype in ["Exposure Stack", "Dark Stack", "Bias Stack"]:
@@ -133,8 +130,11 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             exptime = self.exptimeSpinBox.value()
             imcount = self.imstackSpinBox.value() # Make sure this is type(int)
             start = self.imnumSpinBox.value() # Make sure this is type(int)
+            filebase = "{0}.{1}.{2}s".format(self.imfilenameLineEdit.text(),
+                                             mode, exptime)
 
             exposure.stack(mode, filebase, imcount, exptime, start)
+            self.statusLineEdit.setText("Exposure stack {0} finished".format(filebase))
 
         ## Check if a series of exposures of increase exposure time
         elif exptype in ["Exposure Series", "Dark Series"]:
@@ -143,35 +143,17 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             mintime = self.minexpSpinBox.value()
             maxtime = self.maxexpSpinBox.value()
             step = self.tstepSpinBox.value()
+            filebase = "{0}.{1}".format(self.imfilenameLineEdit.text(),
+                                        mode)
 
             # Could add checks here for appropriate values
-
+            if mintime > maxtime:
+                self.statusLineEdit.setText("Min time must be less than Max time.")
+                return
+                                        
             exposure.series(mode, filebase, mintime, maxtime, step)
+            self.statusLineEdit.setText("Exposure series {0} finished".format(filebase))
         
-                            
-    def expose_old(self):
-        """Perform the specified image exposure"""
-
-        ## This will only work if in separate worker thread
-#        self.statusLineEdit.setText("Starting exposure") 
-
-        ## Get exposure parameters
-        filepath = self.imfilenameLineEdit.text()
-        mode = self.modedict[str(self.exptypeComboBox.currentText())]
-        exptime = self.exptimeDoubleSpinBox.value()
-
-        exposure.im_acq(mode, filepath, exptime)
-
-        self.statusLineEdit.setText("Exposure {0} finished.".format(filepath))
-
-        ## If auto increment turned on, change Image Number spin box
-        if self.autoincCheckBox.isChecked():
-            if not self.testimCheckBox.isChecked():
-                im_num = self.imnumSpinBox.value()
-                self.imnumSpinBox.setValue(im_num+1)
-                self.setfilename()
-
-        exposure.display(filepath)
 
     def setvoltages(self):
         """Change the value of the specified voltages."""
@@ -185,6 +167,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                                            quit_msg, QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
         
         if reply == QtGui.QMessageBox.Yes:
+            ccdsetup.sta3800_off()
             event.accept()
         else:
             event.ignore()

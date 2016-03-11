@@ -98,6 +98,8 @@ def scan(filebase, *args, **kwargs):
 def im_acq(mode, filebase="test", time=0.00):
     """Perform an image exposure of given mode."""
 
+    filename = "{0}.fits".format(filebase)
+
     ## Delete output file, if it already exists
     try:
         os.remove(filename)
@@ -108,15 +110,15 @@ def im_acq(mode, filebase="test", time=0.00):
     ## Do exposure depending on specified mode
     if mode == "bias":
         output = subprocess.check_output(["dark_acq", "0.00",
-                                          "{0}.fits".format(filebase)])
+                                          "{0}".format(filename)])
     elif mode == "dark":
         output = subprocess.check_output(["dark_acq", "{0}".format(time),
-                                          "{0}.fits".format(filebase)])
+                                          "{0}".format(filename)])
     elif mode == "exp":
         output = subprocess.check_output(["exp_acq", "{0}".format(time),
-                                          "{0}.fits".format(filebase)])
+                                          "{0}".format(filename)])
 
-    return
+    return filename
 
 def stack(mode, filebase, imcount, time, start=0):
     """Perform a stack of images of a given mode."""
@@ -138,7 +140,7 @@ def series(mode, filebase, mintime, maxtime, step):
 
     time = mintime
 
-    while dtime <= maxtime:
+    while time <= maxtime:
         filename = "{0}.{1}".format(filebase, time)
         im_acq(mode, filename, time)
         dtime += step
