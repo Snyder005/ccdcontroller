@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>892</width>
-    <height>442</height>
+    <width>876</width>
+    <height>511</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,7 +20,7 @@
       <x>20</x>
       <y>10</y>
       <width>841</width>
-      <height>381</height>
+      <height>431</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="mainGrid">
@@ -54,18 +54,30 @@
         <attribute name="title">
          <string>Exposure</string>
         </attribute>
-        <widget class="QWidget" name="">
+        <widget class="QWidget" name="layoutWidget">
          <property name="geometry">
           <rect>
            <x>10</x>
            <y>0</y>
            <width>821</width>
-           <height>281</height>
+           <height>301</height>
           </rect>
          </property>
          <layout class="QGridLayout" name="gridLayout">
           <item row="1" column="5">
            <widget class="QDoubleSpinBox" name="exptimeSpinBox">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="readOnly">
+             <bool>false</bool>
+            </property>
+            <property name="decimals">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <double>100000.000000000000000</double>
+            </property>
             <property name="singleStep">
              <double>0.500000000000000</double>
             </property>
@@ -151,7 +163,11 @@
            </widget>
           </item>
           <item row="4" column="5">
-           <widget class="QDoubleSpinBox" name="minexpSpinBox"/>
+           <widget class="QDoubleSpinBox" name="minexpSpinBox">
+            <property name="decimals">
+             <number>1</number>
+            </property>
+           </widget>
           </item>
           <item row="5" column="5">
            <widget class="QLabel" name="tstepLabel">
@@ -177,7 +193,7 @@
           <item row="8" column="2">
            <widget class="QLabel" name="imfilenameLabel">
             <property name="text">
-             <string>Image Filename:</string>
+             <string>Image Filebase:</string>
             </property>
            </widget>
           </item>
@@ -206,7 +222,11 @@
            </widget>
           </item>
           <item row="6" column="5">
-           <widget class="QDoubleSpinBox" name="tstepSpinBox"/>
+           <widget class="QDoubleSpinBox" name="tstepSpinBox">
+            <property name="decimals">
+             <number>1</number>
+            </property>
+           </widget>
           </item>
           <item row="0" column="0">
            <widget class="QPushButton" name="exposeButton">
@@ -226,10 +246,17 @@
            </widget>
           </item>
           <item row="4" column="6">
-           <widget class="QDoubleSpinBox" name="maxexpSpinBox"/>
+           <widget class="QDoubleSpinBox" name="maxexpSpinBox">
+            <property name="decimals">
+             <number>1</number>
+            </property>
+           </widget>
           </item>
           <item row="6" column="2">
            <widget class="QSpinBox" name="imnumSpinBox">
+            <property name="minimum">
+             <number>1</number>
+            </property>
             <property name="maximum">
              <number>999</number>
             </property>
@@ -237,6 +264,9 @@
           </item>
           <item row="9" column="5">
            <widget class="QSpinBox" name="imstackSpinBox">
+            <property name="minimum">
+             <number>1</number>
+            </property>
             <property name="maximum">
              <number>999</number>
             </property>
@@ -275,6 +305,9 @@
           </item>
           <item row="9" column="2" colspan="2">
            <widget class="QLineEdit" name="imfilenameLineEdit">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="readOnly">
              <bool>true</bool>
             </property>
@@ -467,10 +500,18 @@
            </widget>
           </item>
           <item row="3" column="4">
-           <widget class="QDoubleSpinBox" name="rghiSpinBox"/>
+           <widget class="QDoubleSpinBox" name="rghiSpinBox">
+            <property name="decimals">
+             <number>1</number>
+            </property>
+           </widget>
           </item>
           <item row="3" column="5">
-           <widget class="QDoubleSpinBox" name="rgloSpinBox"/>
+           <widget class="QDoubleSpinBox" name="rgloSpinBox">
+            <property name="decimals">
+             <number>1</number>
+            </property>
+           </widget>
           </item>
           <item row="4" column="0">
            <widget class="QLabel" name="parhiLabel">
@@ -529,16 +570,32 @@
            </widget>
           </item>
           <item row="6" column="0">
-           <widget class="QDoubleSpinBox" name="parhiSpinBox"/>
+           <widget class="QDoubleSpinBox" name="parhiSpinBox">
+            <property name="decimals">
+             <number>1</number>
+            </property>
+           </widget>
           </item>
           <item row="6" column="1">
-           <widget class="QDoubleSpinBox" name="parloSpinBox"/>
+           <widget class="QDoubleSpinBox" name="parloSpinBox">
+            <property name="decimals">
+             <number>1</number>
+            </property>
+           </widget>
           </item>
           <item row="6" column="2">
-           <widget class="QDoubleSpinBox" name="serhiSpinBox"/>
+           <widget class="QDoubleSpinBox" name="serhiSpinBox">
+            <property name="decimals">
+             <number>1</number>
+            </property>
+           </widget>
           </item>
           <item row="6" column="3">
-           <widget class="QDoubleSpinBox" name="serloSpinBox"/>
+           <widget class="QDoubleSpinBox" name="serloSpinBox">
+            <property name="decimals">
+             <number>1</number>
+            </property>
+           </widget>
           </item>
           <item row="7" column="2" colspan="2">
            <widget class="QPushButton" name="resetvoltageButton">
@@ -567,7 +624,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>892</width>
+     <width>876</width>
      <height>22</height>
     </rect>
    </property>

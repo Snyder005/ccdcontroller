@@ -17,6 +17,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
     def __init__(self, parent=None):
         super(Controller, self).__init__(parent)
         self.setupUi(self)
+        self.activate_ui()
 
         ## These attributes handle autoincrement of filename
         self.curr_filename = ""
@@ -34,6 +35,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         ## Connect signals and slots for functions
         self.exposeButton.clicked.connect(self.expose)
         self.resetButton.clicked.connect(self.reset)
+        self.exptypeComboBox.currentIndexChanged.connect(self.activate_ui)
         self.directoryPushButton.clicked.connect(self.setdirectory)
 
         ## Connect signals to update filepath
@@ -48,8 +50,9 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
     def reset(self):
         """Run initial commands to set up controller"""
 
-        reply = QtGui.QMessageBox.question(self, 'Confirmation', 'Are you sure you want to reset the STA3800 controller?',
-                                           QtGui.QMessageBox.Yes | QtGui.QMessageBox.No, QtGui.QMessageBox.No)
+        reply = QtGui.QMessageBox.question(self, 'Confirmation','Are you sure you want to reset the STA3800 controller?',
+                                           QtGui.QMessageBox.Yes | QtGui.QMessageBox.No,
+                                           QtGui.QMessageBox.No)
 
         if reply == QtGui.QMessageBox.Yes:
 
@@ -154,17 +157,56 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             exposure.series(mode, filebase, mintime, maxtime, step)
             self.statusLineEdit.setText("Exposure series {0} finished".format(filebase))
         
-
     def setvoltages(self):
         """Change the value of the specified voltages."""
         pass
+
+    def activate_ui(self):
+        """Activate and deactivate input widgets depending on the necessary arguments."""
+
+        exptype = str(self.exptypeComboBox.currentText())
+
+        if exptype in ["Exposure Stack", "Dark Stack", "Bias Stack"]:
+            self.imstackSpinBox.setEnabled(True)
+            self.imnumSpinBox.setEnabled(True)
+            self.minexpSpinBox.setEnabled(False)
+            self.maxexpSpinBox.setEnabled(False)
+            self.tstepSpinBox.setEnabled(False)
+
+            if exptype = "Bias Stack":
+                self.exptimeSpinBox.setEnabled(False)
+            else:
+                self.exptimeSpinBox.setEnabled(True)
+
+        elif exptype in ["Exposure Series", "Dark Series"]:
+            self.exptimeSpinBox.setEnabled(False)
+            self.imstackSpinBox.setEnabled(False)
+            self.imnumSpinBox.setEnabled(False)
+            self.minexpSpinBox.setEnabled(True)
+            self.maxexpSpinBox.setEnabled(True)
+            self.tstepSpinBox.setEnabled(True)
+
+        else:
+            self.imstackSpinBox.setEnabled(False)
+            self.imnumSpinBox.setEnabled(True)
+            self.minexpSpinBox.setEnabled(False)
+            self.maxexpSpinBox.setEnabled(False)
+            self.tstepSpinBox.setEnabled(False)
+
+            if exptype = "Bias":
+                self.exptimeSpinBox.setEnabled(False)
+            else:
+                self.exptimeSpinBox.setEnabled(True)
+
+            
 
     def closeEvent(self, event):
         """Try a basic confirmation.  Wish to eventually expand this to save settings."""
 
         quit_msg = "Are you sure you want to exit the program?"
         reply = QtGui.QMessageBox.question(self, 'Message', 
-                                           quit_msg, QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+                                           quit_msg, QtGui.QMessageBox.Yes,
+                                           QtGui.QMessageBox.No)
         
         if reply == QtGui.QMessageBox.Yes:
             ccdsetup.sta3800_off()

@@ -141,7 +141,7 @@ def series(mode, filebase, mintime, maxtime, step):
     time = mintime
 
     while time <= maxtime:
-        filename = "{0}.{1}".format(filebase, time)
+        filename = "{0}.{1}s".format(filebase, time)
         im_acq(mode, filename, time)
         dtime += step
     
