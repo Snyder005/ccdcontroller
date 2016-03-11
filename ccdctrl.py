@@ -173,7 +173,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             self.maxexpSpinBox.setEnabled(False)
             self.tstepSpinBox.setEnabled(False)
 
-            if exptype = "Bias Stack":
+            if exptype == "Bias Stack":
                 self.exptimeSpinBox.setEnabled(False)
             else:
                 self.exptimeSpinBox.setEnabled(True)
@@ -193,7 +193,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             self.maxexpSpinBox.setEnabled(False)
             self.tstepSpinBox.setEnabled(False)
 
-            if exptype = "Bias":
+            if exptype == "Bias":
                 self.exptimeSpinBox.setEnabled(False)
             else:
                 self.exptimeSpinBox.setEnabled(True)
