@@ -119,7 +119,10 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         if exptype in ["Exposure", "Dark", "Bias"]:
 
             ## Get necessary arguments
-            exptime = self.exptimeSpinBox.value()  
+            if mode == "bias":
+                exptime = 0.0
+            else:
+                exptime = self.exptimeSpinBox.value()
             filebase = "{0}.{1}.{2}s".format(self.imfilenameLineEdit.text(),
                                              mode, exptime)    
 
@@ -131,7 +134,10 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         elif exptype in ["Exposure Stack", "Dark Stack", "Bias Stack"]:
 
             ## Get necessary arguments
-            exptime = self.exptimeSpinBox.value()
+            if mode == "bias":
+                exptime = 0.0
+            else:
+                exptime = self.exptimeSpinBox.value()
             imcount = self.imstackSpinBox.value() # Make sure this is type(int)
             start = self.imnumSpinBox.value() # Make sure this is type(int)
             filebase = "{0}.{1}.{2}s".format(self.imfilenameLineEdit.text(),
