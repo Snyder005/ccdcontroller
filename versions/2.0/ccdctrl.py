@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from PyQt4 import QtGui, QtCore
+from PyQt4 import QtGui
 import sys
 import argparse
 from os import path
@@ -10,7 +10,6 @@ import atexit
 import design
 import ccdsetup
 import exposure
-import restore
 
 ###############################################################################
 
@@ -19,6 +18,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
     def __init__(self, parent=None):
         super(Controller, self).__init__(parent)
         self.setupUi(self)
+        self.activate_ui()
 
         ## These attributes handle autoincrement of filename
         self.curr_filename = ""
@@ -40,24 +40,10 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         self.directoryPushButton.clicked.connect(self.setdirectory)
 
         ## Connect signals to update filepath
+        self.imfilenameLineEdit.setText(DATA_DIRECTORY)
         self.testimCheckBox.clicked.connect(self.setfilename)
         self.imtitleLineEdit.editingFinished.connect(self.setfilename)
         
-        ## Restore past GUI settings
-        global DATA_DIRECTORY
-
-        try:
-            self.settings = QtCore.QSettings("./settings.ini", 
-                                             QtCore.QSettings.IniFormat)
-            DATA_DIRECTORY = unicode(self.settings.value("DATA_DIRECTORY").toString())
-            restore.guirestore(self, self.settings)
-        except:
-            self.statusLineEdit.setText("Warning: Failed to restore past settings.")
-            DATA_DIRECTORY = "./"
-
-        self.setfilename()
-        self.activate_ui()
-
         ## Initialize controller
         ccdsetup.sta3800_off()
         ccdsetup.sta3800_setup()
@@ -220,24 +206,20 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                 self.exptimeSpinBox.setEnabled(True)
 
     def closeEvent(self, event):
-        """Neex to reconcile confirmation and guisave settings."""
+        """Try a basic confirmation.  Wish to eventually expand this to save settings."""
 
-        self.settings.setValue("DATA_DIRECTORY", DATA_DIRECTORY)
-        restore.guisave(self, self.settings)
-        event.accept()
+        quit_msg = "Are you sure you want to exit the program?"
+        reply = QtGui.QMessageBox.question(self, 'Message', 
+                                           quit_msg, QtGui.QMessageBox.Yes,
+                                           QtGui.QMessageBox.No)
+        
+        if reply == QtGui.QMessageBox.Yes:
+            #ccdsetup.sta3800_off()
 
-
-#        quit_msg = "Are you sure you want to exit the program?"
-#        reply = QtGui.QMessageBox.question(self, 'Message', 
-#                                           quit_msg, QtGui.QMessageBox.Yes,
-#                                           QtGui.QMessageBox.No)
-#        
-#        if reply == QtGui.QMessageBox.Yes:
-#
-#            # Save settings to config file
-#            event.accept()
-#        else:
-#            event.ignore()
+            # Save settings to config file
+            event.accept()
+        else:
+            event.ignore()
 
 def safe_shutdown():
     """Run controller shut off command after GUI is closed"""
