@@ -6,6 +6,7 @@ import argparse
 from os import path
 import os
 import atexit
+import subprocess
 
 import design
 import ccdsetup
@@ -247,6 +248,8 @@ def safe_shutdown():
 def main():
 
     ## Set up GUI
+    subprocess.Popen("ds9") ## Test if ds9 can be opened in background
+
     app = QtGui.QApplication(sys.argv)
     form = Controller()
     form.show()
