@@ -12,7 +12,8 @@ import voltage
 
 from time import sleep
 
-if "check_output" not in dir( subprocess ): # duck punch it in!
+## For Python 2.6 need to monkey patch in check_output()
+if "check_output" not in dir( subprocess ):
     def f(*popenargs, **kwargs):
         if 'stdout' in kwargs:
             raise ValueError('stdout argument not allowed, it will be overridden.')
@@ -29,17 +30,9 @@ if "check_output" not in dir( subprocess ): # duck punch it in!
 
 ###############################################################################
 ##
-##  Voltage Scans
+##  Voltage Scans - For Future Use
 ##
 ###############################################################################
-
-def all_stack(dtime, imcount, filebase, fileend):
-    """Perform all necessary measurements for CCD characterization"""
-
-    bias_stack(imcount, "bias{0}".format(fileend))
-    dark_stack(dtime, imcount, "dark{0}".format(fileend))
-
-    return
 
 def scan(filebase, *args, **kwargs):
     """Scan a range of voltages and make necessary characterization
@@ -144,84 +137,6 @@ def series(mode, filebase, mintime, maxtime, step):
         filename = "{0}.{1}s".format(filebase, time)
         im_acq(mode, filename, time)
         dtime += step
-    
-
-
-###############################################################################
-##
-##  Exposures
-##
-###############################################################################
-
-def display(filename):
-
-    output = subprocess.check_output(["ds9", "-mosaicimage", "iraf", 
-                                      "{0}".format(filename), "-zoom",
-                                      "to", "fit"])
-
-    return output
-
-
-###############################################################################
-##
-##  Scans
-##
-###############################################################################
-
-def old_bias_scan(imcount=4, od_min=25, od_max=30, od_step=0.5,
-              rd_min=16, rd_max=20, rd_step=0.5):
-    """Sweep through DR and RD voltages taking bias frames"""
-
-    od_volts = od_min
-
-    ## Outer loop cycles through OD voltages
-    while (od_volts <= od_max):
-        voltage.set_voltage(od_volts, "vod")
-        rd_volts = rd_min
-
-        ## At each OD voltage cycle through all RD voltages
-        while (rd_volts <= rd_max):
-            voltage.set_voltage(rd_volts, "vrd")
-            sleep(1.0)
-            filebase = "bias_OD{0:.1f}_RD{1:.1f}".format(od_volts, rd_volts)
-            bias_stack(imcount, filebase)
-            rd_volts += rd_step
-
-        od_volts += od_step
-
-    return
-
-def bias_scan(imcount=4, od_min=25, od_max=30, od_step=0.5,
-                  rd_min=16, rd_max=20, rd_step=0.5):
-
-    vlist = [("vod", od_min, od_max, od_step),
-             ("vrd", rd_min, rd_max, rd_step)]
-    kwargs = {"imcount" : imcount}
-    scan("Scan", *vlist, **kwargs)
-        
-def dark_scan(dtime, imcount, filebase, od_min=25, od_max=30,
-              od_step=0.5, rd_min=16, rd_max=20, rd_step=0.5):
-
-    od_volts = od_min
-
-    while (od_volts < od_max):
-        voltage.set_voltage(od_volts, "vod")
-        rd_volts = rd_min
-
-        while (rd_volts <= rd_max):
-            voltage.set_voltage(rd_volts, "vrd")
-            sleep(1.0)
-            filebase2 = "{0}_OD{1:.1f}_RD{2:.1f}_{3:5.2f}".format(filebase,
-                                                                  od_volts,
-                                                                  rd_volts,
-                                                                  dtime)
-
-            dark_stack(dtime, imcount, filebase2)
-            rd_volts += rd_step
-
-        od_volts += od_step
-
-    return
 
 ###############################################################################
 ##

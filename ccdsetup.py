@@ -15,7 +15,8 @@ import exposure
 from time import sleep
 from Phidgets.Devices.InterfaceKit import InterfaceKit
 
-if "check_output" not in dir( subprocess ): # duck punch it in!
+## For Python 2.6 need to monkey patch in check_output()
+if "check_output" not in dir( subprocess ):
     def f(*popenargs, **kwargs):
         if 'stdout' in kwargs:
             raise ValueError('stdout argument not allowed, it will be overridden.')
@@ -29,13 +30,6 @@ if "check_output" not in dir( subprocess ): # duck punch it in!
             raise subprocess.CalledProcessError(retcode, cmd)
         return output
     subprocess.check_output = f
-
-###############################################################################
-##
-##  Miscellaneous Functions
-##
-###############################################################################
-
 
 ###############################################################################
 ##
@@ -216,10 +210,9 @@ def gain(mode):
 def sta3800_setup(use_bash=True):
 
     if use_bash:
-        print "Turning on the sta3800 system."
         output = subprocess.check_output("sta3800_setup")
         print output
-        return
+        return output
 
     ch_setup()
 

@@ -3,13 +3,14 @@
 """This is a Python module to control changing CCD control voltages
 
 
-   Currently bash scripts for voltage control are called, and output returned.
-   This will allow the easy ability to parse output to command line or GUI.
+Currently bash scripts for voltage control are called, and output returned.
+This will allow the easy ability to parse output to command line or GUI.
 """
 
 import subprocess
 
-if "check_output" not in dir( subprocess ): # duck punch it in!
+## For Python 2.6 need to monkey patch check_output()
+if "check_output" not in dir( subprocess ):
     def f(*popenargs, **kwargs):
         if 'stdout' in kwargs:
             raise ValueError('stdout argument not allowed, it will be overridden.')
@@ -36,7 +37,6 @@ def v_clk(V_lo, V_hi):
     output = subprocess.check_output(["v_clk", "{0}".format(V_lo),
                                       "{0}".format(V_hi)])
     return output
-    pass
 
 def set_voltage(V, vname):
     """Set a particular voltage to specified value"""
@@ -47,7 +47,6 @@ def set_voltage(V, vname):
     ## Check that voltage name is valid
     if vname in vlist:
         output = subprocess.check_output([vname, "{0}".format(V)])
-        print output
         return output
     else:
         raise KeyError("Voltage name not found.")

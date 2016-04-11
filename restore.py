@@ -9,21 +9,12 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 import inspect
 
-#===================================================================
-# save "ui" controls and values to registry "setting"
-# currently only handles comboboxes editlines & checkboxes
-# ui = qmainwindow object
-# settings = qsettings object
-#===================================================================
-
 def guisave(ui, settings):
 
-    #for child in ui.children():  # works like getmembers, but because it traverses the hierarachy, you would have to call guisave recursively to traverse down the tree
-
+    settings.beginGroup("Display")
 
     for name, obj in inspect.getmembers(ui):
 
-        #if type(obj) is QComboBox:  # this works similar to isinstance, but missed some field... not sure why?
         if isinstance(obj, QComboBox):
             name   = obj.objectName()      # get combobox name
             index  = obj.currentIndex()    # get current index from combobox
@@ -50,14 +41,11 @@ def guisave(ui, settings):
             value = obj.value()
             settings.setValue(name, value)
 
-#===================================================================
-# restore "ui" controls with values stored in registry "settings"
-# currently only handles comboboxes, editlines &checkboxes
-# ui = QMainWindow object
-# settings = QSettings object
-#===================================================================
+    settings.endGroup()
 
 def guirestore(ui, settings):
+
+    settings.beginGroup("Display")
 
     for name, obj in inspect.getmembers(ui):
         
@@ -99,7 +87,9 @@ def guirestore(ui, settings):
             value = settings.value(name).toInt()
             obj.setValue(value[0])
 
-        #if isinstance(obj, QRadioButton):                
+        #if isinstance(obj, QRadioButton):
+
+    settings.endGroup()
 
 ################################################################
 
