@@ -50,25 +50,25 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         self.restoreGUI()
         self.reset()
 
-        def restoreGUI(self):
-            """Set GUI display widget values with values read from INI file."""
+    def restoreGUI(self):
+        """Set GUI display widget values with values read from INI file."""
 
-            global DATA_DIRECTORY
+        global DATA_DIRECTORY
 
-            try:
-                self.settings = QtCore.QSettings("./settings.ini", 
-                                                 QtCore.QSettings.IniFormat)
-                DATA_DIRECTORY = unicode(self.settings.value("DATA_DIRECTORY").toString())
-                restore.guirestore(self, self.settings)
-            except:
-                self.logger.warning("Failed to restore past values for GUI display widgets.")
-                self.statusLineEdit.setText("Warning: Failed to restore past settings.")
-                DATA_DIRECTORY = "./"
-            else:
-                self.logger.info("GUI display widget values successfully restored.")
+        try:
+            self.settings = QtCore.QSettings("./settings.ini", 
+                                             QtCore.QSettings.IniFormat)
+            DATA_DIRECTORY = unicode(self.settings.value("DATA_DIRECTORY").toString())
+            restore.guirestore(self, self.settings)
+        except:
+            self.logger.warning("Failed to restore past values for GUI display widgets.")
+            self.statusLineEdit.setText("Warning: Failed to restore past settings.")
+            DATA_DIRECTORY = "./"
+        else:
+            self.logger.info("GUI display widget values successfully restored.")
 
-                self.setfilename()
-                self.activate_ui()
+            self.setfilename()
+            self.activate_ui()
 
     def resetConfirm(self):
         """Prompt for confirmation from user to reset the controller."""
@@ -314,7 +314,7 @@ def main():
 
     ## Set up logging
     fileConfig("settings.ini")
-    logger.logging.getLogger('sLogger')
+    logger = logging.getLogger('sLogger')
 
     ## Set up GUI
     app = QtGui.QApplication(sys.argv)

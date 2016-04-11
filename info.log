@@ -71,3 +71,20 @@ OSError: [Errno 2] No such file or directory
 04/11/2016 03:57:21 PM - INFO - Data directory changed to /Users/adamsnyder/ccdcontroller/test_dir
 04/11/2016 03:57:25 PM - INFO - Turning off sta3800 controller
 04/11/2016 03:57:25 PM - INFO - Controller turned off successfully.
+04/11/2016 04:34:36 PM - INFO - GUI display widget values successfully restored.
+04/11/2016 04:34:36 PM - INFO - Turning off sta3800 controller.
+04/11/2016 04:37:49 PM - INFO - Controller turned off successfully.
+04/11/2016 04:37:49 PM - INFO - Turning on sta3800 controller.
+04/11/2016 04:37:57 PM - INFO - Controller turned on successfully.
+04/11/2016 04:49:06 PM - INFO - Data directory changed to /home/lsst/ccdcontroller/test_dir.
+04/11/2016 04:49:09 PM - INFO - Turning off sta3800 controller.
+04/11/2016 04:49:13 PM - INFO - Controller turned off successfully.
+04/11/2016 04:50:23 PM - INFO - GUI display widget values successfully restored.
+04/11/2016 04:50:23 PM - INFO - Turning off sta3800 controller.
+04/11/2016 04:50:27 PM - INFO - Controller turned off successfully.
+04/11/2016 04:50:27 PM - INFO - Turning on sta3800 controller.
+04/11/2016 04:50:35 PM - INFO - Controller turned on successfully.
+04/11/2016 04:51:01 PM - INFO - Starting 4.0s Exposure image with filebase /home/lsst/ccdcontroller/test_dir/Hello.exp.4.0s.
+04/11/2016 04:51:29 PM - INFO - Exposure /home/lsst/ccdcontroller/test_dir/Hello.exp.4.0s.fits finished successfully.
+04/11/2016 04:52:09 PM - INFO - Turning off sta3800 controller.
+04/11/2016 04:52:13 PM - INFO - Controller turned off successfully.
