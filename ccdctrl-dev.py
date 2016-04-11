@@ -61,7 +61,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         try:
             self.settings = QtCore.QSettings("./settings.ini", 
                                              QtCore.QSettings.IniFormat)
-            DATA_DIRECTORY = unicode(self.settings.value("General/DATA_DIRECTORY").toString())
+            DATA_DIRECTORY = unicode(self.settings.value("DATA_DIRECTORY").toString())
             restore.guirestore(self, self.settings)
         except:
             self.logger.warning("Failed to restore past values for GUI display widgets.")
@@ -219,8 +219,6 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             else:
                 self.logger.info("{0} finished succesfully".format(filebase))
                 self.statusLineEdit.setText("{0} {1} finished".format(exptype, filebase))
-            
-            self.statusLineEdit.setText("Exposure stack {0} finished".format(filebase))
 
         ## Check if a series of exposures of increase exposure time
         elif exptype in ["Exposure Series", "Dark Series"]:
@@ -314,10 +312,9 @@ def safe_shutdown():
         logger.info("Turning off sta3800 controller")
 #        ccdsetup.sta3800_off()
     except Exception as e:
-        logger.error("Unable to turn off controller! State may be unknown")
-        logger.error(e, exc_info=True)
+        logger.exception("Unable to turn off controller! State may be unknown.")
     else:
-        logger.info("Controller turned off successfully")
+        logger.info("Controller turned off successfully.")
         
 def main():
 
@@ -339,25 +336,5 @@ def main():
 
 if __name__ == "__main__":
 
-
-    ## Change this to read from a config file
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-d", "--directory", default = "./", 
-                        help="Specify data directory")
-
-    args = parser.parse_args()
-
-    ## Set the global data directory
-
-    global DATA_DIRECTORY
-    DATA_DIRECTORY = args.directory
-
-    ## Make directory if it does not exist
-    try: 
-        os.makedirs(DATA_DIRECTORY)
-    except OSError:
-        if not os.path.isdir(DATA_DIRECTORY):
-            raise
-
+    ## Run main function
     main()

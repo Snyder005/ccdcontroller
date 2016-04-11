@@ -46,59 +46,65 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         ## Connect signals to update filepath
         self.testimCheckBox.clicked.connect(self.setfilename)
         self.imtitleLineEdit.editingFinished.connect(self.setfilename)
-        
+
+        ## Run initialization codes
         self.restoreGUI()
         self.reset()
 
-        def restoreGUI(self):
-            """Set GUI display widget values with values read from INI file."""
+    def restoreGUI(self):
+        """Set GUI display widget values with values read from INI file."""
+        
+        ## DATA_DIRECTORY is a global variable
+        global DATA_DIRECTORY
 
-            global DATA_DIRECTORY
+        ## Restore past values
+        try:
+            self.settings = QtCore.QSettings("./settings.ini", 
+                                             QtCore.QSettings.IniFormat)
+            DATA_DIRECTORY = unicode(self.settings.value("General/DATA_DIRECTORY").toString())
+            restore.guirestore(self, self.settings)
+        except:
+            self.logger.warning("Failed to restore past values for GUI display widgets.")
+            self.statusLineEdit.setText("Warning: Failed to restore past settings.")
+            DATA_DIRECTORY = "./"
+        else:
+            self.logger.info("GUI display widget values succesfully restored.")
 
-            try:
-                self.settings = QtCore.QSettings("./settings.ini", 
-                                                 QtCore.QSettings.IniFormat)
-                DATA_DIRECTORY = unicode(self.settings.value("DATA_DIRECTORY").toString())
-                restore.guirestore(self, self.settings)
-            except:
-                self.logger.warning("Failed to restore past values for GUI display widgets.")
-                self.statusLineEdit.setText("Warning: Failed to restore past settings.")
-                DATA_DIRECTORY = "./"
-            else:
-                self.logger.info("GUI display widget values successfully restored.")
-
-                self.setfilename()
-                self.activate_ui()
+        self.setfilename()
+        self.activate_ui()
 
     def resetConfirm(self):
-        """Prompt for confirmation from user to reset the controller."""
+        """Run initial commands to set up controller"""
 
+        ## Generate confirmation dialog
         reply = QtGui.QMessageBox.question(self, 'Confirmation','Are you sure you want to reset the STA3800 controller?',
                                            QtGui.QMessageBox.Yes | QtGui.QMessageBox.No,
                                            QtGui.QMessageBox.No)
 
+        ## If confirmed, run reset code
         if reply == QtGui.QMessageBox.Yes:
             self.reset()
 
     def reset(self):
-        """Turn off controller to bring to known state (sta3800_off), then turn on 
-        controller (sta3800_on.)"""
+        """Turn off controller to bring to a known state (sta3800_off).  
+        Then turn on controller (sta3800_on)."""
 
         ## Turn off controller to bring to a known state
         try:
             self.logger.info("Turning off sta3800 controller.")
-            ccdsetup.sta3800_off()
-
+#            sta3800off_output = ccdsetup.sta3800_off()
+           
         except Exception:
             self.logger.exception("Unable to turn off controller! State may be unknown.")
             raise
+        
         else:
             self.logger.info("Controller turned off successfully.")
 
         ## Initialize controller
         try:
             self.logger.info("Turning on sta3800 controller.")
-            ccdsetup.sta3800_setup()
+#            sta3800setup_output = ccdsetup.sta3800_setup()
         except Exception:
             self.logger.exception("Unable to turn on sta3800 controller!")
             raise
@@ -138,18 +144,19 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         ## If return is not NULL, set the DATA_DIRECTORY and update filename
         if new_directory:
 
-            try:
+            try: 
                 os.makedirs(new_directory)
             except OSError:
                 if not os.path.isdir(new_directory):
-                    self.logger.exception("An error occurred while creating a new directory.")
+                    self.logger.exception("An error occurred while creating a new directory!")
                     self.statusLineEdit.setText("An error occurred while creating a new directory.")
-
+                    return
+    
             global DATA_DIRECTORY
             DATA_DIRECTORY = new_directory
             self.setfilename()
-            self.logger.info("Data directory changed to {0}.".format(new_directory))
-            self.statusLineEdit.setText("Data directory changed to {0}.".format(new_directory))
+            self.logger.info("Data directory changed to {0}".format(new_directory))
+            self.statusLineEdit.setText("Data directory changed to {0}".format(new_directory))
 
     def expose(self):
         """Execute a shell script to perform a measurement, depending on the desired
@@ -178,15 +185,14 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             self.logger.info("Starting {0}s {1} image with filebase {2}.".format(exptime,
                                                                                  exptype,
                                                                                  filebase))
-
             try:
                 filename = exposure.im_acq(mode, filebase, exptime)
             except subprocess.CalledProcessError:
                 self.logger.exception("Error in executable {0}_acq. Image not taken.".format(mode))
             except OSError:
-                self.logger.exception("Exposure {0} finished successfully.".format(filename))
+                self.logger.exception("Executable {0}_acq. not found. Image not taken.".format(mode))
             else:
-                self.logger.info("Exposure {0} finished successfully.".format(filename))
+                self.logger.info("Exposure {0} finished succesfully".format(filename))
                 self.statusLineEdit.setText("Exposure {0} finished.".format(filename))
 
         ## Check if a stack of exposures of same type
@@ -204,16 +210,17 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
 
             ## Perform stack
             self.logger.info("Starting {0} with imcount {1}, exptime {2}, and filebase {3}.".format(exptype, imcount, exptime, filebase))
-
             try:
                 exposure.stack(mode, filebase, imcount, exptime, start)
             except subprocess.CalledProcessError:
                 self.logger.exception("Error in executable {0}_acq. Image not taken.".format(mode))
             except OSError:
-                self.logger.exception("Executable {0}_acq not found. Image not taken.".format(mode))
+                self.logger.exception("Executable {0}_acq. not found. Image not taken.".format(mode))
             else:
-                self.logger.info("{0} finished successfully.".format(filebase))
-                self.statusLineEdit.setText("Exposure stack {0} finished".format(filebase))
+                self.logger.info("{0} finished succesfully".format(filebase))
+                self.statusLineEdit.setText("{0} {1} finished".format(exptype, filebase))
+            
+            self.statusLineEdit.setText("Exposure stack {0} finished".format(filebase))
 
         ## Check if a series of exposures of increase exposure time
         elif exptype in ["Exposure Series", "Dark Series"]:
@@ -225,20 +232,22 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             filebase = "{0}.{1}".format(self.imfilenameLineEdit.text(),
                                         mode)
 
-            ## Parameter checks
+            # Parameter check
             if mintime > maxtime:
                 self.statusLineEdit.setText("Min time must be less than Max time.")
                 return
-
+            
             ## Perform series
             self.logger.info("Starting {0} with mintime {1}, maxtime {2}, step {3}, and filebase {4}.".format(exptype, mintime, maxtime, step, filebase))
-            try:
+            try:                        
                 exposure.series(mode, filebase, mintime, maxtime, step)
             except subprocess.CalledProcessError:
                 self.logger.exception("Error in executable {0}_acq. Image not taken.".format(mode))
+            except OSError:
+                self.logger.exception("Executable {0}_acq. not found. Image not taken.".format(mode))
             else:
-                self.logger.info("{0} finished successfully.".format(filebase))
-                self.statusLineEdit.setText("Exposure series {0} finished".format(filebase))
+                self.logger.info("{0} finished succesfully".format(filebase))
+                self.statusLineEdit.setText("{0} {1} finished".format(exptype, filebase))
         
     def setvoltages(self):
         """Change the value of the specified voltages."""
@@ -249,6 +258,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
 
         exptype = str(self.exptypeComboBox.currentText())
 
+        ## Initialize GUI for Stack mode
         if exptype in ["Exposure Stack", "Dark Stack", "Bias Stack"]:
             self.imstackSpinBox.setEnabled(True)
             self.imnumSpinBox.setEnabled(True)
@@ -261,6 +271,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             else:
                 self.exptimeSpinBox.setEnabled(True)
 
+        ## Initialize GUI for Series mode
         elif exptype in ["Exposure Series", "Dark Series"]:
             self.exptimeSpinBox.setEnabled(False)
             self.imstackSpinBox.setEnabled(False)
@@ -269,6 +280,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             self.maxexpSpinBox.setEnabled(True)
             self.tstepSpinBox.setEnabled(True)
 
+        ## Initialize GUI for Single image
         else:
             self.imstackSpinBox.setEnabled(False)
             self.imnumSpinBox.setEnabled(True)
@@ -282,16 +294,15 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                 self.exptimeSpinBox.setEnabled(True)
 
     def closeEvent(self, event):
-        """Neex to reconcile confirmation and guisave settings."""
+        """Need to reconcile confirmation and guisave settings."""
 
         ## Save settings to INI file
-
         try:
             self.settings.setValue("DATA_DIRECTORY", DATA_DIRECTORY)
             restore.guisave(self, self.settings)
         except:
             self.logger.warning("Failed to save settings to INI file.")
-            
+        
         event.accept()
 
 def safe_shutdown():
@@ -300,21 +311,22 @@ def safe_shutdown():
     logger = logging.getLogger('sLogger')
 
     try:
-        logger.info("Turning off sta3800 controller.")
-        ccdsetup.sta3800_off()
-    except Exception:
-        logger.exception("Unable to turn off controller! State may be unknown.")
+        logger.info("Turning off sta3800 controller")
+#        ccdsetup.sta3800_off()
+    except Exception as e:
+        logger.error("Unable to turn off controller! State may be unknown")
+        logger.error(e, exc_info=True)
     else:
-        logger.info("Controller turned off successfully.")
+        logger.info("Controller turned off successfully")
         
 def main():
 
-    ## Set up DS(
-    subprocess.Popen("ds9") ## Test if ds9 can be opened in background
+    ## Set up DS9
+#    subprocess.Popen("ds9") ## Test if ds9 can be opened in background
 
     ## Set up logging
     fileConfig("settings.ini")
-    logger.logging.getLogger('sLogger')
+    logger = logging.getLogger('sLogger')
 
     ## Set up GUI
     app = QtGui.QApplication(sys.argv)
@@ -326,5 +338,26 @@ def main():
     atexit.register(safe_shutdown)
 
 if __name__ == "__main__":
+
+
+    ## Change this to read from a config file
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-d", "--directory", default = "./", 
+                        help="Specify data directory")
+
+    args = parser.parse_args()
+
+    ## Set the global data directory
+
+    global DATA_DIRECTORY
+    DATA_DIRECTORY = args.directory
+
+    ## Make directory if it does not exist
+    try: 
+        os.makedirs(DATA_DIRECTORY)
+    except OSError:
+        if not os.path.isdir(DATA_DIRECTORY):
+            raise
 
     main()

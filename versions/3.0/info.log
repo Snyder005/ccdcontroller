@@ -48,26 +48,3 @@ Traceback (most recent call last):
 OSError: [Errno 2] No such file or directory
 04/11/2016 03:13:56 PM - INFO - Turning off sta3800 controller
 04/11/2016 03:13:56 PM - INFO - Controller turned off successfully
-04/11/2016 03:52:34 PM - INFO - GUI display widget values succesfully restored.
-04/11/2016 03:52:34 PM - INFO - Turning off sta3800 controller.
-04/11/2016 03:52:34 PM - INFO - Controller turned off successfully.
-04/11/2016 03:52:34 PM - INFO - Turning on sta3800 controller.
-04/11/2016 03:52:34 PM - INFO - Controller turned on successfully.
-04/11/2016 03:52:43 PM - INFO - Data directory changed to /Users/adamsnyder/ccdcontroller/versions
-04/11/2016 03:52:46 PM - INFO - Turning off sta3800 controller
-04/11/2016 03:52:46 PM - INFO - Controller turned off successfully.
-04/11/2016 03:56:00 PM - INFO - GUI display widget values succesfully restored.
-04/11/2016 03:56:00 PM - INFO - Turning off sta3800 controller.
-04/11/2016 03:56:00 PM - INFO - Controller turned off successfully.
-04/11/2016 03:56:00 PM - INFO - Turning on sta3800 controller.
-04/11/2016 03:56:00 PM - INFO - Controller turned on successfully.
-04/11/2016 03:56:10 PM - INFO - Turning off sta3800 controller
-04/11/2016 03:56:10 PM - INFO - Controller turned off successfully.
-04/11/2016 03:57:11 PM - INFO - GUI display widget values succesfully restored.
-04/11/2016 03:57:11 PM - INFO - Turning off sta3800 controller.
-04/11/2016 03:57:11 PM - INFO - Controller turned off successfully.
-04/11/2016 03:57:11 PM - INFO - Turning on sta3800 controller.
-04/11/2016 03:57:11 PM - INFO - Controller turned on successfully.
-04/11/2016 03:57:21 PM - INFO - Data directory changed to /Users/adamsnyder/ccdcontroller/test_dir
-04/11/2016 03:57:25 PM - INFO - Turning off sta3800 controller
-04/11/2016 03:57:25 PM - INFO - Controller turned off successfully.

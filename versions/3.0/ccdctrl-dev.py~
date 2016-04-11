@@ -22,7 +22,6 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
     def __init__(self, parent=None):
         super(Controller, self).__init__(parent)
         self.setupUi(self)
-        self.logger = logging.getLogger("sLogger")
 
         ## These attributes handle autoincrement of filename
         self.curr_filename = ""
@@ -47,63 +46,48 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         self.testimCheckBox.clicked.connect(self.setfilename)
         self.imtitleLineEdit.editingFinished.connect(self.setfilename)
         
-        self.restoreGUI()
-        self.reset()
+        ## Restore past GUI settings
+        global DATA_DIRECTORY
 
-        def restoreGUI(self):
-            """Set GUI display widget values with values read from INI file."""
+        try:
+            self.settings = QtCore.QSettings("./settings.ini", 
+                                             QtCore.QSettings.IniFormat)
+            DATA_DIRECTORY = unicode(self.settings.value("General/DATA_DIRECTORY").toString())
+            restore.guirestore(self, self.settings)
+        except:
+            self.statusLineEdit.setText("Warning: Failed to restore past settings.")
+            DATA_DIRECTORY = "./"
 
-            global DATA_DIRECTORY
+        self.setfilename()
+        self.activate_ui()
 
-            try:
-                self.settings = QtCore.QSettings("./settings.ini", 
-                                                 QtCore.QSettings.IniFormat)
-                DATA_DIRECTORY = unicode(self.settings.value("DATA_DIRECTORY").toString())
-                restore.guirestore(self, self.settings)
-            except:
-                self.logger.warning("Failed to restore past values for GUI display widgets.")
-                self.statusLineEdit.setText("Warning: Failed to restore past settings.")
-                DATA_DIRECTORY = "./"
-            else:
-                self.logger.info("GUI display widget values successfully restored.")
+        ## Initialize controller
+#        ccdsetup.sta3800_off()
+#        ccdsetup.sta3800_setup()
+        print "ccdsetup.sta3800_off()"
+        print "ccdsetup.sta3800_setup"
 
-                self.setfilename()
-                self.activate_ui()
 
-    def resetConfirm(self):
-        """Prompt for confirmation from user to reset the controller."""
+    def reset(self):
+        """Run initial commands to set up controller"""
 
         reply = QtGui.QMessageBox.question(self, 'Confirmation','Are you sure you want to reset the STA3800 controller?',
                                            QtGui.QMessageBox.Yes | QtGui.QMessageBox.No,
                                            QtGui.QMessageBox.No)
 
         if reply == QtGui.QMessageBox.Yes:
-            self.reset()
 
-    def reset(self):
-        """Turn off controller to bring to known state (sta3800_off), then turn on 
-        controller (sta3800_on.)"""
+            ## Reset defaults
+#            self.exposeButton.setEnabled(False)
+#            self.imtitleLineEdit.setText("")
+#            self.imfilenameLineEdit.setText("")
+#            self.innumSpinBox.setValue(0)
+#            self.curr_filename = ""
+#            ccdsetup.sta3800_off()
+#            ccdsetup.sta3800_setup()
 
-        ## Turn off controller to bring to a known state
-        try:
-            self.logger.info("Turning off sta3800 controller.")
-            ccdsetup.sta3800_off()
-
-        except Exception:
-            self.logger.exception("Unable to turn off controller! State may be unknown.")
-            raise
-        else:
-            self.logger.info("Controller turned off successfully.")
-
-        ## Initialize controller
-        try:
-            self.logger.info("Turning on sta3800 controller.")
-            ccdsetup.sta3800_setup()
-        except Exception:
-            self.logger.exception("Unable to turn on sta3800 controller!")
-            raise
-        else:
-            self.logger.info("Controller turned on successfully.")
+            print "ccdsetup.sta3800_off()"
+            print "ccdsetup.sta3800_setup()"
             
     def setfilename(self):
 
@@ -137,19 +121,10 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
 
         ## If return is not NULL, set the DATA_DIRECTORY and update filename
         if new_directory:
-
-            try:
-                os.makedirs(new_directory)
-            except OSError:
-                if not os.path.isdir(new_directory):
-                    self.logger.exception("An error occurred while creating a new directory.")
-                    self.statusLineEdit.setText("An error occurred while creating a new directory.")
-
             global DATA_DIRECTORY
             DATA_DIRECTORY = new_directory
             self.setfilename()
-            self.logger.info("Data directory changed to {0}.".format(new_directory))
-            self.statusLineEdit.setText("Data directory changed to {0}.".format(new_directory))
+            self.statusLineEdit.setText("Data directory changed to {0}".format(new_directory))
 
     def expose(self):
         """Execute a shell script to perform a measurement, depending on the desired
@@ -175,19 +150,8 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                                              mode, exptime)    
 
             ## Perform exposure
-            self.logger.info("Starting {0}s {1} image with filebase {2}.".format(exptime,
-                                                                                 exptype,
-                                                                                 filebase))
-
-            try:
-                filename = exposure.im_acq(mode, filebase, exptime)
-            except subprocess.CalledProcessError:
-                self.logger.exception("Error in executable {0}_acq. Image not taken.".format(mode))
-            except OSError:
-                self.logger.exception("Exposure {0} finished successfully.".format(filename))
-            else:
-                self.logger.info("Exposure {0} finished successfully.".format(filename))
-                self.statusLineEdit.setText("Exposure {0} finished.".format(filename))
+#            filename = exposure.im_acq(mode, filebase, exptime)
+            self.statusLineEdit.setText("Exposure {0} finished.".format(filename))
 
         ## Check if a stack of exposures of same type
         elif exptype in ["Exposure Stack", "Dark Stack", "Bias Stack"]:
@@ -202,18 +166,8 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             filebase = "{0}.{1}.{2}s".format(self.imfilenameLineEdit.text(),
                                              mode, exptime)
 
-            ## Perform stack
-            self.logger.info("Starting {0} with imcount {1}, exptime {2}, and filebase {3}.".format(exptype, imcount, exptime, filebase))
-
-            try:
-                exposure.stack(mode, filebase, imcount, exptime, start)
-            except subprocess.CalledProcessError:
-                self.logger.exception("Error in executable {0}_acq. Image not taken.".format(mode))
-            except OSError:
-                self.logger.exception("Executable {0}_acq not found. Image not taken.".format(mode))
-            else:
-                self.logger.info("{0} finished successfully.".format(filebase))
-                self.statusLineEdit.setText("Exposure stack {0} finished".format(filebase))
+#            exposure.stack(mode, filebase, imcount, exptime, start)
+            self.statusLineEdit.setText("Exposure stack {0} finished".format(filebase))
 
         ## Check if a series of exposures of increase exposure time
         elif exptype in ["Exposure Series", "Dark Series"]:
@@ -225,20 +179,13 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             filebase = "{0}.{1}".format(self.imfilenameLineEdit.text(),
                                         mode)
 
-            ## Parameter checks
+            # Could add checks here for appropriate values
             if mintime > maxtime:
                 self.statusLineEdit.setText("Min time must be less than Max time.")
                 return
-
-            ## Perform series
-            self.logger.info("Starting {0} with mintime {1}, maxtime {2}, step {3}, and filebase {4}.".format(exptype, mintime, maxtime, step, filebase))
-            try:
-                exposure.series(mode, filebase, mintime, maxtime, step)
-            except subprocess.CalledProcessError:
-                self.logger.exception("Error in executable {0}_acq. Image not taken.".format(mode))
-            else:
-                self.logger.info("{0} finished successfully.".format(filebase))
-                self.statusLineEdit.setText("Exposure series {0} finished".format(filebase))
+                                        
+#            exposure.series(mode, filebase, mintime, maxtime, step)
+            self.statusLineEdit.setText("Exposure series {0} finished".format(filebase))
         
     def setvoltages(self):
         """Change the value of the specified voltages."""
@@ -284,37 +231,43 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
     def closeEvent(self, event):
         """Neex to reconcile confirmation and guisave settings."""
 
-        ## Save settings to INI file
+        ## Save general settings to INI file
+        self.settings.setValue("DATA_DIRECTORY", DATA_DIRECTORY)
 
-        try:
-            self.settings.setValue("DATA_DIRECTORY", DATA_DIRECTORY)
-            restore.guisave(self, self.settings)
-        except:
-            self.logger.warning("Failed to save settings to INI file.")
-            
+        ## Save display variables to INI file
+        restore.guisave(self, self.settings)
+        
         event.accept()
+
+
+#        quit_msg = "Are you sure you want to exit the program?"
+#        reply = QtGui.QMessageBox.question(self, 'Message', 
+#                                           quit_msg, QtGui.QMessageBox.Yes,
+#                                           QtGui.QMessageBox.No)
+#        
+#        if reply == QtGui.QMessageBox.Yes:
+#
+#            # Save settings to config file
+#            event.accept()
+#        else:
+#            event.ignore()
 
 def safe_shutdown():
     """Run controller shut off command after GUI is closed"""
 
-    logger = logging.getLogger('sLogger')
+    print "ccdsetup.sta3800_off()"
 
-    try:
-        logger.info("Turning off sta3800 controller.")
-        ccdsetup.sta3800_off()
-    except Exception:
-        logger.exception("Unable to turn off controller! State may be unknown.")
-    else:
-        logger.info("Controller turned off successfully.")
+#    ccdsetup.sta3800_off()
         
 def main():
 
-    ## Set up DS(
-    subprocess.Popen("ds9") ## Test if ds9 can be opened in background
+    ## Set up DS9
+#    subprocess.Popen("ds9") ## Test if ds9 can be opened in background
 
     ## Set up logging
     fileConfig("settings.ini")
-    logger.logging.getLogger('sLogger')
+    logger = logging.getLogger()
+    logger.info('Logger initialized')
 
     ## Set up GUI
     app = QtGui.QApplication(sys.argv)
@@ -326,5 +279,26 @@ def main():
     atexit.register(safe_shutdown)
 
 if __name__ == "__main__":
+
+
+    ## Change this to read from a config file
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-d", "--directory", default = "./", 
+                        help="Specify data directory")
+
+    args = parser.parse_args()
+
+    ## Set the global data directory
+
+    global DATA_DIRECTORY
+    DATA_DIRECTORY = args.directory
+
+    ## Make directory if it does not exist
+    try: 
+        os.makedirs(DATA_DIRECTORY)
+    except OSError:
+        if not os.path.isdir(DATA_DIRECTORY):
+            raise
 
     main()
