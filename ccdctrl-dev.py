@@ -47,7 +47,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         ## Set up thread
         self.thread = QtCore.QThread()
         self.thread.started.connect(lambda: self.exposeButton.setEnabled(False))
-        self.thread.finished.connect(lambda:self.exposeButton.setEnabled(True))
+        self.thread.finished.connect(lambda: self.exposeButton.setEnabled(True))
         self.pushButton.clicked.connect(self.runThread)
 
         self.obj = Worker()
@@ -78,8 +78,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             self.logger.error(status)
 
     def runThread(self):
-
-        
+     
         imtitle = str(self.imfilenameLineEdit.text())
         imcount = self.imstackSpinBox.value()
         start = self.imnumSpinBox.value()
@@ -95,8 +94,13 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
 
         self.obj.initialize(exptype, mode, imtitle, exptime, imcount, step,
                         mintime, maxtime, step)
+
+        print "Worker initialized."
         
         self.thread.start()
+
+        print "Thread started."
+        print self.thread.isRunning()
         
     def restoreGUI(self):
         """Set GUI display widget values with values read from INI file."""
@@ -373,6 +377,8 @@ class Worker(QtCore.QObject):
       
     @QtCore.pyqtSlot()
     def process(self):
+
+        print "Process started."
 
         ## Check if single exposure
         if self.exptype in ["Exposure", "Dark", "Bias"]:

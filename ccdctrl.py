@@ -39,7 +39,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
 
         ## Connect signals and slots for functions
         self.exposeButton.clicked.connect(self.expose)
-        self.resetButton.clicked.connect(self.reset)
+        self.resetButton.clicked.connect(self.resetConfirm)
         self.exptypeComboBox.currentIndexChanged.connect(self.activate_ui)
         self.directoryPushButton.clicked.connect(self.setdirectory)
 
@@ -62,7 +62,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             restore.guirestore(self, self.settings)
         except:
             self.logger.warning("Failed to restore past values for GUI display widgets.")
-            self.statusLineEdit.setText("Warning: Failed to restore past settings.")
+            self.statusEdit.setText("Warning: Failed to restore past settings.")
             DATA_DIRECTORY = "./"
         else:
             self.logger.info("GUI display widget values successfully restored.")
@@ -143,13 +143,13 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             except OSError:
                 if not os.path.isdir(new_directory):
                     self.logger.exception("An error occurred while creating a new directory.")
-                    self.statusLineEdit.setText("An error occurred while creating a new directory.")
+                    self.statusEdit.setText("An error occurred while creating a new directory.")
 
             global DATA_DIRECTORY
             DATA_DIRECTORY = new_directory
             self.setfilename()
             self.logger.info("Data directory changed to {0}.".format(new_directory))
-            self.statusLineEdit.setText("Data directory changed to {0}.".format(new_directory))
+            self.statusEdit.setText("Data directory changed to {0}.".format(new_directory))
 
     def expose(self):
         """Execute a shell script to perform a measurement, depending on the desired
@@ -185,9 +185,11 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                 self.logger.exception("Error in executable {0}_acq. Image not taken.".format(mode))
             except OSError:
                 self.logger.exception("Exposure {0} finished successfully.".format(filename))
+            except IOError:
+                self.statusEdit.setText("File already exits. Image not taken.")
             else:
                 self.logger.info("Exposure {0} finished successfully.".format(filename))
-                self.statusLineEdit.setText("Exposure {0} finished.".format(filename))
+                self.statusEdit.setText("Exposure {0} finished.".format(filename))
 
         ## Check if a stack of exposures of same type
         elif exptype in ["Exposure Stack", "Dark Stack", "Bias Stack"]:
@@ -211,9 +213,11 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                 self.logger.exception("Error in executable {0}_acq. Image not taken.".format(mode))
             except OSError:
                 self.logger.exception("Executable {0}_acq not found. Image not taken.".format(mode))
+            except IOError:
+                self.statusEdit.setText("File already exitst. Image not taken.")
             else:
                 self.logger.info("{0} finished successfully.".format(filebase))
-                self.statusLineEdit.setText("Exposure stack {0} finished".format(filebase))
+                self.statusEdit.setText("Exposure stack {0} finished".format(filebase))
 
         ## Check if a series of exposures of increase exposure time
         elif exptype in ["Exposure Series", "Dark Series"]:
@@ -227,7 +231,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
 
             ## Parameter checks
             if mintime > maxtime:
-                self.statusLineEdit.setText("Min time must be less than Max time.")
+                self.statusEdit.setText("Min time must be less than Max time.")
                 return
 
             ## Perform series
@@ -236,9 +240,13 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                 exposure.series(mode, filebase, mintime, maxtime, step)
             except subprocess.CalledProcessError:
                 self.logger.exception("Error in executable {0}_acq. Image not taken.".format(mode))
+            except OSError:
+                self.logger.exception("Executable {0}_acq not found. Image not taken.".format(mode))
+            except IOError:
+                self.statusEdit.setText("File already exitst. Image not taken.")
             else:
                 self.logger.info("{0} finished successfully.".format(filebase))
-                self.statusLineEdit.setText("Exposure series {0} finished".format(filebase))
+                self.statusEdit.setText("Exposure series {0} finished".format(filebase))
         
     def setvoltages(self):
         """Change the value of the specified voltages."""

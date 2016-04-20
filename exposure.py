@@ -93,12 +93,9 @@ def im_acq(mode, filebase="test", time=0.00):
 
     filename = "{0}.fits".format(filebase)
 
-    ## Delete output file, if it already exists
-    try:
-        os.remove(filename)
-    except OSError as er:
-        if er.errno != errno.ENOENT:
-            raise
+    ## If output file already exists raise an error
+    if os.path.isfile(filename):
+        raise IOError
 
     ## Do exposure depending on specified mode
     if mode == "bias":
@@ -111,6 +108,7 @@ def im_acq(mode, filebase="test", time=0.00):
         output = subprocess.check_output(["exp_acq", "{0}".format(time),
                                           "{0}".format(filename)])
 
+    print output
     return filename
 
 def stack(mode, filebase, imcount, time, start=0):

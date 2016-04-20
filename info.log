@@ -681,3 +681,118 @@ OSError: [Errno 2] No such file or directory
 04/19/2016 11:38:52 AM - ERROR - Executable exp_acq not found. Image not taken.
 04/19/2016 11:38:54 AM - INFO - Turning off sta3800 controller.
 04/19/2016 11:38:54 AM - INFO - Controller turned off successfully.
+04/19/2016 11:41:46 AM - INFO - GUI display widget values successfully restored.
+04/19/2016 11:41:46 AM - INFO - Turning off sta3800 controller.
+04/19/2016 11:41:46 AM - INFO - Controller turned off successfully.
+04/19/2016 11:41:46 AM - INFO - Turning on sta3800 controller.
+04/19/2016 11:41:46 AM - INFO - Controller turned on successfully.
+04/19/2016 11:42:09 AM - INFO - Starting 4.5s Exposure image with filebase /Users/adamsnyder/ccdcontroller/versions/Hello.exp.4.5s.
+04/19/2016 11:42:36 AM - INFO - Exposure /Users/adamsnyder/ccdcontroller/versions/Hello.exp.4.5s.fits finished successfully.
+04/19/2016 11:42:37 AM - INFO - Turning off sta3800 controller.
+04/19/2016 11:42:37 AM - INFO - Controller turned off successfully.
+04/19/2016 11:43:43 AM - INFO - GUI display widget values successfully restored.
+04/19/2016 11:43:43 AM - INFO - Turning off sta3800 controller.
+04/19/2016 11:43:43 AM - INFO - Controller turned off successfully.
+04/19/2016 11:43:43 AM - INFO - Turning on sta3800 controller.
+04/19/2016 11:43:43 AM - INFO - Controller turned on successfully.
+04/19/2016 11:43:51 AM - INFO - Data directory changed to /home/lsst/ccdcontroller/test_dir.
+04/19/2016 11:44:24 AM - INFO - Starting 2.0s Exposure image with filebase /home/lsst/ccdcontroller/test_dir/Hello.exp.2.0s.
+04/19/2016 11:44:55 AM - INFO - Exposure /home/lsst/ccdcontroller/test_dir/Hello.exp.2.0s.fits finished successfully.
+04/19/2016 11:50:22 AM - INFO - Turning off sta3800 controller.
+04/19/2016 11:50:22 AM - INFO - Controller turned off successfully.
+04/19/2016 11:52:40 AM - INFO - GUI display widget values successfully restored.
+04/19/2016 11:52:40 AM - INFO - Turning off sta3800 controller.
+04/19/2016 11:52:40 AM - INFO - Controller turned off successfully.
+04/19/2016 11:52:40 AM - INFO - Turning on sta3800 controller.
+04/19/2016 11:52:40 AM - INFO - Controller turned on successfully.
+04/19/2016 11:53:23 AM - INFO - Turning off sta3800 controller.
+04/19/2016 11:53:23 AM - INFO - Controller turned off successfully.
+04/19/2016 11:53:26 AM - INFO - GUI display widget values successfully restored.
+04/19/2016 11:53:26 AM - INFO - Turning off sta3800 controller.
+04/19/2016 11:53:26 AM - INFO - Controller turned off successfully.
+04/19/2016 11:53:26 AM - INFO - Turning on sta3800 controller.
+04/19/2016 11:53:26 AM - INFO - Controller turned on successfully.
+04/19/2016 11:53:29 AM - INFO - Turning off sta3800 controller.
+04/19/2016 11:53:29 AM - INFO - Controller turned off successfully.
+04/19/2016 11:55:07 AM - INFO - GUI display widget values successfully restored.
+04/19/2016 11:55:07 AM - INFO - Turning off sta3800 controller.
+04/19/2016 11:55:07 AM - INFO - Controller turned off successfully.
+04/19/2016 11:55:07 AM - INFO - Turning on sta3800 controller.
+04/19/2016 11:55:07 AM - INFO - Controller turned on successfully.
+04/19/2016 11:55:44 AM - INFO - Turning off sta3800 controller.
+04/19/2016 11:55:44 AM - INFO - Controller turned off successfully.
+04/19/2016 11:57:31 AM - INFO - GUI display widget values successfully restored.
+04/19/2016 11:57:31 AM - INFO - Turning off sta3800 controller.
+04/19/2016 11:57:35 AM - INFO - Controller turned off successfully.
+04/19/2016 11:57:35 AM - INFO - Turning on sta3800 controller.
+04/19/2016 11:57:43 AM - INFO - Controller turned on successfully.
+04/19/2016 11:58:04 AM - INFO - Starting 2.0s Exposure image with filebase /home/lsst/ccdcontroller/test_dir/Hello.exp.2.0s.
+04/19/2016 11:58:35 AM - INFO - Exposure /home/lsst/ccdcontroller/test_dir/Hello.exp.2.0s.fits finished successfully.
+04/19/2016 11:58:47 AM - INFO - Turning off sta3800 controller.
+04/19/2016 11:58:51 AM - ERROR - Unable to turn off controller! State may be unknown.
+Traceback (most recent call last):
+  File "./ccdctrl.py", line 304, in safe_shutdown
+    ccdsetup.sta3800_off()
+  File "/home/lsst/ccdcontroller/ccdsetup.py", line 229, in sta3800_off
+    output = subprocess.check_output("sta3800_off")
+  File "/home/lsst/ccdcontroller/voltage.py", line 24, in f
+    raise subprocess.CalledProcessError(retcode, cmd)
+CalledProcessError: Command 'sta3800_off' returned non-zero exit status 1
+04/19/2016 12:58:15 PM - INFO - GUI display widget values successfully restored.
+04/19/2016 12:58:15 PM - INFO - Turning off sta3800 controller.
+04/19/2016 12:58:19 PM - INFO - Controller turned off successfully.
+04/19/2016 12:58:19 PM - INFO - Turning on sta3800 controller.
+04/19/2016 12:58:27 PM - INFO - Controller turned on successfully.
+04/19/2016 12:58:42 PM - INFO - Starting 3.0s Exposure image with filebase /home/lsst/ccdcontroller/test_dir/Hello.exp.3.0s.
+04/19/2016 12:59:15 PM - INFO - Exposure /home/lsst/ccdcontroller/test_dir/Hello.exp.3.0s.fits finished successfully.
+04/19/2016 12:59:45 PM - INFO - Turning off sta3800 controller.
+04/19/2016 12:59:49 PM - INFO - Controller turned off successfully.
+04/19/2016 01:01:56 PM - INFO - GUI display widget values successfully restored.
+04/19/2016 01:01:56 PM - INFO - Turning off sta3800 controller.
+04/19/2016 01:02:00 PM - INFO - Controller turned off successfully.
+04/19/2016 01:02:00 PM - INFO - Turning on sta3800 controller.
+04/19/2016 01:02:08 PM - INFO - Controller turned on successfully.
+04/19/2016 01:02:15 PM - INFO - Starting 3.0s Exposure image with filebase /home/lsst/ccdcontroller/test_dir/Hello.exp.3.0s.
+04/19/2016 01:02:47 PM - INFO - Exposure /home/lsst/ccdcontroller/test_dir/Hello.exp.3.0s.fits finished successfully.
+04/19/2016 01:03:22 PM - INFO - Data directory changed to /home/lsst/ccdcontroller.
+04/19/2016 01:03:26 PM - INFO - Starting 3.0s Exposure image with filebase /home/lsst/ccdcontroller/Hello.exp.3.0s.
+04/19/2016 01:03:58 PM - INFO - Exposure /home/lsst/ccdcontroller/Hello.exp.3.0s.fits finished successfully.
+04/19/2016 01:07:22 PM - INFO - Turning off sta3800 controller.
+04/19/2016 01:07:26 PM - INFO - Controller turned off successfully.
+04/19/2016 01:11:27 PM - INFO - GUI display widget values successfully restored.
+04/19/2016 01:11:27 PM - INFO - Turning off sta3800 controller.
+04/19/2016 01:11:31 PM - INFO - Controller turned off successfully.
+04/19/2016 01:11:31 PM - INFO - Turning on sta3800 controller.
+04/19/2016 01:11:39 PM - INFO - Controller turned on successfully.
+04/19/2016 01:11:50 PM - INFO - Starting 1.0s Exposure image with filebase /home/lsst/ccdcontroller/Hello.exp.1.0s.
+04/19/2016 01:12:20 PM - INFO - Exposure /home/lsst/ccdcontroller/Hello.exp.1.0s.fits finished successfully.
+04/19/2016 01:21:43 PM - INFO - Turning off sta3800 controller.
+04/19/2016 01:21:47 PM - INFO - Controller turned off successfully.
+04/19/2016 01:41:54 PM - INFO - GUI display widget values successfully restored.
+04/19/2016 01:41:54 PM - INFO - Turning off sta3800 controller.
+04/19/2016 01:41:58 PM - INFO - Controller turned off successfully.
+04/19/2016 01:41:58 PM - INFO - Turning on sta3800 controller.
+04/19/2016 01:42:06 PM - INFO - Controller turned on successfully.
+04/19/2016 01:43:23 PM - INFO - Data directory changed to /home/lsst/ccdcontroller/test_dir.
+04/19/2016 01:43:58 PM - INFO - Starting 4.0s Exposure image with filebase /home/lsst/ccdcontroller/test_dir/test.exp.4.0s.
+04/19/2016 01:44:08 PM - INFO - Starting 3.0s Exposure image with filebase /home/lsst/ccdcontroller/test_dir/test.exp.3.0s.
+04/19/2016 01:44:41 PM - INFO - Exposure /home/lsst/ccdcontroller/test_dir/test.exp.3.0s.fits finished successfully.
+04/19/2016 01:44:45 PM - INFO - Turning off sta3800 controller.
+04/19/2016 01:44:49 PM - ERROR - Unable to turn off controller! State may be unknown.
+Traceback (most recent call last):
+  File "./ccdctrl.py", line 312, in safe_shutdown
+    ccdsetup.sta3800_off()
+  File "/home/lsst/ccdcontroller/ccdsetup.py", line 229, in sta3800_off
+    output = subprocess.check_output("sta3800_off")
+  File "/home/lsst/ccdcontroller/voltage.py", line 24, in f
+    raise subprocess.CalledProcessError(retcode, cmd)
+CalledProcessError: Command 'sta3800_off' returned non-zero exit status 1
+04/19/2016 04:33:51 PM - INFO - GUI display widget values successfully restored.
+04/19/2016 04:33:51 PM - INFO - Turning off sta3800 controller.
+04/19/2016 04:33:55 PM - INFO - Controller turned off successfully.
+04/19/2016 04:33:55 PM - INFO - Turning on sta3800 controller.
+04/19/2016 04:34:04 PM - INFO - Controller turned on successfully.
+04/19/2016 04:34:56 PM - INFO - Starting 0.0s Bias image with filebase /home/lsst/ccdcontroller/test_dir/test.bias.0.0s.
+04/19/2016 04:35:25 PM - INFO - Exposure /home/lsst/ccdcontroller/test_dir/test.bias.0.0s.fits finished successfully.
+04/19/2016 04:35:37 PM - INFO - Turning off sta3800 controller.
+04/19/2016 04:35:41 PM - INFO - Controller turned off successfully.
