@@ -7,6 +7,7 @@ This is a Python script to make different exposure measurements
 import subprocess
 import os
 import errno
+import fitsio
 
 import voltage
 
@@ -172,8 +173,6 @@ def update_header(filepath, **kwargs):
     headver = kwargs.pop('headver', 1)
     ccdgain = kwargs.pop('ccdgain', 5.52)
     ccdnoise = kwargs.pop('ccdnoise', 6.0)
-
-    print filename
 
     ## Update fits header
     fits = fitsio.FITS(filepath, 'rw')
