@@ -41,11 +41,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         self.exposeButton.clicked.connect(self.expose)
         self.resetButton.clicked.connect(self.resetConfirm)
         self.exptypeComboBox.currentIndexChanged.connect(self.activate_ui)
-        self.directoryPushButton.clicked.connect(self.setdirectory)
-
-        ## Connect signals to update filepath
-        self.testimCheckBox.clicked.connect(self.setfilename)
-        self.imtitleLineEdit.editingFinished.connect(self.setfilename)
+        self.directoryPushButton.clicked.connect(self.editdirectory)
         
         self.restoreGUI()
         self.reset()
@@ -67,7 +63,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         else:
             self.logger.info("GUI display widget values successfully restored.")
 
-            self.setfilename()
+            self.displaydirectory()
             self.activate_ui()
 
     def resetConfirm(self):
@@ -86,7 +82,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
 
         ## Turn off controller to bring to a known state
         try:
-            self.logger.info("Turning off sta3800 controller.")
+            self.logger.info("Turning off sta3800 controller (sta3800_off).")
             ccdsetup.sta3800_off()
 
         except Exception:
@@ -97,39 +93,19 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
 
         ## Initialize controller
         try:
-            self.logger.info("Turning on sta3800 controller.")
+            self.logger.info("Turning on sta3800 controller (sta3800_setup).")
             ccdsetup.sta3800_setup()
         except Exception:
             self.logger.exception("Unable to turn on sta3800 controller!")
             raise
         else:
             self.logger.info("Controller turned on successfully.")
-            
-    def setfilename(self):
 
-        filename = str(self.imtitleLineEdit.text())
-        mode = self.modedict[str(self.exptypeComboBox.currentText())]
-
-        if self.testimCheckBox.isChecked():
-
-            self.exposeButton.setEnabled(True)
-            self.imfilenameLineEdit.setText(path.join(DATA_DIRECTORY, "test"))
-            
-            return
-
-        elif filename != "":
-
-            self.exposeButton.setEnabled(True)
-            self.imfilenameLineEdit.setText(path.join(DATA_DIRECTORY, 
-                                                      filename))
-            self.curr_filename = filename
-
-            return
-
-        self.exposeButton.setEnabled(False)
+    def displaydirectory(self):
+        """Display the Data Directory in the GUI."""
         self.imfilenameLineEdit.setText(DATA_DIRECTORY)
         
-    def setdirectory(self):
+    def editdirectory(self):
         """Open prompt for user to select a new directory to save data."""
 
         ## Have user select existing directory
@@ -147,7 +123,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
 
             global DATA_DIRECTORY
             DATA_DIRECTORY = new_directory
-            self.setfilename()
+            self.displaydirectory()
             self.logger.info("Data directory changed to {0}.".format(new_directory))
             self.statusEdit.setText("Data directory changed to {0}.".format(new_directory))
 
@@ -295,7 +271,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                 self.exptimeSpinBox.setEnabled(True)
 
     def closeEvent(self, event):
-        """Neex to reconcile confirmation and guisave settings."""
+        """Need to reconcile confirmation and guisave settings."""
 
         ## Save settings to INI file
 
@@ -313,7 +289,7 @@ def safe_shutdown():
     logger = logging.getLogger('sLogger')
 
     try:
-        logger.info("Turning off sta3800 controller.")
+        logger.info("Turning off sta3800 controller (sta3800_off).")
         ccdsetup.sta3800_off()
     except Exception:
         logger.exception("Unable to turn off controller! State may be unknown.")

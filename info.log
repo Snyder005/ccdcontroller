@@ -842,3 +842,17 @@ CalledProcessError: Command 'sta3800_off' returned non-zero exit status 1
 04/26/2016 05:53:59 PM - INFO - /home/lsst/Data/20160426/preamp.in.dark.10.0s finished successfully.
 04/26/2016 06:05:49 PM - INFO - Turning off sta3800 controller.
 04/26/2016 06:05:54 PM - INFO - Controller turned off successfully.
+04/28/2016 02:31:06 PM - INFO - GUI display widget values successfully restored.
+04/28/2016 02:31:06 PM - INFO - Turning off sta3800 controller.
+04/28/2016 02:31:06 PM - INFO - Controller turned off successfully.
+04/28/2016 02:31:06 PM - INFO - Turning on sta3800 controller.
+04/28/2016 02:31:06 PM - INFO - Controller turned on successfully.
+04/28/2016 02:31:12 PM - INFO - Turning off sta3800 controller.
+04/28/2016 02:31:12 PM - INFO - Controller turned off successfully.
+04/28/2016 02:40:23 PM - INFO - GUI display widget values successfully restored.
+04/28/2016 02:40:23 PM - INFO - Turning off sta3800 controller.
+04/28/2016 02:40:23 PM - INFO - Controller turned off successfully.
+04/28/2016 02:40:23 PM - INFO - Turning on sta3800 controller.
+04/28/2016 02:40:23 PM - INFO - Controller turned on successfully.
+04/28/2016 02:40:37 PM - INFO - Turning off sta3800 controller.
+04/28/2016 02:40:37 PM - INFO - Controller turned off successfully.
