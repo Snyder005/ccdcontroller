@@ -856,3 +856,87 @@ CalledProcessError: Command 'sta3800_off' returned non-zero exit status 1
 04/28/2016 02:40:23 PM - INFO - Controller turned on successfully.
 04/28/2016 02:40:37 PM - INFO - Turning off sta3800 controller.
 04/28/2016 02:40:37 PM - INFO - Controller turned off successfully.
+04/28/2016 04:13:58 PM - INFO - GUI display widget values successfully restored.
+04/28/2016 04:13:58 PM - INFO - Turning off sta3800 controller (sta3800_off).
+04/28/2016 04:13:58 PM - INFO - Controller turned off successfully.
+04/28/2016 04:13:58 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+04/28/2016 04:13:58 PM - INFO - Controller turned on successfully.
+04/28/2016 04:14:15 PM - INFO - Turning off sta3800 controller (sta3800_off).
+04/28/2016 04:14:15 PM - INFO - Controller turned off successfully.
+04/28/2016 04:21:39 PM - INFO - GUI display widget values successfully restored.
+04/28/2016 04:21:39 PM - INFO - Turning off sta3800 controller (sta3800_off).
+04/28/2016 04:21:39 PM - INFO - Controller turned off successfully.
+04/28/2016 04:21:39 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+04/28/2016 04:21:39 PM - INFO - Controller turned on successfully.
+04/28/2016 04:21:59 PM - INFO - Turning off sta3800 controller (sta3800_off).
+04/28/2016 04:21:59 PM - INFO - Controller turned off successfully.
+04/28/2016 04:22:03 PM - INFO - GUI display widget values successfully restored.
+04/28/2016 04:22:03 PM - INFO - Turning off sta3800 controller (sta3800_off).
+04/28/2016 04:22:03 PM - INFO - Controller turned off successfully.
+04/28/2016 04:22:03 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+04/28/2016 04:22:03 PM - INFO - Controller turned on successfully.
+04/28/2016 04:22:17 PM - INFO - Turning off sta3800 controller (sta3800_off).
+04/28/2016 04:22:17 PM - INFO - Controller turned off successfully.
+04/28/2016 04:22:49 PM - INFO - GUI display widget values successfully restored.
+04/28/2016 04:22:49 PM - INFO - Turning off sta3800 controller (sta3800_off).
+04/28/2016 04:22:49 PM - INFO - Controller turned off successfully.
+04/28/2016 04:22:49 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+04/28/2016 04:22:49 PM - INFO - Controller turned on successfully.
+04/28/2016 04:22:59 PM - INFO - Turning off sta3800 controller (sta3800_off).
+04/28/2016 04:22:59 PM - INFO - Controller turned off successfully.
+04/28/2016 04:23:54 PM - INFO - GUI display widget values successfully restored.
+04/28/2016 04:23:54 PM - INFO - Turning off sta3800 controller (sta3800_off).
+04/28/2016 04:23:54 PM - INFO - Controller turned off successfully.
+04/28/2016 04:23:54 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+04/28/2016 04:23:54 PM - INFO - Controller turned on successfully.
+04/28/2016 04:24:11 PM - INFO - Turning off sta3800 controller (sta3800_off).
+04/28/2016 04:24:11 PM - INFO - Controller turned off successfully.
+04/28/2016 04:26:13 PM - INFO - GUI display widget values successfully restored.
+04/28/2016 04:26:13 PM - INFO - Turning off sta3800 controller (sta3800_off).
+04/28/2016 04:26:13 PM - INFO - Controller turned off successfully.
+04/28/2016 04:26:13 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+04/28/2016 04:26:13 PM - INFO - Controller turned on successfully.
+04/28/2016 04:35:34 PM - INFO - Turning off sta3800 controller (sta3800_off).
+04/28/2016 04:35:34 PM - INFO - Controller turned off successfully.
+04/28/2016 04:35:40 PM - INFO - GUI display widget values successfully restored.
+04/28/2016 04:35:40 PM - INFO - Turning off sta3800 controller (sta3800_off).
+04/28/2016 04:35:40 PM - INFO - Controller turned off successfully.
+04/28/2016 04:35:40 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+04/28/2016 04:35:40 PM - INFO - Controller turned on successfully.
+04/28/2016 04:35:48 PM - INFO - Turning off sta3800 controller (sta3800_off).
+04/28/2016 04:35:48 PM - INFO - Controller turned off successfully.
+04/28/2016 04:36:03 PM - INFO - GUI display widget values successfully restored.
+04/28/2016 04:36:03 PM - INFO - Turning off sta3800 controller (sta3800_off).
+04/28/2016 04:36:03 PM - INFO - Controller turned off successfully.
+04/28/2016 04:36:03 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+04/28/2016 04:36:03 PM - INFO - Controller turned on successfully.
+04/28/2016 04:36:17 PM - INFO - Turning off sta3800 controller (sta3800_off).
+04/28/2016 04:36:17 PM - INFO - Controller turned off successfully.
+04/28/2016 04:39:37 PM - INFO - GUI display widget values successfully restored.
+04/28/2016 04:39:37 PM - INFO - Turning off sta3800 controller (sta3800_off).
+04/28/2016 04:39:37 PM - INFO - Controller turned off successfully.
+04/28/2016 04:39:37 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+04/28/2016 04:39:37 PM - INFO - Controller turned on successfully.
+04/28/2016 04:39:53 PM - INFO - Turning off sta3800 controller (sta3800_off).
+04/28/2016 04:39:53 PM - INFO - Controller turned off successfully.
+04/28/2016 04:45:56 PM - INFO - GUI display widget values successfully restored.
+04/28/2016 04:45:56 PM - INFO - Turning off sta3800 controller (sta3800_off).
+04/28/2016 04:45:56 PM - INFO - Controller turned off successfully.
+04/28/2016 04:45:56 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+04/28/2016 04:45:56 PM - INFO - Controller turned on successfully.
+04/28/2016 04:46:06 PM - INFO - Turning off sta3800 controller (sta3800_off).
+04/28/2016 04:46:06 PM - INFO - Controller turned off successfully.
+04/28/2016 04:46:42 PM - INFO - GUI display widget values successfully restored.
+04/28/2016 04:46:42 PM - INFO - Turning off sta3800 controller (sta3800_off).
+04/28/2016 04:46:42 PM - INFO - Controller turned off successfully.
+04/28/2016 04:46:42 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+04/28/2016 04:46:42 PM - INFO - Controller turned on successfully.
+04/28/2016 04:47:03 PM - INFO - Turning off sta3800 controller (sta3800_off).
+04/28/2016 04:47:03 PM - INFO - Controller turned off successfully.
+04/28/2016 04:48:17 PM - INFO - GUI display widget values successfully restored.
+04/28/2016 04:48:17 PM - INFO - Turning off sta3800 controller (sta3800_off).
+04/28/2016 04:48:17 PM - INFO - Controller turned off successfully.
+04/28/2016 04:48:17 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+04/28/2016 04:48:17 PM - INFO - Controller turned on successfully.
+04/28/2016 04:48:29 PM - INFO - Turning off sta3800 controller (sta3800_off).
+04/28/2016 04:48:29 PM - INFO - Controller turned off successfully.
