@@ -190,6 +190,8 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             else:
                 self.logger.info("Exposure {0} finished successfully.".format(filename))
                 self.statusEdit.setText("Exposure {0} finished.".format(filename))
+                subprocess.Popen(['ds9', '-mosaicimage', 'iraf', filename, '-zoom', 'to', 'fit'])
+                
 
         ## Check if a stack of exposures of same type
         elif exptype in ["Exposure Stack", "Dark Stack", "Bias Stack"]:
@@ -208,7 +210,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             self.logger.info("Starting {0} with imcount {1}, exptime {2}, and filebase {3}.".format(exptype, imcount, exptime, filebase))
 
             try:
-                exposure.stack(mode, filebase, imcount, exptime, start)
+                filename = exposure.stack(mode, filebase, imcount, exptime, start)
             except subprocess.CalledProcessError:
                 self.logger.exception("Error in executable {0}_acq. Image not taken.".format(mode))
             except OSError:
@@ -218,6 +220,8 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             else:
                 self.logger.info("{0} finished successfully.".format(filebase))
                 self.statusEdit.setText("Exposure stack {0} finished".format(filebase))
+                subprocess.Popen(['ds9', '-mosaicimage', 'iraf', filename, '-zoom', 'to', 'fit'])
+                
 
         ## Check if a series of exposures of increase exposure time
         elif exptype in ["Exposure Series", "Dark Series"]:
@@ -237,7 +241,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             ## Perform series
             self.logger.info("Starting {0} with mintime {1}, maxtime {2}, step {3}, and filebase {4}.".format(exptype, mintime, maxtime, step, filebase))
             try:
-                exposure.series(mode, filebase, mintime, maxtime, step)
+                filename = exposure.series(mode, filebase, mintime, maxtime, step)
             except subprocess.CalledProcessError:
                 self.logger.exception("Error in executable {0}_acq. Image not taken.".format(mode))
             except OSError:
@@ -247,6 +251,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             else:
                 self.logger.info("{0} finished successfully.".format(filebase))
                 self.statusEdit.setText("Exposure series {0} finished".format(filebase))
+                subprocess.Popen(['ds9', '-mosaicimage', 'iraf', filename, '-zoom', 'to', 'fit'])
         
     def setvoltages(self):
         """Change the value of the specified voltages."""
@@ -318,7 +323,8 @@ def safe_shutdown():
 def main():
 
     ## Set up DS(
-    subprocess.Popen("ds9") ## Test if ds9 can be opened in background
+    
+    #subprocess.Popen("ds9") ## Test if ds9 can be opened in background
 
     ## Set up logging
     fileConfig("settings.ini")

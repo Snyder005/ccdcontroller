@@ -1,4 +1,4 @@
-03/31/2016 06:46:41 PM - INFO - Logger initialized
+903/31/2016 06:46:41 PM - INFO - Logger initialized
 03/31/2016 06:46:41 PM - INFO - Turning off sta3800 controller.
 03/31/2016 06:46:41 PM - INFO - Controller turned off successfully.
 03/31/2016 06:46:41 PM - INFO - Turning on sta3800 controller.
@@ -822,23 +822,3 @@ CalledProcessError: Command 'sta3800_off' returned non-zero exit status 1
 04/26/2016 04:21:02 PM - INFO - Turning on sta3800 controller.
 04/26/2016 04:21:10 PM - INFO - Controller turned on successfully.
 04/26/2016 04:21:44 PM - INFO - Data directory changed to /home/lsst/Data/20160426.
-04/26/2016 04:52:18 PM - INFO - Turning off sta3800 controller.
-04/26/2016 04:52:22 PM - INFO - Controller turned off successfully.
-04/26/2016 04:52:33 PM - INFO - GUI display widget values successfully restored.
-04/26/2016 04:52:33 PM - INFO - Turning off sta3800 controller.
-04/26/2016 04:52:37 PM - INFO - Controller turned off successfully.
-04/26/2016 04:52:37 PM - INFO - Turning on sta3800 controller.
-04/26/2016 04:52:45 PM - INFO - Controller turned on successfully.
-04/26/2016 04:56:59 PM - INFO - Starting Exposure Stack with imcount 5, exptime 10.0, and filebase /home/lsst/Data/20160426/dark.exp.10.0s.
-04/26/2016 04:58:13 PM - INFO - /home/lsst/Data/20160426/dark.exp.10.0s finished successfully.
-04/26/2016 05:06:11 PM - INFO - Turning off sta3800 controller.
-04/26/2016 05:06:16 PM - INFO - Controller turned off successfully.
-04/26/2016 05:49:39 PM - INFO - GUI display widget values successfully restored.
-04/26/2016 05:49:39 PM - INFO - Turning off sta3800 controller.
-04/26/2016 05:49:43 PM - INFO - Controller turned off successfully.
-04/26/2016 05:49:43 PM - INFO - Turning on sta3800 controller.
-04/26/2016 05:49:51 PM - INFO - Controller turned on successfully.
-04/26/2016 05:51:31 PM - INFO - Starting Dark Stack with imcount 10, exptime 10.0, and filebase /home/lsst/Data/20160426/preamp.in.dark.10.0s.
-04/26/2016 05:53:59 PM - INFO - /home/lsst/Data/20160426/preamp.in.dark.10.0s finished successfully.
-04/26/2016 06:05:49 PM - INFO - Turning off sta3800 controller.
-04/26/2016 06:05:54 PM - INFO - Controller turned off successfully.

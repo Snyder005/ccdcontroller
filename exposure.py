@@ -126,7 +126,7 @@ def stack(mode, filebase, imcount, time, start=0):
         im_acq(mode, filename, time)
         i += 1
 
-    return
+    return filename
 
 def series(mode, filebase, mintime, maxtime, step):
     """Perform a series of images of a given mode."""
@@ -138,6 +138,8 @@ def series(mode, filebase, mintime, maxtime, step):
         im_acq(mode, filename, time)
         dtime += step
 
+    return filename
+
 ###############################################################################
 ##
 ##  FITs File Header Management
@@ -148,10 +150,10 @@ def update_header(filepath, **kwargs):
 
     ## Get header items from kwargs dictionary
     imagetag = kwargs.pop('imagetag', '[lots of digits]')
-    tstand = kwargs.pop('tstand', 'BNL1')
-    instrument = kwargs.pop('instrument', 'SAO4')
-    controller = kwargs.pop('controller', 'SAO4')
-    contnum = kwargs.pop('contnum', 3)
+    tstand = kwargs.pop('tstand', 'Stanford-KGLab')
+    instrument = kwargs.pop('instrument', 'SAO16')
+    controller = kwargs.pop('controller', 'SAO16')
+    contnum = kwargs.pop('contnum', 1)
     ccd_manu = kwargs.pop('ccd_manu', 'ITL')
     ccd_type = kwargs.pop('ccd_type', '3800C')
     ccd_sern = kwargs.pop('ccd_sern', '19351') 
