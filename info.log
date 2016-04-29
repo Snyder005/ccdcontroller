@@ -940,3 +940,10 @@ CalledProcessError: Command 'sta3800_off' returned non-zero exit status 1
 04/28/2016 04:48:17 PM - INFO - Controller turned on successfully.
 04/28/2016 04:48:29 PM - INFO - Turning off sta3800 controller (sta3800_off).
 04/28/2016 04:48:29 PM - INFO - Controller turned off successfully.
+04/28/2016 05:01:38 PM - INFO - GUI display widget values successfully restored.
+04/28/2016 05:01:38 PM - INFO - Turning off sta3800 controller (sta3800_off).
+04/28/2016 05:01:38 PM - INFO - Controller turned off successfully.
+04/28/2016 05:01:38 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+04/28/2016 05:01:38 PM - INFO - Controller turned on successfully.
+04/28/2016 05:01:56 PM - INFO - Turning off sta3800 controller (sta3800_off).
+04/28/2016 05:01:56 PM - INFO - Controller turned off successfully.
