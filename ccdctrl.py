@@ -9,6 +9,7 @@ import atexit
 import subprocess
 import logging
 from logging.config import fileConfig
+import time
 
 import design
 import ccdsetup
@@ -16,16 +17,54 @@ import exposure
 import restore
 
 ###############################################################################
+##
+##  Worker Thread Class
+##
+###############################################################################
+
+class WorkerThread(QtCore.QThread):
+
+    def __init__(self, func, args):
+        super(WorkerThread, self).__init__()
+        self.func = func
+        self.args = args
+
+    def run(self):
+        self.func(*self.args)
+
+class QtHandler(logging.Handler):
+
+    def __init__(self, sigEmitter):
+        super(QtHandler, self).__init__()
+        self.sigEmitter = sigEmitter
+
+    def emit(self, status):
+        message = str(status.getMessage())
+        self.sigEmitter.emit(QtCore.SIGNAL("logMsg(QString)"), message)
+        
+###############################################################################
+##
+##  Controller GUI Class
+##
+###############################################################################
 
 class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
 
     def __init__(self, parent=None):
         super(Controller, self).__init__(parent)
         self.setupUi(self)
+
+        ## Set up Qt log handler
+        logEmitter = QtCore.QObject()
+        self.connect(logEmitter, QtCore.SIGNAL("logMsg(QString)"),
+                     self.statusEdit.append)
+
+        consoleHandler = QtHandler(logEmitter)
         self.logger = logging.getLogger("sLogger")
+        self.logger.addHandler(consoleHandler)
 
         ## These attributes handle autoincrement of filename
-        self.curr_filename = ""
+        self.curr_title = ""
 
         ## Dictionary for image exposure mode
         self.modedict = {"Exposure" : "exp",
@@ -42,10 +81,20 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         self.resetButton.clicked.connect(self.resetConfirm)
         self.exptypeComboBox.currentIndexChanged.connect(self.activate_ui)
         self.directoryPushButton.clicked.connect(self.editdirectory)
+        self.imtitleLineEdit.editingFinished.connect(self.checkfilename)
+        self.testimCheckBox.clicked.connect(self.checkfilename)
+
+        ## Signals and slots for thread testing
+        self.thread = WorkerThread(self.expose, ())
+        self.thread.started.connect(lambda: self.exposeButton.setEnabled(False))
+        self.thread.finished.connect(lambda: self.exposeButton.setEnabled(True))
+
+        self.pushButton.clicked.connect(self.thread.start)
         
+        ## Restore past GUI display settings and reset sta3800 controller
         self.restoreGUI()
         self.reset()
-
+                                
     def restoreGUI(self):
         """Set GUI display widget values with values read from INI file."""
 
@@ -58,12 +107,9 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             restore.guirestore(self, self.settings)
         except:
             self.logger.warning("Failed to restore past values for GUI display widgets.")
-            self.statusEdit.setText("Warning: Failed to restore past settings.")
             DATA_DIRECTORY = "./"
         else:
             self.logger.info("GUI display widget values successfully restored.")
-
-            self.displaydirectory()
             self.activate_ui()
 
     def resetConfirm(self):
@@ -101,6 +147,25 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         else:
             self.logger.info("Controller turned on successfully.")
 
+    def checkfilename(self):
+
+        title = str(self.imtitleLineEdit.text())
+
+        if self.testimCheckBox.isChecked():
+
+            self.exposeButton.setEnabled(True)
+            return
+
+        elif title != "":
+
+            self.exposeButton.setEnabled(True)
+            self.curr_title = title
+
+            return
+
+        self.exposeButton.setEnabled(False)
+        self.displaydirectory()
+
     def displaydirectory(self):
         """Display the Data Directory in the GUI."""
         self.imfilenameLineEdit.setText(DATA_DIRECTORY)
@@ -119,36 +184,40 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             except OSError:
                 if not os.path.isdir(new_directory):
                     self.logger.exception("An error occurred while creating a new directory.")
-                    self.statusEdit.setText("An error occurred while creating a new directory.")
 
             global DATA_DIRECTORY
             DATA_DIRECTORY = new_directory
             self.displaydirectory()
             self.logger.info("Data directory changed to {0}.".format(new_directory))
-            self.statusEdit.setText("Data directory changed to {0}.".format(new_directory))
 
     def expose(self):
         """Execute a shell script to perform a measurement, depending on the desired
            exposure type."""
 
-        # Add a try/except here to catch failures of the shell script
-
         ## Determine type of exposure (exp, series, stack)
         exptype = str(self.exptypeComboBox.currentText())
         mode = self.modedict[exptype]
-        filebase = "{0}.{1}.{2}s".format(self.imfilenameLineEdit.text(),
-                                         mode, self.exptimeSpinBox.value())
+
+        ## Get exposure parameters
+        if mode == "bias":
+            exptime = 0.0
+        else:
+            exptime = self.exptimeSpinBox.value()
+
+        imcount = self.imstackSpinBox.value()
+        start = self.imnumSpinBox.value()
+        mintime = self.minexpSpinBox.value()
+        maxtime = self.maxexpSpinBox.value()
+        step = self.tstepSpinBox.value()
+
+        ## Build filepath
+        filepath = os.path.join(str(self.imfilenameLineEdit.text()),
+                                str(self.imtitleLineEdit.text()))
                                             
         ## Check if single exposure
         if exptype in ["Exposure", "Dark", "Bias"]:
 
-            ## Get necessary arguments
-            if mode == "bias":
-                exptime = 0.0
-            else:
-                exptime = self.exptimeSpinBox.value()
-            filebase = "{0}.{1}.{2}s".format(self.imfilenameLineEdit.text(),
-                                             mode, exptime)    
+            filebase = "{0}.{1}.{2}s".format(filepath, mode, exptime)    
 
             ## Perform exposure
             self.logger.info("Starting {0}s {1} image with filebase {2}.".format(exptime,
@@ -160,27 +229,18 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             except subprocess.CalledProcessError:
                 self.logger.exception("Error in executable {0}_acq. Image not taken.".format(mode))
             except OSError:
-                self.logger.exception("Exposure {0} finished successfully.".format(filename))
+                self.logger.exception("Executable {0}_acq not found. Image not taken".format(mode))
             except IOError:
                 self.statusEdit.setText("File already exits. Image not taken.")
             else:
                 self.logger.info("Exposure {0} finished successfully.".format(filename))
-                self.statusEdit.setText("Exposure {0} finished.".format(filename))
                 subprocess.Popen(['ds9', '-mosaicimage', 'iraf', filename, '-zoom', 'to', 'fit'])
                 
 
         ## Check if a stack of exposures of same type
         elif exptype in ["Exposure Stack", "Dark Stack", "Bias Stack"]:
 
-            ## Get necessary arguments
-            if mode == "bias":
-                exptime = 0.0
-            else:
-                exptime = self.exptimeSpinBox.value()
-            imcount = self.imstackSpinBox.value() # Make sure this is type(int)
-            start = self.imnumSpinBox.value() # Make sure this is type(int)
-            filebase = "{0}.{1}.{2}s".format(self.imfilenameLineEdit.text(),
-                                             mode, exptime)
+            filebase = "{0}.{1}.{2}s".format(filepath, mode, exptime)
 
             ## Perform stack
             self.logger.info("Starting {0} with imcount {1}, exptime {2}, and filebase {3}.".format(exptype, imcount, exptime, filebase))
@@ -194,24 +254,18 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             except IOError:
                 self.statusEdit.setText("File already exitst. Image not taken.")
             else:
-                self.logger.info("{0} finished successfully.".format(filebase))
-                self.statusEdit.setText("Exposure stack {0} finished".format(filebase))
+                self.logger.info("Exposure stack {0} finished successfully.".format(filebase))
                 subprocess.Popen(['ds9', '-mosaicimage', 'iraf', filename, '-zoom', 'to', 'fit'])
                 
 
         ## Check if a series of exposures of increase exposure time
         elif exptype in ["Exposure Series", "Dark Series"]:
 
-            ## Get necessary arguments
-            mintime = self.minexpSpinBox.value()
-            maxtime = self.maxexpSpinBox.value()
-            step = self.tstepSpinBox.value()
-            filebase = "{0}.{1}".format(self.imfilenameLineEdit.text(),
-                                        mode)
+            filebase = "{0}.{1}".format(filepath, mode)
 
             ## Parameter checks
             if mintime > maxtime:
-                self.statusEdit.setText("Min time must be less than Max time.")
+                self.statusEdit.append("Min time must be less than Max time.")
                 return
 
             ## Perform series
@@ -225,8 +279,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             except IOError:
                 self.statusEdit.setText("File already exitst. Image not taken.")
             else:
-                self.logger.info("{0} finished successfully.".format(filebase))
-                self.statusEdit.setText("Exposure series {0} finished".format(filebase))
+                self.logger.info("Exposure series {0} finished successfully.".format(filebase))
                 subprocess.Popen(['ds9', '-mosaicimage', 'iraf', filename, '-zoom', 'to', 'fit'])
         
     def setvoltages(self):
@@ -236,6 +289,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
     def activate_ui(self):
         """Activate and deactivate input widgets depending on the necessary arguments."""
 
+        self.checkfilename()
         exptype = str(self.exptypeComboBox.currentText())
 
         if exptype in ["Exposure Stack", "Dark Stack", "Bias Stack"]:
@@ -283,10 +337,17 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             
         event.accept()
 
+###############################################################################
+##
+##  Main Functions
+##
+###############################################################################
+        
 def safe_shutdown():
     """Run controller shut off command after GUI is closed"""
 
     logger = logging.getLogger('sLogger')
+    logger.handlers = [h for h in logger.handlers if not isinstance(h, QtHandler)]
 
     try:
         logger.info("Turning off sta3800 controller (sta3800_off).")
@@ -297,10 +358,6 @@ def safe_shutdown():
         logger.info("Controller turned off successfully.")
         
 def main():
-
-    ## Set up DS(
-    
-    #subprocess.Popen("ds9") ## Test if ds9 can be opened in background
 
     ## Set up logging
     fileConfig("settings.ini")
