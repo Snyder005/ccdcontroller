@@ -98,3 +98,12 @@ OSError: [Errno 2] No such file or directory
 05/05/2016 05:20:48 PM - INFO - Controller turned on successfully.
 05/05/2016 05:20:51 PM - INFO - Turning off sta3800 controller (sta3800_off).
 05/05/2016 05:20:51 PM - INFO - Controller turned off successfully.
+05/05/2016 05:28:48 PM - INFO - GUI display widget values successfully restored.
+05/05/2016 05:28:48 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/05/2016 05:28:52 PM - INFO - Controller turned off successfully.
+05/05/2016 05:28:52 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/05/2016 05:29:00 PM - INFO - Controller turned on successfully.
+05/05/2016 05:30:05 PM - INFO - Starting 3.0s Exposure image with filebase /home/lsst/Data/20160426/test.exp.3.0s.
+05/05/2016 05:30:13 PM - INFO - Exposure /home/lsst/Data/20160426/test.exp.3.0s.fits finished successfully.
+05/05/2016 05:35:26 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/05/2016 05:35:30 PM - INFO - Controller turned off successfully.
