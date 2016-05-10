@@ -271,3 +271,99 @@ OSError: [Errno 2] No such file or directory
 05/05/2016 05:35:26 PM - INFO - Turning off sta3800 controller (sta3800_off).
 05/05/2016 05:35:30 PM - INFO - Controller turned off successfully.
 >>>>>>> 78614ca79e3715fa1a16fbe00b2b434424e3e345
+05/10/2016 10:10:00 AM - INFO - GUI display widget values successfully restored.
+05/10/2016 10:10:00 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 10:10:00 AM - INFO - Controller turned off successfully.
+05/10/2016 10:10:00 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/10/2016 10:10:00 AM - INFO - Controller turned on successfully.
+05/10/2016 10:10:25 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 10:10:25 AM - INFO - Controller turned off successfully.
+05/10/2016 10:11:53 AM - INFO - GUI display widget values successfully restored.
+05/10/2016 10:11:53 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 10:11:57 AM - INFO - Controller turned off successfully.
+05/10/2016 10:11:57 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/10/2016 10:12:06 AM - INFO - Controller turned on successfully.
+05/10/2016 10:12:25 AM - INFO - Starting 3.0s Exposure image with filebase /home/lsst/Data/20160426/test.exp.3.0s.
+05/10/2016 10:13:27 AM - INFO - GUI display widget values successfully restored.
+05/10/2016 10:13:27 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 10:13:27 AM - INFO - Controller turned off successfully.
+05/10/2016 10:13:27 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/10/2016 10:13:27 AM - INFO - Controller turned on successfully.
+05/10/2016 10:13:31 AM - INFO - Starting 3.0s Exposure image with filebase /home/lsst/Data/20160426/test.exp.3.0s.
+05/10/2016 10:15:53 AM - INFO - GUI display widget values successfully restored.
+05/10/2016 10:15:53 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 10:15:53 AM - INFO - Controller turned off successfully.
+05/10/2016 10:15:53 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/10/2016 10:15:53 AM - INFO - Controller turned on successfully.
+05/10/2016 10:16:04 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 10:16:04 AM - INFO - Controller turned off successfully.
+05/10/2016 10:24:33 AM - INFO - GUI display widget values successfully restored.
+05/10/2016 10:24:33 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 10:24:33 AM - INFO - Controller turned off successfully.
+05/10/2016 10:24:33 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/10/2016 10:24:33 AM - INFO - Controller turned on successfully.
+05/10/2016 10:24:35 AM - INFO - Starting 3.0s Exposure image with filebase /home/lsst/Data/20160426/test.exp.3.0s.
+05/10/2016 10:24:44 AM - INFO - GUI display widget values successfully restored.
+05/10/2016 10:24:44 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 10:24:44 AM - INFO - Controller turned off successfully.
+05/10/2016 10:24:44 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/10/2016 10:24:44 AM - INFO - Controller turned on successfully.
+05/10/2016 10:24:47 AM - INFO - Starting 3.0s Exposure image with filebase /home/lsst/Data/20160426/test.exp.3.0s.
+05/10/2016 10:27:07 AM - INFO - GUI display widget values successfully restored.
+05/10/2016 10:27:07 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 10:27:07 AM - INFO - Controller turned off successfully.
+05/10/2016 10:27:07 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/10/2016 10:27:07 AM - INFO - Controller turned on successfully.
+05/10/2016 10:28:59 AM - INFO - GUI display widget values successfully restored.
+05/10/2016 10:28:59 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 10:28:59 AM - INFO - Controller turned off successfully.
+05/10/2016 10:28:59 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/10/2016 10:28:59 AM - INFO - Controller turned on successfully.
+05/10/2016 10:29:02 AM - ERROR - File already exits. Image not taken.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 233, in expose
+    filename = exposure.im_acq(mode, filebase, exptime)
+  File "/home/lsst/ccdcontroller/exposure.py", line 99, in im_acq
+    raise IOError
+IOError
+05/10/2016 10:29:09 AM - ERROR - File already exits. Image not taken.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 233, in expose
+    filename = exposure.im_acq(mode, filebase, exptime)
+  File "/home/lsst/ccdcontroller/exposure.py", line 99, in im_acq
+    raise IOError
+IOError
+05/10/2016 10:29:13 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 10:29:13 AM - INFO - Controller turned off successfully.
+05/10/2016 10:30:01 AM - INFO - GUI display widget values successfully restored.
+05/10/2016 10:30:01 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 10:30:01 AM - INFO - Controller turned off successfully.
+05/10/2016 10:30:01 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/10/2016 10:30:01 AM - INFO - Controller turned on successfully.
+05/10/2016 10:30:04 AM - INFO - Starting 3.0s Exposure image with filebase /home/lsst/Data/20160426/test.exp.3.0s.
+05/10/2016 10:30:04 AM - ERROR - File already exits. Image not taken.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 232, in expose
+    filename = exposure.im_acq(mode, filebase, exptime)
+  File "/home/lsst/ccdcontroller/exposure.py", line 99, in im_acq
+    raise IOError
+IOError
+05/10/2016 10:30:27 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 10:30:27 AM - INFO - Controller turned off successfully.
+05/10/2016 10:31:27 AM - INFO - GUI display widget values successfully restored.
+05/10/2016 10:31:27 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 10:31:31 AM - INFO - Controller turned off successfully.
+05/10/2016 10:31:31 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/10/2016 10:31:39 AM - INFO - Controller turned on successfully.
+05/10/2016 10:32:15 AM - INFO - Starting 3.0s Exposure image with filebase /home/lsst/Data/20160426/test.exp.3.0s.
+05/10/2016 10:32:15 AM - ERROR - File already exits. Image not taken.
+Traceback (most recent call last):
+  File "./ccdctrl.py", line 232, in expose
+    filename = exposure.im_acq(mode, filebase, exptime)
+  File "/home/lsst/ccdcontroller/exposure.py", line 99, in im_acq
+    raise IOError
+IOError
+05/10/2016 10:32:26 AM - INFO - Starting 5.0s Exposure image with filebase /home/lsst/Data/20160426/test.exp.5.0s.
+05/10/2016 10:32:56 AM - INFO - Exposure /home/lsst/Data/20160426/test.exp.5.0s.fits finished successfully.
+05/10/2016 10:33:12 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 10:33:16 AM - INFO - Controller turned off successfully.

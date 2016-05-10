@@ -32,7 +32,7 @@ class WorkerThread(QtCore.QThread):
     def run(self):
         self.func(*self.args)
 
-class QtHandler(logging.Handler):
+class QtHandler(logging.Handler, object):
 
     def __init__(self, sigEmitter):
         super(QtHandler, self).__init__()
@@ -228,8 +228,6 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                                                                                  exptype,
                                                                                  filebase))
 
-            time.sleep(5) # For thread testing
-
             try:
                 filename = exposure.im_acq(mode, filebase, exptime)
             except subprocess.CalledProcessError:
@@ -237,11 +235,10 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             except OSError:
                 self.logger.exception("Executable {0}_acq not found. Image not taken".format(mode))
             except IOError:
-                self.statusEdit.setText("File already exits. Image not taken.")
+                self.logger.exception("File already exits. Image not taken.")
             else:
                 self.logger.info("Exposure {0} finished successfully.".format(filename))
                 subprocess.Popen(['ds9', '-mosaicimage', 'iraf', filename, '-zoom', 'to', 'fit'])
-                
 
         ## Check if a stack of exposures of same type
         elif exptype in ["Exposure Stack", "Dark Stack", "Bias Stack"]:
@@ -251,8 +248,6 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             ## Perform stack
             self.logger.info("Starting {0} with imcount {1}, exptime {2}, and filebase {3}.".format(exptype, imcount, exptime, filebase))
 
-            time.sleep(5) # For thread testing
-
             try:
                 filename = exposure.stack(mode, filebase, imcount, exptime, start)
             except subprocess.CalledProcessError:
@@ -260,7 +255,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             except OSError:
                 self.logger.exception("Executable {0}_acq not found. Image not taken.".format(mode))
             except IOError:
-                self.statusEdit.setText("File already exitst. Image not taken.")
+                self.logger.exception("File already exists. Image not taken.")
             else:
                 self.logger.info("Exposure stack {0} finished successfully.".format(filebase))
                 subprocess.Popen(['ds9', '-mosaicimage', 'iraf', filename, '-zoom', 'to', 'fit'])
@@ -278,9 +273,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
 
             ## Perform series
             self.logger.info("Starting {0} with mintime {1}, maxtime {2}, step {3}, and filebase {4}.".format(exptype, mintime, maxtime, step, filebase))
-            time.sleep(5) # For thread testing
 
-            
             try:
                 filename = exposure.series(mode, filebase, mintime, maxtime, step)
             except subprocess.CalledProcessError:
@@ -288,7 +281,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             except OSError:
                 self.logger.exception("Executable {0}_acq not found. Image not taken.".format(mode))
             except IOError:
-                self.statusEdit.setText("File already exitst. Image not taken.")
+                self.logger.exception("File already exitst. Image not taken.")
             else:
                 self.logger.info("Exposure series {0} finished successfully.".format(filebase))
                 subprocess.Popen(['ds9', '-mosaicimage', 'iraf', filename, '-zoom', 'to', 'fit'])
