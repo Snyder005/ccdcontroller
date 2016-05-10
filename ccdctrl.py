@@ -76,20 +76,19 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                          "Exposure Series" : "exp",
                          "Dark Series" : "dark"}
 
-        ## Connect signals and slots for functions
-        self.exposeButton.clicked.connect(self.expose)
-        self.resetButton.clicked.connect(self.resetConfirm)
-        self.exptypeComboBox.currentIndexChanged.connect(self.activate_ui)
-        self.directoryPushButton.clicked.connect(self.editdirectory)
-        self.imtitleLineEdit.editingFinished.connect(self.checkfilename)
-        self.testimCheckBox.clicked.connect(self.checkfilename)
-
         ## Signals and slots for thread testing
         self.thread = WorkerThread(self.expose, ())
         self.thread.started.connect(lambda: self.exposeButton.setEnabled(False))
         self.thread.finished.connect(lambda: self.exposeButton.setEnabled(True))
 
-        self.pushButton.clicked.connect(self.thread.start)
+        ## Connect signals and slots for functions
+        self.exposeButton.clicked.connect(self.thread.start)
+        self.resetButton.clicked.connect(self.resetConfirm)
+        self.exptypeComboBox.currentIndexChanged.connect(self.activate_ui)
+        self.directoryPushButton.clicked.connect(self.editdirectory)
+        self.imtitleLineEdit.editingFinished.connect(self.checkfilename)
+        self.testimCheckBox.clicked.connect(self.checkfilename)
+        self.shutdownButton.clicked.connect(self.close)
         
         ## Restore past GUI display settings and reset sta3800 controller
         self.restoreGUI()
@@ -115,12 +114,18 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
     def resetConfirm(self):
         """Prompt for confirmation from user to reset the controller."""
 
-        reply = QtGui.QMessageBox.question(self, 'Confirmation','Are you sure you want to reset the STA3800 controller?',
-                                           QtGui.QMessageBox.Yes | QtGui.QMessageBox.No,
-                                           QtGui.QMessageBox.No)
+        ## Check if exposure is in progress
+        if self.thread.isRunning():
+            QtGui.QMessageBox.warning(self, "Exposure warning.", "Exposure in progress, unable to close program.", QtGui.QMessageBox.Ok)
+            return
 
-        if reply == QtGui.QMessageBox.Yes:
-            self.reset()
+        else:
+            reply = QtGui.QMessageBox.question(self, 'Confirmation','Are you sure you want to reset the STA3800 controller?',
+                                               QtGui.QMessageBox.Yes | QtGui.QMessageBox.No,
+                                               QtGui.QMessageBox.No)
+
+            if reply == QtGui.QMessageBox.Yes:
+                self.reset()
 
     def reset(self):
         """Turn off controller to bring to known state (sta3800_off), then turn on 
@@ -130,7 +135,6 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         try:
             self.logger.info("Turning off sta3800 controller (sta3800_off).")
             ccdsetup.sta3800_off()
-
         except Exception:
             self.logger.exception("Unable to turn off controller! State may be unknown.")
             raise
@@ -224,6 +228,8 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                                                                                  exptype,
                                                                                  filebase))
 
+            time.sleep(5) # For thread testing
+
             try:
                 filename = exposure.im_acq(mode, filebase, exptime)
             except subprocess.CalledProcessError:
@@ -244,6 +250,8 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
 
             ## Perform stack
             self.logger.info("Starting {0} with imcount {1}, exptime {2}, and filebase {3}.".format(exptype, imcount, exptime, filebase))
+
+            time.sleep(5) # For thread testing
 
             try:
                 filename = exposure.stack(mode, filebase, imcount, exptime, start)
@@ -270,6 +278,9 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
 
             ## Perform series
             self.logger.info("Starting {0} with mintime {1}, maxtime {2}, step {3}, and filebase {4}.".format(exptype, mintime, maxtime, step, filebase))
+            time.sleep(5) # For thread testing
+
+            
             try:
                 filename = exposure.series(mode, filebase, mintime, maxtime, step)
             except subprocess.CalledProcessError:
@@ -327,15 +338,27 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
     def closeEvent(self, event):
         """Need to reconcile confirmation and guisave settings."""
 
-        ## Save settings to INI file
+        ## Check if exposure in progress
+        if self.thread.isRunning():
+            QtGui.QMessageBox.warning(self, "Warning.", "Exposure in progress, unable to close program.", QtGui.QMessageBox.Ok)
+            event.ignore()
 
-        try:
-            self.settings.setValue("DATA_DIRECTORY", DATA_DIRECTORY)
-            restore.guisave(self, self.settings)
-        except:
-            self.logger.warning("Failed to save settings to INI file.")
-            
-        event.accept()
+        ## Confirmation dialog for 
+        else:
+
+            reply = QtGui.QMessageBox.question(self, 'Confirmation','Are you sure you want to shutdown the STA3800 controller?',
+                                               QtGui.QMessageBox.Yes | QtGui.QMessageBox.No,
+                                               QtGui.QMessageBox.No)
+
+            if reply == QtGui.QMessageBox.Yes:          
+                try:
+                    self.settings.setValue("DATA_DIRECTORY", DATA_DIRECTORY)
+                    restore.guisave(self, self.settings)
+                except:
+                    self.logger.warning("Failed to save settings to INI file.")
+                event.accept()
+            else:
+                event.ignore()
 
 ###############################################################################
 ##

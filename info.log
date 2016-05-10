@@ -98,3 +98,164 @@ OSError: [Errno 2] No such file or directory
 05/05/2016 05:20:48 PM - INFO - Controller turned on successfully.
 05/05/2016 05:20:51 PM - INFO - Turning off sta3800 controller (sta3800_off).
 05/05/2016 05:20:51 PM - INFO - Controller turned off successfully.
+05/09/2016 09:36:09 AM - INFO - GUI display widget values successfully restored.
+05/09/2016 09:36:09 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 09:36:09 AM - INFO - Controller turned off successfully.
+05/09/2016 09:36:09 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/09/2016 09:36:09 AM - INFO - Controller turned on successfully.
+05/09/2016 09:36:21 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 09:36:21 AM - INFO - Controller turned off successfully.
+05/09/2016 09:59:48 AM - INFO - GUI display widget values successfully restored.
+05/09/2016 09:59:48 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 09:59:48 AM - INFO - Controller turned off successfully.
+05/09/2016 09:59:48 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/09/2016 09:59:48 AM - INFO - Controller turned on successfully.
+05/09/2016 09:59:59 AM - INFO - Starting 3.0s Dark image with filebase /home/lsst/Data/20160426/preamp.in.dark.3.0s.
+05/09/2016 09:59:59 AM - ERROR - Executable dark_acq not found. Image not taken
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 233, in expose
+    filename = exposure.im_acq(mode, filebase, exptime)
+  File "/Users/adamsnyder/ccdcontroller/exposure.py", line 107, in im_acq
+    "{0}".format(filename)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+05/09/2016 10:00:05 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 10:00:05 AM - INFO - Controller turned off successfully.
+05/09/2016 10:01:43 AM - INFO - GUI display widget values successfully restored.
+05/09/2016 10:01:43 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 10:01:43 AM - INFO - Controller turned off successfully.
+05/09/2016 10:01:43 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/09/2016 10:01:43 AM - INFO - Controller turned on successfully.
+05/09/2016 10:01:49 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 10:01:49 AM - INFO - Controller turned off successfully.
+05/09/2016 10:01:59 AM - INFO - GUI display widget values successfully restored.
+05/09/2016 10:01:59 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 10:01:59 AM - INFO - Controller turned off successfully.
+05/09/2016 10:01:59 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/09/2016 10:01:59 AM - INFO - Controller turned on successfully.
+05/09/2016 10:02:09 AM - INFO - Starting 3.0s Dark image with filebase /home/lsst/Data/20160426/preamp.in.dark.3.0s.
+05/09/2016 10:02:09 AM - ERROR - Executable dark_acq not found. Image not taken
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 233, in expose
+    filename = exposure.im_acq(mode, filebase, exptime)
+  File "/Users/adamsnyder/ccdcontroller/exposure.py", line 107, in im_acq
+    "{0}".format(filename)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+05/09/2016 10:04:52 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 10:04:52 AM - INFO - Controller turned off successfully.
+05/09/2016 10:07:21 AM - INFO - GUI display widget values successfully restored.
+05/09/2016 10:07:21 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 10:07:21 AM - INFO - Controller turned off successfully.
+05/09/2016 10:07:21 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/09/2016 10:07:21 AM - INFO - Controller turned on successfully.
+05/09/2016 10:07:27 AM - INFO - Starting 3.0s Dark image with filebase /home/lsst/Data/20160426/preamp.in.dark.3.0s.
+05/09/2016 10:07:32 AM - ERROR - Executable dark_acq not found. Image not taken
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 234, in expose
+    filename = exposure.im_acq(mode, filebase, exptime)
+  File "/Users/adamsnyder/ccdcontroller/exposure.py", line 107, in im_acq
+    "{0}".format(filename)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+05/09/2016 10:07:43 AM - INFO - Starting 3.0s Dark image with filebase /home/lsst/Data/20160426/preamp.in.dark.3.0s.
+05/09/2016 10:07:48 AM - ERROR - Executable dark_acq not found. Image not taken
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 234, in expose
+    filename = exposure.im_acq(mode, filebase, exptime)
+  File "/Users/adamsnyder/ccdcontroller/exposure.py", line 107, in im_acq
+    "{0}".format(filename)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+05/09/2016 10:07:55 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 10:07:55 AM - INFO - Controller turned off successfully.
+05/09/2016 10:10:25 AM - INFO - GUI display widget values successfully restored.
+05/09/2016 10:10:25 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 10:10:25 AM - INFO - Controller turned off successfully.
+05/09/2016 10:10:25 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/09/2016 10:10:25 AM - INFO - Controller turned on successfully.
+05/09/2016 10:10:38 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 10:10:38 AM - INFO - Controller turned off successfully.
+05/09/2016 11:50:43 AM - INFO - GUI display widget values successfully restored.
+05/09/2016 11:50:43 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 11:50:43 AM - INFO - Controller turned off successfully.
+05/09/2016 11:50:43 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/09/2016 11:50:43 AM - INFO - Controller turned on successfully.
+05/09/2016 11:51:07 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 11:51:07 AM - INFO - Controller turned off successfully.
+05/09/2016 11:51:11 AM - INFO - GUI display widget values successfully restored.
+05/09/2016 11:51:11 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 11:51:11 AM - INFO - Controller turned off successfully.
+05/09/2016 11:51:11 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/09/2016 11:51:11 AM - INFO - Controller turned on successfully.
+05/09/2016 11:51:22 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 11:51:22 AM - INFO - Controller turned off successfully.
+05/09/2016 11:56:16 AM - INFO - GUI display widget values successfully restored.
+05/09/2016 11:56:16 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 11:56:16 AM - INFO - Controller turned off successfully.
+05/09/2016 11:56:16 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/09/2016 11:56:16 AM - INFO - Controller turned on successfully.
+05/09/2016 11:56:25 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 11:56:25 AM - INFO - Controller turned off successfully.
+05/09/2016 11:57:30 AM - INFO - GUI display widget values successfully restored.
+05/09/2016 11:57:30 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 11:57:30 AM - INFO - Controller turned off successfully.
+05/09/2016 11:57:30 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/09/2016 11:57:31 AM - INFO - Controller turned on successfully.
+05/09/2016 11:57:49 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 11:57:49 AM - INFO - Controller turned off successfully.
+05/10/2016 09:54:32 AM - INFO - GUI display widget values successfully restored.
+05/10/2016 09:54:32 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 09:54:32 AM - INFO - Controller turned off successfully.
+05/10/2016 09:54:32 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/10/2016 09:54:32 AM - INFO - Controller turned on successfully.
+05/10/2016 09:54:42 AM - INFO - Starting 3.0s Dark image with filebase /home/lsst/Data/20160426/preamp.in.dark.3.0s.
+05/10/2016 09:54:47 AM - ERROR - Executable dark_acq not found. Image not taken
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 234, in expose
+    filename = exposure.im_acq(mode, filebase, exptime)
+  File "/Users/adamsnyder/ccdcontroller/exposure.py", line 107, in im_acq
+    "{0}".format(filename)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+05/10/2016 09:54:51 AM - INFO - Starting 3.0s Dark image with filebase /home/lsst/Data/20160426/preamp.in.dark.3.0s.
+05/10/2016 09:54:56 AM - ERROR - Executable dark_acq not found. Image not taken
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 234, in expose
+    filename = exposure.im_acq(mode, filebase, exptime)
+  File "/Users/adamsnyder/ccdcontroller/exposure.py", line 107, in im_acq
+    "{0}".format(filename)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+05/10/2016 09:55:04 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 09:55:04 AM - INFO - Controller turned off successfully.
