@@ -22,7 +22,7 @@ import restore
 ##
 ###############################################################################
 
-class WorkerThread(QtCore.QThread):
+class WorkerThread(QtCore.QThread, object):
 
     def __init__(self, func, args):
         super(WorkerThread, self).__init__()
@@ -32,7 +32,7 @@ class WorkerThread(QtCore.QThread):
     def run(self):
         self.func(*self.args)
 
-class QtHandler(logging.Handler):
+class QtHandler(logging.Handler, object):
 
     def __init__(self, sigEmitter):
         super(QtHandler, self).__init__()
