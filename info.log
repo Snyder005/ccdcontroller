@@ -367,3 +367,49 @@ IOError
 05/10/2016 10:32:56 AM - INFO - Exposure /home/lsst/Data/20160426/test.exp.5.0s.fits finished successfully.
 05/10/2016 10:33:12 AM - INFO - Turning off sta3800 controller (sta3800_off).
 05/10/2016 10:33:16 AM - INFO - Controller turned off successfully.
+05/10/2016 04:15:48 PM - INFO - GUI display widget values successfully restored.
+05/10/2016 04:15:48 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 04:15:52 PM - INFO - Controller turned off successfully.
+05/10/2016 04:15:52 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/10/2016 04:16:01 PM - INFO - Controller turned on successfully.
+05/10/2016 04:17:46 PM - INFO - Data directory changed to /home/lsst/Data/20160510.
+05/10/2016 04:18:16 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 04:18:20 PM - INFO - Controller turned off successfully.
+05/10/2016 04:22:49 PM - INFO - GUI display widget values successfully restored.
+05/10/2016 04:22:49 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 04:22:53 PM - INFO - Controller turned off successfully.
+05/10/2016 04:22:53 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/10/2016 04:23:01 PM - INFO - Controller turned on successfully.
+05/10/2016 04:28:59 PM - INFO - Data directory changed to /home/lsst/Data/20160510.
+05/10/2016 04:29:10 PM - INFO - Starting 5.0s Exposure image with filebase /home/lsst/Data/20160510/.exp.5.0s.
+05/10/2016 04:29:34 PM - INFO - Exposure /home/lsst/Data/20160510/.exp.5.0s.fits finished successfully.
+05/10/2016 04:40:07 PM - INFO - Starting 5.0s Exposure image with filebase /home/lsst/Data/20160510/.exp.5.0s.
+05/10/2016 04:40:07 PM - ERROR - File already exits. Image not taken.
+Traceback (most recent call last):
+  File "./ccdctrl.py", line 232, in expose
+    filename = exposure.im_acq(mode, filebase, exptime)
+  File "/home/lsst/ccdcontroller/exposure.py", line 99, in im_acq
+    raise IOError
+IOError
+05/10/2016 04:42:03 PM - INFO - Starting 3.0s Exposure image with filebase /home/lsst/Data/20160510/.exp.3.0s.
+05/10/2016 04:42:33 PM - INFO - Exposure /home/lsst/Data/20160510/.exp.3.0s.fits finished successfully.
+05/10/2016 04:44:51 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 04:44:55 PM - INFO - Controller turned off successfully.
+05/10/2016 04:55:20 PM - INFO - GUI display widget values successfully restored.
+05/10/2016 04:55:20 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 04:55:24 PM - INFO - Controller turned off successfully.
+05/10/2016 04:55:24 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/10/2016 04:55:32 PM - INFO - Controller turned on successfully.
+05/10/2016 04:55:38 PM - INFO - Starting 3.0s Exposure image with filebase /home/lsst/Data/20160510/test.exp.3.0s.
+05/10/2016 04:56:11 PM - INFO - Exposure /home/lsst/Data/20160510/test.exp.3.0s.10.fits finished successfully.
+05/10/2016 04:56:42 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 04:56:46 PM - INFO - Controller turned off successfully.
+05/10/2016 04:58:53 PM - INFO - GUI display widget values successfully restored.
+05/10/2016 04:58:53 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 04:58:57 PM - INFO - Controller turned off successfully.
+05/10/2016 04:58:57 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/10/2016 04:59:05 PM - INFO - Controller turned on successfully.
+05/10/2016 05:02:24 PM - INFO - Data directory changed to /home/lsst/Data/dkg.4.29.15.
+05/10/2016 05:04:05 PM - INFO - Data directory changed to /home/lsst/Data/20160510.
+05/10/2016 05:06:51 PM - INFO - Starting 5.0s Exposure image with filebase /home/lsst/Data/20160510/kg.test.exp.5.0s.
+05/10/2016 05:07:01 PM - INFO - Exposure /home/lsst/Data/20160510/kg.test.exp.5.0s.100.fits finished successfully.

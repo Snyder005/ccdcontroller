@@ -89,10 +89,10 @@ def scan(filebase, *args, **kwargs):
 ##
 ###############################################################################
 
-def im_acq(mode, filebase="test", time=0.00):
+def im_acq(mode, filebase="test", time=0.00, seqnum=1):
     """Perform an image exposure of given mode."""
 
-    filename = "{0}.fits".format(filebase)
+    filename = "{0}.{1}.fits".format(filebase, seqnum)
 
     ## If output file already exists raise an error
     if os.path.isfile(filename):
