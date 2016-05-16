@@ -413,3 +413,5 @@ IOError
 05/10/2016 05:04:05 PM - INFO - Data directory changed to /home/lsst/Data/20160510.
 05/10/2016 05:06:51 PM - INFO - Starting 5.0s Exposure image with filebase /home/lsst/Data/20160510/kg.test.exp.5.0s.
 05/10/2016 05:07:01 PM - INFO - Exposure /home/lsst/Data/20160510/kg.test.exp.5.0s.100.fits finished successfully.
+05/10/2016 05:55:37 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 05:55:42 PM - INFO - Controller turned off successfully.
