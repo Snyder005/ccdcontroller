@@ -142,7 +142,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         ## Turn off controller to bring to a known state
         try:
             self.logger.info("Turning off sta3800 controller (sta3800_off).")
-            ccdsetup.sta3800_off()
+            #ccdsetup.sta3800_off()
         except Exception:
             self.logger.exception("Unable to turn off controller! State may be unknown.")
             raise
@@ -152,7 +152,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         ## Initialize controller
         try:
             self.logger.info("Turning on sta3800 controller (sta3800_setup).")
-            ccdsetup.sta3800_setup()
+            #ccdsetup.sta3800_setup()
         except Exception:
             self.logger.exception("Unable to turn on sta3800 controller!")
             raise
@@ -416,7 +416,7 @@ def safe_shutdown():
 
     try:
         logger.info("Turning off sta3800 controller (sta3800_off).")
-        ccdsetup.sta3800_off()
+        #ccdsetup.sta3800_off()
     except Exception:
         logger.exception("Unable to turn off controller! State may be unknown.")
     else:
