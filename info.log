@@ -443,3 +443,120 @@ IOError
 05/16/2016 05:01:14 PM - INFO - Controller turned on successfully.
 05/16/2016 05:01:19 PM - INFO - Turning off sta3800 controller (sta3800_off).
 05/16/2016 05:01:19 PM - INFO - Controller turned off successfully.
+05/17/2016 11:56:37 AM - INFO - GUI display widget values successfully restored.
+05/17/2016 11:56:37 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/17/2016 11:56:37 AM - INFO - Controller turned off successfully.
+05/17/2016 11:56:37 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/17/2016 11:56:37 AM - INFO - Controller turned on successfully.
+05/17/2016 11:56:44 AM - INFO - Starting 5.0s Exposure image.
+05/17/2016 11:56:52 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/17/2016 11:56:52 AM - INFO - Controller turned off successfully.
+05/17/2016 11:57:31 AM - INFO - GUI display widget values successfully restored.
+05/17/2016 11:57:31 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/17/2016 11:57:31 AM - INFO - Controller turned off successfully.
+05/17/2016 11:57:31 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/17/2016 11:57:31 AM - INFO - Controller turned on successfully.
+05/17/2016 11:57:41 AM - INFO - Starting 5.0s Exposure image.
+05/17/2016 11:57:41 AM - ERROR - Executable exp_acq not found. Image not taken
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 262, in expose
+    filename = exposure.im_acq(mode, filepath, exptime, seqnum, **kwargs)
+  File "/Users/adamsnyder/ccdcontroller/exposure.py", line 108, in im_acq
+    "{0}".format(filename)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+05/17/2016 11:57:55 AM - INFO - Start 5.0s Exposure Stack stack.
+05/17/2016 11:57:55 AM - INFO - Starting image 101 of 111.
+05/17/2016 11:57:55 AM - ERROR - Executable exp_acq not found. Image not taken.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 285, in expose
+    filename = exposure.im_acq(mode, filepath, exptime, i, **kwargs)
+  File "/Users/adamsnyder/ccdcontroller/exposure.py", line 108, in im_acq
+    "{0}".format(filename)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+05/17/2016 12:01:48 PM - INFO - GUI display widget values successfully restored.
+05/17/2016 12:01:48 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/17/2016 12:01:48 PM - INFO - Controller turned off successfully.
+05/17/2016 12:01:48 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/17/2016 12:01:48 PM - INFO - Controller turned on successfully.
+05/17/2016 12:02:01 PM - INFO - Starting 5.0s Exposure Stack stack.
+05/17/2016 12:02:02 PM - INFO - Starting image 1 of 10.
+05/17/2016 12:02:02 PM - ERROR - Executable exp_acq not found. Image not taken.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 285, in expose
+    filename = exposure.im_acq(mode, filepath, exptime, i, **kwargs)
+  File "/Users/adamsnyder/ccdcontroller/exposure.py", line 108, in im_acq
+    "{0}".format(filename)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+05/17/2016 12:02:20 PM - INFO - Starting Exposure Series series with mintime 2.0, maxtime 4.0, and step 1.0.
+05/17/2016 12:02:27 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/17/2016 12:02:27 PM - INFO - Controller turned off successfully.
+05/17/2016 12:04:08 PM - INFO - GUI display widget values successfully restored.
+05/17/2016 12:04:08 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/17/2016 12:04:08 PM - INFO - Controller turned off successfully.
+05/17/2016 12:04:08 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/17/2016 12:04:08 PM - INFO - Controller turned on successfully.
+05/17/2016 12:04:15 PM - INFO - Starting Exposure Series series with mintime 2.0, maxtime 4.0, and step 1.0.
+05/17/2016 12:04:15 PM - INFO - Starting 2.0s exp image.
+05/17/2016 12:04:15 PM - ERROR - Executable exp_acq not found. Image not taken.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 324, in expose
+    filename = exposure.im_acq(mode, filepath, time, seqnum, **kwargs)
+  File "/Users/adamsnyder/ccdcontroller/exposure.py", line 108, in im_acq
+    "{0}".format(filename)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+05/17/2016 12:04:25 PM - WARNING - Time step must be greater than 0.
+05/17/2016 12:04:30 PM - WARNING - Minimum time must be less than Maximum time. Series not started.
+05/17/2016 12:04:53 PM - INFO - Starting 5.0s Exposure image.
+05/17/2016 12:04:53 PM - ERROR - Executable exp_acq not found. Image not taken
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 262, in expose
+    filename = exposure.im_acq(mode, filepath, exptime, seqnum, **kwargs)
+  File "/Users/adamsnyder/ccdcontroller/exposure.py", line 108, in im_acq
+    "{0}".format(filename)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+05/17/2016 12:05:00 PM - INFO - Starting 5.0s Exposure image.
+05/17/2016 12:05:00 PM - ERROR - Executable exp_acq not found. Image not taken
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 262, in expose
+    filename = exposure.im_acq(mode, filepath, exptime, seqnum, **kwargs)
+  File "/Users/adamsnyder/ccdcontroller/exposure.py", line 108, in im_acq
+    "{0}".format(filename)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+05/17/2016 12:05:05 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/17/2016 12:05:05 PM - INFO - Controller turned off successfully.
