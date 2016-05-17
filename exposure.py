@@ -214,7 +214,7 @@ def update_header(filepath, mode, exptime, seqnum, **kwargs):
                       comment='Delay between shutter close command and readout')
     fits[0].write_key('CTRLCFG', ctrlcfg,
                       comment='Name of the CCD controller configuration file')
-    fits[0].write_key('FILENAME', filename, comment='Original name of the file')
+    fits[0].write_key('FILENAME', os.path.split(filename)[1], comment='Original name of the file')
     fits[0].write_key('BINX', binx, comment='[pixels] binning along X axis')
     fits[0].write_key('BINY', biny, comment='[pixels] binning along Y axis')
     fits[0].write_key('HEADVER', headver, comment='Version number of header')
