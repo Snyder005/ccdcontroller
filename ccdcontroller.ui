@@ -20,7 +20,7 @@
       <x>21</x>
       <y>10</y>
       <width>751</width>
-      <height>321</height>
+      <height>331</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -36,7 +36,7 @@
         <x>10</x>
         <y>10</y>
         <width>719</width>
-        <height>275</height>
+        <height>293</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
@@ -50,7 +50,7 @@
        <item row="11" column="3" rowspan="2" colspan="2">
         <widget class="QLineEdit" name="imfilenameLineEdit">
          <property name="enabled">
-          <bool>false</bool>
+          <bool>true</bool>
          </property>
          <property name="readOnly">
           <bool>true</bool>
@@ -182,13 +182,6 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="0">
-        <widget class="QLabel" name="filterLabel">
-         <property name="text">
-          <string>Filter:</string>
-         </property>
-        </widget>
-       </item>
        <item row="4" column="3">
         <widget class="QLabel" name="imtitleLabel">
          <property name="text">
@@ -225,7 +218,7 @@
         </widget>
        </item>
        <item row="5" column="0" rowspan="2">
-        <widget class="QComboBox" name="comboBox">
+        <widget class="QComboBox" name="filterComboBox">
          <item>
           <property name="text">
            <string>u</string>
@@ -258,13 +251,6 @@
          </item>
         </widget>
        </item>
-       <item row="7" column="0">
-        <widget class="QLabel" name="monoLabel">
-         <property name="text">
-          <string>Monochromator:</string>
-         </property>
-        </widget>
-       </item>
        <item row="7" column="3">
         <widget class="QLabel" name="imnumLabel">
          <property name="text">
@@ -276,19 +262,6 @@
         <widget class="QLabel" name="tstepLabel">
          <property name="text">
           <string>Time Step:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="8" column="0">
-        <widget class="QSpinBox" name="spinBox">
-         <property name="minimum">
-          <number>300</number>
-         </property>
-         <property name="maximum">
-          <number>1000</number>
-         </property>
-         <property name="singleStep">
-          <number>5</number>
          </property>
         </widget>
        </item>
@@ -347,6 +320,35 @@
         <widget class="Line" name="line">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QPushButton" name="filterToggleButton">
+         <property name="text">
+          <string>Filter</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0">
+        <widget class="QSpinBox" name="monoSpinBox">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="minimum">
+          <number>300</number>
+         </property>
+         <property name="maximum">
+          <number>1000</number>
+         </property>
+         <property name="singleStep">
+          <number>5</number>
          </property>
         </widget>
        </item>
@@ -656,9 +658,9 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>340</y>
+      <y>350</y>
       <width>751</width>
-      <height>231</height>
+      <height>221</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_3">

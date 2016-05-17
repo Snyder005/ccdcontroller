@@ -89,6 +89,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         self.imtitleLineEdit.editingFinished.connect(self.checkfilename)
         self.testimCheckBox.clicked.connect(self.checkfilename)
         self.shutdownButton.clicked.connect(self.close)
+        self.filterToggleButton.toggled.connect(self.toggleFilter)
         
         ## Restore past GUI display settings and reset sta3800 controller
         self.restoreGUI()
@@ -194,6 +195,17 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             self.displaydirectory()
             self.logger.info("Data directory changed to {0}.".format(new_directory))
 
+    def toggleFilter(self):
+
+        if self.filterToggleButton.isChecked():
+            self.filterToggleButton.setText("Filter")
+            self.filterComboBox.setEnabled(True)
+            self.monoSpinBox.setEnabled(False)
+        else:
+            self.filterToggleButton.setText("Monochromator")
+            self.filterComboBox.setEnabled(False)
+            self.monoSpinBox.setEnabled(True)
+
     def expose(self):
         """Execute a shell script to perform a measurement, depending on the desired
            exposure type."""
@@ -238,7 +250,8 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                 self.logger.exception("File already exits. Image not taken.")
             else:
                 self.logger.info("Exposure {0} finished successfully.".format(filename))
-                subprocess.Popen(['ds9', '-mosaicimage', 'iraf', filename, '-zoom', 'to', 'fit'])
+                subprocess.Popen(['ds9', '-mosaicimage', 'iraf', filename,
+                                  '-zoom', 'to', 'fit', '-cmap', 'b'])
 
         ## Check if a stack of exposures of same type
         elif exptype in ["Exposure Stack", "Dark Stack", "Bias Stack"]:
@@ -258,7 +271,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                 self.logger.exception("File already exists. Image not taken.")
             else:
                 self.logger.info("Exposure stack {0} finished successfully.".format(filebase))
-                subprocess.Popen(['ds9', '-mosaicimage', 'iraf', filename, '-zoom', 'to', 'fit'])
+                subprocess.Popen(['ds9', '-mosaicimage', 'iraf', filename, '-zoom', 'to', 'fit', '-cmap', 'b'])
                 
 
         ## Check if a series of exposures of increase exposure time
@@ -284,7 +297,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                 self.logger.exception("File already exitst. Image not taken.")
             else:
                 self.logger.info("Exposure series {0} finished successfully.".format(filebase))
-                subprocess.Popen(['ds9', '-mosaicimage', 'iraf', filename, '-zoom', 'to', 'fit'])
+                subprocess.Popen(['ds9', '-mosaicimage', 'iraf', filename, '-zoom', 'to', 'fit', '-cmap', 'b'])
         
     def setvoltages(self):
         """Change the value of the specified voltages."""
