@@ -271,7 +271,6 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             self.image_start.emit(1)
 
             try:
-                print kwargs
                 filename = exposure.im_acq(mode, filepath, exptime, seqnum, **kwargs)
                 self.image_taken.emit(1)
             except subprocess.CalledProcessError:
