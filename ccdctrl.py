@@ -362,9 +362,9 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             try:
                 output = voltage.set_voltage(V, vname)
                 self.logger.info(output)
-            except subprocess.CalledProcessError:
+            except subprocess.CalledProcessError as e:
                 self.logger.exception("Error in executable {0}. Voltage not changed.".format(vname))
-                self.logger.exception(output)
+                self.logger.exception(str(e.output))
             except OSError:
                 self.logger.exception("Executable {0} not found.  Voltage not changed.".format(vname))
             else:
@@ -385,9 +385,9 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                 output = voltage.par_clks(par_lo, par_hi)
                 self.logger.info(output)
                 #print "output = voltage.par_clks({0}, {1}".format(par_lo, par_hi)
-            except subprocess.CalledProcessError:
+            except subprocess.CalledProcessError as e:
                 self.logger.exception("Error in executable par_clks. Voltage not changed.")
-                self.logger.exception(output)
+                self.logger.exception(str(e.output))
             except OSError:
                 self.logger.exception("Executable par_clks not found.  Voltage not changed.")
             else:
@@ -409,9 +409,9 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                 output = voltage.ser_clks(ser_lo, ser_hi)
                 self.logger.info(output)
                 #print "output = voltage.ser_clks({0}, {1})".format(ser_lo, ser_hi)
-            except subprocess.CalledProcessError:
+            except subprocess.CalledProcessError as e:
                 self.logger.exception("Error in executable ser_clks. Voltage not changed.")
-                self.logger.exception(output)
+                self.logger.exception(str(e.output))
             except OSError:
                 self.logger.exception("Executable ser_clks not found.  Voltage not changed.")
             else:
@@ -432,9 +432,9 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                 output = voltage.rg(rg_lo, rg_hi)
                 self.logger.info(output)
                 #print "output = voltage.rg({0}, {1})".format(rg_lo, rg_hi)
-            except subprocess.CalledProcessError:
+            except subprocess.CalledProcessError as e:
                 self.logger.exception("Error in executable rg. Voltage not changed.")
-                self.logger.exception(output)
+                self.logger.exception(str(e.output))
             except OSError:
                 self.logger.exception("Executable rg not found.  Voltage not changed.")
             else:

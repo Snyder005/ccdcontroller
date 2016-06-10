@@ -273,6 +273,7 @@ class Ui_ccdcontroller(object):
         self.voltageComboBox.addItem(_fromUtf8(""))
         self.gridLayout_2.addWidget(self.voltageComboBox, 5, 4, 1, 1)
         self.voltageSpinBox = QtGui.QDoubleSpinBox(self.layoutWidget1)
+        self.voltageSpinBox.setMinimum(-99.99)
         self.voltageSpinBox.setObjectName(_fromUtf8("voltageSpinBox"))
         self.gridLayout_2.addWidget(self.voltageSpinBox, 5, 5, 1, 1)
         self.label = QtGui.QLabel(self.layoutWidget1)
