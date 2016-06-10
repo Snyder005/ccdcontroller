@@ -114,7 +114,6 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         ## Restore past GUI display settings and reset sta3800 controller
         self.restoreGUI()
         self.reset()
-        self.resetvoltage()
                                 
     def restoreGUI(self):
         """Set GUI display widget values with values read from INI file."""
@@ -171,9 +170,8 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             self.logger.exception("Unable to turn on sta3800 controller!")
             raise
         else:
+            self.resetvoltage()
             self.logger.info("Controller turned on successfully.")
-
-        ## Reset to initial voltage values
 
     def checkfilename(self):
 
@@ -370,7 +368,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                 self.logger.exception("Executable {0} not found.  Voltage not changed.".format(vname))
             else:
                 ## change voltage display here
-                self.voltagedisplay(vname, V)
+                self.voltagedisplay(vtype, V)
 
         ## Parallel clocks
         elif 'PAR' in vtype:
@@ -383,8 +381,9 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                 par_hi = float(self.parhiLineEdit.text())
             
             try:
-                output = voltage.par_clks(par_lo, par_hi)
-                self.logger.info(output)
+                #output = voltage.par_clks(par_lo, par_hi)
+                #self.logger.info(output)
+                print "output = voltage.par_clks({0}, {1}".format(par_lo, par_hi)
             except subprocess.CalledProcessError:
                 self.logger.exception("Error in executable par_clks. Voltage not changed.")
             except OSError:
@@ -405,8 +404,9 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                 ser_hi = float(self.serhiLineEdit.text())
             
             try:
-                output = voltage.ser_clks(ser_lo, ser_hi)
-                self.logger.info(output)
+                #output = voltage.ser_clks(ser_lo, ser_hi)
+                #self.logger.info(output)
+                print "output = voltage.ser_clks({0}, {1})".format(ser_lo, ser_hi)
             except subprocess.CalledProcessError:
                 self.logger.exception("Error in executable ser_clks. Voltage not changed.")
             except OSError:
@@ -426,8 +426,9 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                 rg_hi = float(self.rghiLineEdit.text())
             
             try:
-                output = voltage.rg(rg_lo, rg_hi)
-                self.logger.info(output)
+                #output = voltage.rg(rg_lo, rg_hi)
+                #self.logger.info(output)
+                print "output = voltage.rg({0}, {1})".format(rg_lo, rg_hi)
             except subprocess.CalledProcessError:
                 self.logger.exception("Error in executable rg. Voltage not changed.")
             except OSError:
