@@ -21,7 +21,9 @@ if "check_output" not in dir( subprocess ):
             cmd = kwargs.get("args")
             if cmd is None:
                 cmd = popenargs[0]
-            raise subprocess.CalledProcessError(retcode, cmd)
+            error = subprocess.CalledProcessError(retcode,cmd)
+            error.output = output
+            raise error
         return output
     subprocess.check_output = f
 
