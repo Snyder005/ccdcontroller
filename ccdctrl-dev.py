@@ -381,9 +381,9 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                 par_hi = float(self.parhiLineEdit.text())
             
             try:
-                #output = voltage.par_clks(par_lo, par_hi)
-                #self.logger.info(output)
-                print "output = voltage.par_clks({0}, {1}".format(par_lo, par_hi)
+                output = voltage.par_clks(par_lo, par_hi)
+                self.logger.info(output)
+                #print "output = voltage.par_clks({0}, {1}".format(par_lo, par_hi)
             except subprocess.CalledProcessError:
                 self.logger.exception("Error in executable par_clks. Voltage not changed.")
             except OSError:
@@ -404,9 +404,9 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                 ser_hi = float(self.serhiLineEdit.text())
             
             try:
-                #output = voltage.ser_clks(ser_lo, ser_hi)
-                #self.logger.info(output)
-                print "output = voltage.ser_clks({0}, {1})".format(ser_lo, ser_hi)
+                output = voltage.ser_clks(ser_lo, ser_hi)
+                self.logger.info(output)
+                #print "output = voltage.ser_clks({0}, {1})".format(ser_lo, ser_hi)
             except subprocess.CalledProcessError:
                 self.logger.exception("Error in executable ser_clks. Voltage not changed.")
             except OSError:
@@ -426,9 +426,9 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                 rg_hi = float(self.rghiLineEdit.text())
             
             try:
-                #output = voltage.rg(rg_lo, rg_hi)
-                #self.logger.info(output)
-                print "output = voltage.rg({0}, {1})".format(rg_lo, rg_hi)
+                output = voltage.rg(rg_lo, rg_hi)
+                self.logger.info(output)
+                #print "output = voltage.rg({0}, {1})".format(rg_lo, rg_hi)
             except subprocess.CalledProcessError:
                 self.logger.exception("Error in executable rg. Voltage not changed.")
             except OSError:
