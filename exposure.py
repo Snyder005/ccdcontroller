@@ -158,7 +158,7 @@ def update_header(filepath, mode, exptime, seqnum, **kwargs):
     imgtype = mode.upper()
     seqnum = seqnum
     temp_set = kwargs.pop('temp_set', -95.00) ## Implement in later versions
-    ccdtemp = kwargs.pop('ccdtemp', -95.12) ## Implement in later versions
+    ccdtemp = kwargs.pop('ccdtemp', -95.00) ## Implement in later versions
     mondiode = kwargs.pop('mondiode', 143.12) ## Implement in later versions
     exptime = exptime
 
@@ -187,6 +187,27 @@ def update_header(filepath, mode, exptime, seqnum, **kwargs):
     headver = kwargs.pop('headver', 1)
     ccdgain = kwargs.pop('ccdgain', 5.52) ## Need to change
     ccdnoise = kwargs.pop('ccdnoise', 6.0) ## Need to change
+
+#    ## Construct ccd conditions extensions.  Requires astropy python package
+#    ccdhdr = fits.Header()
+#
+#    for i in range(16):
+#        ccdhdr['V_OD{0}'.format(i+1)] = kwargs.pop('VOD', 0.0)
+#        ccdhdr['V_OG{0}'.format(i+1)] = kwargs.pop('VOG', 0.0)
+#        ccdhdr['V_RD{0}'.format(i+1)] = kwargs.pop('VRD', 0.0)
+#
+#        if i <= 3:
+#            ccdhdr['V_S{0}L'.format(i+1)] = kwargs.pop('SER LO', 0.0)
+#            ccdhdr['V_S{0}H'.format(i+1)] = kwargs.pop('SER HI', 0.0)
+#            ccdhdr['V_P{0}L'.format(i+1)] = kwargs.pop('PAR LO', 0.0)
+#            ccdhdr['V_P{0}H'.format(i+1)] = kwargs.pop('PAR HI', 0.0)
+#                   
+#    ccdhdr['V_GD'] = kwargs.pop('VGD', '') ## What is this? VDD?
+#    ccdhdr['V_BSS'] = kwargs.pop('VBB', 0.0)
+#    ccdhdr['V_RGL'] = kwargs.pop('RG LO', 0.0)
+#    ccdhdr['V_RGH'] = kwargs.pop('RG HI', 0.0)
+#    
+#    ccdhdu = fits.ImageHDU(data=None, header=ccdhdr)
 
     ## Update fits header
     fits = fitsio.FITS(filepath, 'rw')
@@ -220,6 +241,8 @@ def update_header(filepath, mode, exptime, seqnum, **kwargs):
     fits[0].write_key('HEADVER', headver, comment='Version number of header')
     fits[0].write_key('CCDGAIN', ccdgain, comment='Rough guess at overall system gain')
     fits[0].write_key('CCDNOISE', ccdnoise, comment='Rough guess at system noise')
+
+    fits.append(ccdhdu)
     fits.close()
 
 ###############################################################################

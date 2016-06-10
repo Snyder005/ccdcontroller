@@ -1042,3 +1042,298 @@ IOError
 05/26/2016 04:58:02 PM - INFO - Exposure /home/lsst/Data/20160526/board1.os4.exp.1.0s.43.fits finished successfully.
 05/26/2016 04:59:31 PM - INFO - Turning off sta3800 controller (sta3800_off).
 05/26/2016 04:59:35 PM - INFO - Controller turned off successfully.
+06/08/2016 04:39:09 PM - INFO - GUI display widget values successfully restored.
+06/08/2016 04:39:09 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 04:39:09 PM - INFO - Controller turned off successfully.
+06/08/2016 04:39:09 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/08/2016 04:39:09 PM - INFO - Controller turned on successfully.
+06/08/2016 04:39:27 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 04:39:27 PM - INFO - Controller turned off successfully.
+06/08/2016 04:42:03 PM - INFO - GUI display widget values successfully restored.
+06/08/2016 04:42:03 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 04:42:03 PM - INFO - Controller turned off successfully.
+06/08/2016 04:42:03 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/08/2016 04:42:03 PM - INFO - Controller turned on successfully.
+06/08/2016 04:42:20 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 04:42:20 PM - INFO - Controller turned off successfully.
+06/08/2016 04:43:34 PM - INFO - GUI display widget values successfully restored.
+06/08/2016 04:43:34 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 04:43:34 PM - INFO - Controller turned off successfully.
+06/08/2016 04:43:34 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/08/2016 04:43:34 PM - INFO - Controller turned on successfully.
+06/08/2016 04:43:49 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 04:43:49 PM - INFO - Controller turned off successfully.
+06/08/2016 04:44:35 PM - INFO - GUI display widget values successfully restored.
+06/08/2016 04:44:35 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 04:44:35 PM - INFO - Controller turned off successfully.
+06/08/2016 04:44:35 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/08/2016 04:44:35 PM - INFO - Controller turned on successfully.
+06/08/2016 04:44:38 PM - ERROR - Executable vdd not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 356, in setvoltages
+    output = voltage.set_voltage(V, vname)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 49, in set_voltage
+    output = subprocess.check_output([vname, "{0}".format(V)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/08/2016 04:44:42 PM - ERROR - Executable vod not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 356, in setvoltages
+    output = voltage.set_voltage(V, vname)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 49, in set_voltage
+    output = subprocess.check_output([vname, "{0}".format(V)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/08/2016 04:44:44 PM - ERROR - Executable vog not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 356, in setvoltages
+    output = voltage.set_voltage(V, vname)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 49, in set_voltage
+    output = subprocess.check_output([vname, "{0}".format(V)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/08/2016 04:44:46 PM - ERROR - Executable vrd not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 356, in setvoltages
+    output = voltage.set_voltage(V, vname)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 49, in set_voltage
+    output = subprocess.check_output([vname, "{0}".format(V)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/08/2016 04:46:16 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 04:46:16 PM - INFO - Controller turned off successfully.
+06/08/2016 04:50:42 PM - INFO - GUI display widget values successfully restored.
+06/08/2016 04:50:42 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 04:50:42 PM - INFO - Controller turned off successfully.
+06/08/2016 04:50:42 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/08/2016 04:50:42 PM - INFO - Controller turned on successfully.
+06/08/2016 04:51:28 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 04:51:28 PM - INFO - Controller turned off successfully.
+06/08/2016 04:53:15 PM - INFO - GUI display widget values successfully restored.
+06/08/2016 04:53:15 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 04:53:15 PM - INFO - Controller turned off successfully.
+06/08/2016 04:53:15 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/08/2016 04:53:15 PM - INFO - Controller turned on successfully.
+06/08/2016 04:53:20 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 04:53:20 PM - INFO - Controller turned off successfully.
+06/08/2016 04:54:04 PM - INFO - GUI display widget values successfully restored.
+06/08/2016 04:54:04 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 04:54:04 PM - INFO - Controller turned off successfully.
+06/08/2016 04:54:04 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/08/2016 04:54:04 PM - INFO - Controller turned on successfully.
+06/08/2016 04:54:18 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 04:54:18 PM - INFO - Controller turned off successfully.
+06/08/2016 04:55:25 PM - INFO - GUI display widget values successfully restored.
+06/08/2016 04:55:25 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 04:55:25 PM - INFO - Controller turned off successfully.
+06/08/2016 04:55:25 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/08/2016 04:55:25 PM - INFO - Controller turned on successfully.
+06/08/2016 04:59:06 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 04:59:06 PM - INFO - Controller turned off successfully.
+06/08/2016 05:00:15 PM - INFO - GUI display widget values successfully restored.
+06/08/2016 05:00:15 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 05:00:15 PM - INFO - Controller turned off successfully.
+06/08/2016 05:00:15 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/08/2016 05:00:15 PM - INFO - Controller turned on successfully.
+06/08/2016 05:00:28 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 05:00:28 PM - INFO - Controller turned off successfully.
+06/08/2016 05:02:53 PM - INFO - GUI display widget values successfully restored.
+06/08/2016 05:02:53 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 05:02:53 PM - INFO - Controller turned off successfully.
+06/08/2016 05:02:53 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/08/2016 05:02:53 PM - INFO - Controller turned on successfully.
+06/08/2016 05:02:57 PM - ERROR - Executable ser_clks not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 398, in setvoltages
+    output = voltage.ser_clks(ser_lo, ser_hi)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 72, in ser_clks
+    "{0}".format(SER_hi)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/08/2016 05:03:01 PM - ERROR - Executable ser_clks not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 398, in setvoltages
+    output = voltage.ser_clks(ser_lo, ser_hi)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 72, in ser_clks
+    "{0}".format(SER_hi)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/08/2016 05:03:04 PM - ERROR - Executable par_clks not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 377, in setvoltages
+    output = voltage.par_clks(par_lo, par_hi)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 65, in par_clks
+    "{0}".format(PAR_hi)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/08/2016 05:03:06 PM - ERROR - Executable par_clks not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 377, in setvoltages
+    output = voltage.par_clks(par_lo, par_hi)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 65, in par_clks
+    "{0}".format(PAR_hi)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/08/2016 05:03:09 PM - ERROR - Executable rg not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 419, in setvoltages
+    output = voltage.rg(rg_lo, rg_hi)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 58, in rg
+    "{0}".format(RG_hi)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/08/2016 05:03:12 PM - ERROR - Executable rg not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 419, in setvoltages
+    output = voltage.rg(rg_lo, rg_hi)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 58, in rg
+    "{0}".format(RG_hi)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/08/2016 05:03:17 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 05:03:17 PM - INFO - Controller turned off successfully.
+06/10/2016 02:56:08 PM - INFO - GUI display widget values successfully restored.
+06/10/2016 02:56:08 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 02:56:08 PM - INFO - Controller turned off successfully.
+06/10/2016 02:56:08 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/10/2016 02:56:08 PM - INFO - Controller turned on successfully.
+06/10/2016 02:56:40 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 02:56:40 PM - INFO - Controller turned off successfully.
+06/10/2016 03:04:44 PM - INFO - GUI display widget values successfully restored.
+06/10/2016 03:04:44 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 03:04:44 PM - INFO - Controller turned off successfully.
+06/10/2016 03:04:44 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/10/2016 03:04:44 PM - INFO - Controller turned on successfully.
+06/10/2016 03:04:50 PM - ERROR - Executable vdd not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 364, in setvoltages
+    output = voltage.set_voltage(V, vname)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 49, in set_voltage
+    output = subprocess.check_output([vname, "{0}".format(V)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/10/2016 03:04:52 PM - ERROR - Executable vod not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 364, in setvoltages
+    output = voltage.set_voltage(V, vname)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 49, in set_voltage
+    output = subprocess.check_output([vname, "{0}".format(V)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/10/2016 03:04:55 PM - ERROR - Executable vog not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 364, in setvoltages
+    output = voltage.set_voltage(V, vname)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 49, in set_voltage
+    output = subprocess.check_output([vname, "{0}".format(V)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/10/2016 03:04:57 PM - ERROR - Executable vrd not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 364, in setvoltages
+    output = voltage.set_voltage(V, vname)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 49, in set_voltage
+    output = subprocess.check_output([vname, "{0}".format(V)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/10/2016 03:05:13 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 03:05:13 PM - INFO - Controller turned off successfully.
+06/10/2016 03:18:47 PM - INFO - GUI display widget values successfully restored.
+06/10/2016 03:18:47 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 03:18:47 PM - INFO - Controller turned off successfully.
+06/10/2016 03:18:47 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/10/2016 03:18:47 PM - INFO - Controller turned on successfully.
+06/10/2016 03:19:48 PM - INFO - GUI display widget values successfully restored.
+06/10/2016 03:19:48 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 03:19:48 PM - INFO - Controller turned off successfully.
+06/10/2016 03:19:48 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/10/2016 03:19:48 PM - INFO - Controller turned on successfully.
+06/10/2016 03:21:15 PM - INFO - GUI display widget values successfully restored.
+06/10/2016 03:21:15 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 03:21:15 PM - INFO - Controller turned off successfully.
+06/10/2016 03:21:15 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/10/2016 03:21:15 PM - INFO - Controller turned on successfully.
+06/10/2016 03:22:46 PM - INFO - GUI display widget values successfully restored.
+06/10/2016 03:22:46 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 03:22:46 PM - INFO - Controller turned off successfully.
+06/10/2016 03:22:46 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/10/2016 03:22:46 PM - INFO - Controller turned on successfully.
+06/10/2016 03:23:00 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 03:23:00 PM - INFO - Controller turned off successfully.
+06/10/2016 03:23:33 PM - INFO - GUI display widget values successfully restored.
+06/10/2016 03:23:33 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 03:23:33 PM - INFO - Controller turned off successfully.
+06/10/2016 03:23:33 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/10/2016 03:23:33 PM - INFO - Controller turned on successfully.
+06/10/2016 03:23:46 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 03:23:46 PM - INFO - Controller turned off successfully.

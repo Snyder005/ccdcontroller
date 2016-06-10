@@ -369,18 +369,22 @@
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
-       <item row="0" column="3">
-        <widget class="QLabel" name="vrdLabel">
-         <property name="text">
-          <string>VRD</string>
+       <item row="0" column="2" rowspan="7">
+        <widget class="Line" name="line_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
          </property>
         </widget>
        </item>
        <item row="3" column="0">
-        <widget class="QLineEdit" name="parhiLineEdit">
-         <property name="text">
-          <string>0.00</string>
+        <widget class="QLineEdit" name="vogLineEdit">
+         <property name="readOnly">
+          <bool>true</bool>
          </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLineEdit" name="vddLineEdit">
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -400,79 +404,15 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="2">
-        <widget class="QLabel" name="vogLabel">
-         <property name="text">
-          <string>VOG</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="4">
-        <widget class="QLabel" name="rghiLabel">
-         <property name="text">
-          <string>RG HI</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLineEdit" name="vodLineEdit">
-         <property name="text">
-          <string>0.00</string>
-         </property>
-         <property name="readOnly">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLineEdit" name="vddLineEdit">
-         <property name="text">
-          <string>1.00</string>
-         </property>
-         <property name="readOnly">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
        <item row="0" column="5">
-        <widget class="QLabel" name="rgloLabel">
+        <widget class="QLabel" name="lowLabel">
          <property name="text">
-          <string>RG LO</string>
+          <string>Low</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="2">
-        <widget class="QLineEdit" name="vogLineEdit">
-         <property name="text">
-          <string>0.00</string>
-         </property>
-         <property name="readOnly">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="3">
-        <widget class="QLineEdit" name="vrdLineEdit">
-         <property name="text">
-          <string>0.00</string>
-         </property>
-         <property name="readOnly">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="4" colspan="2">
-        <widget class="QPushButton" name="setvoltageButton">
-         <property name="text">
-          <string>Set Voltage</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="4">
-        <widget class="QLineEdit" name="rghiLineEdit">
-         <property name="text">
-          <string>0.00</string>
-         </property>
+       <item row="2" column="5">
+        <widget class="QLineEdit" name="parloLineEdit">
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -480,133 +420,99 @@
        </item>
        <item row="1" column="5">
         <widget class="QLineEdit" name="rgloLineEdit">
-         <property name="text">
-          <string>0.00</string>
+         <property name="readOnly">
+          <bool>true</bool>
          </property>
+        </widget>
+       </item>
+       <item row="1" column="4">
+        <widget class="QLineEdit" name="rghiLineEdit">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="vodLineEdit">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QLabel" name="rgLabel">
+         <property name="text">
+          <string>Reset Gain</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="3">
+        <widget class="QLabel" name="serLabel">
+         <property name="text">
+          <string>Seriel</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="vrdLineEdit">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="4">
+        <widget class="QLineEdit" name="parhiLineEdit">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="5">
+        <widget class="QLineEdit" name="serloLineEdit">
          <property name="readOnly">
           <bool>true</bool>
          </property>
         </widget>
        </item>
        <item row="2" column="0">
-        <widget class="QLabel" name="parhiLabel">
+        <widget class="QLabel" name="vogLabel">
          <property name="text">
-          <string>PAR HI</string>
+          <string>VOG</string>
          </property>
         </widget>
        </item>
-       <item row="2" column="1">
-        <widget class="QLabel" name="parloLabel">
+       <item row="0" column="4">
+        <widget class="QLabel" name="highLabel">
          <property name="text">
-          <string>PAR LO</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="2">
-        <widget class="QLabel" name="serhiLabel">
-         <property name="text">
-          <string>SER HI</string>
+          <string>High</string>
          </property>
         </widget>
        </item>
        <item row="2" column="3">
-        <widget class="QLabel" name="serloLabel">
+        <widget class="QLabel" name="parLabel">
          <property name="text">
-          <string>SER LO</string>
+          <string>Parallel</string>
          </property>
         </widget>
        </item>
-       <item row="3" column="1">
-        <widget class="QLineEdit" name="parloLineEdit">
-         <property name="text">
-          <string>0.00</string>
-         </property>
-         <property name="readOnly">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="3">
-        <widget class="QLineEdit" name="serloLineEdit">
-         <property name="text">
-          <string>0.00</string>
-         </property>
-         <property name="readOnly">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="2">
+       <item row="3" column="4">
         <widget class="QLineEdit" name="serhiLineEdit">
-         <property name="text">
-          <string>0.00</string>
-         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
         </widget>
        </item>
-       <item row="5" column="4">
-        <widget class="QComboBox" name="voltageComboBox">
-         <item>
-          <property name="text">
-           <string>VDD</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>VOD</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>VOG</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>VRD</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>RG HI</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>RG LO</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>PAR HI</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>PAR LO</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>SER HI</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>SER LO</string>
-          </property>
-         </item>
+       <item row="2" column="1">
+        <widget class="QLabel" name="vrdLabel">
+         <property name="text">
+          <string>VRD</string>
+         </property>
         </widget>
        </item>
-       <item row="5" column="5">
-        <widget class="QDoubleSpinBox" name="voltageSpinBox"/>
-       </item>
-       <item row="5" column="3">
-        <widget class="QLabel" name="label">
+       <item row="6" column="5">
+        <widget class="QPushButton" name="pushButton">
          <property name="text">
-          <string>Select Voltage</string>
+          <string>Set Voltages</string>
          </property>
         </widget>
        </item>
@@ -623,12 +529,27 @@
          </property>
         </spacer>
        </item>
-       <item row="6" column="0" colspan="2">
-        <widget class="QPushButton" name="resetvoltageButton">
+       <item row="5" column="3">
+        <widget class="QComboBox" name="comboBox_2"/>
+       </item>
+       <item row="5" column="0">
+        <widget class="QComboBox" name="comboBox"/>
+       </item>
+       <item row="6" column="1">
+        <widget class="QPushButton" name="setvoltageButton">
          <property name="text">
-          <string>Reset To Defaults</string>
+          <string>Set Voltages</string>
          </property>
         </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QDoubleSpinBox" name="doubleSpinBox"/>
+       </item>
+       <item row="5" column="4">
+        <widget class="QDoubleSpinBox" name="doubleSpinBox_2"/>
+       </item>
+       <item row="5" column="5">
+        <widget class="QDoubleSpinBox" name="doubleSpinBox_3"/>
        </item>
       </layout>
      </widget>

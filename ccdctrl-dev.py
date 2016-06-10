@@ -15,6 +15,7 @@ import design
 import ccdsetup
 import exposure
 import restore
+import voltage
 
 ###############################################################################
 ##
@@ -79,6 +80,17 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                          "Exposure Series" : "exp",
                          "Dark Series" : "dark"}
 
+        self.voltagedict = {"VOD" : self.vodLineEdit,
+                            "VOG" : self.vogLineEdit,
+                            "VRD" : self.vrdLineEdit,
+                            "VDD" : self.vddLineEdit,
+                            "RG HI" : self.rghiLineEdit,
+                            "RG LO" : self.rgloLineEdit,
+                            "PAR HI" : self.parhiLineEdit,
+                            "PAR LO" : self.parloLineEdit,
+                            "SER HI" : self.serhiLineEdit,
+                            "SER LO" : self.serloLineEdit}
+
         ## Signals and slots for thread testing
         self.thread = WorkerThread(self.expose, ())
         self.thread.started.connect(lambda: self.exposeButton.setEnabled(False))
@@ -93,6 +105,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         self.testimCheckBox.clicked.connect(self.checkfilename)
         self.shutdownButton.clicked.connect(self.close)
         self.filterToggleButton.toggled.connect(self.toggleFilter)
+        self.setvoltageButton.clicked.connect(self.setvoltages)
 
         ## Progress bar signals
         self.image_start.connect(self.resetProgressBar)
@@ -101,6 +114,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         ## Restore past GUI display settings and reset sta3800 controller
         self.restoreGUI()
         self.reset()
+        self.resetvoltage()
                                 
     def restoreGUI(self):
         """Set GUI display widget values with values read from INI file."""
@@ -158,6 +172,8 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             raise
         else:
             self.logger.info("Controller turned on successfully.")
+
+        ## Reset to initial voltage values
 
     def checkfilename(self):
 
@@ -337,7 +353,111 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         
     def setvoltages(self):
         """Change the value of the specified voltages."""
-        pass
+
+        vtype = str(self.voltageComboBox.currentText())
+
+        if vtype in ['VOD', 'VRD', 'VOG', 'VDD']:
+        
+            vname = vtype.lower()
+            V = self.voltageSpinBox.value()
+
+            try:
+                output = voltage.set_voltage(V, vname)
+                self.logger.info(output)
+            except subprocess.CalledProcessError:
+                self.logger.exception("Error in executable {0}. Voltage not changed.".format(vname))
+            except OSError:
+                self.logger.exception("Executable {0} not found.  Voltage not changed.".format(vname))
+            else:
+                ## change voltage display here
+                self.voltagedisplay(vname, V)
+
+        ## Parallel clocks
+        elif 'PAR' in vtype:
+
+            if 'HI' in vtype:
+                par_lo = float(self.parloLineEdit.text())
+                par_hi = self.voltageSpinBox.value()
+            else:
+                par_lo = self.voltageSpinBox.value()
+                par_hi = float(self.parhiLineEdit.text())
+            
+            try:
+                output = voltage.par_clks(par_lo, par_hi)
+                self.logger.info(output)
+            except subprocess.CalledProcessError:
+                self.logger.exception("Error in executable par_clks. Voltage not changed.")
+            except OSError:
+                self.logger.exception("Executable par_clks not found.  Voltage not changed.")
+            else:
+                ## change voltage display here
+                self.voltagedisplay('PAR HI', par_hi)
+                self.voltagedisplay('PAR LO', par_lo)
+
+        ## Serial clocks
+        elif 'SER' in vtype:
+
+            if 'HI' in vtype:                
+                ser_lo = float(self.serloLineEdit.text())
+                ser_hi = self.voltageSpinBox.value()
+            else:
+                ser_lo = self.voltageSpinBox.value()
+                ser_hi = float(self.serhiLineEdit.text())
+            
+            try:
+                output = voltage.ser_clks(ser_lo, ser_hi)
+                self.logger.info(output)
+            except subprocess.CalledProcessError:
+                self.logger.exception("Error in executable ser_clks. Voltage not changed.")
+            except OSError:
+                self.logger.exception("Executable ser_clks not found.  Voltage not changed.")
+            else:
+                self.voltagedisplay('SER HI', ser_hi)
+                self.voltagedisplay('SER LO', ser_lo)
+
+        ## Reset gain
+        elif 'RG' in vtype:
+
+            if 'HI' in vtype:
+                rg_lo = float(self.rgloLineEdit.text())
+                rg_hi = self.voltageSpinBox.value()
+            else:
+                rg_lo = self.voltageSpinBox.value()
+                rg_hi = float(self.rghiLineEdit.text())
+            
+            try:
+                output = voltage.rg(rg_lo, rg_hi)
+                self.logger.info(output)
+            except subprocess.CalledProcessError:
+                self.logger.exception("Error in executable rg. Voltage not changed.")
+            except OSError:
+                self.logger.exception("Executable rg not found.  Voltage not changed.")
+            else:
+                ## change voltage display here
+                self.voltagedisplay('RG HI', rg_hi)
+                self.voltagedisplay('RG LO', rg_lo)
+
+    def voltagedisplay(self, vname, V):
+
+        lineedit = self.voltagedict[vname]
+        lineedit.setText("{0:.2f}".format(V))
+
+    def resetvoltage(self):
+        
+        self.settings.beginGroup("Voltages")
+
+        self.voltagedisplay('VDD', self.settings.value('vdd').toFloat()[0])
+        self.voltagedisplay('VOD', self.settings.value('vod').toFloat()[0])
+        self.voltagedisplay('VOG', self.settings.value('vog').toFloat()[0])
+        self.voltagedisplay('VRD', self.settings.value('vrd').toFloat()[0])
+        self.voltagedisplay('RG HI', self.settings.value('rghi').toFloat()[0])
+        self.voltagedisplay('RG LO', self.settings.value('rglo').toFloat()[0])
+        self.voltagedisplay('PAR HI', self.settings.value('parhi').toFloat()[0])
+        self.voltagedisplay('PAR LO', self.settings.value('parlo').toFloat()[0])
+        self.voltagedisplay('SER HI', self.settings.value('serhi').toFloat()[0])
+        self.voltagedisplay('SER LO', self.settings.value('serlo').toFloat()[0])
+        
+        self.settings.endGroup()
 
     def activate_ui(self):
         """Activate and deactivate input widgets depending on the necessary arguments."""
