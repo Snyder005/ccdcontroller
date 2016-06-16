@@ -1825,3 +1825,55 @@ Traceback (most recent call last):
 OSError: [Errno 2] No such file or directory
 06/16/2016 04:26:34 PM - INFO - Turning off sta3800 controller (sta3800_off).
 06/16/2016 04:26:34 PM - INFO - Controller turned off successfully.
+06/16/2016 04:37:07 PM - INFO - GUI display widget values successfully restored.
+06/16/2016 04:37:07 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/16/2016 04:37:07 PM - INFO - Controller turned off successfully.
+06/16/2016 04:37:07 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/16/2016 04:37:07 PM - INFO - Controller turned on successfully.
+06/16/2016 04:37:13 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/16/2016 04:37:13 PM - INFO - Controller turned off successfully.
+06/16/2016 04:37:53 PM - INFO - GUI display widget values successfully restored.
+06/16/2016 04:37:53 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/16/2016 04:37:57 PM - INFO - Controller turned off successfully.
+06/16/2016 04:37:57 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/16/2016 04:38:05 PM - INFO - Controller turned on successfully.
+06/16/2016 04:38:31 PM - INFO - Starting 1.0s Exposure image.
+06/16/2016 04:38:54 PM - INFO - Exposure /home/lsst/Data/20160616/.exp.1.0s.4.fits finished successfully.
+06/16/2016 04:39:17 PM - INFO - Starting 0.0s Exposure Stack stack.
+06/16/2016 04:39:17 PM - INFO - Starting image 1 of 3.
+06/16/2016 04:39:47 PM - INFO - Exposure /home/lsst/Data/20160616/.exp.0.0s.5.fits finished successfully.
+06/16/2016 04:39:47 PM - INFO - Starting image 2 of 3.
+06/16/2016 04:40:16 PM - INFO - Exposure /home/lsst/Data/20160616/.exp.0.0s.6.fits finished successfully.
+06/16/2016 04:40:16 PM - INFO - Starting image 3 of 3.
+06/16/2016 04:40:45 PM - INFO - Exposure /home/lsst/Data/20160616/.exp.0.0s.7.fits finished successfully.
+06/16/2016 04:40:45 PM - INFO - Exposure stack finished successfully.
+06/16/2016 04:41:27 PM - INFO - Starting 0.0s Exposure Stack stack.
+06/16/2016 04:41:27 PM - INFO - Starting image 1 of 3.
+06/16/2016 04:41:30 PM - INFO - Finishing current exposure and canceling remaining exposures...
+06/16/2016 04:41:56 PM - INFO - Exposure /home/lsst/Data/20160616/.exp.0.0s.8.fits finished successfully.
+06/16/2016 04:41:56 PM - INFO - Starting image 2 of 3.
+06/16/2016 04:42:24 PM - INFO - Exposure /home/lsst/Data/20160616/.exp.0.0s.9.fits finished successfully.
+06/16/2016 04:42:24 PM - INFO - Starting image 3 of 3.
+06/16/2016 04:42:44 PM - INFO - Exposure /home/lsst/Data/20160616/.exp.0.0s.10.fits finished successfully.
+06/16/2016 04:42:44 PM - INFO - Exposure stack finished successfully.
+06/16/2016 04:43:23 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/16/2016 04:43:27 PM - INFO - Controller turned off successfully.
+06/16/2016 04:43:59 PM - INFO - GUI display widget values successfully restored.
+06/16/2016 04:43:59 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/16/2016 04:44:03 PM - INFO - Controller turned off successfully.
+06/16/2016 04:44:03 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/16/2016 04:44:11 PM - INFO - Controller turned on successfully.
+06/16/2016 04:44:17 PM - INFO - Starting 0.0s Exposure Stack stack.
+06/16/2016 04:44:17 PM - INFO - Starting image 1 of 3.
+06/16/2016 04:44:18 PM - INFO - Finishing current exposure and canceling remaining exposures...
+06/16/2016 04:44:46 PM - INFO - Exposure /home/lsst/Data/20160616/.exp.0.0s.11.fits finished successfully.
+06/16/2016 04:44:46 PM - INFO - Exposure stack canceled.
+06/16/2016 04:44:58 PM - INFO - Starting 0.0s Exposure Stack stack.
+06/16/2016 04:44:58 PM - INFO - Starting image 1 of 3.
+06/16/2016 04:45:01 PM - INFO - Finishing current exposure and canceling remaining exposures...
+06/16/2016 04:45:28 PM - INFO - Exposure /home/lsst/Data/20160616/.exp.0.0s.12.fits finished successfully.
+06/16/2016 04:45:28 PM - INFO - Exposure stack canceled.
+06/16/2016 04:45:40 PM - INFO - VOG set to -1.0
+
+06/16/2016 04:45:47 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/16/2016 04:45:52 PM - INFO - Controller turned off successfully.

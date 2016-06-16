@@ -255,7 +255,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
     def cancelExposure(self):
         self.logger.info("Finishing current exposure and canceling remaining exposures...")
         self.cancelButton.setEnabled(False)
-        self.cancel_exposure.emit()
+        self.exposure_cancel.emit()
 
     @QtCore.pyqtSlot(int)
     def autoIncrement(self, seqnum_old):
