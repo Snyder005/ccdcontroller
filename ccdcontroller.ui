@@ -20,7 +20,7 @@
       <x>21</x>
       <y>10</y>
       <width>751</width>
-      <height>331</height>
+      <height>361</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -36,29 +36,59 @@
         <x>10</x>
         <y>10</y>
         <width>719</width>
-        <height>293</height>
+        <height>311</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="10" column="3">
-        <widget class="QLabel" name="imfilenameLabel">
+       <item row="0" column="3">
+        <widget class="QLabel" name="imtypeLabel">
          <property name="text">
-          <string>Data Directory:</string>
+          <string>Image Type:</string>
          </property>
         </widget>
        </item>
-       <item row="11" column="3" rowspan="2" colspan="2">
-        <widget class="QLineEdit" name="imfilenameLineEdit">
-         <property name="enabled">
-          <bool>true</bool>
+       <item row="3" column="6" colspan="2">
+        <widget class="Line" name="hline_1">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
          </property>
-         <property name="readOnly">
-          <bool>true</bool>
+        </widget>
+       </item>
+       <item row="0" column="6">
+        <widget class="QLabel" name="exptimeLabel">
+         <property name="text">
+          <string>Exposure Time:</string>
          </property>
         </widget>
        </item>
        <item row="5" column="3" rowspan="2" colspan="2">
         <widget class="QLineEdit" name="imtitleLineEdit"/>
+       </item>
+       <item row="0" column="1" rowspan="13" colspan="2">
+        <widget class="Line" name="vline_1">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="6" rowspan="2">
+        <widget class="QDoubleSpinBox" name="exptimeSpinBox">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="readOnly">
+          <bool>false</bool>
+         </property>
+         <property name="decimals">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <double>100000.000000000000000</double>
+         </property>
+         <property name="singleStep">
+          <double>0.500000000000000</double>
+         </property>
+        </widget>
        </item>
        <item row="1" column="3" rowspan="2">
         <widget class="QComboBox" name="exptypeComboBox">
@@ -111,81 +141,10 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="6" rowspan="2">
-        <widget class="QDoubleSpinBox" name="exptimeSpinBox">
-         <property name="enabled">
-          <bool>true</bool>
-         </property>
-         <property name="readOnly">
-          <bool>false</bool>
-         </property>
-         <property name="decimals">
-          <number>1</number>
-         </property>
-         <property name="maximum">
-          <double>100000.000000000000000</double>
-         </property>
-         <property name="singleStep">
-          <double>0.500000000000000</double>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QPushButton" name="exposeButton">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
+       <item row="4" column="7">
+        <widget class="QLabel" name="maxexpLabel">
          <property name="text">
-          <string>Expose</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1" rowspan="13" colspan="2">
-        <widget class="Line" name="vline_1">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="3">
-        <widget class="QLabel" name="imtypeLabel">
-         <property name="text">
-          <string>Image Type:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="5" rowspan="13">
-        <widget class="Line" name="vline_2">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="6">
-        <widget class="QLabel" name="exptimeLabel">
-         <property name="text">
-          <string>Exposure Time:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0" rowspan="2">
-        <widget class="QPushButton" name="directoryPushButton">
-         <property name="text">
-          <string>Change Directory</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="6" colspan="2">
-        <widget class="Line" name="hline_1">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="3">
-        <widget class="QLabel" name="imtitleLabel">
-         <property name="text">
-          <string>Image Title:</string>
+          <string>Max Exposure Time:</string>
          </property>
         </widget>
        </item>
@@ -193,13 +152,6 @@
         <widget class="QLabel" name="minexpLabel">
          <property name="text">
           <string>Min Exposure Time:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="7">
-        <widget class="QLabel" name="maxexpLabel">
-         <property name="text">
-          <string>Max Exposure Time:</string>
          </property>
         </widget>
        </item>
@@ -214,6 +166,20 @@
         <widget class="QDoubleSpinBox" name="maxexpSpinBox">
          <property name="decimals">
           <number>1</number>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="3">
+        <widget class="QLabel" name="imnumLabel">
+         <property name="text">
+          <string>Sequence Number:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="6">
+        <widget class="QLabel" name="tstepLabel">
+         <property name="text">
+          <string>Time Step:</string>
          </property>
         </widget>
        </item>
@@ -249,20 +215,6 @@
            <string>y</string>
           </property>
          </item>
-        </widget>
-       </item>
-       <item row="7" column="3">
-        <widget class="QLabel" name="imnumLabel">
-         <property name="text">
-          <string>Sequence Number:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="7" column="6">
-        <widget class="QLabel" name="tstepLabel">
-         <property name="text">
-          <string>Time Step:</string>
-         </property>
         </widget>
        </item>
        <item row="8" column="3">
@@ -349,6 +301,64 @@
          </property>
          <property name="singleStep">
           <number>5</number>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="3">
+        <widget class="QLabel" name="imtitleLabel">
+         <property name="text">
+          <string>Image Title:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="3">
+        <widget class="QLabel" name="imfilenameLabel">
+         <property name="text">
+          <string>Data Directory:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="11" column="3" rowspan="2" colspan="2">
+        <widget class="QLineEdit" name="imfilenameLineEdit">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QPushButton" name="exposeButton">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>Expose</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="5" rowspan="13">
+        <widget class="Line" name="vline_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" rowspan="2">
+        <widget class="QPushButton" name="cancelButton">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>Cancel</string>
+         </property>
+        </widget>
+       </item>
+       <item row="11" column="0" rowspan="2">
+        <widget class="QPushButton" name="directoryPushButton">
+         <property name="text">
+          <string>Change Directory</string>
          </property>
         </widget>
        </item>
@@ -642,9 +652,9 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>350</y>
+      <y>380</y>
       <width>751</width>
-      <height>221</height>
+      <height>191</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_3">
