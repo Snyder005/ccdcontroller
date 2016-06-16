@@ -29,9 +29,17 @@ class WorkerThread(QtCore.QThread):
         super(WorkerThread, self).__init__()
         self.func = func
         self.args = args
+        self.status = True
 
     def run(self):
         self.func(*self.args)
+
+    @QtCore.pyqtSlot()
+    def cancel(self):
+        self.status = False
+
+    def reboot(self):
+        self.status = True
 
 class QtHandler(logging.Handler, object):
 
@@ -94,7 +102,9 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         ## Signals and slots for thread testing
         self.thread = WorkerThread(self.expose, ())
         self.thread.started.connect(lambda: self.exposeButton.setEnabled(False))
+        self.thread.started.connect(lambda: self.cancelButton.setEnabled(True))
         self.thread.finished.connect(lambda: self.exposeButton.setEnabled(True))
+        self.thread.finished.connect(lambda: self.cancelButton.setEnabled(False))
 
         ## Connect signals and slots for functions
         self.exposeButton.clicked.connect(self.thread.start)
@@ -106,6 +116,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         self.shutdownButton.clicked.connect(self.close)
         self.filterToggleButton.toggled.connect(self.toggleFilter)
         self.setvoltageButton.clicked.connect(self.setvoltages)
+        self.cancelButton.clicked.connect(self.thread.cancel)
 
         ## Progress bar signals
         self.image_start.connect(self.resetProgressBar)
@@ -271,9 +282,9 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             ## Perform exposure
             self.logger.info("Starting {0}s {1} image.".format(exptime, exptype))
             self.image_start.emit(1)
+            self.thread.reboot()
 
             try:
-                print kwargs
                 filename = exposure.im_acq(mode, filepath, exptime, seqnum, **kwargs)
                 self.image_taken.emit(1)
             except subprocess.CalledProcessError:
@@ -293,13 +304,19 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             total = seqnum + imcount
             self.logger.info("Starting {0}s {1} stack.".format(exptime, exptype))
             self.image_start.emit(imcount)
+            self.thread.reboot()
 
             try:
                 for i in range(seqnum, total):
-                    self.logger.info("Starting image {0} of {1}.".format(i+1-seqnum, imcount))
-                    filename = exposure.im_acq(mode, filepath, exptime, i, **kwargs)
-                    self.logger.info("Exposure {0} finished successfully.".format(filename))
-                    self.image_taken.emit(i+1-seqnum)
+                    if self.thread.status:
+                        self.logger.info("Starting image {0} of {1}.".format(i+1-seqnum, imcount))
+                        filename = exposure.im_acq(mode, filepath, exptime, i, **kwargs)
+                        self.logger.info("Exposure {0} finished successfully.".format(filename))
+                        self.image_taken.emit(i+1-seqnum)
+                    else:
+                        self.logger.info("Exposure stack canceled.")
+                        self.thread.reboot()
+                        return
             except subprocess.CalledProcessError:
                 self.logger.exception("Error in executable {0}_acq. Image not taken.".format(mode))
             except OSError:
@@ -332,13 +349,19 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             ## Perform series
             self.logger.info("Starting {0} series with mintime {1}, maxtime {2}, and step {3}.".format(exptype, mintime, maxtime, step))
             self.image_start.emit(len(time_array))
+            self.thread.reboot()
             
             try:
                 for i, time in enumerate(time_array):
-                    self.logger.info("Starting {0}s {1} image.".format(time, mode))
-                    filename = exposure.im_acq(mode, filepath, time, seqnum, **kwargs)
-                    self.logger.info("Exposure {0} finished successfully.".format(filename))
-                    self.image_taken.emit(i+1)
+                    if self.thread.status:
+                        self.logger.info("Starting {0}s {1} image.".format(time, mode))
+                        filename = exposure.im_acq(mode, filepath, time, seqnum, **kwargs)
+                        self.logger.info("Exposure {0} finished successfully.".format(filename))
+                        self.image_taken.emit(i+1)
+                    else:
+                        self.logger.info("Exposure series canceled.")
+                        self.thread.reboot()
+                        return
             except subprocess.CalledProcessError:
                 self.logger.exception("Error in executable {0}_acq. Image not taken.".format(mode))
             except OSError:
@@ -362,9 +385,8 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             try:
                 output = voltage.set_voltage(V, vname)
                 self.logger.info(output)
-            except subprocess.CalledProcessError as e:
+            except subprocess.CalledProcessError:
                 self.logger.exception("Error in executable {0}. Voltage not changed.".format(vname))
-                self.logger.exception(str(e.output))
             except OSError:
                 self.logger.exception("Executable {0} not found.  Voltage not changed.".format(vname))
             else:
@@ -385,9 +407,8 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                 output = voltage.par_clks(par_lo, par_hi)
                 self.logger.info(output)
                 #print "output = voltage.par_clks({0}, {1}".format(par_lo, par_hi)
-            except subprocess.CalledProcessError as e:
+            except subprocess.CalledProcessError:
                 self.logger.exception("Error in executable par_clks. Voltage not changed.")
-                self.logger.exception(str(e.output))
             except OSError:
                 self.logger.exception("Executable par_clks not found.  Voltage not changed.")
             else:
@@ -409,9 +430,8 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                 output = voltage.ser_clks(ser_lo, ser_hi)
                 self.logger.info(output)
                 #print "output = voltage.ser_clks({0}, {1})".format(ser_lo, ser_hi)
-            except subprocess.CalledProcessError as e:
+            except subprocess.CalledProcessError:
                 self.logger.exception("Error in executable ser_clks. Voltage not changed.")
-                self.logger.exception(str(e.output))
             except OSError:
                 self.logger.exception("Executable ser_clks not found.  Voltage not changed.")
             else:
@@ -432,9 +452,8 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                 output = voltage.rg(rg_lo, rg_hi)
                 self.logger.info(output)
                 #print "output = voltage.rg({0}, {1})".format(rg_lo, rg_hi)
-            except subprocess.CalledProcessError as e:
+            except subprocess.CalledProcessError:
                 self.logger.exception("Error in executable rg. Voltage not changed.")
-                self.logger.exception(str(e.output))
             except OSError:
                 self.logger.exception("Executable rg not found.  Voltage not changed.")
             else:

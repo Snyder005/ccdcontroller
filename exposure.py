@@ -244,7 +244,7 @@ def update_header(filepath, mode, exptime, seqnum, **kwargs):
     fits[0].write_key('CCDGAIN', ccdgain, comment='Rough guess at overall system gain')
     fits[0].write_key('CCDNOISE', ccdnoise, comment='Rough guess at system noise')
 
-    fits.append(ccdhdu)
+    #fits.append(ccdhdu)
     fits.close()
 
 ###############################################################################

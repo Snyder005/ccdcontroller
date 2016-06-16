@@ -1723,3 +1723,48 @@ OSError: [Errno 2] No such file or directory
 06/16/2016 02:20:15 PM - INFO - Controller turned on successfully.
 06/16/2016 02:20:21 PM - INFO - Turning off sta3800 controller (sta3800_off).
 06/16/2016 02:20:21 PM - INFO - Controller turned off successfully.
+06/16/2016 02:28:56 PM - INFO - GUI display widget values successfully restored.
+06/16/2016 02:28:56 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/16/2016 02:28:56 PM - INFO - Controller turned off successfully.
+06/16/2016 02:28:56 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/16/2016 02:28:56 PM - INFO - Controller turned on successfully.
+06/16/2016 02:29:02 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/16/2016 02:29:02 PM - INFO - Controller turned off successfully.
+06/16/2016 03:41:46 PM - INFO - GUI display widget values successfully restored.
+06/16/2016 03:41:46 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/16/2016 03:41:50 PM - INFO - Controller turned off successfully.
+06/16/2016 03:41:50 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/16/2016 03:41:58 PM - INFO - Controller turned on successfully.
+06/16/2016 03:43:53 PM - INFO - Data directory changed to /home/lsst/Data/20160616.
+06/16/2016 03:44:22 PM - INFO - Starting 2.0s Exposure Stack stack.
+06/16/2016 03:44:22 PM - INFO - Starting image 1 of 4.
+06/16/2016 03:45:30 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/16/2016 03:45:34 PM - INFO - Controller turned off successfully.
+06/16/2016 03:53:06 PM - INFO - GUI display widget values successfully restored.
+06/16/2016 03:53:06 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/16/2016 03:53:10 PM - INFO - Controller turned off successfully.
+06/16/2016 03:53:10 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/16/2016 03:53:18 PM - INFO - Controller turned on successfully.
+06/16/2016 03:53:49 PM - INFO - Starting 2.0s Exposure Stack stack.
+06/16/2016 03:53:49 PM - INFO - Starting image 1 of 4.
+06/16/2016 03:53:49 PM - ERROR - File already exists. Image not taken.
+Traceback (most recent call last):
+  File "./ccdctrl.py", line 313, in expose
+    filename = exposure.im_acq(mode, filepath, exptime, i, **kwargs)
+  File "/home/lsst/ccdcontroller/exposure.py", line 105, in im_acq
+    raise IOError
+IOError
+06/16/2016 03:53:55 PM - INFO - Starting 2.0s Exposure Stack stack.
+06/16/2016 03:53:55 PM - INFO - Starting image 1 of 4.
+06/16/2016 03:54:30 PM - INFO - Exposure /home/lsst/Data/20160616/.exp.2.0s.2.fits finished successfully.
+06/16/2016 03:54:30 PM - INFO - Starting image 2 of 4.
+06/16/2016 03:55:02 PM - INFO - Exposure /home/lsst/Data/20160616/.exp.2.0s.3.fits finished successfully.
+06/16/2016 03:55:02 PM - INFO - Exposure stack canceled.
+06/16/2016 03:56:15 PM - INFO - Starting 0.0s Exposure Stack stack.
+06/16/2016 03:56:15 PM - INFO - Starting image 1 of 4.
+06/16/2016 03:56:45 PM - INFO - Exposure /home/lsst/Data/20160616/.exp.0.0s.3.fits finished successfully.
+06/16/2016 03:56:45 PM - INFO - Starting image 2 of 4.
+06/16/2016 03:57:14 PM - INFO - Exposure /home/lsst/Data/20160616/.exp.0.0s.4.fits finished successfully.
+06/16/2016 03:57:14 PM - INFO - Exposure stack canceled.
+06/16/2016 03:57:25 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/16/2016 03:57:29 PM - INFO - Controller turned off successfully.
