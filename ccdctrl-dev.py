@@ -61,6 +61,8 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
 
     image_start = QtCore.pyqtSignal(int)
     image_taken = QtCore.pyqtSignal(int)
+    exposure_cancel = QtCore.pyqtSignal()
+    seqnum_inc = QtCore.pyqtSignal(int)
 
     def __init__(self, parent=None):
         super(Controller, self).__init__(parent)
@@ -105,6 +107,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         self.thread.started.connect(lambda: self.cancelButton.setEnabled(True))
         self.thread.finished.connect(lambda: self.exposeButton.setEnabled(True))
         self.thread.finished.connect(lambda: self.cancelButton.setEnabled(False))
+        self.exposure_cancel.connect(self.thread.cancel)
 
         ## Connect signals and slots for functions
         self.exposeButton.clicked.connect(self.thread.start)
@@ -116,11 +119,12 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         self.shutdownButton.clicked.connect(self.close)
         self.filterToggleButton.toggled.connect(self.toggleFilter)
         self.setvoltageButton.clicked.connect(self.setvoltages)
-        self.cancelButton.clicked.connect(self.thread.cancel)
+        self.cancelButton.clicked.connect(self.cancelExposure)
 
         ## Progress bar signals
         self.image_start.connect(self.resetProgressBar)
         self.image_taken.connect(self.updateProgressBar)
+        self.seqnum_inc.connect(self.autoIncrement)
         
         ## Restore past GUI display settings and reset sta3800 controller
         self.restoreGUI()
@@ -247,6 +251,17 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
     def updateProgressBar(self, i):
         self.progressBar.setValue(i)
 
+    @QtCore.pyqtSlot()
+    def cancelExposure(self):
+        self.logger.info("Finishing current exposure and canceling remaining exposures...")
+        self.cancelButton.setEnabled(False)
+        self.cancel_exposure.emit()
+
+    @QtCore.pyqtSlot(int)
+    def autoIncrement(self, seqnum_old):
+        if self.autoincCheckBox.isChecked():
+            self.imnumSpinBox.setValue(seqnum_old+1)
+
     def expose(self):
         """Execute a shell script to perform a measurement, depending on the desired
            exposure type."""
@@ -294,9 +309,9 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             except IOError:
                 self.logger.exception("File already exits. Image not taken.")
             else:
+                self.seqnum_inc.emit(seqnum)
                 self.logger.info("Exposure {0} finished successfully.".format(filename))
-                subprocess.Popen(['ds9', '-mosaicimage', 'iraf', filename,
-                                  '-zoom', 'to', 'fit', '-cmap', 'b'])
+                subprocess.Popen(['ds9', '-mosaicimage', 'iraf', filename, '-zoom', 'to', 'fit', '-cmap', 'b'])
 
         ## Check if a stack of exposures of same type
         elif exptype in ["Exposure Stack", "Dark Stack", "Bias Stack"]:
@@ -313,6 +328,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                         filename = exposure.im_acq(mode, filepath, exptime, i, **kwargs)
                         self.logger.info("Exposure {0} finished successfully.".format(filename))
                         self.image_taken.emit(i+1-seqnum)
+                        self.seqnum_inc.emit(i)
                     else:
                         self.logger.info("Exposure stack canceled.")
                         self.thread.reboot()
@@ -327,7 +343,6 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                 self.logger.info("Exposure stack finished successfully.")
                 subprocess.Popen(['ds9', '-mosaicimage', 'iraf', filename, '-zoom', 'to', 'fit', '-cmap', 'b'])
                 
-
         ## Check if a series of exposures of increase exposure time
         elif exptype in ["Exposure Series", "Dark Series"]:
 
@@ -360,6 +375,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                         self.image_taken.emit(i+1)
                     else:
                         self.logger.info("Exposure series canceled.")
+                        self.seqnum_inc.emit(seqnum)
                         self.thread.reboot()
                         return
             except subprocess.CalledProcessError:
@@ -369,8 +385,10 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             except IOError:
                 self.logger.exception("File already exists. Image not taken.")
             else:
+                self.seqnum_inc.emit(seqnum)
                 self.logger.info("Exposure series finished successfully.")
                 subprocess.Popen(['ds9', '-mosaicimage', 'iraf', filename, '-zoom', 'to', 'fit', '-cmap', 'b'])
+
         
     def setvoltages(self):
         """Change the value of the specified voltages."""
