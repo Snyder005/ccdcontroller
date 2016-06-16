@@ -1551,3 +1551,103 @@ Traceback (most recent call last):
 CalledProcessError: Command '['vod', '99.0']' returned non-zero exit status 1
 06/10/2016 04:01:40 PM - INFO - Turning off sta3800 controller (sta3800_off).
 06/10/2016 04:01:45 PM - INFO - Controller turned off successfully.
+06/10/2016 04:08:30 PM - INFO - GUI display widget values successfully restored.
+06/10/2016 04:08:30 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 04:08:34 PM - INFO - Controller turned off successfully.
+06/10/2016 04:08:34 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/10/2016 04:08:42 PM - INFO - Controller turned on successfully.
+06/10/2016 04:08:59 PM - ERROR - Error in executable vdd. Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl.py", line 363, in setvoltages
+    output = voltage.set_voltage(V, vname)
+  File "/home/lsst/ccdcontroller/voltage.py", line 49, in set_voltage
+    output = subprocess.check_output([vname, "{0}".format(V)])
+  File "/home/lsst/ccdcontroller/voltage.py", line 24, in f
+    raise subprocess.CalledProcessError(retcode, cmd)
+CalledProcessError: Command '['vdd', '98.0']' returned non-zero exit status 1
+06/10/2016 04:09:17 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 04:09:22 PM - INFO - Controller turned off successfully.
+06/10/2016 04:14:01 PM - INFO - GUI display widget values successfully restored.
+06/10/2016 04:14:01 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 04:14:06 PM - INFO - Controller turned off successfully.
+06/10/2016 04:14:06 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/10/2016 04:14:14 PM - INFO - Controller turned on successfully.
+06/10/2016 04:14:21 PM - ERROR - Error in executable vdd. Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl.py", line 363, in setvoltages
+    output = voltage.set_voltage(V, vname)
+  File "/home/lsst/ccdcontroller/voltage.py", line 49, in set_voltage
+    output = subprocess.check_output([vname, "{0}".format(V)])
+  File "/home/lsst/ccdcontroller/voltage.py", line 24, in f
+    raise subprocess.CalledProcessError(retcode, cmd)
+CalledProcessError: Command '['vdd', '98.0']' returned non-zero exit status 1
+06/10/2016 04:14:44 PM - INFO - VOG set to -1.0
+
+06/10/2016 04:14:47 PM - INFO - VOG set to 0.0
+
+06/10/2016 04:14:51 PM - ERROR - Error in executable vog. Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl.py", line 363, in setvoltages
+    output = voltage.set_voltage(V, vname)
+  File "/home/lsst/ccdcontroller/voltage.py", line 49, in set_voltage
+    output = subprocess.check_output([vname, "{0}".format(V)])
+  File "/home/lsst/ccdcontroller/voltage.py", line 24, in f
+    raise subprocess.CalledProcessError(retcode, cmd)
+CalledProcessError: Command '['vog', '1.0']' returned non-zero exit status 1
+06/10/2016 04:15:01 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 04:15:05 PM - INFO - Controller turned off successfully.
+06/10/2016 04:19:50 PM - INFO - GUI display widget values successfully restored.
+06/10/2016 04:19:50 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 04:19:54 PM - INFO - Controller turned off successfully.
+06/10/2016 04:19:54 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/10/2016 04:20:02 PM - INFO - Controller turned on successfully.
+06/10/2016 04:20:09 PM - ERROR - Error in executable vog. Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl.py", line 363, in setvoltages
+    output = voltage.set_voltage(V, vname)
+  File "/home/lsst/ccdcontroller/voltage.py", line 51, in set_voltage
+    output = subprocess.check_output([vname, "{0}".format(V)])
+  File "/home/lsst/ccdcontroller/voltage.py", line 26, in f
+    raise error
+CalledProcessError: Command '['vog', '1.0']' returned non-zero exit status 1
+06/10/2016 04:20:09 PM - ERROR - Error: OG voltage must be <=  0.00
+Traceback (most recent call last):
+  File "./ccdctrl.py", line 363, in setvoltages
+    output = voltage.set_voltage(V, vname)
+  File "/home/lsst/ccdcontroller/voltage.py", line 51, in set_voltage
+    output = subprocess.check_output([vname, "{0}".format(V)])
+  File "/home/lsst/ccdcontroller/voltage.py", line 26, in f
+    raise error
+CalledProcessError: Command '['vog', '1.0']' returned non-zero exit status 1
+06/10/2016 04:20:16 PM - INFO - 1.000
+205
+VRD set to 1.0
+
+06/10/2016 04:20:28 PM - ERROR - Error in executable rg. Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl.py", line 432, in setvoltages
+    output = voltage.rg(rg_lo, rg_hi)
+  File "/home/lsst/ccdcontroller/voltage.py", line 60, in rg
+    "{0}".format(RG_hi)])
+  File "/home/lsst/ccdcontroller/voltage.py", line 26, in f
+    raise error
+CalledProcessError: Command '['rg', '-2.0', '-3.0']' returned non-zero exit status 1
+06/10/2016 04:20:28 PM - ERROR - Reset Gate low set to -2.0
+rg_hi: Error: Voltage must be >=  0.00
+Traceback (most recent call last):
+  File "./ccdctrl.py", line 432, in setvoltages
+    output = voltage.rg(rg_lo, rg_hi)
+  File "/home/lsst/ccdcontroller/voltage.py", line 60, in rg
+    "{0}".format(RG_hi)])
+  File "/home/lsst/ccdcontroller/voltage.py", line 26, in f
+    raise error
+CalledProcessError: Command '['rg', '-2.0', '-3.0']' returned non-zero exit status 1
+06/10/2016 04:20:58 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 04:21:02 PM - INFO - Controller turned off successfully.
+06/10/2016 04:47:05 PM - INFO - GUI display widget values successfully restored.
+06/10/2016 04:47:05 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 04:47:09 PM - INFO - Controller turned off successfully.
+06/10/2016 04:47:09 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/10/2016 04:47:17 PM - INFO - Controller turned on successfully.
+06/16/2016 12:04:38 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/16/2016 12:04:42 PM - INFO - Controller turned off successfully.
