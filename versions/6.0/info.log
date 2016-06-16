@@ -1,0 +1,1732 @@
+05/05/2016 05:00:52 PM - INFO - GUI display widget values successfully restored.
+05/05/2016 05:00:52 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/05/2016 05:00:52 PM - INFO - Controller turned off successfully.
+05/05/2016 05:00:52 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/05/2016 05:00:52 PM - INFO - Controller turned on successfully.
+05/05/2016 05:00:58 PM - INFO - Starting Exposure Stack with imcount 10, exptime 3.0, and filebase /home/lsst/Data/20160426.exp.3.0s.
+05/05/2016 05:00:58 PM - ERROR - Executable exp_acq not found. Image not taken.
+Traceback (most recent call last):
+  File "./ccdctrl-dev-1.py", line 251, in expose
+    filename = exposure.stack(mode, filebase, imcount, exptime, start)
+  File "/Users/adamsnyder/ccdcontroller/exposure.py", line 126, in stack
+    im_acq(mode, filename, time)
+  File "/Users/adamsnyder/ccdcontroller/exposure.py", line 110, in im_acq
+    "{0}".format(filename)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+05/05/2016 05:01:03 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/05/2016 05:01:03 PM - INFO - Controller turned off successfully.
+05/05/2016 05:04:08 PM - INFO - GUI display widget values successfully restored.
+05/05/2016 05:04:08 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/05/2016 05:04:08 PM - INFO - Controller turned off successfully.
+05/05/2016 05:04:08 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/05/2016 05:04:08 PM - INFO - Controller turned on successfully.
+05/05/2016 05:04:14 PM - INFO - Starting 3.0s Exposure image with filebase /home/lsst/Data/20160426.exp.3.0s.
+05/05/2016 05:04:14 PM - ERROR - Executable exp_acq not found. Image not taken
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 222, in expose
+    filename = exposure.im_acq(mode, filebase, exptime)
+  File "/Users/adamsnyder/ccdcontroller/exposure.py", line 110, in im_acq
+    "{0}".format(filename)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+05/05/2016 05:04:50 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/05/2016 05:04:50 PM - INFO - Controller turned off successfully.
+05/05/2016 05:06:41 PM - INFO - GUI display widget values successfully restored.
+05/05/2016 05:06:41 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/05/2016 05:06:41 PM - INFO - Controller turned off successfully.
+05/05/2016 05:06:41 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/05/2016 05:06:41 PM - INFO - Controller turned on successfully.
+05/05/2016 05:07:11 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/05/2016 05:07:11 PM - INFO - Controller turned off successfully.
+05/05/2016 05:09:36 PM - INFO - GUI display widget values successfully restored.
+05/05/2016 05:09:36 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/05/2016 05:09:36 PM - INFO - Controller turned off successfully.
+05/05/2016 05:09:36 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/05/2016 05:09:36 PM - INFO - Controller turned on successfully.
+05/05/2016 05:09:54 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/05/2016 05:09:54 PM - INFO - Controller turned off successfully.
+05/05/2016 05:13:15 PM - INFO - GUI display widget values successfully restored.
+05/05/2016 05:13:15 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/05/2016 05:13:15 PM - INFO - Controller turned off successfully.
+05/05/2016 05:13:15 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/05/2016 05:13:15 PM - INFO - Controller turned on successfully.
+05/05/2016 05:13:18 PM - INFO - Starting 3.0s Exposure image with filebase /home/lsst/Data/20160426/preamp.in.exp.3.0s.
+05/05/2016 05:13:18 PM - ERROR - Executable exp_acq not found. Image not taken
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 223, in expose
+    filename = exposure.im_acq(mode, filebase, exptime)
+  File "/Users/adamsnyder/ccdcontroller/exposure.py", line 110, in im_acq
+    "{0}".format(filename)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+05/05/2016 05:13:56 PM - INFO - Starting 3.0s Dark image with filebase /home/lsst/Data/20160426/preamp.in.dark.3.0s.
+05/05/2016 05:13:56 PM - ERROR - Executable dark_acq not found. Image not taken
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 223, in expose
+    filename = exposure.im_acq(mode, filebase, exptime)
+  File "/Users/adamsnyder/ccdcontroller/exposure.py", line 107, in im_acq
+    "{0}".format(filename)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+05/05/2016 05:14:00 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/05/2016 05:14:00 PM - INFO - Controller turned off successfully.
+05/05/2016 05:20:48 PM - INFO - GUI display widget values successfully restored.
+05/05/2016 05:20:48 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/05/2016 05:20:48 PM - INFO - Controller turned off successfully.
+05/05/2016 05:20:48 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/05/2016 05:20:48 PM - INFO - Controller turned on successfully.
+05/05/2016 05:20:51 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/05/2016 05:20:51 PM - INFO - Controller turned off successfully.
+<<<<<<< HEAD
+05/09/2016 09:36:09 AM - INFO - GUI display widget values successfully restored.
+05/09/2016 09:36:09 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 09:36:09 AM - INFO - Controller turned off successfully.
+05/09/2016 09:36:09 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/09/2016 09:36:09 AM - INFO - Controller turned on successfully.
+05/09/2016 09:36:21 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 09:36:21 AM - INFO - Controller turned off successfully.
+05/09/2016 09:59:48 AM - INFO - GUI display widget values successfully restored.
+05/09/2016 09:59:48 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 09:59:48 AM - INFO - Controller turned off successfully.
+05/09/2016 09:59:48 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/09/2016 09:59:48 AM - INFO - Controller turned on successfully.
+05/09/2016 09:59:59 AM - INFO - Starting 3.0s Dark image with filebase /home/lsst/Data/20160426/preamp.in.dark.3.0s.
+05/09/2016 09:59:59 AM - ERROR - Executable dark_acq not found. Image not taken
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 233, in expose
+    filename = exposure.im_acq(mode, filebase, exptime)
+  File "/Users/adamsnyder/ccdcontroller/exposure.py", line 107, in im_acq
+    "{0}".format(filename)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+05/09/2016 10:00:05 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 10:00:05 AM - INFO - Controller turned off successfully.
+05/09/2016 10:01:43 AM - INFO - GUI display widget values successfully restored.
+05/09/2016 10:01:43 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 10:01:43 AM - INFO - Controller turned off successfully.
+05/09/2016 10:01:43 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/09/2016 10:01:43 AM - INFO - Controller turned on successfully.
+05/09/2016 10:01:49 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 10:01:49 AM - INFO - Controller turned off successfully.
+05/09/2016 10:01:59 AM - INFO - GUI display widget values successfully restored.
+05/09/2016 10:01:59 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 10:01:59 AM - INFO - Controller turned off successfully.
+05/09/2016 10:01:59 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/09/2016 10:01:59 AM - INFO - Controller turned on successfully.
+05/09/2016 10:02:09 AM - INFO - Starting 3.0s Dark image with filebase /home/lsst/Data/20160426/preamp.in.dark.3.0s.
+05/09/2016 10:02:09 AM - ERROR - Executable dark_acq not found. Image not taken
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 233, in expose
+    filename = exposure.im_acq(mode, filebase, exptime)
+  File "/Users/adamsnyder/ccdcontroller/exposure.py", line 107, in im_acq
+    "{0}".format(filename)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+05/09/2016 10:04:52 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 10:04:52 AM - INFO - Controller turned off successfully.
+05/09/2016 10:07:21 AM - INFO - GUI display widget values successfully restored.
+05/09/2016 10:07:21 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 10:07:21 AM - INFO - Controller turned off successfully.
+05/09/2016 10:07:21 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/09/2016 10:07:21 AM - INFO - Controller turned on successfully.
+05/09/2016 10:07:27 AM - INFO - Starting 3.0s Dark image with filebase /home/lsst/Data/20160426/preamp.in.dark.3.0s.
+05/09/2016 10:07:32 AM - ERROR - Executable dark_acq not found. Image not taken
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 234, in expose
+    filename = exposure.im_acq(mode, filebase, exptime)
+  File "/Users/adamsnyder/ccdcontroller/exposure.py", line 107, in im_acq
+    "{0}".format(filename)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+05/09/2016 10:07:43 AM - INFO - Starting 3.0s Dark image with filebase /home/lsst/Data/20160426/preamp.in.dark.3.0s.
+05/09/2016 10:07:48 AM - ERROR - Executable dark_acq not found. Image not taken
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 234, in expose
+    filename = exposure.im_acq(mode, filebase, exptime)
+  File "/Users/adamsnyder/ccdcontroller/exposure.py", line 107, in im_acq
+    "{0}".format(filename)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+05/09/2016 10:07:55 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 10:07:55 AM - INFO - Controller turned off successfully.
+05/09/2016 10:10:25 AM - INFO - GUI display widget values successfully restored.
+05/09/2016 10:10:25 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 10:10:25 AM - INFO - Controller turned off successfully.
+05/09/2016 10:10:25 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/09/2016 10:10:25 AM - INFO - Controller turned on successfully.
+05/09/2016 10:10:38 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 10:10:38 AM - INFO - Controller turned off successfully.
+05/09/2016 11:50:43 AM - INFO - GUI display widget values successfully restored.
+05/09/2016 11:50:43 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 11:50:43 AM - INFO - Controller turned off successfully.
+05/09/2016 11:50:43 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/09/2016 11:50:43 AM - INFO - Controller turned on successfully.
+05/09/2016 11:51:07 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 11:51:07 AM - INFO - Controller turned off successfully.
+05/09/2016 11:51:11 AM - INFO - GUI display widget values successfully restored.
+05/09/2016 11:51:11 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 11:51:11 AM - INFO - Controller turned off successfully.
+05/09/2016 11:51:11 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/09/2016 11:51:11 AM - INFO - Controller turned on successfully.
+05/09/2016 11:51:22 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 11:51:22 AM - INFO - Controller turned off successfully.
+05/09/2016 11:56:16 AM - INFO - GUI display widget values successfully restored.
+05/09/2016 11:56:16 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 11:56:16 AM - INFO - Controller turned off successfully.
+05/09/2016 11:56:16 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/09/2016 11:56:16 AM - INFO - Controller turned on successfully.
+05/09/2016 11:56:25 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 11:56:25 AM - INFO - Controller turned off successfully.
+05/09/2016 11:57:30 AM - INFO - GUI display widget values successfully restored.
+05/09/2016 11:57:30 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 11:57:30 AM - INFO - Controller turned off successfully.
+05/09/2016 11:57:30 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/09/2016 11:57:31 AM - INFO - Controller turned on successfully.
+05/09/2016 11:57:49 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/09/2016 11:57:49 AM - INFO - Controller turned off successfully.
+05/10/2016 09:54:32 AM - INFO - GUI display widget values successfully restored.
+05/10/2016 09:54:32 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 09:54:32 AM - INFO - Controller turned off successfully.
+05/10/2016 09:54:32 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/10/2016 09:54:32 AM - INFO - Controller turned on successfully.
+05/10/2016 09:54:42 AM - INFO - Starting 3.0s Dark image with filebase /home/lsst/Data/20160426/preamp.in.dark.3.0s.
+05/10/2016 09:54:47 AM - ERROR - Executable dark_acq not found. Image not taken
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 234, in expose
+    filename = exposure.im_acq(mode, filebase, exptime)
+  File "/Users/adamsnyder/ccdcontroller/exposure.py", line 107, in im_acq
+    "{0}".format(filename)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+05/10/2016 09:54:51 AM - INFO - Starting 3.0s Dark image with filebase /home/lsst/Data/20160426/preamp.in.dark.3.0s.
+05/10/2016 09:54:56 AM - ERROR - Executable dark_acq not found. Image not taken
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 234, in expose
+    filename = exposure.im_acq(mode, filebase, exptime)
+  File "/Users/adamsnyder/ccdcontroller/exposure.py", line 107, in im_acq
+    "{0}".format(filename)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+05/10/2016 09:55:04 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 09:55:04 AM - INFO - Controller turned off successfully.
+=======
+05/05/2016 05:28:48 PM - INFO - GUI display widget values successfully restored.
+05/05/2016 05:28:48 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/05/2016 05:28:52 PM - INFO - Controller turned off successfully.
+05/05/2016 05:28:52 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/05/2016 05:29:00 PM - INFO - Controller turned on successfully.
+05/05/2016 05:30:05 PM - INFO - Starting 3.0s Exposure image with filebase /home/lsst/Data/20160426/test.exp.3.0s.
+05/05/2016 05:30:13 PM - INFO - Exposure /home/lsst/Data/20160426/test.exp.3.0s.fits finished successfully.
+05/05/2016 05:35:26 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/05/2016 05:35:30 PM - INFO - Controller turned off successfully.
+>>>>>>> 78614ca79e3715fa1a16fbe00b2b434424e3e345
+05/10/2016 10:10:00 AM - INFO - GUI display widget values successfully restored.
+05/10/2016 10:10:00 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 10:10:00 AM - INFO - Controller turned off successfully.
+05/10/2016 10:10:00 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/10/2016 10:10:00 AM - INFO - Controller turned on successfully.
+05/10/2016 10:10:25 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 10:10:25 AM - INFO - Controller turned off successfully.
+05/10/2016 10:11:53 AM - INFO - GUI display widget values successfully restored.
+05/10/2016 10:11:53 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 10:11:57 AM - INFO - Controller turned off successfully.
+05/10/2016 10:11:57 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/10/2016 10:12:06 AM - INFO - Controller turned on successfully.
+05/10/2016 10:12:25 AM - INFO - Starting 3.0s Exposure image with filebase /home/lsst/Data/20160426/test.exp.3.0s.
+05/10/2016 10:13:27 AM - INFO - GUI display widget values successfully restored.
+05/10/2016 10:13:27 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 10:13:27 AM - INFO - Controller turned off successfully.
+05/10/2016 10:13:27 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/10/2016 10:13:27 AM - INFO - Controller turned on successfully.
+05/10/2016 10:13:31 AM - INFO - Starting 3.0s Exposure image with filebase /home/lsst/Data/20160426/test.exp.3.0s.
+05/10/2016 10:15:53 AM - INFO - GUI display widget values successfully restored.
+05/10/2016 10:15:53 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 10:15:53 AM - INFO - Controller turned off successfully.
+05/10/2016 10:15:53 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/10/2016 10:15:53 AM - INFO - Controller turned on successfully.
+05/10/2016 10:16:04 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 10:16:04 AM - INFO - Controller turned off successfully.
+05/10/2016 10:24:33 AM - INFO - GUI display widget values successfully restored.
+05/10/2016 10:24:33 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 10:24:33 AM - INFO - Controller turned off successfully.
+05/10/2016 10:24:33 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/10/2016 10:24:33 AM - INFO - Controller turned on successfully.
+05/10/2016 10:24:35 AM - INFO - Starting 3.0s Exposure image with filebase /home/lsst/Data/20160426/test.exp.3.0s.
+05/10/2016 10:24:44 AM - INFO - GUI display widget values successfully restored.
+05/10/2016 10:24:44 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 10:24:44 AM - INFO - Controller turned off successfully.
+05/10/2016 10:24:44 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/10/2016 10:24:44 AM - INFO - Controller turned on successfully.
+05/10/2016 10:24:47 AM - INFO - Starting 3.0s Exposure image with filebase /home/lsst/Data/20160426/test.exp.3.0s.
+05/10/2016 10:27:07 AM - INFO - GUI display widget values successfully restored.
+05/10/2016 10:27:07 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 10:27:07 AM - INFO - Controller turned off successfully.
+05/10/2016 10:27:07 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/10/2016 10:27:07 AM - INFO - Controller turned on successfully.
+05/10/2016 10:28:59 AM - INFO - GUI display widget values successfully restored.
+05/10/2016 10:28:59 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 10:28:59 AM - INFO - Controller turned off successfully.
+05/10/2016 10:28:59 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/10/2016 10:28:59 AM - INFO - Controller turned on successfully.
+05/10/2016 10:29:02 AM - ERROR - File already exits. Image not taken.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 233, in expose
+    filename = exposure.im_acq(mode, filebase, exptime)
+  File "/home/lsst/ccdcontroller/exposure.py", line 99, in im_acq
+    raise IOError
+IOError
+05/10/2016 10:29:09 AM - ERROR - File already exits. Image not taken.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 233, in expose
+    filename = exposure.im_acq(mode, filebase, exptime)
+  File "/home/lsst/ccdcontroller/exposure.py", line 99, in im_acq
+    raise IOError
+IOError
+05/10/2016 10:29:13 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 10:29:13 AM - INFO - Controller turned off successfully.
+05/10/2016 10:30:01 AM - INFO - GUI display widget values successfully restored.
+05/10/2016 10:30:01 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 10:30:01 AM - INFO - Controller turned off successfully.
+05/10/2016 10:30:01 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/10/2016 10:30:01 AM - INFO - Controller turned on successfully.
+05/10/2016 10:30:04 AM - INFO - Starting 3.0s Exposure image with filebase /home/lsst/Data/20160426/test.exp.3.0s.
+05/10/2016 10:30:04 AM - ERROR - File already exits. Image not taken.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 232, in expose
+    filename = exposure.im_acq(mode, filebase, exptime)
+  File "/home/lsst/ccdcontroller/exposure.py", line 99, in im_acq
+    raise IOError
+IOError
+05/10/2016 10:30:27 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 10:30:27 AM - INFO - Controller turned off successfully.
+05/10/2016 10:31:27 AM - INFO - GUI display widget values successfully restored.
+05/10/2016 10:31:27 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 10:31:31 AM - INFO - Controller turned off successfully.
+05/10/2016 10:31:31 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/10/2016 10:31:39 AM - INFO - Controller turned on successfully.
+05/10/2016 10:32:15 AM - INFO - Starting 3.0s Exposure image with filebase /home/lsst/Data/20160426/test.exp.3.0s.
+05/10/2016 10:32:15 AM - ERROR - File already exits. Image not taken.
+Traceback (most recent call last):
+  File "./ccdctrl.py", line 232, in expose
+    filename = exposure.im_acq(mode, filebase, exptime)
+  File "/home/lsst/ccdcontroller/exposure.py", line 99, in im_acq
+    raise IOError
+IOError
+05/10/2016 10:32:26 AM - INFO - Starting 5.0s Exposure image with filebase /home/lsst/Data/20160426/test.exp.5.0s.
+05/10/2016 10:32:56 AM - INFO - Exposure /home/lsst/Data/20160426/test.exp.5.0s.fits finished successfully.
+05/10/2016 10:33:12 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 10:33:16 AM - INFO - Controller turned off successfully.
+05/10/2016 04:15:48 PM - INFO - GUI display widget values successfully restored.
+05/10/2016 04:15:48 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 04:15:52 PM - INFO - Controller turned off successfully.
+05/10/2016 04:15:52 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/10/2016 04:16:01 PM - INFO - Controller turned on successfully.
+05/10/2016 04:17:46 PM - INFO - Data directory changed to /home/lsst/Data/20160510.
+05/10/2016 04:18:16 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 04:18:20 PM - INFO - Controller turned off successfully.
+05/10/2016 04:22:49 PM - INFO - GUI display widget values successfully restored.
+05/10/2016 04:22:49 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 04:22:53 PM - INFO - Controller turned off successfully.
+05/10/2016 04:22:53 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/10/2016 04:23:01 PM - INFO - Controller turned on successfully.
+05/10/2016 04:28:59 PM - INFO - Data directory changed to /home/lsst/Data/20160510.
+05/10/2016 04:29:10 PM - INFO - Starting 5.0s Exposure image with filebase /home/lsst/Data/20160510/.exp.5.0s.
+05/10/2016 04:29:34 PM - INFO - Exposure /home/lsst/Data/20160510/.exp.5.0s.fits finished successfully.
+05/10/2016 04:40:07 PM - INFO - Starting 5.0s Exposure image with filebase /home/lsst/Data/20160510/.exp.5.0s.
+05/10/2016 04:40:07 PM - ERROR - File already exits. Image not taken.
+Traceback (most recent call last):
+  File "./ccdctrl.py", line 232, in expose
+    filename = exposure.im_acq(mode, filebase, exptime)
+  File "/home/lsst/ccdcontroller/exposure.py", line 99, in im_acq
+    raise IOError
+IOError
+05/10/2016 04:42:03 PM - INFO - Starting 3.0s Exposure image with filebase /home/lsst/Data/20160510/.exp.3.0s.
+05/10/2016 04:42:33 PM - INFO - Exposure /home/lsst/Data/20160510/.exp.3.0s.fits finished successfully.
+05/10/2016 04:44:51 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 04:44:55 PM - INFO - Controller turned off successfully.
+05/10/2016 04:55:20 PM - INFO - GUI display widget values successfully restored.
+05/10/2016 04:55:20 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 04:55:24 PM - INFO - Controller turned off successfully.
+05/10/2016 04:55:24 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/10/2016 04:55:32 PM - INFO - Controller turned on successfully.
+05/10/2016 04:55:38 PM - INFO - Starting 3.0s Exposure image with filebase /home/lsst/Data/20160510/test.exp.3.0s.
+05/10/2016 04:56:11 PM - INFO - Exposure /home/lsst/Data/20160510/test.exp.3.0s.10.fits finished successfully.
+05/10/2016 04:56:42 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 04:56:46 PM - INFO - Controller turned off successfully.
+05/10/2016 04:58:53 PM - INFO - GUI display widget values successfully restored.
+05/10/2016 04:58:53 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 04:58:57 PM - INFO - Controller turned off successfully.
+05/10/2016 04:58:57 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/10/2016 04:59:05 PM - INFO - Controller turned on successfully.
+05/10/2016 05:02:24 PM - INFO - Data directory changed to /home/lsst/Data/dkg.4.29.15.
+05/10/2016 05:04:05 PM - INFO - Data directory changed to /home/lsst/Data/20160510.
+05/10/2016 05:06:51 PM - INFO - Starting 5.0s Exposure image with filebase /home/lsst/Data/20160510/kg.test.exp.5.0s.
+05/10/2016 05:07:01 PM - INFO - Exposure /home/lsst/Data/20160510/kg.test.exp.5.0s.100.fits finished successfully.
+05/10/2016 05:55:37 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/10/2016 05:55:42 PM - INFO - Controller turned off successfully.
+05/16/2016 04:09:26 PM - INFO - GUI display widget values successfully restored.
+05/16/2016 04:09:26 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/16/2016 04:09:26 PM - INFO - Controller turned off successfully.
+05/16/2016 04:09:26 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/16/2016 04:09:26 PM - INFO - Controller turned on successfully.
+05/16/2016 04:09:59 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/16/2016 04:09:59 PM - INFO - Controller turned off successfully.
+05/16/2016 04:59:36 PM - INFO - GUI display widget values successfully restored.
+05/16/2016 04:59:36 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/16/2016 04:59:36 PM - INFO - Controller turned off successfully.
+05/16/2016 04:59:36 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/16/2016 04:59:36 PM - INFO - Controller turned on successfully.
+05/16/2016 04:59:45 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/16/2016 04:59:45 PM - INFO - Controller turned off successfully.
+05/16/2016 05:00:21 PM - INFO - GUI display widget values successfully restored.
+05/16/2016 05:00:21 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/16/2016 05:00:21 PM - INFO - Controller turned off successfully.
+05/16/2016 05:00:21 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/16/2016 05:00:21 PM - INFO - Controller turned on successfully.
+05/16/2016 05:01:11 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/16/2016 05:01:11 PM - INFO - Controller turned off successfully.
+05/16/2016 05:01:14 PM - INFO - GUI display widget values successfully restored.
+05/16/2016 05:01:14 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/16/2016 05:01:14 PM - INFO - Controller turned off successfully.
+05/16/2016 05:01:14 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/16/2016 05:01:14 PM - INFO - Controller turned on successfully.
+05/16/2016 05:01:19 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/16/2016 05:01:19 PM - INFO - Controller turned off successfully.
+05/17/2016 11:56:37 AM - INFO - GUI display widget values successfully restored.
+05/17/2016 11:56:37 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/17/2016 11:56:37 AM - INFO - Controller turned off successfully.
+05/17/2016 11:56:37 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/17/2016 11:56:37 AM - INFO - Controller turned on successfully.
+05/17/2016 11:56:44 AM - INFO - Starting 5.0s Exposure image.
+05/17/2016 11:56:52 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/17/2016 11:56:52 AM - INFO - Controller turned off successfully.
+05/17/2016 11:57:31 AM - INFO - GUI display widget values successfully restored.
+05/17/2016 11:57:31 AM - INFO - Turning off sta3800 controller (sta3800_off).
+05/17/2016 11:57:31 AM - INFO - Controller turned off successfully.
+05/17/2016 11:57:31 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/17/2016 11:57:31 AM - INFO - Controller turned on successfully.
+05/17/2016 11:57:41 AM - INFO - Starting 5.0s Exposure image.
+05/17/2016 11:57:41 AM - ERROR - Executable exp_acq not found. Image not taken
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 262, in expose
+    filename = exposure.im_acq(mode, filepath, exptime, seqnum, **kwargs)
+  File "/Users/adamsnyder/ccdcontroller/exposure.py", line 108, in im_acq
+    "{0}".format(filename)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+05/17/2016 11:57:55 AM - INFO - Start 5.0s Exposure Stack stack.
+05/17/2016 11:57:55 AM - INFO - Starting image 101 of 111.
+05/17/2016 11:57:55 AM - ERROR - Executable exp_acq not found. Image not taken.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 285, in expose
+    filename = exposure.im_acq(mode, filepath, exptime, i, **kwargs)
+  File "/Users/adamsnyder/ccdcontroller/exposure.py", line 108, in im_acq
+    "{0}".format(filename)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+05/17/2016 12:01:48 PM - INFO - GUI display widget values successfully restored.
+05/17/2016 12:01:48 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/17/2016 12:01:48 PM - INFO - Controller turned off successfully.
+05/17/2016 12:01:48 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/17/2016 12:01:48 PM - INFO - Controller turned on successfully.
+05/17/2016 12:02:01 PM - INFO - Starting 5.0s Exposure Stack stack.
+05/17/2016 12:02:02 PM - INFO - Starting image 1 of 10.
+05/17/2016 12:02:02 PM - ERROR - Executable exp_acq not found. Image not taken.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 285, in expose
+    filename = exposure.im_acq(mode, filepath, exptime, i, **kwargs)
+  File "/Users/adamsnyder/ccdcontroller/exposure.py", line 108, in im_acq
+    "{0}".format(filename)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+05/17/2016 12:02:20 PM - INFO - Starting Exposure Series series with mintime 2.0, maxtime 4.0, and step 1.0.
+05/17/2016 12:02:27 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/17/2016 12:02:27 PM - INFO - Controller turned off successfully.
+05/17/2016 12:04:08 PM - INFO - GUI display widget values successfully restored.
+05/17/2016 12:04:08 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/17/2016 12:04:08 PM - INFO - Controller turned off successfully.
+05/17/2016 12:04:08 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/17/2016 12:04:08 PM - INFO - Controller turned on successfully.
+05/17/2016 12:04:15 PM - INFO - Starting Exposure Series series with mintime 2.0, maxtime 4.0, and step 1.0.
+05/17/2016 12:04:15 PM - INFO - Starting 2.0s exp image.
+05/17/2016 12:04:15 PM - ERROR - Executable exp_acq not found. Image not taken.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 324, in expose
+    filename = exposure.im_acq(mode, filepath, time, seqnum, **kwargs)
+  File "/Users/adamsnyder/ccdcontroller/exposure.py", line 108, in im_acq
+    "{0}".format(filename)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+05/17/2016 12:04:25 PM - WARNING - Time step must be greater than 0.
+05/17/2016 12:04:30 PM - WARNING - Minimum time must be less than Maximum time. Series not started.
+05/17/2016 12:04:53 PM - INFO - Starting 5.0s Exposure image.
+05/17/2016 12:04:53 PM - ERROR - Executable exp_acq not found. Image not taken
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 262, in expose
+    filename = exposure.im_acq(mode, filepath, exptime, seqnum, **kwargs)
+  File "/Users/adamsnyder/ccdcontroller/exposure.py", line 108, in im_acq
+    "{0}".format(filename)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+05/17/2016 12:05:00 PM - INFO - Starting 5.0s Exposure image.
+05/17/2016 12:05:00 PM - ERROR - Executable exp_acq not found. Image not taken
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 262, in expose
+    filename = exposure.im_acq(mode, filepath, exptime, seqnum, **kwargs)
+  File "/Users/adamsnyder/ccdcontroller/exposure.py", line 108, in im_acq
+    "{0}".format(filename)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+05/17/2016 12:05:05 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/17/2016 12:05:05 PM - INFO - Controller turned off successfully.
+05/17/2016 01:31:10 PM - INFO - GUI display widget values successfully restored.
+05/17/2016 01:31:10 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/17/2016 01:31:10 PM - INFO - Controller turned off successfully.
+05/17/2016 01:31:10 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/17/2016 01:31:10 PM - INFO - Controller turned on successfully.
+05/17/2016 01:31:18 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/17/2016 01:31:18 PM - INFO - Controller turned off successfully.
+05/17/2016 01:31:51 PM - INFO - GUI display widget values successfully restored.
+05/17/2016 01:31:51 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/17/2016 01:31:55 PM - INFO - Controller turned off successfully.
+05/17/2016 01:31:55 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/17/2016 01:32:03 PM - INFO - Controller turned on successfully.
+05/17/2016 01:32:34 PM - INFO - Data directory changed to /home/lsst/Data/20160516.
+05/17/2016 01:32:42 PM - INFO - Starting 5.0s Exposure image.
+05/17/2016 01:33:05 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/17/2016 01:33:09 PM - INFO - Controller turned off successfully.
+05/17/2016 01:36:43 PM - INFO - GUI display widget values successfully restored.
+05/17/2016 01:36:43 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/17/2016 01:36:47 PM - INFO - Controller turned off successfully.
+05/17/2016 01:36:47 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/17/2016 01:36:55 PM - INFO - Controller turned on successfully.
+05/17/2016 01:37:01 PM - INFO - Starting 5.0s Exposure image.
+05/17/2016 01:37:01 PM - ERROR - File already exits. Image not taken.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 263, in expose
+    filename = exposure.im_acq(mode, filepath, exptime, seqnum, **kwargs)
+  File "/home/lsst/ccdcontroller/exposure.py", line 105, in im_acq
+    raise IOError
+IOError
+05/17/2016 01:37:22 PM - INFO - Starting 5.0s Exposure image.
+05/17/2016 01:37:54 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/17/2016 01:37:58 PM - INFO - Controller turned off successfully.
+05/17/2016 01:40:04 PM - INFO - GUI display widget values successfully restored.
+05/17/2016 01:40:04 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/17/2016 01:40:08 PM - INFO - Controller turned off successfully.
+05/17/2016 01:40:08 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/17/2016 01:40:16 PM - INFO - Controller turned on successfully.
+05/17/2016 01:40:35 PM - INFO - Starting 5.0s Exposure image.
+05/17/2016 01:40:45 PM - INFO - Exposure /home/lsst/Data/20160516/.exp.5.0s.101.fits finished successfully.
+05/17/2016 01:41:39 PM - INFO - Starting 2.0s Exposure Stack stack.
+05/17/2016 01:41:39 PM - INFO - Starting image 1 of 3.
+05/17/2016 01:41:46 PM - INFO - Exposure /home/lsst/Data/20160516/test.exp.2.0s.101.fits finished successfully.
+05/17/2016 01:41:46 PM - INFO - Starting image 2 of 3.
+05/17/2016 01:41:52 PM - INFO - Exposure /home/lsst/Data/20160516/test.exp.2.0s.102.fits finished successfully.
+05/17/2016 01:41:52 PM - INFO - Starting image 3 of 3.
+05/17/2016 01:41:59 PM - INFO - Exposure /home/lsst/Data/20160516/test.exp.2.0s.103.fits finished successfully.
+05/17/2016 01:41:59 PM - INFO - Exposure stack finished successfully.
+05/17/2016 01:42:25 PM - INFO - Starting 2.0s Exposure Stack stack.
+05/17/2016 01:42:25 PM - INFO - Starting image 1 of 3.
+05/17/2016 01:42:31 PM - INFO - Exposure /home/lsst/Data/20160516/test2.exp.2.0s.101.fits finished successfully.
+05/17/2016 01:42:31 PM - INFO - Starting image 2 of 3.
+05/17/2016 01:42:38 PM - INFO - Exposure /home/lsst/Data/20160516/test2.exp.2.0s.102.fits finished successfully.
+05/17/2016 01:42:38 PM - INFO - Starting image 3 of 3.
+05/17/2016 01:42:45 PM - INFO - Exposure /home/lsst/Data/20160516/test2.exp.2.0s.103.fits finished successfully.
+05/17/2016 01:42:45 PM - INFO - Exposure stack finished successfully.
+05/17/2016 01:43:16 PM - INFO - Starting Exposure Series series with mintime 0.0, maxtime 2.0, and step 0.5.
+05/17/2016 01:43:16 PM - INFO - Starting 0.0s exp image.
+05/17/2016 01:43:21 PM - INFO - Exposure /home/lsst/Data/20160516/test.exp.0.0s.101.fits finished successfully.
+05/17/2016 01:43:21 PM - INFO - Starting 0.5s exp image.
+05/17/2016 01:43:26 PM - INFO - Exposure /home/lsst/Data/20160516/test.exp.0.5s.101.fits finished successfully.
+05/17/2016 01:43:26 PM - INFO - Starting 1.0s exp image.
+05/17/2016 01:43:32 PM - INFO - Exposure /home/lsst/Data/20160516/test.exp.1.0s.101.fits finished successfully.
+05/17/2016 01:43:32 PM - INFO - Starting 1.5s exp image.
+05/17/2016 01:43:39 PM - INFO - Exposure /home/lsst/Data/20160516/test.exp.1.5s.101.fits finished successfully.
+05/17/2016 01:43:39 PM - INFO - Starting 2.0s exp image.
+05/17/2016 01:43:39 PM - ERROR - File already exists. Image not taken.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 325, in expose
+    filename = exposure.im_acq(mode, filepath, time, seqnum, **kwargs)
+  File "/home/lsst/ccdcontroller/exposure.py", line 105, in im_acq
+    raise IOError
+IOError
+05/17/2016 01:44:02 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/17/2016 01:44:06 PM - INFO - Controller turned off successfully.
+05/17/2016 01:55:32 PM - INFO - GUI display widget values successfully restored.
+05/17/2016 01:55:32 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/17/2016 01:55:37 PM - INFO - Controller turned off successfully.
+05/17/2016 01:55:37 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/17/2016 01:55:45 PM - INFO - Controller turned on successfully.
+05/17/2016 01:56:15 PM - INFO - Starting 2.0s Exposure Stack stack.
+05/17/2016 01:56:15 PM - INFO - Starting image 1 of 3.
+05/17/2016 01:56:21 PM - INFO - Exposure /home/lsst/Data/20160516/test4.exp.2.0s.101.fits finished successfully.
+05/17/2016 01:56:21 PM - INFO - Starting image 2 of 3.
+05/17/2016 01:56:28 PM - INFO - Exposure /home/lsst/Data/20160516/test4.exp.2.0s.102.fits finished successfully.
+05/17/2016 01:56:28 PM - INFO - Starting image 3 of 3.
+05/17/2016 01:56:35 PM - INFO - Exposure /home/lsst/Data/20160516/test4.exp.2.0s.103.fits finished successfully.
+05/17/2016 01:56:35 PM - INFO - Exposure stack finished successfully.
+05/17/2016 01:56:49 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/17/2016 01:56:53 PM - INFO - Controller turned off successfully.
+05/17/2016 02:04:32 PM - INFO - GUI display widget values successfully restored.
+05/17/2016 02:04:32 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/17/2016 02:04:36 PM - INFO - Controller turned off successfully.
+05/17/2016 02:04:36 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/17/2016 02:04:44 PM - INFO - Controller turned on successfully.
+05/17/2016 02:05:18 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/17/2016 02:05:22 PM - INFO - Controller turned off successfully.
+05/17/2016 02:47:48 PM - INFO - GUI display widget values successfully restored.
+05/17/2016 02:47:48 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/17/2016 02:47:52 PM - INFO - Controller turned off successfully.
+05/17/2016 02:47:52 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/17/2016 02:48:00 PM - INFO - Controller turned on successfully.
+05/17/2016 02:48:12 PM - INFO - Data directory changed to /home/lsst/Data/20160517.
+05/17/2016 03:00:09 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/17/2016 03:00:13 PM - INFO - Controller turned off successfully.
+05/17/2016 03:36:12 PM - INFO - GUI display widget values successfully restored.
+05/17/2016 03:36:12 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/17/2016 03:36:16 PM - INFO - Controller turned off successfully.
+05/17/2016 03:36:16 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/17/2016 03:36:24 PM - INFO - Controller turned on successfully.
+05/17/2016 03:51:25 PM - INFO - Starting 2.0s Exposure image.
+05/17/2016 03:51:31 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.2.0s.1.fits finished successfully.
+05/17/2016 03:52:14 PM - INFO - Starting 2.0s Exposure image.
+05/17/2016 03:52:20 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.2.0s.2.fits finished successfully.
+05/17/2016 03:56:15 PM - INFO - Starting 1.0s Exposure Stack stack.
+05/17/2016 03:56:15 PM - INFO - Starting image 1 of 60.
+05/17/2016 03:56:20 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.3.fits finished successfully.
+05/17/2016 03:56:20 PM - INFO - Starting image 2 of 60.
+05/17/2016 03:56:26 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.4.fits finished successfully.
+05/17/2016 03:56:26 PM - INFO - Starting image 3 of 60.
+05/17/2016 03:56:31 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.5.fits finished successfully.
+05/17/2016 03:56:31 PM - INFO - Starting image 4 of 60.
+05/17/2016 03:56:36 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.6.fits finished successfully.
+05/17/2016 03:56:36 PM - INFO - Starting image 5 of 60.
+05/17/2016 03:56:41 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.7.fits finished successfully.
+05/17/2016 03:56:41 PM - INFO - Starting image 6 of 60.
+05/17/2016 03:56:46 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.8.fits finished successfully.
+05/17/2016 03:56:46 PM - INFO - Starting image 7 of 60.
+05/17/2016 03:56:51 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.9.fits finished successfully.
+05/17/2016 03:56:51 PM - INFO - Starting image 8 of 60.
+05/17/2016 03:56:57 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.10.fits finished successfully.
+05/17/2016 03:56:57 PM - INFO - Starting image 9 of 60.
+05/17/2016 03:57:02 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.11.fits finished successfully.
+05/17/2016 03:57:02 PM - INFO - Starting image 10 of 60.
+05/17/2016 03:57:07 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.12.fits finished successfully.
+05/17/2016 03:57:07 PM - INFO - Starting image 11 of 60.
+05/17/2016 03:57:12 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.13.fits finished successfully.
+05/17/2016 03:57:12 PM - INFO - Starting image 12 of 60.
+05/17/2016 03:57:17 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.14.fits finished successfully.
+05/17/2016 03:57:17 PM - INFO - Starting image 13 of 60.
+05/17/2016 03:57:23 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.15.fits finished successfully.
+05/17/2016 03:57:23 PM - INFO - Starting image 14 of 60.
+05/17/2016 03:57:28 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.16.fits finished successfully.
+05/17/2016 03:57:28 PM - INFO - Starting image 15 of 60.
+05/17/2016 03:57:33 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.17.fits finished successfully.
+05/17/2016 03:57:33 PM - INFO - Starting image 16 of 60.
+05/17/2016 03:57:38 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.18.fits finished successfully.
+05/17/2016 03:57:38 PM - INFO - Starting image 17 of 60.
+05/17/2016 03:57:43 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.19.fits finished successfully.
+05/17/2016 03:57:43 PM - INFO - Starting image 18 of 60.
+05/17/2016 03:57:48 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.20.fits finished successfully.
+05/17/2016 03:57:48 PM - INFO - Starting image 19 of 60.
+05/17/2016 03:57:54 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.21.fits finished successfully.
+05/17/2016 03:57:54 PM - INFO - Starting image 20 of 60.
+05/17/2016 03:57:59 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.22.fits finished successfully.
+05/17/2016 03:57:59 PM - INFO - Starting image 21 of 60.
+05/17/2016 03:58:04 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.23.fits finished successfully.
+05/17/2016 03:58:04 PM - INFO - Starting image 22 of 60.
+05/17/2016 03:58:09 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.24.fits finished successfully.
+05/17/2016 03:58:09 PM - INFO - Starting image 23 of 60.
+05/17/2016 03:58:14 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.25.fits finished successfully.
+05/17/2016 03:58:14 PM - INFO - Starting image 24 of 60.
+05/17/2016 03:58:19 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.26.fits finished successfully.
+05/17/2016 03:58:19 PM - INFO - Starting image 25 of 60.
+05/17/2016 03:58:25 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.27.fits finished successfully.
+05/17/2016 03:58:25 PM - INFO - Starting image 26 of 60.
+05/17/2016 03:58:30 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.28.fits finished successfully.
+05/17/2016 03:58:30 PM - INFO - Starting image 27 of 60.
+05/17/2016 03:58:35 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.29.fits finished successfully.
+05/17/2016 03:58:35 PM - INFO - Starting image 28 of 60.
+05/17/2016 03:58:40 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.30.fits finished successfully.
+05/17/2016 03:58:40 PM - INFO - Starting image 29 of 60.
+05/17/2016 03:58:45 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.31.fits finished successfully.
+05/17/2016 03:58:45 PM - INFO - Starting image 30 of 60.
+05/17/2016 03:58:50 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.32.fits finished successfully.
+05/17/2016 03:58:50 PM - INFO - Starting image 31 of 60.
+05/17/2016 03:58:56 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.33.fits finished successfully.
+05/17/2016 03:58:56 PM - INFO - Starting image 32 of 60.
+05/17/2016 03:59:01 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.34.fits finished successfully.
+05/17/2016 03:59:01 PM - INFO - Starting image 33 of 60.
+05/17/2016 03:59:06 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.35.fits finished successfully.
+05/17/2016 03:59:06 PM - INFO - Starting image 34 of 60.
+05/17/2016 03:59:11 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.36.fits finished successfully.
+05/17/2016 03:59:11 PM - INFO - Starting image 35 of 60.
+05/17/2016 03:59:16 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.37.fits finished successfully.
+05/17/2016 03:59:16 PM - INFO - Starting image 36 of 60.
+05/17/2016 03:59:21 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.38.fits finished successfully.
+05/17/2016 03:59:21 PM - INFO - Starting image 37 of 60.
+05/17/2016 03:59:26 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.39.fits finished successfully.
+05/17/2016 03:59:26 PM - INFO - Starting image 38 of 60.
+05/17/2016 03:59:32 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.40.fits finished successfully.
+05/17/2016 03:59:32 PM - INFO - Starting image 39 of 60.
+05/17/2016 03:59:37 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.41.fits finished successfully.
+05/17/2016 03:59:37 PM - INFO - Starting image 40 of 60.
+05/17/2016 03:59:42 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.42.fits finished successfully.
+05/17/2016 03:59:42 PM - INFO - Starting image 41 of 60.
+05/17/2016 03:59:47 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.43.fits finished successfully.
+05/17/2016 03:59:47 PM - INFO - Starting image 42 of 60.
+05/17/2016 03:59:52 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.44.fits finished successfully.
+05/17/2016 03:59:52 PM - INFO - Starting image 43 of 60.
+05/17/2016 03:59:58 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.45.fits finished successfully.
+05/17/2016 03:59:58 PM - INFO - Starting image 44 of 60.
+05/17/2016 04:00:03 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.46.fits finished successfully.
+05/17/2016 04:00:03 PM - INFO - Starting image 45 of 60.
+05/17/2016 04:00:08 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.47.fits finished successfully.
+05/17/2016 04:00:08 PM - INFO - Starting image 46 of 60.
+05/17/2016 04:00:13 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.48.fits finished successfully.
+05/17/2016 04:00:13 PM - INFO - Starting image 47 of 60.
+05/17/2016 04:00:18 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.49.fits finished successfully.
+05/17/2016 04:00:18 PM - INFO - Starting image 48 of 60.
+05/17/2016 04:00:23 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.50.fits finished successfully.
+05/17/2016 04:00:23 PM - INFO - Starting image 49 of 60.
+05/17/2016 04:00:29 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.51.fits finished successfully.
+05/17/2016 04:00:29 PM - INFO - Starting image 50 of 60.
+05/17/2016 04:00:34 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.52.fits finished successfully.
+05/17/2016 04:00:34 PM - INFO - Starting image 51 of 60.
+05/17/2016 04:00:39 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.53.fits finished successfully.
+05/17/2016 04:00:39 PM - INFO - Starting image 52 of 60.
+05/17/2016 04:00:44 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.54.fits finished successfully.
+05/17/2016 04:00:44 PM - INFO - Starting image 53 of 60.
+05/17/2016 04:00:49 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.55.fits finished successfully.
+05/17/2016 04:00:49 PM - INFO - Starting image 54 of 60.
+05/17/2016 04:00:55 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.56.fits finished successfully.
+05/17/2016 04:00:55 PM - INFO - Starting image 55 of 60.
+05/17/2016 04:01:00 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.57.fits finished successfully.
+05/17/2016 04:01:00 PM - INFO - Starting image 56 of 60.
+05/17/2016 04:01:05 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.58.fits finished successfully.
+05/17/2016 04:01:05 PM - INFO - Starting image 57 of 60.
+05/17/2016 04:01:10 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.59.fits finished successfully.
+05/17/2016 04:01:10 PM - INFO - Starting image 58 of 60.
+05/17/2016 04:01:15 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.60.fits finished successfully.
+05/17/2016 04:01:15 PM - INFO - Starting image 59 of 60.
+05/17/2016 04:01:20 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.61.fits finished successfully.
+05/17/2016 04:01:20 PM - INFO - Starting image 60 of 60.
+05/17/2016 04:01:25 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.1.0s.62.fits finished successfully.
+05/17/2016 04:01:25 PM - INFO - Exposure stack finished successfully.
+05/17/2016 04:02:30 PM - INFO - Starting 0.0s Bias Stack stack.
+05/17/2016 04:02:30 PM - INFO - Starting image 1 of 60.
+05/17/2016 04:02:34 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.63.fits finished successfully.
+05/17/2016 04:02:34 PM - INFO - Starting image 2 of 60.
+05/17/2016 04:02:38 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.64.fits finished successfully.
+05/17/2016 04:02:38 PM - INFO - Starting image 3 of 60.
+05/17/2016 04:02:42 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.65.fits finished successfully.
+05/17/2016 04:02:42 PM - INFO - Starting image 4 of 60.
+05/17/2016 04:02:46 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.66.fits finished successfully.
+05/17/2016 04:02:46 PM - INFO - Starting image 5 of 60.
+05/17/2016 04:02:51 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.67.fits finished successfully.
+05/17/2016 04:02:51 PM - INFO - Starting image 6 of 60.
+05/17/2016 04:02:55 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.68.fits finished successfully.
+05/17/2016 04:02:55 PM - INFO - Starting image 7 of 60.
+05/17/2016 04:02:59 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.69.fits finished successfully.
+05/17/2016 04:02:59 PM - INFO - Starting image 8 of 60.
+05/17/2016 04:03:03 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.70.fits finished successfully.
+05/17/2016 04:03:03 PM - INFO - Starting image 9 of 60.
+05/17/2016 04:03:07 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.71.fits finished successfully.
+05/17/2016 04:03:07 PM - INFO - Starting image 10 of 60.
+05/17/2016 04:03:11 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.72.fits finished successfully.
+05/17/2016 04:03:11 PM - INFO - Starting image 11 of 60.
+05/17/2016 04:03:15 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.73.fits finished successfully.
+05/17/2016 04:03:15 PM - INFO - Starting image 12 of 60.
+05/17/2016 04:03:19 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.74.fits finished successfully.
+05/17/2016 04:03:19 PM - INFO - Starting image 13 of 60.
+05/17/2016 04:03:23 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.75.fits finished successfully.
+05/17/2016 04:03:23 PM - INFO - Starting image 14 of 60.
+05/17/2016 04:03:28 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.76.fits finished successfully.
+05/17/2016 04:03:28 PM - INFO - Starting image 15 of 60.
+05/17/2016 04:03:32 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.77.fits finished successfully.
+05/17/2016 04:03:32 PM - INFO - Starting image 16 of 60.
+05/17/2016 04:03:36 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.78.fits finished successfully.
+05/17/2016 04:03:36 PM - INFO - Starting image 17 of 60.
+05/17/2016 04:03:40 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.79.fits finished successfully.
+05/17/2016 04:03:40 PM - INFO - Starting image 18 of 60.
+05/17/2016 04:03:44 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.80.fits finished successfully.
+05/17/2016 04:03:44 PM - INFO - Starting image 19 of 60.
+05/17/2016 04:03:48 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.81.fits finished successfully.
+05/17/2016 04:03:48 PM - INFO - Starting image 20 of 60.
+05/17/2016 04:03:52 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.82.fits finished successfully.
+05/17/2016 04:03:52 PM - INFO - Starting image 21 of 60.
+05/17/2016 04:03:56 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.83.fits finished successfully.
+05/17/2016 04:03:56 PM - INFO - Starting image 22 of 60.
+05/17/2016 04:04:01 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.84.fits finished successfully.
+05/17/2016 04:04:01 PM - INFO - Starting image 23 of 60.
+05/17/2016 04:04:05 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.85.fits finished successfully.
+05/17/2016 04:04:05 PM - INFO - Starting image 24 of 60.
+05/17/2016 04:04:09 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.86.fits finished successfully.
+05/17/2016 04:04:09 PM - INFO - Starting image 25 of 60.
+05/17/2016 04:04:13 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.87.fits finished successfully.
+05/17/2016 04:04:13 PM - INFO - Starting image 26 of 60.
+05/17/2016 04:04:17 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.88.fits finished successfully.
+05/17/2016 04:04:17 PM - INFO - Starting image 27 of 60.
+05/17/2016 04:04:22 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.89.fits finished successfully.
+05/17/2016 04:04:22 PM - INFO - Starting image 28 of 60.
+05/17/2016 04:04:26 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.90.fits finished successfully.
+05/17/2016 04:04:26 PM - INFO - Starting image 29 of 60.
+05/17/2016 04:04:30 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.91.fits finished successfully.
+05/17/2016 04:04:30 PM - INFO - Starting image 30 of 60.
+05/17/2016 04:04:34 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.92.fits finished successfully.
+05/17/2016 04:04:34 PM - INFO - Starting image 31 of 60.
+05/17/2016 04:04:38 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.93.fits finished successfully.
+05/17/2016 04:04:38 PM - INFO - Starting image 32 of 60.
+05/17/2016 04:04:43 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.94.fits finished successfully.
+05/17/2016 04:04:43 PM - INFO - Starting image 33 of 60.
+05/17/2016 04:04:47 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.95.fits finished successfully.
+05/17/2016 04:04:47 PM - INFO - Starting image 34 of 60.
+05/17/2016 04:04:51 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.96.fits finished successfully.
+05/17/2016 04:04:51 PM - INFO - Starting image 35 of 60.
+05/17/2016 04:04:55 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.97.fits finished successfully.
+05/17/2016 04:04:55 PM - INFO - Starting image 36 of 60.
+05/17/2016 04:04:59 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.98.fits finished successfully.
+05/17/2016 04:04:59 PM - INFO - Starting image 37 of 60.
+05/17/2016 04:05:03 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.99.fits finished successfully.
+05/17/2016 04:05:03 PM - INFO - Starting image 38 of 60.
+05/17/2016 04:05:07 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.100.fits finished successfully.
+05/17/2016 04:05:07 PM - INFO - Starting image 39 of 60.
+05/17/2016 04:05:11 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.101.fits finished successfully.
+05/17/2016 04:05:11 PM - INFO - Starting image 40 of 60.
+05/17/2016 04:05:15 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.102.fits finished successfully.
+05/17/2016 04:05:15 PM - INFO - Starting image 41 of 60.
+05/17/2016 04:05:20 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.103.fits finished successfully.
+05/17/2016 04:05:20 PM - INFO - Starting image 42 of 60.
+05/17/2016 04:05:24 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.104.fits finished successfully.
+05/17/2016 04:05:24 PM - INFO - Starting image 43 of 60.
+05/17/2016 04:05:28 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.105.fits finished successfully.
+05/17/2016 04:05:28 PM - INFO - Starting image 44 of 60.
+05/17/2016 04:05:32 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.106.fits finished successfully.
+05/17/2016 04:05:32 PM - INFO - Starting image 45 of 60.
+05/17/2016 04:05:37 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.107.fits finished successfully.
+05/17/2016 04:05:37 PM - INFO - Starting image 46 of 60.
+05/17/2016 04:05:41 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.108.fits finished successfully.
+05/17/2016 04:05:41 PM - INFO - Starting image 47 of 60.
+05/17/2016 04:05:45 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.109.fits finished successfully.
+05/17/2016 04:05:45 PM - INFO - Starting image 48 of 60.
+05/17/2016 04:05:49 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.110.fits finished successfully.
+05/17/2016 04:05:49 PM - INFO - Starting image 49 of 60.
+05/17/2016 04:05:53 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.111.fits finished successfully.
+05/17/2016 04:05:53 PM - INFO - Starting image 50 of 60.
+05/17/2016 04:05:57 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.112.fits finished successfully.
+05/17/2016 04:05:57 PM - INFO - Starting image 51 of 60.
+05/17/2016 04:06:02 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.113.fits finished successfully.
+05/17/2016 04:06:02 PM - INFO - Starting image 52 of 60.
+05/17/2016 04:06:06 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.114.fits finished successfully.
+05/17/2016 04:06:06 PM - INFO - Starting image 53 of 60.
+05/17/2016 04:06:10 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.115.fits finished successfully.
+05/17/2016 04:06:10 PM - INFO - Starting image 54 of 60.
+05/17/2016 04:06:14 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.116.fits finished successfully.
+05/17/2016 04:06:14 PM - INFO - Starting image 55 of 60.
+05/17/2016 04:06:19 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.117.fits finished successfully.
+05/17/2016 04:06:19 PM - INFO - Starting image 56 of 60.
+05/17/2016 04:06:23 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.118.fits finished successfully.
+05/17/2016 04:06:23 PM - INFO - Starting image 57 of 60.
+05/17/2016 04:06:27 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.119.fits finished successfully.
+05/17/2016 04:06:27 PM - INFO - Starting image 58 of 60.
+05/17/2016 04:06:31 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.120.fits finished successfully.
+05/17/2016 04:06:31 PM - INFO - Starting image 59 of 60.
+05/17/2016 04:06:35 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.121.fits finished successfully.
+05/17/2016 04:06:35 PM - INFO - Starting image 60 of 60.
+05/17/2016 04:06:39 PM - INFO - Exposure /home/lsst/Data/20160517/test.bias.0.0s.122.fits finished successfully.
+05/17/2016 04:06:39 PM - INFO - Exposure stack finished successfully.
+05/17/2016 04:08:43 PM - INFO - Starting 4.0s Exposure image.
+05/17/2016 04:08:52 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.4.0s.1.fits finished successfully.
+05/17/2016 04:10:44 PM - INFO - Starting 2.0s Exposure image.
+05/17/2016 04:10:44 PM - ERROR - File already exits. Image not taken.
+Traceback (most recent call last):
+  File "./ccdctrl.py", line 275, in expose
+    filename = exposure.im_acq(mode, filepath, exptime, seqnum, **kwargs)
+  File "/home/lsst/ccdcontroller/exposure.py", line 103, in im_acq
+    raise IOError
+IOError
+05/17/2016 04:10:50 PM - INFO - Starting 3.0s Exposure image.
+05/17/2016 04:10:57 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.3.0s.2.fits finished successfully.
+05/17/2016 04:11:17 PM - INFO - Starting 3.0s Exposure image.
+05/17/2016 04:11:24 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.3.0s.3.fits finished successfully.
+05/17/2016 04:11:57 PM - INFO - Starting 3.0s Exposure image.
+05/17/2016 04:12:05 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.3.0s.4.fits finished successfully.
+05/17/2016 04:12:14 PM - INFO - Starting 3.0s Exposure image.
+05/17/2016 04:12:21 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.3.0s.5.fits finished successfully.
+05/17/2016 04:14:37 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/17/2016 04:14:42 PM - INFO - Controller turned off successfully.
+05/17/2016 04:15:54 PM - INFO - GUI display widget values successfully restored.
+05/17/2016 04:15:54 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/17/2016 04:15:58 PM - INFO - Controller turned off successfully.
+05/17/2016 04:15:58 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/17/2016 04:16:07 PM - INFO - Controller turned on successfully.
+05/17/2016 04:16:37 PM - INFO - Starting 3.0s Exposure image.
+05/17/2016 04:16:45 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.3.0s.6.fits finished successfully.
+05/17/2016 04:21:55 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/17/2016 04:21:59 PM - INFO - Controller turned off successfully.
+05/17/2016 05:27:12 PM - INFO - GUI display widget values successfully restored.
+05/17/2016 05:27:12 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/17/2016 05:27:16 PM - INFO - Controller turned off successfully.
+05/17/2016 05:27:16 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/17/2016 05:27:24 PM - INFO - Controller turned on successfully.
+05/17/2016 05:31:42 PM - INFO - Starting 3.0s Exposure image.
+05/17/2016 05:31:49 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.3.0s.7.fits finished successfully.
+05/17/2016 05:32:58 PM - INFO - Starting 3.0s Exposure image.
+05/17/2016 05:33:06 PM - INFO - Exposure /home/lsst/Data/20160517/test.exp.3.0s.8.fits finished successfully.
+05/17/2016 05:49:42 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/17/2016 05:49:46 PM - INFO - Controller turned off successfully.
+05/26/2016 03:23:50 PM - INFO - GUI display widget values successfully restored.
+05/26/2016 03:23:50 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/26/2016 03:23:54 PM - INFO - Controller turned off successfully.
+05/26/2016 03:23:54 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/26/2016 03:24:03 PM - INFO - Controller turned on successfully.
+05/26/2016 03:28:52 PM - INFO - Data directory changed to /home/lsst/Data/20160526.
+05/26/2016 04:29:00 PM - INFO - Starting 1.0s Exposure image.
+05/26/2016 04:29:06 PM - INFO - Exposure /home/lsst/Data/20160526/test.exp.1.0s.9.fits finished successfully.
+05/26/2016 04:29:50 PM - INFO - Starting 1.0s Exposure image.
+05/26/2016 04:29:56 PM - INFO - Exposure /home/lsst/Data/20160526/test.exp.1.0s.10.fits finished successfully.
+05/26/2016 04:32:10 PM - INFO - Starting 1.0s Exposure image.
+05/26/2016 04:32:16 PM - INFO - Exposure /home/lsst/Data/20160526/test.exp.1.0s.11.fits finished successfully.
+05/26/2016 04:32:55 PM - INFO - Starting 1.0s Exposure image.
+05/26/2016 04:33:01 PM - INFO - Exposure /home/lsst/Data/20160526/test.exp.1.0s.12.fits finished successfully.
+05/26/2016 04:33:24 PM - INFO - Starting 1.0s Exposure image.
+05/26/2016 04:33:29 PM - INFO - Exposure /home/lsst/Data/20160526/test.exp.1.0s.13.fits finished successfully.
+05/26/2016 04:37:54 PM - INFO - Starting 1.0s Exposure image.
+05/26/2016 04:38:00 PM - INFO - Exposure /home/lsst/Data/20160526/test.exp.1.0s.14.fits finished successfully.
+05/26/2016 04:40:00 PM - INFO - Starting 1.0s Exposure image.
+05/26/2016 04:40:06 PM - INFO - Exposure /home/lsst/Data/20160526/test.exp.1.0s.15.fits finished successfully.
+05/26/2016 04:41:24 PM - INFO - Starting 0.0s Exposure image.
+05/26/2016 04:41:29 PM - INFO - Exposure /home/lsst/Data/20160526/test.exp.0.0s.16.fits finished successfully.
+05/26/2016 04:41:46 PM - INFO - Starting 1.0s Exposure image.
+05/26/2016 04:41:52 PM - INFO - Exposure /home/lsst/Data/20160526/test.exp.1.0s.17.fits finished successfully.
+05/26/2016 04:42:13 PM - INFO - Starting 1.0s Exposure image.
+05/26/2016 04:42:19 PM - INFO - Exposure /home/lsst/Data/20160526/test.exp.1.0s.18.fits finished successfully.
+05/26/2016 04:42:36 PM - INFO - Starting 1.0s Exposure image.
+05/26/2016 04:42:42 PM - INFO - Exposure /home/lsst/Data/20160526/test.exp.1.0s.19.fits finished successfully.
+05/26/2016 04:42:53 PM - INFO - Starting 1.0s Exposure image.
+05/26/2016 04:42:59 PM - INFO - Exposure /home/lsst/Data/20160526/test.exp.1.0s.20.fits finished successfully.
+05/26/2016 04:43:18 PM - INFO - Starting 1.0s Exposure image.
+05/26/2016 04:43:23 PM - INFO - Exposure /home/lsst/Data/20160526/test.exp.1.0s.21.fits finished successfully.
+05/26/2016 04:43:42 PM - INFO - Starting 1.0s Exposure image.
+05/26/2016 04:43:47 PM - INFO - Exposure /home/lsst/Data/20160526/test.exp.1.0s.22.fits finished successfully.
+05/26/2016 04:43:58 PM - INFO - Starting 1.0s Exposure image.
+05/26/2016 04:44:03 PM - INFO - Exposure /home/lsst/Data/20160526/test.exp.1.0s.23.fits finished successfully.
+05/26/2016 04:44:43 PM - INFO - Starting 1.0s Exposure image.
+05/26/2016 04:44:49 PM - INFO - Exposure /home/lsst/Data/20160526/test.exp.1.0s.24.fits finished successfully.
+05/26/2016 04:45:28 PM - INFO - Starting 1.0s Exposure image.
+05/26/2016 04:45:34 PM - INFO - Exposure /home/lsst/Data/20160526/board2.os2.exp.1.0s.25.fits finished successfully.
+05/26/2016 04:45:44 PM - INFO - Starting 1.0s Exposure image.
+05/26/2016 04:45:50 PM - INFO - Exposure /home/lsst/Data/20160526/board3.os2.exp.1.0s.26.fits finished successfully.
+05/26/2016 04:45:58 PM - INFO - Starting 1.0s Exposure image.
+05/26/2016 04:46:04 PM - INFO - Exposure /home/lsst/Data/20160526/board4.os2.exp.1.0s.27.fits finished successfully.
+05/26/2016 04:46:36 PM - INFO - Starting 1.0s Exposure image.
+05/26/2016 04:46:42 PM - INFO - Exposure /home/lsst/Data/20160526/board4.os2.exp.1.0s.28.fits finished successfully.
+05/26/2016 04:47:05 PM - INFO - Starting 1.0s Exposure image.
+05/26/2016 04:47:11 PM - INFO - Exposure /home/lsst/Data/20160526/board4.os1.exp.1.0s.29.fits finished successfully.
+05/26/2016 04:47:52 PM - INFO - Starting 1.0s Exposure image.
+05/26/2016 04:47:57 PM - INFO - Exposure /home/lsst/Data/20160526/board4.os1.exp.1.0s.30.fits finished successfully.
+05/26/2016 04:48:09 PM - INFO - Starting 1.0s Exposure image.
+05/26/2016 04:48:15 PM - INFO - Exposure /home/lsst/Data/20160526/board2.os4.exp.1.0s.31.fits finished successfully.
+05/26/2016 04:48:29 PM - INFO - Starting 1.0s Exposure image.
+05/26/2016 04:48:35 PM - INFO - Exposure /home/lsst/Data/20160526/board2.os4.exp.1.0s.32.fits finished successfully.
+05/26/2016 04:49:20 PM - INFO - Starting 1.0s Exposure image.
+05/26/2016 04:49:25 PM - INFO - Exposure /home/lsst/Data/20160526/board3.os3.exp.1.0s.33.fits finished successfully.
+05/26/2016 04:50:11 PM - INFO - Starting 1.0s Exposure image.
+05/26/2016 04:50:17 PM - INFO - Exposure /home/lsst/Data/20160526/board3.os1.exp.1.0s.34.fits finished successfully.
+05/26/2016 04:51:02 PM - INFO - Starting 1.0s Exposure image.
+05/26/2016 04:51:07 PM - INFO - Exposure /home/lsst/Data/20160526/board3.os2.exp.1.0s.35.fits finished successfully.
+05/26/2016 04:51:22 PM - INFO - Starting 1.0s Exposure image.
+05/26/2016 04:51:27 PM - INFO - Exposure /home/lsst/Data/20160526/board3.os2.exp.1.0s.36.fits finished successfully.
+05/26/2016 04:51:48 PM - INFO - Starting 1.0s Exposure image.
+05/26/2016 04:51:54 PM - INFO - Exposure /home/lsst/Data/20160526/board4.os4.exp.1.0s.37.fits finished successfully.
+05/26/2016 04:52:30 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/26/2016 04:52:36 PM - INFO - Controller turned off successfully.
+05/26/2016 04:54:00 PM - INFO - GUI display widget values successfully restored.
+05/26/2016 04:54:00 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/26/2016 04:54:04 PM - INFO - Controller turned off successfully.
+05/26/2016 04:54:04 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+05/26/2016 04:54:12 PM - INFO - Controller turned on successfully.
+05/26/2016 04:54:28 PM - INFO - Starting 1.0s Exposure image.
+05/26/2016 04:54:34 PM - INFO - Exposure /home/lsst/Data/20160526/board1.os2.exp.1.0s.38.fits finished successfully.
+05/26/2016 04:55:24 PM - INFO - Starting 1.0s Exposure image.
+05/26/2016 04:55:30 PM - INFO - Exposure /home/lsst/Data/20160526/board1.os3.exp.1.0s.39.fits finished successfully.
+05/26/2016 04:56:22 PM - INFO - Starting 1.0s Exposure image.
+05/26/2016 04:56:27 PM - INFO - Exposure /home/lsst/Data/20160526/board1.os3.exp.1.0s.40.fits finished successfully.
+05/26/2016 04:56:46 PM - INFO - Starting 1.0s Exposure image.
+05/26/2016 04:56:52 PM - INFO - Exposure /home/lsst/Data/20160526/board1.os3.exp.1.0s.41.fits finished successfully.
+05/26/2016 04:57:23 PM - INFO - Starting 1.0s Exposure image.
+05/26/2016 04:57:29 PM - INFO - Exposure /home/lsst/Data/20160526/board1.os1.exp.1.0s.42.fits finished successfully.
+05/26/2016 04:57:57 PM - INFO - Starting 1.0s Exposure image.
+05/26/2016 04:58:02 PM - INFO - Exposure /home/lsst/Data/20160526/board1.os4.exp.1.0s.43.fits finished successfully.
+05/26/2016 04:59:31 PM - INFO - Turning off sta3800 controller (sta3800_off).
+05/26/2016 04:59:35 PM - INFO - Controller turned off successfully.
+06/08/2016 04:39:09 PM - INFO - GUI display widget values successfully restored.
+06/08/2016 04:39:09 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 04:39:09 PM - INFO - Controller turned off successfully.
+06/08/2016 04:39:09 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/08/2016 04:39:09 PM - INFO - Controller turned on successfully.
+06/08/2016 04:39:27 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 04:39:27 PM - INFO - Controller turned off successfully.
+06/08/2016 04:42:03 PM - INFO - GUI display widget values successfully restored.
+06/08/2016 04:42:03 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 04:42:03 PM - INFO - Controller turned off successfully.
+06/08/2016 04:42:03 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/08/2016 04:42:03 PM - INFO - Controller turned on successfully.
+06/08/2016 04:42:20 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 04:42:20 PM - INFO - Controller turned off successfully.
+06/08/2016 04:43:34 PM - INFO - GUI display widget values successfully restored.
+06/08/2016 04:43:34 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 04:43:34 PM - INFO - Controller turned off successfully.
+06/08/2016 04:43:34 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/08/2016 04:43:34 PM - INFO - Controller turned on successfully.
+06/08/2016 04:43:49 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 04:43:49 PM - INFO - Controller turned off successfully.
+06/08/2016 04:44:35 PM - INFO - GUI display widget values successfully restored.
+06/08/2016 04:44:35 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 04:44:35 PM - INFO - Controller turned off successfully.
+06/08/2016 04:44:35 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/08/2016 04:44:35 PM - INFO - Controller turned on successfully.
+06/08/2016 04:44:38 PM - ERROR - Executable vdd not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 356, in setvoltages
+    output = voltage.set_voltage(V, vname)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 49, in set_voltage
+    output = subprocess.check_output([vname, "{0}".format(V)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/08/2016 04:44:42 PM - ERROR - Executable vod not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 356, in setvoltages
+    output = voltage.set_voltage(V, vname)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 49, in set_voltage
+    output = subprocess.check_output([vname, "{0}".format(V)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/08/2016 04:44:44 PM - ERROR - Executable vog not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 356, in setvoltages
+    output = voltage.set_voltage(V, vname)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 49, in set_voltage
+    output = subprocess.check_output([vname, "{0}".format(V)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/08/2016 04:44:46 PM - ERROR - Executable vrd not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 356, in setvoltages
+    output = voltage.set_voltage(V, vname)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 49, in set_voltage
+    output = subprocess.check_output([vname, "{0}".format(V)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/08/2016 04:46:16 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 04:46:16 PM - INFO - Controller turned off successfully.
+06/08/2016 04:50:42 PM - INFO - GUI display widget values successfully restored.
+06/08/2016 04:50:42 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 04:50:42 PM - INFO - Controller turned off successfully.
+06/08/2016 04:50:42 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/08/2016 04:50:42 PM - INFO - Controller turned on successfully.
+06/08/2016 04:51:28 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 04:51:28 PM - INFO - Controller turned off successfully.
+06/08/2016 04:53:15 PM - INFO - GUI display widget values successfully restored.
+06/08/2016 04:53:15 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 04:53:15 PM - INFO - Controller turned off successfully.
+06/08/2016 04:53:15 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/08/2016 04:53:15 PM - INFO - Controller turned on successfully.
+06/08/2016 04:53:20 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 04:53:20 PM - INFO - Controller turned off successfully.
+06/08/2016 04:54:04 PM - INFO - GUI display widget values successfully restored.
+06/08/2016 04:54:04 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 04:54:04 PM - INFO - Controller turned off successfully.
+06/08/2016 04:54:04 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/08/2016 04:54:04 PM - INFO - Controller turned on successfully.
+06/08/2016 04:54:18 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 04:54:18 PM - INFO - Controller turned off successfully.
+06/08/2016 04:55:25 PM - INFO - GUI display widget values successfully restored.
+06/08/2016 04:55:25 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 04:55:25 PM - INFO - Controller turned off successfully.
+06/08/2016 04:55:25 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/08/2016 04:55:25 PM - INFO - Controller turned on successfully.
+06/08/2016 04:59:06 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 04:59:06 PM - INFO - Controller turned off successfully.
+06/08/2016 05:00:15 PM - INFO - GUI display widget values successfully restored.
+06/08/2016 05:00:15 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 05:00:15 PM - INFO - Controller turned off successfully.
+06/08/2016 05:00:15 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/08/2016 05:00:15 PM - INFO - Controller turned on successfully.
+06/08/2016 05:00:28 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 05:00:28 PM - INFO - Controller turned off successfully.
+06/08/2016 05:02:53 PM - INFO - GUI display widget values successfully restored.
+06/08/2016 05:02:53 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 05:02:53 PM - INFO - Controller turned off successfully.
+06/08/2016 05:02:53 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/08/2016 05:02:53 PM - INFO - Controller turned on successfully.
+06/08/2016 05:02:57 PM - ERROR - Executable ser_clks not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 398, in setvoltages
+    output = voltage.ser_clks(ser_lo, ser_hi)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 72, in ser_clks
+    "{0}".format(SER_hi)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/08/2016 05:03:01 PM - ERROR - Executable ser_clks not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 398, in setvoltages
+    output = voltage.ser_clks(ser_lo, ser_hi)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 72, in ser_clks
+    "{0}".format(SER_hi)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/08/2016 05:03:04 PM - ERROR - Executable par_clks not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 377, in setvoltages
+    output = voltage.par_clks(par_lo, par_hi)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 65, in par_clks
+    "{0}".format(PAR_hi)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/08/2016 05:03:06 PM - ERROR - Executable par_clks not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 377, in setvoltages
+    output = voltage.par_clks(par_lo, par_hi)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 65, in par_clks
+    "{0}".format(PAR_hi)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/08/2016 05:03:09 PM - ERROR - Executable rg not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 419, in setvoltages
+    output = voltage.rg(rg_lo, rg_hi)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 58, in rg
+    "{0}".format(RG_hi)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/08/2016 05:03:12 PM - ERROR - Executable rg not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 419, in setvoltages
+    output = voltage.rg(rg_lo, rg_hi)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 58, in rg
+    "{0}".format(RG_hi)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/08/2016 05:03:17 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/08/2016 05:03:17 PM - INFO - Controller turned off successfully.
+06/10/2016 02:56:08 PM - INFO - GUI display widget values successfully restored.
+06/10/2016 02:56:08 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 02:56:08 PM - INFO - Controller turned off successfully.
+06/10/2016 02:56:08 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/10/2016 02:56:08 PM - INFO - Controller turned on successfully.
+06/10/2016 02:56:40 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 02:56:40 PM - INFO - Controller turned off successfully.
+06/10/2016 03:04:44 PM - INFO - GUI display widget values successfully restored.
+06/10/2016 03:04:44 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 03:04:44 PM - INFO - Controller turned off successfully.
+06/10/2016 03:04:44 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/10/2016 03:04:44 PM - INFO - Controller turned on successfully.
+06/10/2016 03:04:50 PM - ERROR - Executable vdd not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 364, in setvoltages
+    output = voltage.set_voltage(V, vname)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 49, in set_voltage
+    output = subprocess.check_output([vname, "{0}".format(V)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/10/2016 03:04:52 PM - ERROR - Executable vod not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 364, in setvoltages
+    output = voltage.set_voltage(V, vname)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 49, in set_voltage
+    output = subprocess.check_output([vname, "{0}".format(V)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/10/2016 03:04:55 PM - ERROR - Executable vog not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 364, in setvoltages
+    output = voltage.set_voltage(V, vname)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 49, in set_voltage
+    output = subprocess.check_output([vname, "{0}".format(V)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/10/2016 03:04:57 PM - ERROR - Executable vrd not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 364, in setvoltages
+    output = voltage.set_voltage(V, vname)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 49, in set_voltage
+    output = subprocess.check_output([vname, "{0}".format(V)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/10/2016 03:05:13 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 03:05:13 PM - INFO - Controller turned off successfully.
+06/10/2016 03:18:47 PM - INFO - GUI display widget values successfully restored.
+06/10/2016 03:18:47 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 03:18:47 PM - INFO - Controller turned off successfully.
+06/10/2016 03:18:47 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/10/2016 03:18:47 PM - INFO - Controller turned on successfully.
+06/10/2016 03:19:48 PM - INFO - GUI display widget values successfully restored.
+06/10/2016 03:19:48 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 03:19:48 PM - INFO - Controller turned off successfully.
+06/10/2016 03:19:48 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/10/2016 03:19:48 PM - INFO - Controller turned on successfully.
+06/10/2016 03:21:15 PM - INFO - GUI display widget values successfully restored.
+06/10/2016 03:21:15 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 03:21:15 PM - INFO - Controller turned off successfully.
+06/10/2016 03:21:15 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/10/2016 03:21:15 PM - INFO - Controller turned on successfully.
+06/10/2016 03:22:46 PM - INFO - GUI display widget values successfully restored.
+06/10/2016 03:22:46 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 03:22:46 PM - INFO - Controller turned off successfully.
+06/10/2016 03:22:46 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/10/2016 03:22:46 PM - INFO - Controller turned on successfully.
+06/10/2016 03:23:00 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 03:23:00 PM - INFO - Controller turned off successfully.
+06/10/2016 03:23:33 PM - INFO - GUI display widget values successfully restored.
+06/10/2016 03:23:33 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 03:23:33 PM - INFO - Controller turned off successfully.
+06/10/2016 03:23:33 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/10/2016 03:23:33 PM - INFO - Controller turned on successfully.
+06/10/2016 03:23:46 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 03:23:46 PM - INFO - Controller turned off successfully.
+06/10/2016 03:29:52 PM - INFO - GUI display widget values successfully restored.
+06/10/2016 03:29:52 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 03:29:52 PM - INFO - Controller turned off successfully.
+06/10/2016 03:29:52 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/10/2016 03:29:52 PM - INFO - Controller turned on successfully.
+06/10/2016 03:30:23 PM - ERROR - Executable vrd not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 365, in setvoltages
+    output = voltage.set_voltage(V, vname)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 49, in set_voltage
+    output = subprocess.check_output([vname, "{0}".format(V)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/10/2016 03:30:29 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 03:30:29 PM - INFO - Controller turned off successfully.
+06/10/2016 03:31:51 PM - INFO - GUI display widget values successfully restored.
+06/10/2016 03:31:51 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 03:31:51 PM - INFO - Controller turned off successfully.
+06/10/2016 03:31:51 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/10/2016 03:31:51 PM - INFO - Controller turned on successfully.
+06/10/2016 03:32:21 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 03:32:21 PM - INFO - Controller turned off successfully.
+06/10/2016 03:33:29 PM - INFO - GUI display widget values successfully restored.
+06/10/2016 03:33:29 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 03:33:29 PM - INFO - Controller turned off successfully.
+06/10/2016 03:33:29 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/10/2016 03:33:29 PM - INFO - Controller turned on successfully.
+06/10/2016 03:33:58 PM - ERROR - Executable rg not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 430, in setvoltages
+    output = voltage.rg(rg_lo, rg_hi)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 58, in rg
+    "{0}".format(RG_hi)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/10/2016 03:33:59 PM - ERROR - Executable rg not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 430, in setvoltages
+    output = voltage.rg(rg_lo, rg_hi)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 58, in rg
+    "{0}".format(RG_hi)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/10/2016 03:33:59 PM - ERROR - Executable rg not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 430, in setvoltages
+    output = voltage.rg(rg_lo, rg_hi)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 58, in rg
+    "{0}".format(RG_hi)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/10/2016 03:34:00 PM - ERROR - Executable rg not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 430, in setvoltages
+    output = voltage.rg(rg_lo, rg_hi)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 58, in rg
+    "{0}".format(RG_hi)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/10/2016 03:34:00 PM - ERROR - Executable rg not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 430, in setvoltages
+    output = voltage.rg(rg_lo, rg_hi)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 58, in rg
+    "{0}".format(RG_hi)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/10/2016 03:34:00 PM - ERROR - Executable rg not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 430, in setvoltages
+    output = voltage.rg(rg_lo, rg_hi)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 58, in rg
+    "{0}".format(RG_hi)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/10/2016 03:34:00 PM - ERROR - Executable rg not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 430, in setvoltages
+    output = voltage.rg(rg_lo, rg_hi)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 58, in rg
+    "{0}".format(RG_hi)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/10/2016 03:34:04 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 03:34:04 PM - INFO - Controller turned off successfully.
+06/10/2016 03:36:42 PM - INFO - GUI display widget values successfully restored.
+06/10/2016 03:36:42 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 03:36:42 PM - INFO - Controller turned off successfully.
+06/10/2016 03:36:42 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/10/2016 03:36:42 PM - INFO - Controller turned on successfully.
+06/10/2016 03:37:19 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 03:37:19 PM - INFO - Controller turned off successfully.
+06/10/2016 03:37:22 PM - INFO - GUI display widget values successfully restored.
+06/10/2016 03:37:22 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 03:37:22 PM - INFO - Controller turned off successfully.
+06/10/2016 03:37:22 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/10/2016 03:37:22 PM - INFO - Controller turned on successfully.
+06/10/2016 03:37:33 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 03:37:33 PM - INFO - Controller turned off successfully.
+06/10/2016 03:51:45 PM - INFO - GUI display widget values successfully restored.
+06/10/2016 03:51:45 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 03:51:45 PM - INFO - Controller turned off successfully.
+06/10/2016 03:51:45 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/10/2016 03:51:45 PM - INFO - Controller turned on successfully.
+06/10/2016 03:52:20 PM - ERROR - Error in executable vog. Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 363, in setvoltages
+    output = voltage.set_voltage(V, vname)
+  File "/home/lsst/ccdcontroller/voltage.py", line 49, in set_voltage
+    output = subprocess.check_output([vname, "{0}".format(V)])
+  File "/home/lsst/ccdcontroller/voltage.py", line 24, in f
+    raise subprocess.CalledProcessError(retcode, cmd)
+CalledProcessError: Command '['vog', '1.0']' returned non-zero exit status 1
+06/10/2016 03:52:31 PM - INFO - VOG set to 0.0
+
+06/10/2016 03:52:45 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 03:52:45 PM - INFO - Controller turned off successfully.
+06/10/2016 03:52:53 PM - INFO - GUI display widget values successfully restored.
+06/10/2016 03:52:53 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 03:52:57 PM - INFO - Controller turned off successfully.
+06/10/2016 03:52:57 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/10/2016 03:53:05 PM - INFO - Controller turned on successfully.
+06/10/2016 03:53:25 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 03:53:29 PM - INFO - Controller turned off successfully.
+06/10/2016 03:55:13 PM - INFO - GUI display widget values successfully restored.
+06/10/2016 03:55:13 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 03:55:17 PM - INFO - Controller turned off successfully.
+06/10/2016 03:55:17 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/10/2016 03:55:25 PM - INFO - Controller turned on successfully.
+06/10/2016 03:55:49 PM - INFO - 2768
+edtwriten -c a0380ad0
+VDD set to 20.0
+
+06/10/2016 03:56:02 PM - INFO - 2633
+edtwriten -c a0380a49
+VDD set to 19.0
+
+06/10/2016 03:56:20 PM - INFO - VOD set to 26.0
+
+06/10/2016 03:56:28 PM - INFO - VOD set to 10.0
+
+06/10/2016 03:56:38 PM - INFO - VOD set to 2.0
+
+06/10/2016 03:56:46 PM - ERROR - Error in executable vod. Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl.py", line 363, in setvoltages
+    output = voltage.set_voltage(V, vname)
+  File "/home/lsst/ccdcontroller/voltage.py", line 49, in set_voltage
+    output = subprocess.check_output([vname, "{0}".format(V)])
+  File "/home/lsst/ccdcontroller/voltage.py", line 24, in f
+    raise subprocess.CalledProcessError(retcode, cmd)
+CalledProcessError: Command '['vod', '42.0']' returned non-zero exit status 1
+06/10/2016 03:56:52 PM - INFO - VOD set to 0.0
+
+06/10/2016 03:57:01 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 03:57:01 PM - INFO - Controller turned off successfully.
+06/10/2016 03:59:26 PM - INFO - GUI display widget values successfully restored.
+06/10/2016 03:59:26 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 03:59:30 PM - INFO - Controller turned off successfully.
+06/10/2016 03:59:30 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/10/2016 03:59:38 PM - INFO - Controller turned on successfully.
+06/10/2016 04:00:13 PM - INFO - VOD set to 20.0
+
+06/10/2016 04:00:27 PM - ERROR - Error in executable vod. Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl.py", line 363, in setvoltages
+    output = voltage.set_voltage(V, vname)
+  File "/home/lsst/ccdcontroller/voltage.py", line 49, in set_voltage
+    output = subprocess.check_output([vname, "{0}".format(V)])
+  File "/home/lsst/ccdcontroller/voltage.py", line 24, in f
+    raise subprocess.CalledProcessError(retcode, cmd)
+CalledProcessError: Command '['vod', '99.0']' returned non-zero exit status 1
+06/10/2016 04:01:40 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 04:01:45 PM - INFO - Controller turned off successfully.
+06/10/2016 04:08:30 PM - INFO - GUI display widget values successfully restored.
+06/10/2016 04:08:30 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 04:08:34 PM - INFO - Controller turned off successfully.
+06/10/2016 04:08:34 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/10/2016 04:08:42 PM - INFO - Controller turned on successfully.
+06/10/2016 04:08:59 PM - ERROR - Error in executable vdd. Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl.py", line 363, in setvoltages
+    output = voltage.set_voltage(V, vname)
+  File "/home/lsst/ccdcontroller/voltage.py", line 49, in set_voltage
+    output = subprocess.check_output([vname, "{0}".format(V)])
+  File "/home/lsst/ccdcontroller/voltage.py", line 24, in f
+    raise subprocess.CalledProcessError(retcode, cmd)
+CalledProcessError: Command '['vdd', '98.0']' returned non-zero exit status 1
+06/10/2016 04:09:17 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 04:09:22 PM - INFO - Controller turned off successfully.
+06/10/2016 04:14:01 PM - INFO - GUI display widget values successfully restored.
+06/10/2016 04:14:01 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 04:14:06 PM - INFO - Controller turned off successfully.
+06/10/2016 04:14:06 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/10/2016 04:14:14 PM - INFO - Controller turned on successfully.
+06/10/2016 04:14:21 PM - ERROR - Error in executable vdd. Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl.py", line 363, in setvoltages
+    output = voltage.set_voltage(V, vname)
+  File "/home/lsst/ccdcontroller/voltage.py", line 49, in set_voltage
+    output = subprocess.check_output([vname, "{0}".format(V)])
+  File "/home/lsst/ccdcontroller/voltage.py", line 24, in f
+    raise subprocess.CalledProcessError(retcode, cmd)
+CalledProcessError: Command '['vdd', '98.0']' returned non-zero exit status 1
+06/10/2016 04:14:44 PM - INFO - VOG set to -1.0
+
+06/10/2016 04:14:47 PM - INFO - VOG set to 0.0
+
+06/10/2016 04:14:51 PM - ERROR - Error in executable vog. Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl.py", line 363, in setvoltages
+    output = voltage.set_voltage(V, vname)
+  File "/home/lsst/ccdcontroller/voltage.py", line 49, in set_voltage
+    output = subprocess.check_output([vname, "{0}".format(V)])
+  File "/home/lsst/ccdcontroller/voltage.py", line 24, in f
+    raise subprocess.CalledProcessError(retcode, cmd)
+CalledProcessError: Command '['vog', '1.0']' returned non-zero exit status 1
+06/10/2016 04:15:01 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 04:15:05 PM - INFO - Controller turned off successfully.
+06/10/2016 04:19:50 PM - INFO - GUI display widget values successfully restored.
+06/10/2016 04:19:50 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 04:19:54 PM - INFO - Controller turned off successfully.
+06/10/2016 04:19:54 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/10/2016 04:20:02 PM - INFO - Controller turned on successfully.
+06/10/2016 04:20:09 PM - ERROR - Error in executable vog. Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl.py", line 363, in setvoltages
+    output = voltage.set_voltage(V, vname)
+  File "/home/lsst/ccdcontroller/voltage.py", line 51, in set_voltage
+    output = subprocess.check_output([vname, "{0}".format(V)])
+  File "/home/lsst/ccdcontroller/voltage.py", line 26, in f
+    raise error
+CalledProcessError: Command '['vog', '1.0']' returned non-zero exit status 1
+06/10/2016 04:20:09 PM - ERROR - Error: OG voltage must be <=  0.00
+Traceback (most recent call last):
+  File "./ccdctrl.py", line 363, in setvoltages
+    output = voltage.set_voltage(V, vname)
+  File "/home/lsst/ccdcontroller/voltage.py", line 51, in set_voltage
+    output = subprocess.check_output([vname, "{0}".format(V)])
+  File "/home/lsst/ccdcontroller/voltage.py", line 26, in f
+    raise error
+CalledProcessError: Command '['vog', '1.0']' returned non-zero exit status 1
+06/10/2016 04:20:16 PM - INFO - 1.000
+205
+VRD set to 1.0
+
+06/10/2016 04:20:28 PM - ERROR - Error in executable rg. Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl.py", line 432, in setvoltages
+    output = voltage.rg(rg_lo, rg_hi)
+  File "/home/lsst/ccdcontroller/voltage.py", line 60, in rg
+    "{0}".format(RG_hi)])
+  File "/home/lsst/ccdcontroller/voltage.py", line 26, in f
+    raise error
+CalledProcessError: Command '['rg', '-2.0', '-3.0']' returned non-zero exit status 1
+06/10/2016 04:20:28 PM - ERROR - Reset Gate low set to -2.0
+rg_hi: Error: Voltage must be >=  0.00
+Traceback (most recent call last):
+  File "./ccdctrl.py", line 432, in setvoltages
+    output = voltage.rg(rg_lo, rg_hi)
+  File "/home/lsst/ccdcontroller/voltage.py", line 60, in rg
+    "{0}".format(RG_hi)])
+  File "/home/lsst/ccdcontroller/voltage.py", line 26, in f
+    raise error
+CalledProcessError: Command '['rg', '-2.0', '-3.0']' returned non-zero exit status 1
+06/10/2016 04:20:58 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 04:21:02 PM - INFO - Controller turned off successfully.
+06/10/2016 04:47:05 PM - INFO - GUI display widget values successfully restored.
+06/10/2016 04:47:05 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/10/2016 04:47:09 PM - INFO - Controller turned off successfully.
+06/10/2016 04:47:09 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/10/2016 04:47:17 PM - INFO - Controller turned on successfully.
+06/16/2016 12:04:38 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/16/2016 12:04:42 PM - INFO - Controller turned off successfully.
+06/16/2016 12:38:28 PM - INFO - GUI display widget values successfully restored.
+06/16/2016 12:38:28 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/16/2016 12:38:28 PM - INFO - Controller turned off successfully.
+06/16/2016 12:38:28 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/16/2016 12:38:28 PM - INFO - Controller turned on successfully.
+06/16/2016 12:38:35 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/16/2016 12:38:35 PM - INFO - Controller turned off successfully.
+06/16/2016 12:45:17 PM - INFO - GUI display widget values successfully restored.
+06/16/2016 12:45:17 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/16/2016 12:45:17 PM - ERROR - Unable to turn off controller! State may be unknown.
+Traceback (most recent call last):
+  File "./ccdctrl.py", line 158, in reset
+    ccdsetup.sta3800_off()
+  File "/Users/adamsnyder/ccdcontroller/ccdsetup.py", line 229, in sta3800_off
+    output = subprocess.check_output("sta3800_off")
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/16/2016 12:45:25 PM - INFO - GUI display widget values successfully restored.
+06/16/2016 12:45:25 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/16/2016 12:45:25 PM - INFO - Controller turned off successfully.
+06/16/2016 12:45:25 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/16/2016 12:45:25 PM - INFO - Controller turned on successfully.
+06/16/2016 12:45:34 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/16/2016 12:45:34 PM - INFO - Controller turned off successfully.
+06/16/2016 12:50:04 PM - INFO - GUI display widget values successfully restored.
+06/16/2016 12:50:04 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/16/2016 12:50:04 PM - INFO - Controller turned off successfully.
+06/16/2016 12:50:04 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/16/2016 12:50:04 PM - INFO - Controller turned on successfully.
+06/16/2016 12:50:08 PM - INFO - Starting 1.0s Exposure image.
+06/16/2016 12:50:08 PM - ERROR - Executable exp_acq not found. Image not taken
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 288, in expose
+    filename = exposure.im_acq(mode, filepath, exptime, seqnum, **kwargs)
+  File "/Users/adamsnyder/ccdcontroller/exposure.py", line 110, in im_acq
+    "{0}".format(filename)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/16/2016 12:50:29 PM - INFO - Starting 1.0s Exposure Stack stack.
+06/16/2016 12:50:29 PM - INFO - Starting image 1 of 10.
+06/16/2016 12:50:29 PM - ERROR - Executable exp_acq not found. Image not taken.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 313, in expose
+    filename = exposure.im_acq(mode, filepath, exptime, i, **kwargs)
+  File "/Users/adamsnyder/ccdcontroller/exposure.py", line 110, in im_acq
+    "{0}".format(filename)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+06/16/2016 12:50:43 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/16/2016 12:50:43 PM - INFO - Controller turned off successfully.
+06/16/2016 02:20:15 PM - INFO - GUI display widget values successfully restored.
+06/16/2016 02:20:15 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/16/2016 02:20:15 PM - INFO - Controller turned off successfully.
+06/16/2016 02:20:15 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/16/2016 02:20:15 PM - INFO - Controller turned on successfully.
+06/16/2016 02:20:21 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/16/2016 02:20:21 PM - INFO - Controller turned off successfully.
+06/16/2016 02:28:56 PM - INFO - GUI display widget values successfully restored.
+06/16/2016 02:28:56 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/16/2016 02:28:56 PM - INFO - Controller turned off successfully.
+06/16/2016 02:28:56 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+06/16/2016 02:28:56 PM - INFO - Controller turned on successfully.
+06/16/2016 02:29:02 PM - INFO - Turning off sta3800 controller (sta3800_off).
+06/16/2016 02:29:02 PM - INFO - Controller turned off successfully.
