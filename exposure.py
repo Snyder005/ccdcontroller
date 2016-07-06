@@ -7,11 +7,15 @@ This is a Python script to make different exposure measurements
 import subprocess
 import os
 import errno
-import fitsio
+from time import sleep
 
 import voltage
 
-from time import sleep
+## Import astropy.io.fits or pyfits
+try:
+    from astropy.io import fits
+except ImportError:
+    import pyfits as fits
 
 ## For Python 2.6 need to monkey patch in check_output()
 if "check_output" not in dir( subprocess ):
@@ -116,33 +120,6 @@ def im_acq(mode, filebase="test", exptime=0.00, seqnum=1, **kwargs):
     update_header(filename, mode, exptime, seqnum, **kwargs)
     return filename
 
-def stack(mode, filebase, imcount, time, start=0):
-    """Perform a stack of images of a given mode."""
-
-    total = start + imcount
-
-    i = start
-
-    while i < total:
-
-        filename = "{0}.{1}".format(filebase, i)
-        im_acq(mode, filename, time)
-        i += 1
-
-    return filename
-
-def series(mode, filebase, mintime, maxtime, step):
-    """Perform a series of images of a given mode."""
-
-    time = mintime
-
-    while time <= maxtime:
-        filename = "{0}.{1}s".format(filebase, time)
-        im_acq(mode, filename, time)
-        dtime += step
-
-    return filename
-
 ###############################################################################
 ##
 ##  FITs File Header Management
@@ -159,9 +136,9 @@ def update_header(filepath, mode, exptime, seqnum, **kwargs):
         testtype = 'obs'
     imgtype = mode.upper()
     seqnum = seqnum
-    temp_set = kwargs.pop('temp_set', -95.00) ## Implement in later versions
-    ccdtemp = kwargs.pop('ccdtemp', -95.00) ## Implement in later versions
-    mondiode = kwargs.pop('mondiode', 143.12) ## Implement in later versions
+    temp_set = kwargs.get('temp_set', -95.00) ## Implement in later versions
+    ccdtemp = kwargs.get('ccdtemp', -95.00) ## Implement in later versions
+    mondiode = kwargs.get('mondiode', 143.12) ## Implement in later versions
     exptime = exptime
 
     ## Filter and monowl are mutually exclusive
@@ -171,81 +148,83 @@ def update_header(filepath, mode, exptime, seqnum, **kwargs):
     elif 'filter_name' in kwargs:
         monowl = 'N/A'
         filter_name = kwargs.get('filter_name')
+    else:
+        monowl = 'N/A'
+        filter_name = 'N/A'
 
     ## Settings from INI file
-    imagetag = kwargs.pop('imagetag', '[lots of digits]') ## Need to change
-    tstand = kwargs.pop('tstand', 'Stanford-KGLab')
-    instrument = kwargs.pop('instrument', 'SAO16')
-    controller = kwargs.pop('controller', 'SAO16')
-    contnum = kwargs.pop('contnum', 1)
-    ccd_manu = kwargs.pop('ccd_manu', 'ITL')
-    ccd_type = kwargs.pop('ccd_type', '3800C')
-    ccd_sern = kwargs.pop('ccd_sern', '19351')
-    lsst_num = kwargs.pop('lsst_num', '3800C-033')
-    shut_del = kwargs.pop('shut_del', 0.00)
-    ctrlcfg = kwargs.pop('ctrlcfg', 'abcde.xml') ## Need to look up
-    binx = kwargs.pop('binx', 1)
-    biny = kwargs.pop('biny', 1)
-    headver = kwargs.pop('headver', 1)
-    ccdgain = kwargs.pop('ccdgain', 5.52) ## Need to change
-    ccdnoise = kwargs.pop('ccdnoise', 6.0) ## Need to change
+    imagetag = kwargs.get('imagetag', '[lots of digits]') ## Need to change
+    tstand = kwargs.get('tstand', 'Stanford-KGLab')
+    instrument = kwargs.get('instrument', 'SAO16')
+    controller = kwargs.get('controller', 'SAO16')
+    contnum = kwargs.get('contnum', 1)
+    ccd_manu = kwargs.get('ccd_manu', 'ITL')
+    ccd_type = kwargs.get('ccd_type', '3800C')
+    ccd_sern = kwargs.get('ccd_sern', '19351')
+    lsst_num = kwargs.get('lsst_num', '3800C-033')
+    shut_del = kwargs.get('shut_del', 0.00)
+    ctrlcfg = kwargs.get('ctrlcfg', 'abcde.xml') ## Need to look up
+    binx = kwargs.get('binx', 1)
+    biny = kwargs.get('biny', 1)
+    headver = kwargs.get('headver', 1)
+    ccdgain = kwargs.get('ccdgain', 5.52) ## Need to change
+    ccdnoise = kwargs.get('ccdnoise', 6.0) ## Need to change
 
-#    ## Construct ccd conditions extensions.  Requires astropy python package
-#    ccdhdr = fits.Header()
-#
-#    for i in range(16):
-#        ccdhdr['V_OD{0}'.format(i+1)] = kwargs.pop('VOD', 0.0)
-#        ccdhdr['V_OG{0}'.format(i+1)] = kwargs.pop('VOG', 0.0)
-#        ccdhdr['V_RD{0}'.format(i+1)] = kwargs.pop('VRD', 0.0)
-#
-#        if i <= 3:
-#            ccdhdr['V_S{0}L'.format(i+1)] = kwargs.pop('SER LO', 0.0)
-#            ccdhdr['V_S{0}H'.format(i+1)] = kwargs.pop('SER HI', 0.0)
-#            ccdhdr['V_P{0}L'.format(i+1)] = kwargs.pop('PAR LO', 0.0)
-#            ccdhdr['V_P{0}H'.format(i+1)] = kwargs.pop('PAR HI', 0.0)
-#                   
-#    ccdhdr['V_GD'] = kwargs.pop('VGD', '') ## What is this? VDD?
-#    ccdhdr['V_BSS'] = kwargs.pop('VBB', 0.0)
-#    ccdhdr['V_RGL'] = kwargs.pop('RG LO', 0.0)
-#    ccdhdr['V_RGH'] = kwargs.pop('RG HI', 0.0)
-#    
-#    ccdhdu = fits.ImageHDU(data=None, header=ccdhdr)
+    ## Construct ccd conditions extensions.  Requires astropy python package
+    ccdhdr = fits.Header()
+
+    for i in range(16):
+        ccdhdr['V_OD{0}'.format(i+1)] = kwargs.get('VOD', 0.0)
+        ccdhdr['V_OG{0}'.format(i+1)] = kwargs.get('VOG', 0.0)
+        ccdhdr['V_RD{0}'.format(i+1)] = kwargs.get('VRD', 0.0)
+
+        if i <= 3:
+            ccdhdr['V_S{0}L'.format(i+1)] = kwargs.get('SER LO', 0.0)
+            ccdhdr['V_S{0}H'.format(i+1)] = kwargs.get('SER HI', 0.0)
+            ccdhdr['V_P{0}L'.format(i+1)] = kwargs.get('PAR LO', 0.0)
+            ccdhdr['V_P{0}H'.format(i+1)] = kwargs.get('PAR HI', 0.0)
+                   
+    ccdhdr['V_GD'] = kwargs.get('VGD', '') ## What is this? VDD?
+    ccdhdr['V_BSS'] = kwargs.get('VBB', 0.0)
+    ccdhdr['V_RGL'] = kwargs.get('RG LO', 0.0)
+    ccdhdr['V_RGH'] = kwargs.get('RG HI', 0.0)
+    
+    ccdhdu = fits.ImageHDU(data=None, header=ccdhdr, name='CCD_COND')
+    ccdhdu.add_checksum()
 
     ## Update fits header
-    fits = fitsio.FITS(filepath, 'rw')
-    fits[0].write_key('IMAGETAG', imagetag, comment='Image tag (CCS/VST)')
-    fits[0].write_key('TSTAND', tstand, comment = 'Which test stand at the site was used.')
-    fits[0].write_key('INSTRUME', instrument, comment='CCD Controller type')
-    fits[0].write_key('CONTROLL', controller, comment='Duplicates INSTRUME')
-    fits[0].write_key('CONTNUM', contnum, comment='CCD Controller Serial Number')
-    fits[0].write_key('CCD_MANU', ccd_manu, comment='CCD Manufacturer')
-    fits[0].write_key('CCD_TYPE', ccd_type, comment='CCD Model Number')
-    fits[0].write_key('CCD_SERN', ccd_sern, comment="Manufacturers' CCD Serial Number")
-    fits[0].write_key('LSST_NUM', lsst_num, comment='LSST Assigned CCD Number')
-    fits[0].write_key('TESTTYPE', testtype,
-                      comment='dark:fe55:flat:lambda:spot:sflat_nnn:trap')
-    fits[0].write_key('IMGTYPE', imgtype, comment='BIAS, DARK, ...')
-    fits[0].write_key('SEQNUM', seqnum,
-                      comment='Sequence number extracted from the original filename')
-    fits[0].write_key('TEMP_SET', temp_set, comment='Temperature set point')
-    fits[0].write_key('CCDTEMP', ccdtemp, comment='Measured temperature')
-    fits[0].write_key('MONDIODE', mondiode, comment='Current in the monitoring diode')
-    fits[0].write_key('MONOWL', monowl, comment='Monochromator wavelength')
-    fits[0].write_key('FILTER', filter_name, comment='Name of the filter')
-    fits[0].write_key('EXPTIME', exptime, comment='Exposure Time in Seconds')
-    fits[0].write_key('SHUT_DEL', shut_del,
-                      comment='Delay between shutter close command and readout')
-    fits[0].write_key('CTRLCFG', ctrlcfg,
-                      comment='Name of the CCD controller configuration file')
-    fits[0].write_key('FILENAME', os.path.split(filename)[1], comment='Original name of the file')
-    fits[0].write_key('BINX', binx, comment='[pixels] binning along X axis')
-    fits[0].write_key('BINY', biny, comment='[pixels] binning along Y axis')
-    fits[0].write_key('HEADVER', headver, comment='Version number of header')
-    fits[0].write_key('CCDGAIN', ccdgain, comment='Rough guess at overall system gain')
-    fits[0].write_key('CCDNOISE', ccdnoise, comment='Rough guess at system noise')
+    hdulist = fits.open(filepath, mode='update')
+    prihdr = hdulist[0].header
+    prihdr['IMAGETAG'] = (imagetag, 'Image tag (CCS/VST)')
+    prihdr['TSTAND'] = (tstand, 'Test stand used.')
+    prihdr['INSTRUME'] = (instrument, 'CCD Controller type')
+    prihdr['CONTROLL'] = (controller, 'Duplicates INSTRUME')
+    prihdr['CONTNUM'] = (contnum, 'CCD Controller Serial Number')
+    prihdr['CCD_MANU'] = (ccd_manu, 'CCD Manufacturer')
+    prihdr['CCD_TYPE'] = (ccd_type, 'CCD Model Number')
+    prihdr['CCD_SERN'] = (ccd_sern, "Manufacturers' CCD Serial Number")
+    prihdr['LSST_NUM']= (lsst_num, 'LSST Assigned CCD Number')
+    prihdr['TESTTYPE'] = (testtype, 'dark:fe55:flat:lambda:spot:sflat_nnn:trap')
+    prihdr['IMGTYPE'] = (imgtype, 'BIAS, DARK, ...')
+    prihdr['SEQNUM'] = (seqnum, 'Sequence number')
+    prihdr['TEMP_SET'] = (temp_set, 'Temperature set point')
+    prihdr['CCDTEMP'] = (ccdtemp, 'Measured temperature')
+    prihdr['MONDIODE'] = (mondiode, 'Current in monitoring diode')
+    prihdr['MONOWL'] = (monowl, 'Monochromator wavelength')
+    prihdr['FILTER'] = (filter_name, 'Name of the filter')
+    prihdr['EXPTIME'] = (exptime, 'Exposure Time in Seconds')
+    prihdr['SHUT_DEL'] = (shut_del, 'Shutter delay')
+    prihdr['CTRLCFG'] = (ctrlcfg, 'CCD controller configuration file')
+    prihdr['FILENAME'] = (os.path.split(filename)[1], 'Original name of the file')
+    prihdr['BINX'] = (binx, '[pixels] binning along X axis')
+    prihdr['BINY'] = (biny, '[pixels] binning along Y axis')
+    prihdr['HEADVER'] = (headver, 'Version number of header')
+    prihdr['CCDGAIN'] = (ccdgain, 'Rough guess at overall system gain')
+    prihdr['CCDNOISE'] = (ccdnoise, 'Rough guess at system noise')
 
-    #fits.append(ccdhdu)
-    fits.close()
+    hdulist.append(ccdhdu)
+    hdulist.flush()
+    hdulist.close()
 
 ###############################################################################
 ##

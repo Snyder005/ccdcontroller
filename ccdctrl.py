@@ -120,6 +120,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         self.filterToggleButton.toggled.connect(self.toggleFilter)
         self.setvoltageButton.clicked.connect(self.setvoltages)
         self.cancelButton.clicked.connect(self.cancelExposure)
+        self.resetvoltageButton.clicked.connect(self.getvoltagevalues)
 
         ## Progress bar signals
         self.image_start.connect(self.resetProgressBar)
@@ -287,9 +288,16 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         else:
             kwargs = {'monowl' : self.monoSpinBox.value()}
 
+        ## Add voltages to kwargs
+        kwargs.update(self.getvoltagevalues())
+
         ## Build filepath
-        filepath = os.path.join(str(self.imfilenameLineEdit.text()),
-                                str(self.imtitleLineEdit.text()))
+        if self.testimCheckBox.isChecked():
+            filepath = os.path.join(str(self.imfilenameLineEdit.text()),
+                                    'test')
+        else:
+            filepath = os.path.join(str(self.imfilenameLineEdit.text()),
+                                    str(self.imtitleLineEdit.text()))
                                             
         ## Check if single exposure
         if exptype in ["Exposure", "Dark", "Bias"]:
@@ -500,6 +508,12 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         self.voltagedisplay('SER LO', self.settings.value('serlo').toFloat()[0])
         
         self.settings.endGroup()
+
+    def getvoltagevalues(self):
+        kwargs = dict()
+        for key, value in self.voltagedict.iteritems():
+            kwargs[key] = float(value.text())
+        return kwargs
 
     def activate_ui(self):
         """Activate and deactivate input widgets depending on the necessary arguments."""
