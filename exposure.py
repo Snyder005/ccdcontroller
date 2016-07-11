@@ -386,9 +386,9 @@ def update_header(filepath, mode, exptime, seqnum, **kwargs):
     prihdr['CCDNOISE'] = (ccdnoise, 'Rough guess at system noise')
 
     ## Add Modified Julian Date
-    gmt_date = prihdr['DATE']
-    mjd = jd_to_mjd(datetime_to_jd(get_datetime(gmt_date)))
-    prihdr['MJD'] = (mjd, 'Modified Julian Date of acquisition')
+#    gmt_date = prihdr['DATE']
+#    mjd = jd_to_mjd(datetime_to_jd(get_datetime(gmt_date)))
+#    prihdr['MJD'] = (mjd, 'Modified Julian Date of acquisition')
 
     hdulist.append(ccdhdu)
     hdulist.flush()
