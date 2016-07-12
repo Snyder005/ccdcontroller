@@ -10,6 +10,7 @@ import errno
 from time import sleep
 import datetime
 import math
+import pytz
 
 import voltage
 
@@ -165,50 +166,6 @@ def hmsm_to_days(hour=0,min=0,sec=0,micro=0):
     
     return days / 24.
 
-def jd_to_mjd(jd):
-    """
-    Convert Julian Day to Modified Julian Day
-    
-    Parameters
-    ----------
-    jd : float
-        Julian Day
-        
-    Returns
-    -------
-    mjd : float
-        Modified Julian Day
-    
-    """
-    return jd - 2400000.5
-
-def datetime_to_jd(date):
-    """
-    Convert a `datetime.datetime` object to Julian Day.
-    
-    Parameters
-    ----------
-    date : `datetime.datetime` instance
-    
-    Returns
-    -------
-    jd : float
-        Julian day.
-        
-    Examples
-    --------
-    >>> d = datetime.datetime(1985,2,17,6)  
-    >>> d
-    datetime.datetime(1985, 2, 17, 6, 0)
-    >>> jdutil.datetime_to_jd(d)
-    2446113.75
-    
-    """
-    days = date.day + hmsm_to_days(date.hour,date.minute,
-                                   date.second,date.microsecond)
-    
-    return date_to_jd(date.year,date.month,days)
-
 def date_to_jd(year,month,day):
     """
     Convert a date to Julian Day.
@@ -271,23 +228,31 @@ def date_to_jd(year,month,day):
     
     return jd
 
-def get_datetime(datestring):
-
-    year = int(datestring[0:4])
-    month = int(datestring[5:7])
-    day = int(datestring[8:10])
-
-    hour = int(datestring[11:13])
-    minute = int(datestring[14:16])
-
-    dec, sec = math.modf(float(datestring[17:]))
-    microsecond = int(dec*1000000)
-    second = int(sec)
-
-    date = datetime.datetime(year, month, day, hour, minute,
-                             second, microsecond)
-
-    return date
+def datetime_to_jd(date):
+    """
+    Convert a `datetime.datetime` object to Julian Day.
+    
+    Parameters
+    ----------
+    date : `datetime.datetime` instance
+    
+    Returns
+    -------
+    jd : float
+        Julian day.
+        
+    Examples
+    --------
+    >>> d = datetime.datetime(1985,2,17,6)  
+    >>> d
+    datetime.datetime(1985, 2, 17, 6, 0)
+    >>> jdutil.datetime_to_jd(d)
+    2446113.75
+    
+    """
+    days = date.day + hmsm_to_days(date.hour,date.minute,date.second,date.microsecond)
+    
+    return date_to_jd(date.year,date.month,days)
 
 def update_header(filepath, mode, exptime, seqnum, **kwargs):
 
@@ -384,11 +349,22 @@ def update_header(filepath, mode, exptime, seqnum, **kwargs):
     prihdr['HEADVER'] = (headver, 'Version number of header')
     prihdr['CCDGAIN'] = (ccdgain, 'Rough guess at overall system gain')
     prihdr['CCDNOISE'] = (ccdnoise, 'Rough guess at system noise')
+    
+    ## Add properly formated Date information to FITs header
+    date_str = prihdr['DATE']
+    dt = datetime.strptime(date_str, '%a %b %d %H:%M:%S %Z %Y')
+    local = pytz.timezone('GMT')
+    local_dt = local.localize(dt, is_dst=None)
+    utc_dt = local_dt.astimezone(pytz.utc)
+    utc_dt_obs = datetime.utcnow()
 
-    ## Add Modified Julian Date
-#    gmt_date = prihdr['DATE']
-#    mjd = jd_to_mjd(datetime_to_jd(get_datetime(gmt_date)))
-#    prihdr['MJD'] = (mjd, 'Modified Julian Date of acquisition')
+    date_utc = utc_dt.strftime('%Y-%m-%dT%H:%M:%S.000')
+    date_mjd = datetime_to_jd(utc_dt)
+    date_obs_utc = utc_dt_obs.strftime('%Y-%m-%dT%H:%M:%S.000')
+
+    prihdr['DATE-OBS'] = (date_utc, 'Date of the observation')
+    prihdr['DATE'] = (date_obs_utc, 'Creation Date and Time of File')
+    prihdr['MJD'] = (date_mjd, 'Modified Julian Date of image acquisition')
 
     hdulist.append(ccdhdu)
     hdulist.flush()
