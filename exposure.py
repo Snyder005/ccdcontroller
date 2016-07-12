@@ -8,7 +8,7 @@ import subprocess
 import os
 import errno
 from time import sleep
-import datetime
+from datetime import datetime
 import math
 import pytz
 
@@ -364,7 +364,8 @@ def update_header(filepath, mode, exptime, seqnum, **kwargs):
 
     prihdr['DATE-OBS'] = (date_utc, 'Date of the observation')
     prihdr['DATE'] = (date_obs_utc, 'Creation Date and Time of File')
-    prihdr['MJD'] = (date_mjd, 'Modified Julian Date of image acquisition')
+    prihdr['MJD'] = ('{0:.5f}'.format(date_mjd), 
+                     'Modified Julian Date of image acquisition')
 
     hdulist.append(ccdhdu)
     hdulist.flush()
