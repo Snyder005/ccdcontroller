@@ -8,6 +8,7 @@ import subprocess
 import os
 import errno
 from time import sleep
+from time import time as timestamp
 from datetime import datetime
 import math
 import pytz
@@ -100,16 +101,19 @@ def scan(filebase, *args, **kwargs):
 
 def im_acq(mode, filebase="test", exptime=0.00, seqnum=1, **kwargs):
 
+    is_test = kwargs.get('is_test', True)
+
     # If bias frame, set exptime to 0.00s
     if mode == "bias":
         exptime = 0.00
     
     filename = "{0}.{1}.{2}s.{3}.fits".format(filebase, mode,
-                                             exptime, seqnum)
+                                                  exptime, seqnum)
 
     ## Check that file doesn't exist already
-    if os.path.isfile(filename):
-        raise IOError
+    if not is_test:
+        if os.path.isfile(filename):
+            raise IOError
 
     ## Do exposure depending on specified mode
     if mode == "exp":
@@ -281,7 +285,7 @@ def update_header(filepath, mode, exptime, seqnum, **kwargs):
         filter_name = 'N/A'
 
     ## Settings from INI file
-    imagetag = kwargs.get('imagetag', '[lots of digits]') ## Need to change
+    imagetag = kwargs.get('imagetag', "{0}".format(int(timestamp()))) ## Need to change
     tstand = kwargs.get('tstand', 'Stanford-KGLab')
     instrument = kwargs.get('instrument', 'SAO16')
     controller = kwargs.get('controller', 'SAO16')
@@ -291,7 +295,7 @@ def update_header(filepath, mode, exptime, seqnum, **kwargs):
     ccd_sern = kwargs.get('ccd_sern', '19351')
     lsst_num = kwargs.get('lsst_num', '3800C-033')
     shut_del = kwargs.get('shut_del', 0.00)
-    ctrlcfg = kwargs.get('ctrlcfg', 'abcde.xml') ## Need to look up
+    ctrlcfg = kwargs.get('ctrlcfg', 'sta3800a.sig') ## Need to look up
     binx = kwargs.get('binx', 1)
     biny = kwargs.get('biny', 1)
     headver = kwargs.get('headver', 1)

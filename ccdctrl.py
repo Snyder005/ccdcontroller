@@ -120,7 +120,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         self.filterToggleButton.toggled.connect(self.toggleFilter)
         self.setvoltageButton.clicked.connect(self.setvoltages)
         self.cancelButton.clicked.connect(self.cancelExposure)
-        self.resetvoltageButton.clicked.connect(self.getvoltagevalues)
+#        self.resetvoltageButton.clicked.connect(self.getvoltagevalues)
 
         ## Progress bar signals
         self.image_start.connect(self.resetProgressBar)
@@ -260,8 +260,11 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
 
     @QtCore.pyqtSlot(int)
     def autoIncrement(self, seqnum_old):
+
+        ## Auto-increment only if checked and not test image
         if self.autoincCheckBox.isChecked():
-            self.imnumSpinBox.setValue(seqnum_old+1)
+            if not self.testimCheckBox.isChecked():
+                self.imnumSpinBox.setValue(seqnum_old+1)
 
     def expose(self):
         """Execute a shell script to perform a measurement, depending on the desired
@@ -295,9 +298,11 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         if self.testimCheckBox.isChecked():
             filepath = os.path.join(str(self.imfilenameLineEdit.text()),
                                     'test')
+            kwargs['is_test'] = True
         else:
             filepath = os.path.join(str(self.imfilenameLineEdit.text()),
                                     str(self.imtitleLineEdit.text()))
+            kwargs['is_test'] = False
                                             
         ## Check if single exposure
         if exptype in ["Exposure", "Dark", "Bias"]:
