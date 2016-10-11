@@ -380,10 +380,10 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             self.thread.reboot()
             
             try:
-                for i, time in enumerate(time_array):
+                for i, expt in enumerate(time_array):
                     if self.thread.status:
-                        self.logger.info("Starting {0}s {1} image.".format(time, mode))
-                        filename = exposure.im_acq(mode, filepath, time, seqnum, **kwargs)
+                        self.logger.info("Starting {0}s {1} image.".format(expt, mode))
+                        filename = exposure.im_acq(mode, filepath, expt, seqnum, **kwargs)
                         self.logger.info("Exposure {0} finished successfully.".format(filename))
                         self.image_taken.emit(i+1)
                     else:
