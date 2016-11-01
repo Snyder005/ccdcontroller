@@ -1,1 +1,101 @@
-New log file 10/9/16
+New log file 10/9/1610/11/2016 05:01:51 PM - INFO - GUI display widget values successfully restored.
+10/11/2016 05:01:51 PM - INFO - Turning off sta3800 controller (sta3800_off).
+10/11/2016 05:01:55 PM - INFO - Controller turned off successfully.
+10/11/2016 05:01:55 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+10/11/2016 05:02:04 PM - INFO - Controller turned on successfully.
+10/11/2016 05:02:19 PM - INFO - Starting 5.0s Exposure image.
+10/11/2016 05:02:29 PM - INFO - Exposure /home/lsst/Data/20161007/test.exp.5.0s.12.fits finished successfully.
+10/11/2016 05:02:49 PM - INFO - Starting 10.0s Exposure image.
+10/11/2016 05:03:03 PM - INFO - Exposure /home/lsst/Data/20161007/test.exp.10.0s.12.fits finished successfully.
+10/11/2016 05:04:00 PM - INFO - Starting 10.0s Exposure image.
+10/11/2016 05:04:14 PM - INFO - Exposure /home/lsst/Data/20161007/test.exp.10.0s.12.fits finished successfully.
+10/11/2016 05:04:25 PM - INFO - Starting 5.0s Exposure image.
+10/11/2016 05:04:35 PM - INFO - Exposure /home/lsst/Data/20161007/test.exp.5.0s.12.fits finished successfully.
+10/11/2016 05:04:49 PM - INFO - Turning off sta3800 controller (sta3800_off).
+10/11/2016 05:04:53 PM - INFO - Controller turned off successfully.
+11/01/2016 10:49:26 AM - INFO - GUI display widget values successfully restored.
+11/01/2016 10:49:26 AM - INFO - Turning off sta3800 controller (sta3800_off).
+11/01/2016 10:49:30 AM - INFO - Controller turned off successfully.
+11/01/2016 10:49:30 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+11/01/2016 10:49:38 AM - INFO - Controller turned on successfully.
+11/01/2016 10:49:55 AM - INFO - Turning off sta3800 controller (sta3800_off).
+11/01/2016 10:49:59 AM - INFO - Controller turned off successfully.
+11/01/2016 10:49:59 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+11/01/2016 10:50:07 AM - INFO - Controller turned on successfully.
+11/01/2016 10:50:19 AM - INFO - Starting 5.0s Exposure image.
+11/01/2016 10:50:29 AM - INFO - Exposure /home/lsst/Data/20161007/test.exp.5.0s.12.fits finished successfully.
+11/01/2016 10:53:26 AM - INFO - Data directory changed to /home/lsst/Data/20161101.
+11/01/2016 10:53:57 AM - INFO - Starting 0.0s Bias image.
+11/01/2016 10:54:02 AM - INFO - Exposure /home/lsst/Data/20161101/test.bias.0.0s.100.fits finished successfully.
+11/01/2016 01:45:51 PM - INFO - Starting 10.0s Exposure image.
+11/01/2016 01:46:06 PM - INFO - Exposure /home/lsst/Data/20161101/test.exp.10.0s.100.fits finished successfully.
+11/01/2016 01:49:34 PM - INFO - Starting 5.0s Exposure image.
+11/01/2016 01:49:44 PM - INFO - Exposure /home/lsst/Data/20161101/test.exp.5.0s.100.fits finished successfully.
+11/01/2016 01:50:20 PM - INFO - Starting 1.0s Exposure image.
+11/01/2016 01:50:26 PM - INFO - Exposure /home/lsst/Data/20161101/test.exp.1.0s.100.fits finished successfully.
+11/01/2016 01:50:39 PM - INFO - Starting 0.5s Exposure image.
+11/01/2016 01:50:44 PM - INFO - Exposure /home/lsst/Data/20161101/test.exp.0.5s.100.fits finished successfully.
+11/01/2016 01:51:07 PM - INFO - Starting 0.0s Bias image.
+11/01/2016 01:51:11 PM - INFO - Exposure /home/lsst/Data/20161101/test.bias.0.0s.100.fits finished successfully.
+11/01/2016 01:51:50 PM - INFO - Starting 0.0s Bias image.
+11/01/2016 01:51:55 PM - INFO - Exposure /home/lsst/Data/20161101/test.bias.0.0s.100.fits finished successfully.
+11/01/2016 02:13:23 PM - INFO - Starting 0.5s Exposure image.
+11/01/2016 02:13:29 PM - INFO - Exposure /home/lsst/Data/20161101/test.exp.0.5s.100.fits finished successfully.
+11/01/2016 02:22:33 PM - INFO - Starting 0.5s Exposure image.
+11/01/2016 02:22:56 PM - ERROR - File already exits. Image not taken.
+Traceback (most recent call last):
+  File "./ccdctrl.py", line 316, in expose
+    filename = exposure.im_acq(mode, filepath, exptime, seqnum, **kwargs)
+  File "/home/lsst/ccdcontroller/exposure.py", line 127, in im_acq
+    update_header(filename, mode, exptime, seqnum, **kwargs)
+  File "/home/lsst/ccdcontroller/exposure.py", line 328, in update_header
+    hdulist = fits.open(filepath, mode='update')
+  File "/usr/local/lib/python2.6/dist-packages/pyfits/hdu/hdulist.py", line 124, in fitsopen
+    return HDUList.fromfile(name, mode, memmap, save_backup, **kwargs)
+  File "/usr/local/lib/python2.6/dist-packages/pyfits/hdu/hdulist.py", line 266, in fromfile
+    save_backup=save_backup, **kwargs)
+  File "/usr/local/lib/python2.6/dist-packages/pyfits/hdu/hdulist.py", line 786, in _readfrom
+    ffo = _File(fileobj, mode=mode, memmap=memmap)
+  File "/usr/local/lib/python2.6/dist-packages/pyfits/file.py", line 132, in __init__
+    self._open_filename(fileobj, mode, clobber)
+  File "/usr/local/lib/python2.6/dist-packages/pyfits/file.py", line 487, in _open_filename
+    self._file = fileobj_open(self.name, PYFITS_MODES[mode])
+  File "/usr/local/lib/python2.6/dist-packages/pyfits/util.py", line 754, in fileobj_open
+    return open(filename, mode)
+IOError: [Errno 2] No such file or directory: '/home/lsst/Data/20161101/test.exp.0.5s.100.fits'
+11/01/2016 02:23:11 PM - INFO - Starting 0.5s Exposure image.
+11/01/2016 02:23:16 PM - INFO - Exposure /home/lsst/Data/20161101/test.exp.0.5s.100.fits finished successfully.
+11/01/2016 02:23:27 PM - INFO - Starting 0.5s Exposure image.
+11/01/2016 02:23:32 PM - INFO - Exposure /home/lsst/Data/20161101/test.exp.0.5s.100.fits finished successfully.
+11/01/2016 02:23:42 PM - INFO - Starting 0.1s Exposure image.
+11/01/2016 02:23:46 PM - INFO - Exposure /home/lsst/Data/20161101/test.exp.0.1s.100.fits finished successfully.
+11/01/2016 02:34:02 PM - INFO - Starting 0.1s Exposure image.
+11/01/2016 02:34:06 PM - INFO - Exposure /home/lsst/Data/20161101/test.exp.0.1s.100.fits finished successfully.
+11/01/2016 02:34:56 PM - INFO - Starting 0.0s Bias image.
+11/01/2016 02:35:00 PM - INFO - Exposure /home/lsst/Data/20161101/test.bias.0.0s.100.fits finished successfully.
+11/01/2016 02:38:09 PM - INFO - Starting 0.0s Bias image.
+11/01/2016 02:38:13 PM - INFO - Exposure /home/lsst/Data/20161101/test.bias.0.0s.100.fits finished successfully.
+11/01/2016 02:38:39 PM - INFO - Starting 60.0s Dark image.
+11/01/2016 02:39:43 PM - INFO - Exposure /home/lsst/Data/20161101/test.dark.60.0s.100.fits finished successfully.
+11/01/2016 02:43:46 PM - INFO - Starting 60.0s Dark image.
+11/01/2016 02:44:16 PM - INFO - Finishing current exposure and canceling remaining exposures...
+11/01/2016 02:44:50 PM - INFO - Exposure /home/lsst/Data/20161101/test.dark.60.0s.100.fits finished successfully.
+11/01/2016 02:45:28 PM - INFO - Starting 1.0s Dark image.
+11/01/2016 02:45:33 PM - INFO - Exposure /home/lsst/Data/20161101/test.dark.1.0s.100.fits finished successfully.
+11/01/2016 02:49:57 PM - INFO - Turning off sta3800 controller (sta3800_off).
+11/01/2016 02:50:02 PM - INFO - Controller turned off successfully.
+11/01/2016 02:51:31 PM - INFO - GUI display widget values successfully restored.
+11/01/2016 02:51:31 PM - INFO - Turning off sta3800 controller (sta3800_off).
+11/01/2016 02:51:35 PM - INFO - Controller turned off successfully.
+11/01/2016 02:51:35 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+11/01/2016 02:51:43 PM - INFO - Controller turned on successfully.
+11/01/2016 02:51:55 PM - INFO - Starting 1.0s Dark image.
+11/01/2016 02:52:01 PM - INFO - Exposure /home/lsst/Data/20161101/target.tests.dark.1.0s.100.fits finished successfully.
+11/01/2016 02:53:11 PM - INFO - Starting 60.0s Dark image.
+11/01/2016 02:54:15 PM - INFO - Exposure /home/lsst/Data/20161101/test.dark.60.0s.101.fits finished successfully.
+11/01/2016 02:59:11 PM - INFO - Starting 0.1s Exposure image.
+11/01/2016 02:59:16 PM - INFO - Exposure /home/lsst/Data/20161101/test.exp.0.1s.101.fits finished successfully.
+11/01/2016 03:00:43 PM - INFO - Starting 0.1s Exposure image.
+11/01/2016 03:00:48 PM - INFO - Exposure /home/lsst/Data/20161101/test.exp.0.1s.101.fits finished successfully.
+11/01/2016 03:16:11 PM - INFO - Turning off sta3800 controller (sta3800_off).
+11/01/2016 03:16:15 PM - INFO - Controller turned off successfully.

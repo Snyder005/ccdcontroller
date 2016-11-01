@@ -120,7 +120,7 @@ def im_acq(mode, filebase="test", exptime=0.00, seqnum=1, **kwargs):
         output = subprocess.check_output(["exp_acq", "{0}".format(exptime),
                                           "{0}".format(filename)])
     elif mode in ['bias', 'dark']:
-        output = subprocess.check_output(["exp_acq", "{0}".format(exptime),
+        output = subprocess.check_output(["dark_acq", "{0}".format(exptime),
                                           "{0}".format(filename)])
 
     ## Update FITs header
