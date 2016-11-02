@@ -120,6 +120,8 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         self.filterToggleButton.toggled.connect(self.toggleFilter)
         self.setvoltageButton.clicked.connect(self.setvoltages)
         self.cancelButton.clicked.connect(self.cancelExposure)
+        self.parameterButton.clicked.connect(self.setparameterfile)
+#        self.resetvoltageButton.clicked.connect(self.getvoltagevalues)
 
         ## Progress bar signals
         self.image_start.connect(self.resetProgressBar)
@@ -231,6 +233,64 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             self.displaydirectory()
             self.logger.info("Data directory changed to {0}.".format(new_directory))
 
+    def setparameterfile(self):
+        """Select a text file with voltage scan parameters."""
+
+        parameter_file = str(QtGui.QFileDialog.getOpenFileName()) # add filter
+
+        if parameter_file:
+            self.parameterEdit.setText(str(parameter_file))
+
+    def startscan(self):
+
+        parameter_file = str(self.parameterEdit.text())
+
+        voltage_params = []
+
+        ## Parse parameter file ("create args")
+        with open(parameter_file) as f:
+
+            for line in f.readlines():
+                v_name = line[0]
+                v_min = line[1]
+                v_max = line[2]
+
+                try:
+                    v_step = line[3]
+                except IndexError:
+                    v_step = 0.5
+
+                voltage_params.append((v_name, v_min, v_max, v_step))
+
+        ## Set initial voltages
+        for v_param in voltage_params:
+
+            try:
+                voltage.set_voltage(v_param[0], v_param[1])
+        
+        ## Start parameter sweep
+
+            try:
+                for i in range(seqnum, total):
+                    if self.thread.status:
+                        self.logger.info("Starting image {0} of {1}.".format(i+1-seqnum, imcount))
+                        filename = exposure.im_acq(mode, filepath, exptime, i, **kwargs) ## Replace with stuff
+                        self.logger.info("Exposure {0} finished successfully.".format(filename))
+                        self.image_taken.emit(i+1-seqnum)
+                        self.seqnum_inc.emit(i)
+                    else:
+                        self.logger.info("Voltage scan canceled.")
+                        self.thread.reboot()
+                        return
+            except subprocess.CalledProcessError:
+                self.logger.exception("Error in executable. Image not taken.")
+            except OSError:
+                self.logger.exception("Executable not found. Image not taken.")
+            except IOError:
+                self.logger.exception("File already exists. Image not taken.")
+            else:
+                self.logger.info("Exposure stack finished successfully.")
+        
     def toggleFilter(self):
 
         if self.filterToggleButton.isChecked():
@@ -259,8 +319,11 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
 
     @QtCore.pyqtSlot(int)
     def autoIncrement(self, seqnum_old):
+
+        ## Auto-increment only if checked and not test image
         if self.autoincCheckBox.isChecked():
-            self.imnumSpinBox.setValue(seqnum_old+1)
+            if not self.testimCheckBox.isChecked():
+                self.imnumSpinBox.setValue(seqnum_old+1)
 
     def expose(self):
         """Execute a shell script to perform a measurement, depending on the desired
@@ -287,9 +350,18 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         else:
             kwargs = {'monowl' : self.monoSpinBox.value()}
 
+        ## Add voltages to kwargs
+        kwargs.update(self.getvoltagevalues())
+
         ## Build filepath
-        filepath = os.path.join(str(self.imfilenameLineEdit.text()),
-                                str(self.imtitleLineEdit.text()))
+        if self.testimCheckBox.isChecked():
+            filepath = os.path.join(str(self.imfilenameLineEdit.text()),
+                                    'test')
+            kwargs['is_test'] = True
+        else:
+            filepath = os.path.join(str(self.imfilenameLineEdit.text()),
+                                    str(self.imtitleLineEdit.text()))
+            kwargs['is_test'] = False
                                             
         ## Check if single exposure
         if exptype in ["Exposure", "Dark", "Bias"]:
@@ -367,10 +439,10 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             self.thread.reboot()
             
             try:
-                for i, time in enumerate(time_array):
+                for i, expt in enumerate(time_array):
                     if self.thread.status:
-                        self.logger.info("Starting {0}s {1} image.".format(time, mode))
-                        filename = exposure.im_acq(mode, filepath, time, seqnum, **kwargs)
+                        self.logger.info("Starting {0}s {1} image.".format(expt, mode))
+                        filename = exposure.im_acq(mode, filepath, expt, seqnum, **kwargs)
                         self.logger.info("Exposure {0} finished successfully.".format(filename))
                         self.image_taken.emit(i+1)
                     else:
@@ -500,6 +572,12 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         self.voltagedisplay('SER LO', self.settings.value('serlo').toFloat()[0])
         
         self.settings.endGroup()
+
+    def getvoltagevalues(self):
+        kwargs = dict()
+        for key, value in self.voltagedict.iteritems():
+            kwargs[key] = float(value.text())
+        return kwargs
 
     def activate_ui(self):
         """Activate and deactivate input widgets depending on the necessary arguments."""

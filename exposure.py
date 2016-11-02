@@ -61,9 +61,6 @@ def scan(filebase, *args, **kwargs):
     except IndexError:
         v_step = 0.5
 
-    fileend = kwargs.get("fileend", "")
-
-
     ## Set up loop for the voltage
     volts = v_min
     
@@ -71,12 +68,9 @@ def scan(filebase, *args, **kwargs):
 
         voltage.set_voltage(volts, v_name)
 
-        fileend2 = "{0}_{1}{2}".format(fileend, v_name, volts)
-
         ## If voltages remain, run again with remaining sets of parameters
         if len(args) > 1:
 
-            kwargs.update({"fileend" : fileend2})
             scan(filebase, *args[1:], **kwargs)
 
         ## If list is exhausted perform measurement and increment
