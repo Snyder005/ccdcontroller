@@ -445,3 +445,10 @@ IOError: File already exists
 11/02/2016 02:43:39 PM - INFO - Exposure /home/lsst/Data/20161102/iotest.exp.0.1s.102.fits finished successfully.
 11/02/2016 02:43:45 PM - INFO - Turning off sta3800 controller (sta3800_off).
 11/02/2016 02:43:49 PM - INFO - Controller turned off successfully.
+11/03/2016 10:16:30 AM - INFO - GUI display widget values successfully restored.
+11/03/2016 10:16:30 AM - INFO - Turning off sta3800 controller (sta3800_off).
+11/03/2016 10:16:30 AM - INFO - Controller turned off successfully.
+11/03/2016 10:16:30 AM - INFO - Turning on sta3800 controller (sta3800_setup).
+11/03/2016 10:16:30 AM - INFO - Controller turned on successfully.
+11/03/2016 10:16:38 AM - INFO - Turning off sta3800 controller (sta3800_off).
+11/03/2016 10:16:38 AM - INFO - Controller turned off successfully.

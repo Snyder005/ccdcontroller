@@ -263,33 +263,33 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                 voltage_params.append((v_name, v_min, v_max, v_step))
 
         ## Set initial voltages
-        for v_param in voltage_params:
+#        for v_param in voltage_params:
 
-            try:
-                voltage.set_voltage(v_param[0], v_param[1])
+#            try:
+#                voltage.set_voltage(v_param[0], v_param[1])
         
         ## Start parameter sweep
 
-            try:
-                for i in range(seqnum, total):
-                    if self.thread.status:
-                        self.logger.info("Starting image {0} of {1}.".format(i+1-seqnum, imcount))
-                        filename = exposure.im_acq(mode, filepath, exptime, i, **kwargs) ## Replace with stuff
-                        self.logger.info("Exposure {0} finished successfully.".format(filename))
-                        self.image_taken.emit(i+1-seqnum)
-                        self.seqnum_inc.emit(i)
-                    else:
-                        self.logger.info("Voltage scan canceled.")
-                        self.thread.reboot()
-                        return
-            except subprocess.CalledProcessError:
-                self.logger.exception("Error in executable. Image not taken.")
-            except OSError:
-                self.logger.exception("Executable not found. Image not taken.")
-            except IOError:
-                self.logger.exception("File already exists. Image not taken.")
-            else:
-                self.logger.info("Exposure stack finished successfully.")
+#            try:
+#                for i in range(seqnum, total):
+#                    if self.thread.status:
+#                        self.logger.info("Starting image {0} of {1}.".format(i+1-seqnum, imcount))
+ #                       filename = exposure.im_acq(mode, filepath, exptime, i, **kwargs) ## Replace with stuff
+#                        self.logger.info("Exposure {0} finished successfully.".format(filename))
+#                        self.image_taken.emit(i+1-seqnum)
+#                        self.seqnum_inc.emit(i)
+#                    else:
+#                        self.logger.info("Voltage scan canceled.")
+#                        self.thread.reboot()
+#                        return
+#            except subprocess.CalledProcessError:
+#                self.logger.exception("Error in executable. Image not taken.")
+#            except OSError:
+#                self.logger.exception("Executable not found. Image not taken.")
+#            except IOError:
+#                self.logger.exception("File already exists. Image not taken.")
+#            else:
+#                self.logger.info("Exposure stack finished successfully.")
         
     def toggleFilter(self):
 
