@@ -284,6 +284,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         mintime = self.minexpSpinBox.value()
         maxtime = self.maxexpSpinBox.value()
         step = self.tstepSpinBox.value()
+        filedir = DATA_DIRECTORY
 
         ## Determine filter kwargs
         if self.filterToggleButton.isChecked():
@@ -296,12 +297,10 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
 
         ## Build filepath
         if self.testimCheckBox.isChecked():
-            filepath = os.path.join(str(self.imfilenameLineEdit.text()),
-                                    'test')
+            filename = 'test'
             kwargs['is_test'] = True
         else:
-            filepath = os.path.join(str(self.imfilenameLineEdit.text()),
-                                    str(self.imtitleLineEdit.text()))
+            filename = str(self.imtitleLineEdit.text())
             kwargs['is_test'] = False
                                             
         ## Check if single exposure
@@ -313,18 +312,19 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             self.thread.reboot()
 
             try:
-                filename = exposure.im_acq(mode, filepath, exptime, seqnum, **kwargs)
+                filepath = exposure.im_acq(mode, filename, exptime, seqnum, 
+                                           filedir, **kwargs)
                 self.image_taken.emit(1)
             except subprocess.CalledProcessError:
                 self.logger.exception("Error in executable {0}_acq. Image not taken.".format(mode))
             except OSError:
                 self.logger.exception("Executable {0}_acq not found. Image not taken".format(mode))
-            except IOError:
-                self.logger.exception("File already exits. Image not taken.")
+            except IOError as e:
+                self.logger.exception("{0}".format(e))
             else:
                 self.seqnum_inc.emit(seqnum)
-                self.logger.info("Exposure {0} finished successfully.".format(filename))
-                subprocess.Popen(['ds9', '-mosaicimage', 'iraf', filename, '-zoom', 'to', 'fit', '-cmap', 'b'])
+                self.logger.info("Exposure {0} finished successfully.".format(filepath))
+                subprocess.Popen(['ds9', '-mosaicimage', 'iraf', filepath, '-zoom', 'to', 'fit', '-cmap', 'b'])
 
         ## Check if a stack of exposures of same type
         elif exptype in ["Exposure Stack", "Dark Stack", "Bias Stack"]:
@@ -338,7 +338,8 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                 for i in range(seqnum, total):
                     if self.thread.status:
                         self.logger.info("Starting image {0} of {1}.".format(i+1-seqnum, imcount))
-                        filename = exposure.im_acq(mode, filepath, exptime, i, **kwargs)
+                        filepath = exposure.im_acq(mode, filename, exptime, i, 
+                                                   filedir, **kwargs)
                         self.logger.info("Exposure {0} finished successfully.".format(filename))
                         self.image_taken.emit(i+1-seqnum)
                         self.seqnum_inc.emit(i)
@@ -350,11 +351,11 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                 self.logger.exception("Error in executable {0}_acq. Image not taken.".format(mode))
             except OSError:
                 self.logger.exception("Executable {0}_acq not found. Image not taken.".format(mode))
-            except IOError:
-                self.logger.exception("File already exists. Image not taken.")
+            except IOError as e:
+                self.logger.exception("{0}".format(e))
             else:
                 self.logger.info("Exposure stack finished successfully.")
-                subprocess.Popen(['ds9', '-mosaicimage', 'iraf', filename, '-zoom', 'to', 'fit', '-cmap', 'b'])
+                subprocess.Popen(['ds9', '-mosaicimage', 'iraf', filepath, '-zoom', 'to', 'fit', '-cmap', 'b'])
                 
         ## Check if a series of exposures of increase exposure time
         elif exptype in ["Exposure Series", "Dark Series"]:
@@ -383,7 +384,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                 for i, expt in enumerate(time_array):
                     if self.thread.status:
                         self.logger.info("Starting {0}s {1} image.".format(expt, mode))
-                        filename = exposure.im_acq(mode, filepath, expt, seqnum, **kwargs)
+                        filepath = exposure.im_acq(mode, filename, expt, seqnum, **kwargs)
                         self.logger.info("Exposure {0} finished successfully.".format(filename))
                         self.image_taken.emit(i+1)
                     else:
@@ -395,12 +396,12 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                 self.logger.exception("Error in executable {0}_acq. Image not taken.".format(mode))
             except OSError:
                 self.logger.exception("Executable {0}_acq not found. Image not taken.".format(mode))
-            except IOError:
-                self.logger.exception("File already exists. Image not taken.")
+            except IOError as e:
+                self.logger.exception("{0}".format(e))
             else:
                 self.seqnum_inc.emit(seqnum)
                 self.logger.info("Exposure series finished successfully.")
-                subprocess.Popen(['ds9', '-mosaicimage', 'iraf', filename, '-zoom', 'to', 'fit', '-cmap', 'b'])
+                subprocess.Popen(['ds9', '-mosaicimage', 'iraf', filepath, '-zoom', 'to', 'fit', '-cmap', 'b'])
 
         
     def setvoltages(self):

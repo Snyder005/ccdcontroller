@@ -93,33 +93,39 @@ def scan(filebase, *args, **kwargs):
 ##
 ###############################################################################
 
-def im_acq(mode, filebase="test", exptime=0.00, seqnum=1, **kwargs):
+def im_acq(mode, filebase="test", exptime=0.00, seqnum=1, 
+           filedir="./", **kwargs):
 
     is_test = kwargs.get('is_test', True)
 
     # If bias frame, set exptime to 0.00s
     if mode == "bias":
         exptime = 0.00
-    
-    filename = "{0}.{1}.{2}s.{3}.fits".format(filebase, mode,
-                                                  exptime, seqnum)
 
     ## Check that file doesn't exist already
-    if not is_test:
-        if os.path.isfile(filename):
-            raise IOError
+    if is_test:
+        filepath = os.path.join(filedir, "test.fits")
+    else:
+        filepath = os.path.join(filedir, 
+                                "{0}.{1}.{2}s.{3}.fits".format(filebase, mode,
+                                                               exptime, seqnum))
+        if os.path.isfile(filepath):
+            raise IOError("File {0} already exists, image not taken.".format(filepath))
 
     ## Do exposure depending on specified mode
     if mode == "exp":
         output = subprocess.check_output(["exp_acq", "{0}".format(exptime),
-                                          "{0}".format(filename)])
+                                          "{0}".format(filepath)])
     elif mode in ['bias', 'dark']:
         output = subprocess.check_output(["dark_acq", "{0}".format(exptime),
-                                          "{0}".format(filename)])
+                                          "{0}".format(filepath)])
 
     ## Update FITs header
-    update_header(filename, mode, exptime, seqnum, **kwargs)
-    return filename
+    try:
+        update_header(filepath, mode, exptime, seqnum, **kwargs)
+    except IOError as e:
+        raise IOError("Error updating FITs header: {0}".format(e))
+    return filepath
 
 ###############################################################################
 ##

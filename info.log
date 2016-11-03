@@ -135,3 +135,313 @@ OSError: [Errno 2] No such file or directory
 11/01/2016 04:31:51 PM - INFO - Controller turned on successfully.
 11/01/2016 04:32:21 PM - INFO - Turning off sta3800 controller (sta3800_off).
 11/01/2016 04:32:21 PM - INFO - Controller turned off successfully.
+11/02/2016 01:07:56 PM - INFO - GUI display widget values successfully restored.
+11/02/2016 01:07:56 PM - INFO - Turning off sta3800 controller (sta3800_off).
+11/02/2016 01:08:00 PM - INFO - Controller turned off successfully.
+11/02/2016 01:08:00 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+11/02/2016 01:08:08 PM - INFO - Controller turned on successfully.
+11/02/2016 01:08:57 PM - INFO - Data directory changed to /home/lsst/Data/20161102.
+11/02/2016 01:09:04 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 01:09:09 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.0.1s.101.fits finished successfully.
+11/02/2016 01:09:21 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 01:09:26 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.0.1s.101.fits finished successfully.
+11/02/2016 01:09:38 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 01:09:43 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.0.1s.101.fits finished successfully.
+11/02/2016 01:10:01 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 01:10:06 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.0.1s.100.fits finished successfully.
+11/02/2016 01:10:13 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 01:10:18 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.0.1s.101.fits finished successfully.
+11/02/2016 01:10:25 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 01:10:30 PM - INFO - Exposure /home/lsst/Data/20161102/target.tests.exp.0.1s.101.fits finished successfully.
+11/02/2016 01:10:34 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 01:10:39 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.0.1s.102.fits finished successfully.
+11/02/2016 01:11:06 PM - INFO - Starting 0.1s Exposure Stack stack.
+11/02/2016 01:11:06 PM - INFO - Starting image 1 of 2.
+11/02/2016 01:11:11 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.0.1s.102.fits finished successfully.
+11/02/2016 01:11:11 PM - INFO - Starting image 2 of 2.
+11/02/2016 01:11:16 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.0.1s.103.fits finished successfully.
+11/02/2016 01:11:16 PM - INFO - Exposure stack finished successfully.
+11/02/2016 01:11:29 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 01:11:34 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.0.1s.102.fits finished successfully.
+11/02/2016 01:14:24 PM - INFO - Starting 0.1s Exposure Stack stack.
+11/02/2016 01:14:24 PM - INFO - Starting image 1 of 5.
+11/02/2016 01:14:28 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.0.1s.102.fits finished successfully.
+11/02/2016 01:14:28 PM - INFO - Starting image 2 of 5.
+11/02/2016 01:14:33 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.0.1s.103.fits finished successfully.
+11/02/2016 01:14:33 PM - INFO - Starting image 3 of 5.
+11/02/2016 01:14:38 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.0.1s.104.fits finished successfully.
+11/02/2016 01:14:38 PM - INFO - Starting image 4 of 5.
+11/02/2016 01:14:43 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.0.1s.105.fits finished successfully.
+11/02/2016 01:14:43 PM - INFO - Starting image 5 of 5.
+11/02/2016 01:14:49 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.0.1s.106.fits finished successfully.
+11/02/2016 01:14:49 PM - INFO - Exposure stack finished successfully.
+11/02/2016 01:15:19 PM - INFO - Starting 5.0s Exposure Stack stack.
+11/02/2016 01:15:19 PM - INFO - Starting image 1 of 5.
+11/02/2016 01:15:29 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.5.0s.102.fits finished successfully.
+11/02/2016 01:15:29 PM - INFO - Starting image 2 of 5.
+11/02/2016 01:15:39 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.5.0s.103.fits finished successfully.
+11/02/2016 01:15:39 PM - INFO - Starting image 3 of 5.
+11/02/2016 01:15:40 PM - INFO - Finishing current exposure and canceling remaining exposures...
+11/02/2016 01:15:49 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.5.0s.104.fits finished successfully.
+11/02/2016 01:15:49 PM - INFO - Exposure stack canceled.
+11/02/2016 01:15:56 PM - INFO - Starting 1.0s Exposure Stack stack.
+11/02/2016 01:15:56 PM - INFO - Starting image 1 of 5.
+11/02/2016 01:16:02 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.1.0s.102.fits finished successfully.
+11/02/2016 01:16:02 PM - INFO - Starting image 2 of 5.
+11/02/2016 01:16:07 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.1.0s.103.fits finished successfully.
+11/02/2016 01:16:07 PM - INFO - Starting image 3 of 5.
+11/02/2016 01:16:13 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.1.0s.104.fits finished successfully.
+11/02/2016 01:16:13 PM - INFO - Starting image 4 of 5.
+11/02/2016 01:16:19 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.1.0s.105.fits finished successfully.
+11/02/2016 01:16:19 PM - INFO - Starting image 5 of 5.
+11/02/2016 01:16:25 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.1.0s.106.fits finished successfully.
+11/02/2016 01:16:25 PM - INFO - Exposure stack finished successfully.
+11/02/2016 01:16:47 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 01:16:52 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.0.1s.102.fits finished successfully.
+11/02/2016 01:19:12 PM - INFO - Turning off sta3800 controller (sta3800_off).
+11/02/2016 01:19:16 PM - INFO - Controller turned off successfully.
+11/02/2016 01:24:03 PM - INFO - GUI display widget values successfully restored.
+11/02/2016 01:24:03 PM - INFO - Turning off sta3800 controller (sta3800_off).
+11/02/2016 01:24:07 PM - INFO - Controller turned off successfully.
+11/02/2016 01:24:07 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+11/02/2016 01:24:16 PM - INFO - Controller turned on successfully.
+11/02/2016 01:24:31 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 01:24:37 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.0.1s.100.fits finished successfully.
+11/02/2016 01:24:42 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 01:24:47 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.0.1s.101.fits finished successfully.
+11/02/2016 01:28:25 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 01:28:30 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.0.1s.101.fits finished successfully.
+11/02/2016 01:28:48 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 01:28:53 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.0.1s.101.fits finished successfully.
+11/02/2016 01:32:59 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 01:33:04 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.0.1s.101.fits finished successfully.
+11/02/2016 01:34:29 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 01:34:34 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.0.1s.101.fits finished successfully.
+11/02/2016 01:34:47 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 01:34:52 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.0.1s.101.fits finished successfully.
+11/02/2016 01:37:28 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 01:37:33 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.0.1s.101.fits finished successfully.
+11/02/2016 01:37:40 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 01:37:45 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.0.1s.101.fits finished successfully.
+11/02/2016 01:38:34 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 01:38:38 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.0.1s.101.fits finished successfully.
+11/02/2016 01:40:28 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 01:40:33 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.0.1s.101.fits finished successfully.
+11/02/2016 01:40:58 PM - INFO - Starting 2.0s Dark Stack stack.
+11/02/2016 01:40:58 PM - INFO - Starting image 1 of 25.
+11/02/2016 01:41:05 PM - INFO - Exposure /home/lsst/Data/20161102/test.dark.2.0s.101.fits finished successfully.
+11/02/2016 01:41:05 PM - INFO - Starting image 2 of 25.
+11/02/2016 01:41:12 PM - INFO - Exposure /home/lsst/Data/20161102/test.dark.2.0s.102.fits finished successfully.
+11/02/2016 01:41:12 PM - INFO - Starting image 3 of 25.
+11/02/2016 01:41:19 PM - INFO - Exposure /home/lsst/Data/20161102/test.dark.2.0s.103.fits finished successfully.
+11/02/2016 01:41:19 PM - INFO - Starting image 4 of 25.
+11/02/2016 01:41:26 PM - INFO - Exposure /home/lsst/Data/20161102/test.dark.2.0s.104.fits finished successfully.
+11/02/2016 01:41:26 PM - INFO - Starting image 5 of 25.
+11/02/2016 01:41:32 PM - INFO - Exposure /home/lsst/Data/20161102/test.dark.2.0s.105.fits finished successfully.
+11/02/2016 01:41:32 PM - INFO - Starting image 6 of 25.
+11/02/2016 01:41:39 PM - INFO - Exposure /home/lsst/Data/20161102/test.dark.2.0s.106.fits finished successfully.
+11/02/2016 01:41:39 PM - INFO - Starting image 7 of 25.
+11/02/2016 01:41:46 PM - INFO - Exposure /home/lsst/Data/20161102/test.dark.2.0s.107.fits finished successfully.
+11/02/2016 01:41:46 PM - INFO - Starting image 8 of 25.
+11/02/2016 01:41:53 PM - INFO - Exposure /home/lsst/Data/20161102/test.dark.2.0s.108.fits finished successfully.
+11/02/2016 01:41:53 PM - INFO - Starting image 9 of 25.
+11/02/2016 01:42:00 PM - INFO - Exposure /home/lsst/Data/20161102/test.dark.2.0s.109.fits finished successfully.
+11/02/2016 01:42:00 PM - INFO - Starting image 10 of 25.
+11/02/2016 01:42:07 PM - INFO - Exposure /home/lsst/Data/20161102/test.dark.2.0s.110.fits finished successfully.
+11/02/2016 01:42:07 PM - INFO - Starting image 11 of 25.
+11/02/2016 01:42:14 PM - INFO - Exposure /home/lsst/Data/20161102/test.dark.2.0s.111.fits finished successfully.
+11/02/2016 01:42:14 PM - INFO - Starting image 12 of 25.
+11/02/2016 01:42:20 PM - INFO - Exposure /home/lsst/Data/20161102/test.dark.2.0s.112.fits finished successfully.
+11/02/2016 01:42:20 PM - INFO - Starting image 13 of 25.
+11/02/2016 01:42:27 PM - INFO - Exposure /home/lsst/Data/20161102/test.dark.2.0s.113.fits finished successfully.
+11/02/2016 01:42:27 PM - INFO - Starting image 14 of 25.
+11/02/2016 01:42:34 PM - INFO - Exposure /home/lsst/Data/20161102/test.dark.2.0s.114.fits finished successfully.
+11/02/2016 01:42:34 PM - INFO - Starting image 15 of 25.
+11/02/2016 01:42:41 PM - INFO - Exposure /home/lsst/Data/20161102/test.dark.2.0s.115.fits finished successfully.
+11/02/2016 01:42:41 PM - INFO - Starting image 16 of 25.
+11/02/2016 01:42:48 PM - INFO - Exposure /home/lsst/Data/20161102/test.dark.2.0s.116.fits finished successfully.
+11/02/2016 01:42:48 PM - INFO - Starting image 17 of 25.
+11/02/2016 01:42:55 PM - INFO - Exposure /home/lsst/Data/20161102/test.dark.2.0s.117.fits finished successfully.
+11/02/2016 01:42:55 PM - INFO - Starting image 18 of 25.
+11/02/2016 01:43:02 PM - INFO - Exposure /home/lsst/Data/20161102/test.dark.2.0s.118.fits finished successfully.
+11/02/2016 01:43:02 PM - INFO - Starting image 19 of 25.
+11/02/2016 01:43:09 PM - INFO - Exposure /home/lsst/Data/20161102/test.dark.2.0s.119.fits finished successfully.
+11/02/2016 01:43:09 PM - INFO - Starting image 20 of 25.
+11/02/2016 01:43:16 PM - INFO - Exposure /home/lsst/Data/20161102/test.dark.2.0s.120.fits finished successfully.
+11/02/2016 01:43:16 PM - INFO - Starting image 21 of 25.
+11/02/2016 01:43:22 PM - INFO - Exposure /home/lsst/Data/20161102/test.dark.2.0s.121.fits finished successfully.
+11/02/2016 01:43:22 PM - INFO - Starting image 22 of 25.
+11/02/2016 01:43:29 PM - INFO - Exposure /home/lsst/Data/20161102/test.dark.2.0s.122.fits finished successfully.
+11/02/2016 01:43:29 PM - INFO - Starting image 23 of 25.
+11/02/2016 01:43:36 PM - INFO - Exposure /home/lsst/Data/20161102/test.dark.2.0s.123.fits finished successfully.
+11/02/2016 01:43:36 PM - INFO - Starting image 24 of 25.
+11/02/2016 01:43:43 PM - INFO - Exposure /home/lsst/Data/20161102/test.dark.2.0s.124.fits finished successfully.
+11/02/2016 01:43:43 PM - INFO - Starting image 25 of 25.
+11/02/2016 01:43:50 PM - INFO - Exposure /home/lsst/Data/20161102/test.dark.2.0s.125.fits finished successfully.
+11/02/2016 01:43:50 PM - INFO - Exposure stack finished successfully.
+11/02/2016 01:44:35 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 01:44:40 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.0.1s.101.fits finished successfully.
+11/02/2016 01:51:47 PM - INFO - Starting 4.0s Exposure Stack stack.
+11/02/2016 01:51:47 PM - INFO - Starting image 1 of 25.
+11/02/2016 01:51:55 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.4.0s.101.fits finished successfully.
+11/02/2016 01:51:55 PM - INFO - Starting image 2 of 25.
+11/02/2016 01:52:04 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.4.0s.102.fits finished successfully.
+11/02/2016 01:52:04 PM - INFO - Starting image 3 of 25.
+11/02/2016 01:52:13 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.4.0s.103.fits finished successfully.
+11/02/2016 01:52:13 PM - INFO - Starting image 4 of 25.
+11/02/2016 01:52:22 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.4.0s.104.fits finished successfully.
+11/02/2016 01:52:22 PM - INFO - Starting image 5 of 25.
+11/02/2016 01:52:31 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.4.0s.105.fits finished successfully.
+11/02/2016 01:52:31 PM - INFO - Starting image 6 of 25.
+11/02/2016 01:52:40 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.4.0s.106.fits finished successfully.
+11/02/2016 01:52:40 PM - INFO - Starting image 7 of 25.
+11/02/2016 01:52:49 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.4.0s.107.fits finished successfully.
+11/02/2016 01:52:49 PM - INFO - Starting image 8 of 25.
+11/02/2016 01:52:58 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.4.0s.108.fits finished successfully.
+11/02/2016 01:52:58 PM - INFO - Starting image 9 of 25.
+11/02/2016 01:53:06 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.4.0s.109.fits finished successfully.
+11/02/2016 01:53:06 PM - INFO - Starting image 10 of 25.
+11/02/2016 01:53:15 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.4.0s.110.fits finished successfully.
+11/02/2016 01:53:15 PM - INFO - Starting image 11 of 25.
+11/02/2016 01:53:24 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.4.0s.111.fits finished successfully.
+11/02/2016 01:53:24 PM - INFO - Starting image 12 of 25.
+11/02/2016 01:53:33 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.4.0s.112.fits finished successfully.
+11/02/2016 01:53:33 PM - INFO - Starting image 13 of 25.
+11/02/2016 01:53:42 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.4.0s.113.fits finished successfully.
+11/02/2016 01:53:42 PM - INFO - Starting image 14 of 25.
+11/02/2016 01:53:51 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.4.0s.114.fits finished successfully.
+11/02/2016 01:53:51 PM - INFO - Starting image 15 of 25.
+11/02/2016 01:54:00 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.4.0s.115.fits finished successfully.
+11/02/2016 01:54:00 PM - INFO - Starting image 16 of 25.
+11/02/2016 01:54:09 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.4.0s.116.fits finished successfully.
+11/02/2016 01:54:09 PM - INFO - Starting image 17 of 25.
+11/02/2016 01:54:17 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.4.0s.117.fits finished successfully.
+11/02/2016 01:54:17 PM - INFO - Starting image 18 of 25.
+11/02/2016 01:54:26 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.4.0s.118.fits finished successfully.
+11/02/2016 01:54:26 PM - INFO - Starting image 19 of 25.
+11/02/2016 01:54:35 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.4.0s.119.fits finished successfully.
+11/02/2016 01:54:35 PM - INFO - Starting image 20 of 25.
+11/02/2016 01:54:44 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.4.0s.120.fits finished successfully.
+11/02/2016 01:54:44 PM - INFO - Starting image 21 of 25.
+11/02/2016 01:54:53 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.4.0s.121.fits finished successfully.
+11/02/2016 01:54:53 PM - INFO - Starting image 22 of 25.
+11/02/2016 01:55:02 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.4.0s.122.fits finished successfully.
+11/02/2016 01:55:02 PM - INFO - Starting image 23 of 25.
+11/02/2016 01:55:11 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.4.0s.123.fits finished successfully.
+11/02/2016 01:55:11 PM - INFO - Starting image 24 of 25.
+11/02/2016 01:55:20 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.4.0s.124.fits finished successfully.
+11/02/2016 01:55:20 PM - INFO - Starting image 25 of 25.
+11/02/2016 01:55:29 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.4.0s.125.fits finished successfully.
+11/02/2016 01:55:29 PM - INFO - Exposure stack finished successfully.
+11/02/2016 01:56:29 PM - INFO - Starting 0.1s Exposure Stack stack.
+11/02/2016 01:56:29 PM - INFO - Starting image 1 of 25.
+11/02/2016 01:56:34 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.0.1s.101.fits finished successfully.
+11/02/2016 01:56:34 PM - INFO - Starting image 2 of 25.
+11/02/2016 01:56:39 PM - INFO - Finishing current exposure and canceling remaining exposures...
+11/02/2016 01:56:39 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.0.1s.102.fits finished successfully.
+11/02/2016 01:56:39 PM - INFO - Exposure stack canceled.
+11/02/2016 01:56:52 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 01:56:57 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.0.1s.101.fits finished successfully.
+11/02/2016 01:57:05 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 01:57:10 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.0.1s.101.fits finished successfully.
+11/02/2016 01:57:22 PM - INFO - Starting 0.1s Dark image.
+11/02/2016 01:57:27 PM - INFO - Exposure /home/lsst/Data/20161102/test.dark.0.1s.101.fits finished successfully.
+11/02/2016 01:57:52 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 01:57:57 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.0.1s.101.fits finished successfully.
+11/02/2016 01:58:43 PM - INFO - Turning off sta3800 controller (sta3800_off).
+11/02/2016 01:58:47 PM - ERROR - Unable to turn off controller! State may be unknown.
+Traceback (most recent call last):
+  File "./ccdctrl.py", line 600, in safe_shutdown
+    ccdsetup.sta3800_off()
+  File "/home/lsst/ccdcontroller/ccdsetup.py", line 229, in sta3800_off
+    output = subprocess.check_output("sta3800_off")
+  File "/home/lsst/ccdcontroller/voltage.py", line 26, in f
+    raise error
+CalledProcessError: Command 'sta3800_off' returned non-zero exit status 1
+11/02/2016 01:59:04 PM - INFO - GUI display widget values successfully restored.
+11/02/2016 01:59:04 PM - INFO - Turning off sta3800 controller (sta3800_off).
+11/02/2016 01:59:08 PM - INFO - Controller turned off successfully.
+11/02/2016 01:59:08 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+11/02/2016 01:59:16 PM - INFO - Controller turned on successfully.
+11/02/2016 01:59:45 PM - INFO - Turning off sta3800 controller (sta3800_off).
+11/02/2016 01:59:49 PM - INFO - Controller turned off successfully.
+11/02/2016 02:04:14 PM - INFO - GUI display widget values successfully restored.
+11/02/2016 02:04:14 PM - INFO - Turning off sta3800 controller (sta3800_off).
+11/02/2016 02:04:18 PM - INFO - Controller turned off successfully.
+11/02/2016 02:04:18 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+11/02/2016 02:04:26 PM - INFO - Controller turned on successfully.
+11/02/2016 02:04:42 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 02:04:48 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.0.1s.101.fits finished successfully.
+11/02/2016 02:04:55 PM - INFO - Turning off sta3800 controller (sta3800_off).
+11/02/2016 02:05:00 PM - INFO - Controller turned off successfully.
+11/02/2016 02:22:31 PM - INFO - GUI display widget values successfully restored.
+11/02/2016 02:22:31 PM - INFO - Turning off sta3800 controller (sta3800_off).
+11/02/2016 02:22:35 PM - INFO - Controller turned off successfully.
+11/02/2016 02:22:35 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+11/02/2016 02:22:43 PM - INFO - Controller turned on successfully.
+11/02/2016 02:22:49 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 02:23:14 PM - INFO - Turning off sta3800 controller (sta3800_off).
+11/02/2016 02:23:18 PM - INFO - Controller turned off successfully.
+11/02/2016 02:23:47 PM - INFO - GUI display widget values successfully restored.
+11/02/2016 02:23:47 PM - INFO - Turning off sta3800 controller (sta3800_off).
+11/02/2016 02:23:51 PM - INFO - Controller turned off successfully.
+11/02/2016 02:23:51 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+11/02/2016 02:23:59 PM - INFO - Controller turned on successfully.
+11/02/2016 02:24:07 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 02:24:12 PM - INFO - Exposure /home/lsst/Data/20161102/test.exp.0.1s.101.fits finished successfully.
+11/02/2016 02:24:24 PM - INFO - Turning off sta3800 controller (sta3800_off).
+11/02/2016 02:24:28 PM - INFO - Controller turned off successfully.
+11/02/2016 02:27:53 PM - INFO - GUI display widget values successfully restored.
+11/02/2016 02:27:53 PM - INFO - Turning off sta3800 controller (sta3800_off).
+11/02/2016 02:27:58 PM - INFO - Controller turned off successfully.
+11/02/2016 02:27:58 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+11/02/2016 02:28:06 PM - INFO - Controller turned on successfully.
+11/02/2016 02:28:11 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 02:28:16 PM - INFO - Exposure /home/lsst/Data/20161102/test.fits finished successfully.
+11/02/2016 02:28:39 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 02:28:44 PM - INFO - Exposure /home/lsst/Data/20161102/debug.exp.0.1s.101.fits finished successfully.
+11/02/2016 02:28:55 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 02:29:00 PM - INFO - Exposure /home/lsst/Data/20161102/debug.exp.0.1s.102.fits finished successfully.
+11/02/2016 02:29:05 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 02:29:05 PM - ERROR - File already exits. Image not taken.
+Traceback (most recent call last):
+  File "./ccdctrl.py", line 316, in expose
+    filedir, **kwargs)
+  File "/home/lsst/ccdcontroller/exposure.py", line 113, in im_acq
+    raise IOError
+IOError
+11/02/2016 02:29:13 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 02:29:18 PM - INFO - Exposure /home/lsst/Data/20161102/debug.exp.0.1s.103.fits finished successfully.
+11/02/2016 02:29:28 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 02:29:33 PM - INFO - Exposure /home/lsst/Data/20161102/test.fits finished successfully.
+11/02/2016 02:29:45 PM - INFO - Starting 0.1s Exposure Stack stack.
+11/02/2016 02:29:45 PM - INFO - Starting image 1 of 2.
+11/02/2016 02:29:50 PM - INFO - Exposure test finished successfully.
+11/02/2016 02:29:50 PM - INFO - Starting image 2 of 2.
+11/02/2016 02:29:55 PM - INFO - Exposure test finished successfully.
+11/02/2016 02:29:55 PM - INFO - Exposure stack finished successfully.
+11/02/2016 02:30:34 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 02:30:39 PM - INFO - Exposure /home/lsst/Data/20161102/test.fits finished successfully.
+11/02/2016 02:30:50 PM - INFO - Turning off sta3800 controller (sta3800_off).
+11/02/2016 02:30:55 PM - INFO - Controller turned off successfully.
+11/02/2016 02:42:08 PM - INFO - GUI display widget values successfully restored.
+11/02/2016 02:42:08 PM - INFO - Turning off sta3800 controller (sta3800_off).
+11/02/2016 02:42:12 PM - INFO - Controller turned off successfully.
+11/02/2016 02:42:12 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+11/02/2016 02:42:20 PM - INFO - Controller turned on successfully.
+11/02/2016 02:42:53 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 02:42:58 PM - INFO - Exposure /home/lsst/Data/20161102/test.fits finished successfully.
+11/02/2016 02:43:13 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 02:43:18 PM - INFO - Exposure /home/lsst/Data/20161102/iotest.exp.0.1s.101.fits finished successfully.
+11/02/2016 02:43:22 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 02:43:22 PM - ERROR - File already exists
+Traceback (most recent call last):
+  File "./ccdctrl.py", line 316, in expose
+    filedir, **kwargs)
+  File "/home/lsst/ccdcontroller/exposure.py", line 113, in im_acq
+    raise IOError("File already exists")
+IOError: File already exists
+11/02/2016 02:43:34 PM - INFO - Starting 0.1s Exposure image.
+11/02/2016 02:43:39 PM - INFO - Exposure /home/lsst/Data/20161102/iotest.exp.0.1s.102.fits finished successfully.
+11/02/2016 02:43:45 PM - INFO - Turning off sta3800 controller (sta3800_off).
+11/02/2016 02:43:49 PM - INFO - Controller turned off successfully.
