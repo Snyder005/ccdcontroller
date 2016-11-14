@@ -301,6 +301,8 @@ def update_header(filepath, mode, exptime, seqnum, **kwargs):
     headver = kwargs.get('headver', 1)
     ccdgain = kwargs.get('ccdgain', 5.52) ## Need to change
     ccdnoise = kwargs.get('ccdnoise', 6.0) ## Need to change
+    detsize = kwargs.get('detsize', "[0:4336,0:4044]")
+    origin = kwargs.get('origin', "Stanford")
 
     ## Construct ccd conditions extensions.  Requires astropy python package
     ccdhdr = fits.Header()
@@ -353,6 +355,8 @@ def update_header(filepath, mode, exptime, seqnum, **kwargs):
     prihdr['HEADVER'] = (headver, 'Version number of header')
     prihdr['CCDGAIN'] = (ccdgain, 'Rough guess at overall system gain')
     prihdr['CCDNOISE'] = (ccdnoise, 'Rough guess at system noise')
+    prihdr['DETSIZE'] = (detsize, 'Unbinned det size')
+    prihdr['ORIGIN'] = (origin, 'Site where data acquired')
     
     ## Add properly formated Date information to FITs header
     date_str = prihdr['DATE']
