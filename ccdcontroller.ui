@@ -36,129 +36,27 @@
         <x>10</x>
         <y>10</y>
         <width>719</width>
-        <height>311</height>
+        <height>314</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="0" column="3">
-        <widget class="QLabel" name="imtypeLabel">
+       <item row="8" column="4">
+        <widget class="QCheckBox" name="autoincCheckBox">
          <property name="text">
-          <string>Image Type:</string>
+          <string>Auto Increment?</string>
          </property>
-        </widget>
-       </item>
-       <item row="3" column="6" colspan="2">
-        <widget class="Line" name="hline_1">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="6">
-        <widget class="QLabel" name="exptimeLabel">
-         <property name="text">
-          <string>Exposure Time:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="3" rowspan="2" colspan="2">
-        <widget class="QLineEdit" name="imtitleLineEdit"/>
-       </item>
-       <item row="0" column="1" rowspan="13" colspan="2">
-        <widget class="Line" name="vline_1">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="6" rowspan="2">
-        <widget class="QDoubleSpinBox" name="exptimeSpinBox">
-         <property name="enabled">
+         <property name="checked">
           <bool>true</bool>
          </property>
-         <property name="readOnly">
+        </widget>
+       </item>
+       <item row="1" column="0" rowspan="2">
+        <widget class="QPushButton" name="cancelButton">
+         <property name="enabled">
           <bool>false</bool>
          </property>
-         <property name="decimals">
-          <number>1</number>
-         </property>
-         <property name="maximum">
-          <double>100000.000000000000000</double>
-         </property>
-         <property name="singleStep">
-          <double>0.500000000000000</double>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="3" rowspan="2">
-        <widget class="QComboBox" name="exptypeComboBox">
-         <item>
-          <property name="text">
-           <string>Exposure</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Exposure Stack</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Exposure Series</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Dark</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Dark Stack</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Dark Series</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Bias</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Bias Stack</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="1" column="4" rowspan="2">
-        <widget class="QCheckBox" name="testimCheckBox">
          <property name="text">
-          <string>Test Image</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="7">
-        <widget class="QLabel" name="maxexpLabel">
-         <property name="text">
-          <string>Max Exposure Time:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="6">
-        <widget class="QLabel" name="minexpLabel">
-         <property name="text">
-          <string>Min Exposure Time:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="6" rowspan="2">
-        <widget class="QDoubleSpinBox" name="minexpSpinBox">
-         <property name="decimals">
-          <number>1</number>
+          <string>Cancel</string>
          </property>
         </widget>
        </item>
@@ -169,17 +67,17 @@
          </property>
         </widget>
        </item>
-       <item row="7" column="3">
-        <widget class="QLabel" name="imnumLabel">
+       <item row="0" column="7">
+        <widget class="QLabel" name="imstackLabel">
          <property name="text">
-          <string>Sequence Number:</string>
+          <string># of Exposures:</string>
          </property>
         </widget>
        </item>
-       <item row="7" column="6">
-        <widget class="QLabel" name="tstepLabel">
-         <property name="text">
-          <string>Time Step:</string>
+       <item row="9" column="6" colspan="2">
+        <widget class="Line" name="hline_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
          </property>
         </widget>
        </item>
@@ -217,6 +115,20 @@
          </item>
         </widget>
        </item>
+       <item row="7" column="6">
+        <widget class="QLabel" name="tstepLabel">
+         <property name="text">
+          <string>Time Step:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="3">
+        <widget class="QLabel" name="imnumLabel">
+         <property name="text">
+          <string>Sequence Number:</string>
+         </property>
+        </widget>
+       </item>
        <item row="8" column="3">
         <widget class="QSpinBox" name="imnumSpinBox">
          <property name="minimum">
@@ -227,44 +139,120 @@
          </property>
         </widget>
        </item>
-       <item row="8" column="4">
-        <widget class="QCheckBox" name="autoincCheckBox">
-         <property name="text">
-          <string>Auto Increment?</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="8" column="6">
-        <widget class="QDoubleSpinBox" name="tstepSpinBox">
-         <property name="decimals">
-          <number>1</number>
-         </property>
-        </widget>
-       </item>
-       <item row="9" column="6" colspan="2">
-        <widget class="Line" name="hline_2">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="10" column="6">
-        <widget class="QLabel" name="imstackLabel">
-         <property name="text">
-          <string># of Exposures:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="11" column="6" rowspan="2">
+       <item row="1" column="7" rowspan="2">
         <widget class="QSpinBox" name="imstackSpinBox">
          <property name="minimum">
           <number>1</number>
          </property>
          <property name="maximum">
           <number>999</number>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="3" rowspan="2" colspan="2">
+        <widget class="QLineEdit" name="imtitleLineEdit"/>
+       </item>
+       <item row="1" column="4" rowspan="2">
+        <widget class="QCheckBox" name="testimCheckBox">
+         <property name="text">
+          <string>Test Image</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QLabel" name="imtypeLabel">
+         <property name="text">
+          <string>Image Type:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="6">
+        <widget class="QLabel" name="exptimeLabel">
+         <property name="text">
+          <string>Exposure Time:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="6" colspan="2">
+        <widget class="Line" name="hline_1">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3" rowspan="2">
+        <widget class="QComboBox" name="exptypeComboBox">
+         <item>
+          <property name="text">
+           <string>Exposure</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Dark</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Bias</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Exposure Series</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Dark Series</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="0" column="1" rowspan="13" colspan="2">
+        <widget class="Line" name="vline_1">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="6" rowspan="2">
+        <widget class="QDoubleSpinBox" name="exptimeSpinBox">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="readOnly">
+          <bool>false</bool>
+         </property>
+         <property name="decimals">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <double>100000.000000000000000</double>
+         </property>
+         <property name="singleStep">
+          <double>0.500000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="7">
+        <widget class="QLabel" name="maxexpLabel">
+         <property name="text">
+          <string>Max Exposure Time:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="6">
+        <widget class="QLabel" name="minexpLabel">
+         <property name="text">
+          <string>Min Exposure Time:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="6" rowspan="2">
+        <widget class="QDoubleSpinBox" name="minexpSpinBox">
+         <property name="decimals">
+          <number>1</number>
          </property>
         </widget>
        </item>
@@ -331,7 +319,7 @@
        <item row="0" column="0">
         <widget class="QPushButton" name="exposeButton">
          <property name="enabled">
-          <bool>false</bool>
+          <bool>true</bool>
          </property>
          <property name="text">
           <string>Expose</string>
@@ -345,22 +333,32 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="0" rowspan="2">
-        <widget class="QPushButton" name="cancelButton">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="text">
-          <string>Cancel</string>
-         </property>
-        </widget>
-       </item>
        <item row="11" column="0" rowspan="2">
         <widget class="QPushButton" name="directoryPushButton">
          <property name="text">
           <string>Change Directory</string>
          </property>
         </widget>
+       </item>
+       <item row="8" column="6">
+        <widget class="QDoubleSpinBox" name="tstepSpinBox">
+         <property name="decimals">
+          <number>1</number>
+         </property>
+        </widget>
+       </item>
+       <item row="11" column="6" rowspan="2" colspan="2">
+        <spacer name="horizontalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>

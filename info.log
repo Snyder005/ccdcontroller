@@ -818,3 +818,113 @@ IOError: Error updating FITs header: [Errno 2] No such file or directory: u'/hom
 11/08/2016 04:05:07 PM - INFO - Exposure stack finished successfully.
 11/08/2016 04:05:43 PM - INFO - Turning off sta3800 controller (sta3800_off).
 11/08/2016 04:05:47 PM - INFO - Controller turned off successfully.
+11/16/2016 02:26:34 PM - INFO - GUI display widget values successfully restored.
+11/16/2016 02:27:05 PM - INFO - GUI display widget values successfully restored.
+11/16/2016 02:27:05 PM - INFO - Turning off sta3800 controller (sta3800_off).
+11/16/2016 02:27:05 PM - INFO - Controller turned off successfully.
+11/16/2016 02:27:05 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+11/16/2016 02:27:05 PM - INFO - Controller turned on successfully.
+11/16/2016 02:27:50 PM - INFO - Turning off sta3800 controller (sta3800_off).
+11/16/2016 02:27:50 PM - INFO - Controller turned off successfully.
+11/16/2016 02:32:30 PM - INFO - GUI display widget values successfully restored.
+11/16/2016 02:32:30 PM - INFO - Turning off sta3800 controller (sta3800_off).
+11/16/2016 02:32:30 PM - INFO - Controller turned off successfully.
+11/16/2016 02:32:30 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+11/16/2016 02:32:30 PM - INFO - Controller turned on successfully.
+11/16/2016 02:32:39 PM - INFO - Starting image 1 of 10.
+11/16/2016 02:32:39 PM - ERROR - Executable exp_acq not found. Image not taken
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 269, in expose
+    filepath = exposure.im_acq(mode, filename, exptime, i, filedir, **kwargs)
+  File "/Users/adamsnyder/ccdcontroller/exposure.py", line 119, in im_acq
+    "{0}".format(filepath)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+11/16/2016 02:32:45 PM - INFO - Starting image 1 of 5.
+11/16/2016 02:32:45 PM - ERROR - Executable exp_acq not found. Image not taken
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 269, in expose
+    filepath = exposure.im_acq(mode, filename, exptime, i, filedir, **kwargs)
+  File "/Users/adamsnyder/ccdcontroller/exposure.py", line 119, in im_acq
+    "{0}".format(filepath)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+11/16/2016 02:43:44 PM - INFO - Turning off sta3800 controller (sta3800_off).
+11/16/2016 02:43:44 PM - INFO - Controller turned off successfully.
+11/16/2016 03:25:02 PM - INFO - GUI display widget values successfully restored.
+11/16/2016 03:25:02 PM - INFO - Turning off sta3800 controller (sta3800_off).
+11/16/2016 03:25:02 PM - INFO - Controller turned off successfully.
+11/16/2016 03:25:02 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+11/16/2016 03:25:57 PM - INFO - GUI display widget values successfully restored.
+11/16/2016 03:25:57 PM - INFO - Turning off sta3800 controller (sta3800_off).
+11/16/2016 03:25:57 PM - INFO - Controller turned off successfully.
+11/16/2016 03:25:57 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+11/16/2016 03:25:57 PM - INFO - Controller turned on successfully.
+11/16/2016 03:26:04 PM - ERROR - Executable vod not found.  Voltage not changed.
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 409, in setvoltages
+    output = voltage.set_voltage(V, vname)
+  File "/Users/adamsnyder/ccdcontroller/voltage.py", line 51, in set_voltage
+    output = subprocess.check_output([vname, "{0}".format(V)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+11/16/2016 03:26:19 PM - INFO - Turning off sta3800 controller (sta3800_off).
+11/16/2016 03:26:19 PM - INFO - Controller turned off successfully.
+11/16/2016 03:55:05 PM - INFO - GUI display widget values successfully restored.
+11/16/2016 03:55:05 PM - INFO - Turning off sta3800 controller (sta3800_off).
+11/16/2016 03:55:05 PM - INFO - Controller turned off successfully.
+11/16/2016 03:55:05 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+11/16/2016 03:55:05 PM - INFO - Controller turned on successfully.
+11/16/2016 04:02:38 PM - INFO - Turning off sta3800 controller (sta3800_off).
+11/16/2016 04:02:38 PM - INFO - Controller turned off successfully.
+11/16/2016 04:40:34 PM - INFO - GUI display widget values successfully restored.
+11/16/2016 04:40:34 PM - INFO - Turning off sta3800 controller (sta3800_off).
+11/16/2016 04:40:34 PM - INFO - Controller turned off successfully.
+11/16/2016 04:40:34 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+11/16/2016 04:40:34 PM - INFO - Controller turned on successfully.
+11/16/2016 04:40:45 PM - INFO - Turning off sta3800 controller (sta3800_off).
+11/16/2016 04:40:45 PM - INFO - Controller turned off successfully.
+11/16/2016 04:41:16 PM - INFO - GUI display widget values successfully restored.
+11/16/2016 04:41:16 PM - INFO - Turning off sta3800 controller (sta3800_off).
+11/16/2016 04:41:16 PM - INFO - Controller turned off successfully.
+11/16/2016 04:41:16 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+11/16/2016 04:41:16 PM - INFO - Controller turned on successfully.
+11/16/2016 04:41:21 PM - INFO - Starting image 1 of 1.
+11/16/2016 04:41:33 PM - INFO - Turning off sta3800 controller (sta3800_off).
+11/16/2016 04:41:33 PM - INFO - Controller turned off successfully.
+11/16/2016 04:42:17 PM - INFO - GUI display widget values successfully restored.
+11/16/2016 04:42:17 PM - INFO - Turning off sta3800 controller (sta3800_off).
+11/16/2016 04:42:17 PM - INFO - Controller turned off successfully.
+11/16/2016 04:42:17 PM - INFO - Turning on sta3800 controller (sta3800_setup).
+11/16/2016 04:42:17 PM - INFO - Controller turned on successfully.
+11/16/2016 04:42:21 PM - INFO - Starting image 1 of 1.
+11/16/2016 04:42:21 PM - ERROR - Executable exp_acq not found. Image not taken
+Traceback (most recent call last):
+  File "./ccdctrl-dev.py", line 279, in expose
+    filepath = exposure.im_acq(mode, filename, exptime, i, filedir, **kwargs)
+  File "/Users/adamsnyder/ccdcontroller/exposure.py", line 119, in im_acq
+    "{0}".format(filepath)])
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 566, in check_output
+    process = Popen(stdout=PIPE, *popenargs, **kwargs)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 710, in __init__
+    errread, errwrite)
+  File "/Users/adamsnyder/anaconda/lib/python2.7/subprocess.py", line 1335, in _execute_child
+    raise child_exception
+OSError: [Errno 2] No such file or directory
+11/16/2016 04:42:24 PM - INFO - Turning off sta3800 controller (sta3800_off).
+11/16/2016 04:42:24 PM - INFO - Controller turned off successfully.

@@ -19,11 +19,12 @@ import voltage
 
 ###############################################################################
 ##
-##  Worker Thread Class
+##  Misc. Thread Class
 ##
 ###############################################################################
 
 class WorkerThread(QtCore.QThread):
+    """Allows for multiple threads to run at same time."""
 
     def __init__(self, func, args):
         super(WorkerThread, self).__init__()
@@ -42,6 +43,7 @@ class WorkerThread(QtCore.QThread):
         self.status = True
 
 class QtHandler(logging.Handler, object):
+    """Object to handle displaying log information to GUI."""
 
     def __init__(self, sigEmitter):
         super(QtHandler, self).__init__()
@@ -77,29 +79,23 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         self.logger = logging.getLogger("sLogger")
         self.logger.addHandler(consoleHandler)
 
-        ## These attributes handle autoincrement of filename
-        self.curr_title = ""
-
         ## Dictionary for image exposure mode
         self.modedict = {"Exposure" : "exp",
                          "Dark" : "dark",
                          "Bias" : "bias",
-                         "Exposure Stack" : "exp",
-                         "Bias Stack" : "bias",
-                         "Dark Stack" : "dark",
                          "Exposure Series" : "exp",
                          "Dark Series" : "dark"}
 
-        self.voltagedict = {"VOD" : self.vodLineEdit,
-                            "VOG" : self.vogLineEdit,
-                            "VRD" : self.vrdLineEdit,
-                            "VDD" : self.vddLineEdit,
-                            "RG HI" : self.rghiLineEdit,
-                            "RG LO" : self.rgloLineEdit,
-                            "PAR HI" : self.parhiLineEdit,
-                            "PAR LO" : self.parloLineEdit,
-                            "SER HI" : self.serhiLineEdit,
-                            "SER LO" : self.serloLineEdit}
+        self.voltagedict = {"VOD" : (self.vodLineEdit, 0),
+                            "VOG" : (self.vogLineEdit, 0),
+                            "VRD" : (self.vrdLineEdit, 0),
+                            "VDD" : (self.vddLineEdit, 0),
+                            "RG HI" : (self.rghiLineEdit, 0),
+                            "RG LO" : (self.rgloLineEdit, 0),
+                            "PAR HI" : (self.parhiLineEdit, 0),
+                            "PAR LO" : (self.parloLineEdit, 0),
+                            "SER HI" : (self.serhiLineEdit, 0),
+                            "SER LO" : (self.serloLineEdit, 0)}
 
         ## Signals and slots for thread testing
         self.thread = WorkerThread(self.expose, ())
@@ -111,16 +107,13 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
 
         ## Connect signals and slots for functions
         self.exposeButton.clicked.connect(self.thread.start)
-        self.resetButton.clicked.connect(self.resetConfirm)
-        self.exptypeComboBox.currentIndexChanged.connect(self.activate_ui)
-        self.directoryPushButton.clicked.connect(self.editdirectory)
-        self.imtitleLineEdit.editingFinished.connect(self.checkfilename)
-        self.testimCheckBox.clicked.connect(self.checkfilename)
+        self.resetButton.clicked.connect(self.confirmReset)
+        self.exptypeComboBox.currentIndexChanged.connect(self.activateDisplay)
+        self.directoryPushButton.clicked.connect(self.editDirectory)
         self.shutdownButton.clicked.connect(self.close)
         self.filterToggleButton.toggled.connect(self.toggleFilter)
         self.setvoltageButton.clicked.connect(self.setvoltages)
         self.cancelButton.clicked.connect(self.cancelExposure)
-        self.parameterButton.clicked.connect(self.setparameterfile)
 #        self.resetvoltageButton.clicked.connect(self.getvoltagevalues)
 
         ## Progress bar signals
@@ -129,91 +122,76 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         self.seqnum_inc.connect(self.autoIncrement)
         
         ## Restore past GUI display settings and reset sta3800 controller
-        self.restoreGUI()
-        self.reset()
-                                
-    def restoreGUI(self):
-        """Set GUI display widget values with values read from INI file."""
+        self.restoreSettings()
+        self.resetController()
 
-        global DATA_DIRECTORY
+    @QtCore.pyqtSlot(int)
+    def autoIncrement(self, seqnum_old):
 
-        try:
-            self.settings = QtCore.QSettings("./settings.ini", 
-                                             QtCore.QSettings.IniFormat)
-            DATA_DIRECTORY = unicode(self.settings.value("DATA_DIRECTORY").toString())
-            restore.guirestore(self, self.settings)
-        except:
-            self.logger.warning("Failed to restore past values for GUI display widgets.")
-            DATA_DIRECTORY = "./"
+        ## Auto-increment only if checked and not test image
+        if self.autoincCheckBox.isChecked():
+            if not self.testimCheckBox.isChecked():
+                self.imnumSpinBox.setValue(seqnum_old+1)
+
+    @QtCore.pyqtSlot()
+    def cancelExposure(self):
+        self.logger.info("Finishing current exposure and canceling remaining exposures...")
+        self.cancelButton.setEnabled(False)
+        self.exposure_cancel.emit()
+
+    @QtCore.pyqtSlot(int)
+    def resetProgressBar(self, max):
+        self.progressBar.setValue(0)
+        self.progressBar.setMaximum(max)
+
+    @QtCore.pyqtSlot(int)
+    def updateProgressBar(self, i):
+        self.progressBar.setValue(i)
+
+    def activateDisplay(self):
+        """Activate and deactivate input widgets depending on the necessary arguments."""
+
+        exptype = str(self.exptypeComboBox.currentText())
+
+        if exptype in ["Exposure Series", "Dark Series"]:
+            self.exptimeSpinBox.setEnabled(False)
+            self.imstackSpinBox.setEnabled(False)
+            self.imnumSpinBox.setEnabled(False)
+            self.minexpSpinBox.setEnabled(True)
+            self.maxexpSpinBox.setEnabled(True)
+            self.tstepSpinBox.setEnabled(True)
+
         else:
-            self.logger.info("GUI display widget values successfully restored.")
-            self.activate_ui()
+            self.imstackSpinBox.setEnabled(True)
+            self.imnumSpinBox.setEnabled(True)
+            self.minexpSpinBox.setEnabled(False)
+            self.maxexpSpinBox.setEnabled(False)
+            self.tstepSpinBox.setEnabled(False)
 
-    def resetConfirm(self):
+            if exptype == "Bias":
+                self.exptimeSpinBox.setEnabled(False)
+            else:
+                self.exptimeSpinBox.setEnabled(True)
+
+    def confirmReset(self):
         """Prompt for confirmation from user to reset the controller."""
 
         ## Check if exposure is in progress
         if self.thread.isRunning():
-            QtGui.QMessageBox.warning(self, "Exposure warning.", "Exposure in progress, unable to close program.", QtGui.QMessageBox.Ok)
+            QtGui.QMessageBox.warning(self, "Exposure warning.",
+                                      "Exposure in progress, unable to close program.",
+                                      QtGui.QMessageBox.Ok)
             return
 
         else:
-            reply = QtGui.QMessageBox.question(self, 'Confirmation','Are you sure you want to reset the STA3800 controller?',
+            reply = QtGui.QMessageBox.question(self, 'Confirmation', 'Are you sure you want to reset the STA3800 controller?',
                                                QtGui.QMessageBox.Yes | QtGui.QMessageBox.No,
                                                QtGui.QMessageBox.No)
 
             if reply == QtGui.QMessageBox.Yes:
                 self.reset()
 
-    def reset(self):
-        """Turn off controller to bring to known state (sta3800_off), then turn on 
-        controller (sta3800_on.)"""
-
-        ## Turn off controller to bring to a known state
-        try:
-            self.logger.info("Turning off sta3800 controller (sta3800_off).")
-            #ccdsetup.sta3800_off()
-        except Exception:
-            self.logger.exception("Unable to turn off controller! State may be unknown.")
-            raise
-        else:
-            self.logger.info("Controller turned off successfully.")
-
-        ## Initialize controller
-        try:
-            self.logger.info("Turning on sta3800 controller (sta3800_setup).")
-            #ccdsetup.sta3800_setup()
-        except Exception:
-            self.logger.exception("Unable to turn on sta3800 controller!")
-            raise
-        else:
-            self.resetvoltage()
-            self.logger.info("Controller turned on successfully.")
-
-    def checkfilename(self):
-
-        title = str(self.imtitleLineEdit.text())
-
-        if self.testimCheckBox.isChecked():
-
-            self.exposeButton.setEnabled(True)
-            return
-
-        elif title != "":
-
-            self.exposeButton.setEnabled(True)
-            self.curr_title = title
-
-            return
-
-        self.exposeButton.setEnabled(False)
-        self.displaydirectory()
-
-    def displaydirectory(self):
-        """Display the Data Directory in the GUI."""
-        self.imfilenameLineEdit.setText(DATA_DIRECTORY)
-        
-    def editdirectory(self):
+    def editDirectory(self):
         """Open prompt for user to select a new directory to save data."""
 
         ## Have user select existing directory
@@ -230,100 +208,8 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
 
             global DATA_DIRECTORY
             DATA_DIRECTORY = new_directory
-            self.displaydirectory()
+            self.imfilenameLineEdit.setText(DATA_DIRECTORY)
             self.logger.info("Data directory changed to {0}.".format(new_directory))
-
-    def setparameterfile(self):
-        """Select a text file with voltage scan parameters."""
-
-        parameter_file = str(QtGui.QFileDialog.getOpenFileName()) # add filter
-
-        if parameter_file:
-            self.parameterEdit.setText(str(parameter_file))
-
-    def startscan(self):
-
-        parameter_file = str(self.parameterEdit.text())
-
-        voltage_params = []
-
-        ## Parse parameter file ("create args")
-        with open(parameter_file) as f:
-
-            for line in f.readlines():
-                v_name = line[0]
-                v_min = line[1]
-                v_max = line[2]
-
-                try:
-                    v_step = line[3]
-                except IndexError:
-                    v_step = 0.5
-
-                voltage_params.append((v_name, v_min, v_max, v_step))
-
-        ## Set initial voltages
-#        for v_param in voltage_params:
-
-#            try:
-#                voltage.set_voltage(v_param[0], v_param[1])
-        
-        ## Start parameter sweep
-
-#            try:
-#                for i in range(seqnum, total):
-#                    if self.thread.status:
-#                        self.logger.info("Starting image {0} of {1}.".format(i+1-seqnum, imcount))
- #                       filename = exposure.im_acq(mode, filepath, exptime, i, **kwargs) ## Replace with stuff
-#                        self.logger.info("Exposure {0} finished successfully.".format(filename))
-#                        self.image_taken.emit(i+1-seqnum)
-#                        self.seqnum_inc.emit(i)
-#                    else:
-#                        self.logger.info("Voltage scan canceled.")
-#                        self.thread.reboot()
-#                        return
-#            except subprocess.CalledProcessError:
-#                self.logger.exception("Error in executable. Image not taken.")
-#            except OSError:
-#                self.logger.exception("Executable not found. Image not taken.")
-#            except IOError:
-#                self.logger.exception("File already exists. Image not taken.")
-#            else:
-#                self.logger.info("Exposure stack finished successfully.")
-        
-    def toggleFilter(self):
-
-        if self.filterToggleButton.isChecked():
-            self.filterToggleButton.setText("Filter")
-            self.filterComboBox.setEnabled(True)
-            self.monoSpinBox.setEnabled(False)
-        else:
-            self.filterToggleButton.setText("Monochromator")
-            self.filterComboBox.setEnabled(False)
-            self.monoSpinBox.setEnabled(True)
-
-    @QtCore.pyqtSlot(int)
-    def resetProgressBar(self, max):
-        self.progressBar.setValue(0)
-        self.progressBar.setMaximum(max)
-
-    @QtCore.pyqtSlot(int)
-    def updateProgressBar(self, i):
-        self.progressBar.setValue(i)
-
-    @QtCore.pyqtSlot()
-    def cancelExposure(self):
-        self.logger.info("Finishing current exposure and canceling remaining exposures...")
-        self.cancelButton.setEnabled(False)
-        self.exposure_cancel.emit()
-
-    @QtCore.pyqtSlot(int)
-    def autoIncrement(self, seqnum_old):
-
-        ## Auto-increment only if checked and not test image
-        if self.autoincCheckBox.isChecked():
-            if not self.testimCheckBox.isChecked():
-                self.imnumSpinBox.setValue(seqnum_old+1)
 
     def expose(self):
         """Execute a shell script to perform a measurement, depending on the desired
@@ -343,6 +229,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         mintime = self.minexpSpinBox.value()
         maxtime = self.maxexpSpinBox.value()
         step = self.tstepSpinBox.value()
+        filedir = DATA_DIRECTORY
 
         ## Determine filter kwargs
         if self.filterToggleButton.isChecked():
@@ -353,67 +240,68 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         ## Add voltages to kwargs
         kwargs.update(self.getvoltagevalues())
 
+        ## Get FITs header kwargs
+        self.settings.beginGroup("Settings")
+        for key in self.settings.childKeys():
+            kwargs[str(key)] = str(self.settings.value(key).toString())
+        self.settings.endGroup()
+
+        print kwargs
+
         ## Build filepath
         if self.testimCheckBox.isChecked():
-            filepath = os.path.join(str(self.imfilenameLineEdit.text()),
-                                    'test')
+            filename = 'test'
             kwargs['is_test'] = True
         else:
-            filepath = os.path.join(str(self.imfilenameLineEdit.text()),
-                                    str(self.imtitleLineEdit.text()))
+            filename = str(self.imtitleLineEdit.text())
             kwargs['is_test'] = False
                                             
         ## Check if single exposure
         if exptype in ["Exposure", "Dark", "Bias"]:
 
             ## Perform exposure
-            self.logger.info("Starting {0}s {1} image.".format(exptime, exptype))
+            total = seqnum + imcount
             self.image_start.emit(1)
             self.thread.reboot()
+            
+            ## Begin sequence of exposures
+            for i in range(seqnum, total):
 
-            try:
-                filename = exposure.im_acq(mode, filepath, exptime, seqnum, **kwargs)
-                self.image_taken.emit(1)
-            except subprocess.CalledProcessError:
-                self.logger.exception("Error in executable {0}_acq. Image not taken.".format(mode))
-            except OSError:
-                self.logger.exception("Executable {0}_acq not found. Image not taken".format(mode))
-            except IOError:
-                self.logger.exception("File already exits. Image not taken.")
+                ## Check if exposure canceled
+                if not self.thread.status:
+                    self.logger.info("Exposure canceled.")
+                    self.thread.reboot()
+                    break
+
+                ## Perform single exposure
+                try:
+                    self.logger.info("Starting image {0} of {1}.".format(i+1-seqnum, imcount))
+                    filepath = exposure.im_acq(mode, filename, exptime, i, filedir, **kwargs)
+                    self.logger.info("Exposure {0} finished successfully.".format(filename))
+                    self.image_taken.emit(i+1-seqnum)
+                    self.seqnum_inc.emit(i)
+                except subprocess.CalledProcessError:
+                    self.logger.exception("Error in executable {0}_acq. Image not taken.".\
+                                          format(mode))
+                    break
+                except OSError:
+                    self.logger.exception("Executable {0}_acq not found. Image not taken".\
+                                          format(mode))
+                    break
+                except IOError as e:
+                    self.logger.exception("{0}".format(e))
+                    break
+
+                ## Perform necessary FITs header corrections
+                try:
+                    exposure.update_header(filepath, mode, exptime, i, **kwargs)
+                except IOError:
+                    self.logger.exception("An error occurred while writing FITs header.")
+
+            ## If no errors, open results of last image
             else:
-                self.seqnum_inc.emit(seqnum)
-                self.logger.info("Exposure {0} finished successfully.".format(filename))
-                subprocess.Popen(['ds9', '-mosaicimage', 'iraf', filename, '-zoom', 'to', 'fit', '-cmap', 'b'])
-
-        ## Check if a stack of exposures of same type
-        elif exptype in ["Exposure Stack", "Dark Stack", "Bias Stack"]:
-
-            total = seqnum + imcount
-            self.logger.info("Starting {0}s {1} stack.".format(exptime, exptype))
-            self.image_start.emit(imcount)
-            self.thread.reboot()
-
-            try:
-                for i in range(seqnum, total):
-                    if self.thread.status:
-                        self.logger.info("Starting image {0} of {1}.".format(i+1-seqnum, imcount))
-                        filename = exposure.im_acq(mode, filepath, exptime, i, **kwargs)
-                        self.logger.info("Exposure {0} finished successfully.".format(filename))
-                        self.image_taken.emit(i+1-seqnum)
-                        self.seqnum_inc.emit(i)
-                    else:
-                        self.logger.info("Exposure stack canceled.")
-                        self.thread.reboot()
-                        return
-            except subprocess.CalledProcessError:
-                self.logger.exception("Error in executable {0}_acq. Image not taken.".format(mode))
-            except OSError:
-                self.logger.exception("Executable {0}_acq not found. Image not taken.".format(mode))
-            except IOError:
-                self.logger.exception("File already exists. Image not taken.")
-            else:
-                self.logger.info("Exposure stack finished successfully.")
-                subprocess.Popen(['ds9', '-mosaicimage', 'iraf', filename, '-zoom', 'to', 'fit', '-cmap', 'b'])
+                self.logger.info("Exposure finished successfully.")
+                subprocess.Popen(['ds9', '-mosaicimage', 'iraf', filepath, '-zoom', 'to', 'fit', '-cmap', 'b'])
                 
         ## Check if a series of exposures of increase exposure time
         elif exptype in ["Exposure Series", "Dark Series"]:
@@ -442,7 +330,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                 for i, expt in enumerate(time_array):
                     if self.thread.status:
                         self.logger.info("Starting {0}s {1} image.".format(expt, mode))
-                        filename = exposure.im_acq(mode, filepath, expt, seqnum, **kwargs)
+                        filepath = exposure.im_acq(mode, filename, expt, seqnum, **kwargs)
                         self.logger.info("Exposure {0} finished successfully.".format(filename))
                         self.image_taken.emit(i+1)
                     else:
@@ -454,12 +342,66 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
                 self.logger.exception("Error in executable {0}_acq. Image not taken.".format(mode))
             except OSError:
                 self.logger.exception("Executable {0}_acq not found. Image not taken.".format(mode))
-            except IOError:
-                self.logger.exception("File already exists. Image not taken.")
+            except IOError as e:
+                self.logger.exception("{0}".format(e))
             else:
                 self.seqnum_inc.emit(seqnum)
                 self.logger.info("Exposure series finished successfully.")
-                subprocess.Popen(['ds9', '-mosaicimage', 'iraf', filename, '-zoom', 'to', 'fit', '-cmap', 'b'])
+                subprocess.Popen(['ds9', '-mosaicimage', 'iraf', filepath, '-zoom', 'to', 'fit', '-cmap', 'b'])
+
+    def resetController(self):
+        """Turn off controller to bring to known state (sta3800_off), then turn on 
+        controller (sta3800_on.)"""
+
+        ## Turn off controller to bring to a known state
+        try:
+            self.logger.info("Turning off sta3800 controller (sta3800_off).")
+            #ccdsetup.sta3800_off()
+        except Exception:
+            self.logger.exception("Unable to turn off controller! State may be unknown.")
+            raise
+        else:
+            self.logger.info("Controller turned off successfully.")
+
+        ## Initialize controller
+        try:
+            self.logger.info("Turning on sta3800 controller (sta3800_setup).")
+            #ccdsetup.sta3800_setup()
+        except Exception:
+            self.logger.exception("Unable to turn on sta3800 controller!")
+            raise
+        else:
+            self.resetvoltage()
+            self.logger.info("Controller turned on successfully.")
+                                
+    def restoreSettings(self):
+        """Set GUI display widget values with values read from INI file."""
+
+        global DATA_DIRECTORY
+
+        try:
+            self.settings = QtCore.QSettings("./settings.ini", 
+                                             QtCore.QSettings.IniFormat)
+            DATA_DIRECTORY = unicode(self.settings.value("DATA_DIRECTORY").toString())
+            restore.guirestore(self, self.settings)
+            
+        except:
+            self.logger.warning("Failed to restore past settings.")
+            DATA_DIRECTORY = "./"
+        else:
+            self.logger.info("GUI display widget values successfully restored.")
+            self.activateDisplay()
+
+    def toggleFilter(self):
+
+        if self.filterToggleButton.isChecked():
+            self.filterToggleButton.setText("Filter")
+            self.filterComboBox.setEnabled(True)
+            self.monoSpinBox.setEnabled(False)
+        else:
+            self.filterToggleButton.setText("Monochromator")
+            self.filterComboBox.setEnabled(False)
+            self.monoSpinBox.setEnabled(True)
 
         
     def setvoltages(self):
@@ -553,8 +495,10 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
 
     def voltagedisplay(self, vname, V):
 
-        lineedit = self.voltagedict[vname]
+        ## Update voltage dictionary
+        lineedit = self.voltagedict[vname][0]
         lineedit.setText("{0:.2f}".format(V))
+        self.voltagedict[vname] = (lineedit, V)
 
     def resetvoltage(self):
         
@@ -574,48 +518,10 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         self.settings.endGroup()
 
     def getvoltagevalues(self):
-        kwargs = dict()
-        for key, value in self.voltagedict.iteritems():
-            kwargs[key] = float(value.text())
-        return kwargs
-
-    def activate_ui(self):
-        """Activate and deactivate input widgets depending on the necessary arguments."""
-
-        self.checkfilename()
-        exptype = str(self.exptypeComboBox.currentText())
-
-        if exptype in ["Exposure Stack", "Dark Stack", "Bias Stack"]:
-            self.imstackSpinBox.setEnabled(True)
-            self.imnumSpinBox.setEnabled(True)
-            self.minexpSpinBox.setEnabled(False)
-            self.maxexpSpinBox.setEnabled(False)
-            self.tstepSpinBox.setEnabled(False)
-
-            if exptype == "Bias Stack":
-                self.exptimeSpinBox.setEnabled(False)
-            else:
-                self.exptimeSpinBox.setEnabled(True)
-
-        elif exptype in ["Exposure Series", "Dark Series"]:
-            self.exptimeSpinBox.setEnabled(False)
-            self.imstackSpinBox.setEnabled(False)
-            self.imnumSpinBox.setEnabled(False)
-            self.minexpSpinBox.setEnabled(True)
-            self.maxexpSpinBox.setEnabled(True)
-            self.tstepSpinBox.setEnabled(True)
-
-        else:
-            self.imstackSpinBox.setEnabled(False)
-            self.imnumSpinBox.setEnabled(True)
-            self.minexpSpinBox.setEnabled(False)
-            self.maxexpSpinBox.setEnabled(False)
-            self.tstepSpinBox.setEnabled(False)
-
-            if exptype == "Bias":
-                self.exptimeSpinBox.setEnabled(False)
-            else:
-                self.exptimeSpinBox.setEnabled(True)
+        voltagevalues = dict()
+        for vname, vitem in self.voltagedict.iteritems():
+            voltagevalues[vname] = float(vitem[0].text())
+        return voltagevalues
 
     def closeEvent(self, event):
         """Need to reconcile confirmation and guisave settings."""

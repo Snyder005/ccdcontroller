@@ -111,6 +111,7 @@ def im_acq(mode, filebase="test", exptime=0.00, seqnum=1,
                                                                exptime, seqnum))
         if os.path.isfile(filepath):
             raise IOError("File {0} already exists, image not taken.".format(filepath))
+            return
 
     ## Do exposure depending on specified mode
     if mode == "exp":
@@ -120,11 +121,6 @@ def im_acq(mode, filebase="test", exptime=0.00, seqnum=1,
         output = subprocess.check_output(["dark_acq", "{0}".format(exptime),
                                           "{0}".format(filepath)])
 
-    ## Update FITs header
-    try:
-        update_header(filepath, mode, exptime, seqnum, **kwargs)
-    except IOError as e:
-        raise IOError("Error updating FITs header: {0}".format(e))
     return filepath
 
 ###############################################################################
@@ -301,7 +297,7 @@ def update_header(filepath, mode, exptime, seqnum, **kwargs):
     headver = kwargs.get('headver', 1)
     ccdgain = kwargs.get('ccdgain', 5.52) ## Need to change
     ccdnoise = kwargs.get('ccdnoise', 6.0) ## Need to change
-    detsize = kwargs.get('detsize', "[0:4336,0:4044]")
+    detsize = kwargs.get('detsize', "[1:4336,1:4044]")
     origin = kwargs.get('origin', "Stanford")
 
     ## Construct ccd conditions extensions.  Requires astropy python package
@@ -333,28 +329,28 @@ def update_header(filepath, mode, exptime, seqnum, **kwargs):
     prihdr['TSTAND'] = (tstand, 'Test stand used.')
     prihdr['INSTRUME'] = (instrument, 'CCD Controller type')
     prihdr['CONTROLL'] = (controller, 'Duplicates INSTRUME')
-    prihdr['CONTNUM'] = (contnum, 'CCD Controller Serial Number')
+    prihdr['CONTNUM'] = (int(contnum), 'CCD Controller Serial Number')
     prihdr['CCD_MANU'] = (ccd_manu, 'CCD Manufacturer')
     prihdr['CCD_TYPE'] = (ccd_type, 'CCD Model Number')
     prihdr['CCD_SERN'] = (ccd_sern, "Manufacturers' CCD Serial Number")
     prihdr['LSST_NUM']= (lsst_num, 'LSST Assigned CCD Number')
     prihdr['TESTTYPE'] = (testtype, 'dark:fe55:flat:lambda:spot:sflat_nnn:trap')
     prihdr['IMGTYPE'] = (imgtype, 'BIAS, DARK, ...')
-    prihdr['SEQNUM'] = (seqnum, 'Sequence number')
-    prihdr['TEMP_SET'] = (temp_set, 'Temperature set point')
-    prihdr['CCDTEMP'] = (ccdtemp, 'Measured temperature')
-    prihdr['MONDIODE'] = (mondiode, 'Current in monitoring diode')
+    prihdr['SEQNUM'] = (int(seqnum), 'Sequence number')
+    prihdr['TEMP_SET'] = (float(temp_set), 'Temperature set point')
+    prihdr['CCDTEMP'] = (float(ccdtemp), 'Measured temperature')
+    prihdr['MONDIODE'] = (float(mondiode), 'Current in monitoring diode')
     prihdr['MONOWL'] = (monowl, 'Monochromator wavelength')
     prihdr['FILTER'] = (filter_name, 'Name of the filter')
-    prihdr['EXPTIME'] = (exptime, 'Exposure Time in Seconds')
-    prihdr['SHUT_DEL'] = (shut_del, 'Shutter delay')
+    prihdr['EXPTIME'] = (float(exptime), 'Exposure Time in Seconds')
+    prihdr['SHUT_DEL'] = (float(shut_del), 'Shutter delay')
     prihdr['CTRLCFG'] = (ctrlcfg, 'CCD controller configuration file')
     prihdr['FILENAME'] = (os.path.split(filename)[1], 'Original name of the file')
     prihdr['BINX'] = (binx, '[pixels] binning along X axis')
     prihdr['BINY'] = (biny, '[pixels] binning along Y axis')
-    prihdr['HEADVER'] = (headver, 'Version number of header')
-    prihdr['CCDGAIN'] = (ccdgain, 'Rough guess at overall system gain')
-    prihdr['CCDNOISE'] = (ccdnoise, 'Rough guess at system noise')
+    prihdr['HEADVER'] = (int(headver), 'Version number of header')
+    prihdr['CCDGAIN'] = (float(ccdgain), 'Rough guess at overall system gain')
+    prihdr['CCDNOISE'] = (float(ccdnoise), 'Rough guess at system noise')
     prihdr['DETSIZE'] = (detsize, 'Unbinned det size')
     prihdr['ORIGIN'] = (origin, 'Site where data acquired')
     
@@ -372,8 +368,34 @@ def update_header(filepath, mode, exptime, seqnum, **kwargs):
 
     prihdr['DATE-OBS'] = (date_utc, 'Date of the observation')
     prihdr['DATE'] = (date_obs_utc, 'Creation Date and Time of File')
-    prihdr['MJD'] = ('{0:.5f}'.format(date_mjd), 
+    prihdr['MJD'] = (float('{0:.5f}'.format(date_mjd)), 
                      'Modified Julian Date of image acquisition')
+
+    ## Update IRAF keywords in each segment header
+    for i in range(16):
+        imext = i+1
+        naxis1 = 512
+        naxis2 = 2002
+
+        if i < 8:
+            ax1min = (i+1)*naxis1
+            ax1max = i*naxis1 + 1
+            ax2min = 1
+            ax2max = naxis2
+
+        else:
+            ax1min = (15-i)*naxis1 + 1
+            ax1max = (16-i)*naxis1
+            ax2min = naxis2*2
+            ax2max = naxis2 + 1
+
+        hdu[imext].header['DETSIZE'] = '[1:4096, 1:4004]'
+        hdu[imext].header['DATASEC'] = '[11:522, 1:2002]'
+        hdu[imext].header['BIASSEC'] = '[523:542, 1:2002]'
+        detsec = '[{0}:{1}, {2}:{3}]'.format(ax1min, ax1max, ax2min, ax2max)
+        hdu[imext].header['DETSEC'] = detsec
+        hdu[imext].header.remove('CCDSEC')
+        hdu[imext].header.remove('TRIMSEC')
 
     hdulist.append(ccdhdu)
     hdulist.flush()
