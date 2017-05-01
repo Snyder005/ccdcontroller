@@ -156,7 +156,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         self.progressBar.setValue(0)
         self.progressBar.setMaximum(max)
 
-    @QtCore.pyqtSlot(int)
+    @QtCore.pyqtSlot()
     def updateProgressBar(self):
         """Set new value of progress bar."""
         
