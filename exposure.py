@@ -52,12 +52,14 @@ def scan(filebase, *args, **kwargs):
     
     ## Get first tuple of arguments and assign
     v_settings = args[0]
+    print v_settings
+    
     v_name = v_settings[0]
-    v_min = v_settings[1]
-    v_max = v_settings[2]
+    v_min = float(v_settings[1])
+    v_max = float(v_settings[2])
     
     try:
-        v_step = v_settings[3]
+        v_step = float(v_settings[3])
     except IndexError:
         v_step = 0.5
 
@@ -66,7 +68,7 @@ def scan(filebase, *args, **kwargs):
     
     while (volts < v_max):
 
-        voltage.set_voltage(volts, v_name)
+        print "voltage.set_voltage({0}, {1})".format(volts, v_name)
 
         ## If voltages remain, run again with remaining sets of parameters
         if len(args) > 1:
@@ -80,7 +82,8 @@ def scan(filebase, *args, **kwargs):
             ## Determine measurements to make
             imcount = kwargs.get("imcount")
             dtime = kwargs.get("dtime")
-            all_stack(dtime, imcount, filebase, fileend2)
+            print v_settings
+            #all_stack(dtime, imcount, filebase, fileend2)
 
         ## Once all recursive voltage changes are made, increment
         volts += v_step
@@ -114,10 +117,10 @@ def im_acq(mode, filebase="test", exptime=0.00, seqnum=1,
             return
 
     ## Do exposure depending on specified mode
-    if mode == "exp":
+    if mode in ["exp", "flat"]:
         output = subprocess.check_output(["exp_acq", "{0}".format(exptime),
                                           "{0}".format(filepath)])
-    elif mode in ['bias', 'dark']:
+    elif mode in ['bias', 'dark', 'fe55']:
         output = subprocess.check_output(["dark_acq", "{0}".format(exptime),
                                           "{0}".format(filepath)])
 
@@ -130,34 +133,7 @@ def im_acq(mode, filebase="test", exptime=0.00, seqnum=1,
 ###############################################################################
 
 def hmsm_to_days(hour=0,min=0,sec=0,micro=0):
-    """
-    Convert hours, minutes, seconds, and microseconds to fractional days.
-    
-    Parameters
-    ----------
-    hour : int, optional
-        Hour number. Defaults to 0.
-    
-    min : int, optional
-        Minute number. Defaults to 0.
-    
-    sec : int, optional
-        Second number. Defaults to 0.
-    
-    micro : int, optional
-        Microsecond number. Defaults to 0.
-        
-    Returns
-    -------
-    days : float
-        Fractional days.
-        
-    Examples
-    --------
-    >>> hmsm_to_days(hour=6)
-    0.25
-    
-    """
+
     days = sec + (micro / 1.e6)
     
     days = min + (days / 60.)
@@ -167,37 +143,7 @@ def hmsm_to_days(hour=0,min=0,sec=0,micro=0):
     return days / 24.
 
 def date_to_jd(year,month,day):
-    """
-    Convert a date to Julian Day.
-    
-    Algorithm from 'Practical Astronomy with your Calculator or Spreadsheet', 
-        4th ed., Duffet-Smith and Zwart, 2011.
-    
-    Parameters
-    ----------
-    year : int
-        Year as integer. Years preceding 1 A.D. should be 0 or negative.
-        The year before 1 A.D. is 0, 10 B.C. is year -9.
-        
-    month : int
-        Month as integer, Jan = 1, Feb. = 2, etc.
-    
-    day : float
-        Day, may contain fractional part.
-    
-    Returns
-    -------
-    jd : float
-        Julian Day
-        
-    Examples
-    --------
-    Convert 6 a.m., February 17, 1985 to Julian Day
-    
-    >>> date_to_jd(1985,2,17.25)
-    2446113.75
-    
-    """
+
     if month == 1 or month == 2:
         yearp = year - 1
         monthp = month + 12
@@ -229,27 +175,7 @@ def date_to_jd(year,month,day):
     return jd
 
 def datetime_to_jd(date):
-    """
-    Convert a `datetime.datetime` object to Julian Day.
-    
-    Parameters
-    ----------
-    date : `datetime.datetime` instance
-    
-    Returns
-    -------
-    jd : float
-        Julian day.
-        
-    Examples
-    --------
-    >>> d = datetime.datetime(1985,2,17,6)  
-    >>> d
-    datetime.datetime(1985, 2, 17, 6, 0)
-    >>> jdutil.datetime_to_jd(d)
-    2446113.75
-    
-    """
+
     days = date.day + hmsm_to_days(date.hour,date.minute,date.second,date.microsecond)
     
     return date_to_jd(date.year,date.month,days)
@@ -272,13 +198,13 @@ def update_header(filepath, mode, exptime, seqnum, **kwargs):
     ## Filter and monowl are mutually exclusive
     if 'monowl' in kwargs:
         monowl = kwargs.get('monowl')
-        filter_name = 'N/A'
+        filter_name = '550LP'
     elif 'filter_name' in kwargs:
-        monowl = 'N/A'
+        monowl = 550.0
         filter_name = kwargs.get('filter_name')
     else:
-        monowl = 'N/A'
-        filter_name = 'N/A'
+        monowl = 550.0
+        filter_name = '550LP'
 
     ## Settings from INI file
     imagetag = kwargs.get('imagetag', "{0}".format(int(timestamp()))) ## Need to change
@@ -314,7 +240,7 @@ def update_header(filepath, mode, exptime, seqnum, **kwargs):
             ccdhdr['V_P{0}L'.format(i+1)] = kwargs.get('PAR LO', 0.0)
             ccdhdr['V_P{0}H'.format(i+1)] = kwargs.get('PAR HI', 0.0)
                    
-    ccdhdr['V_GD'] = kwargs.get('VGD', '') ## What is this? VDD?
+    ccdhdr['V_GD'] = kwargs.get('VGD', 0.0) ## What is this? VDD?
     ccdhdr['V_BSS'] = kwargs.get('VBB', 0.0)
     ccdhdr['V_RGL'] = kwargs.get('RG LO', 0.0)
     ccdhdr['V_RGH'] = kwargs.get('RG HI', 0.0)
@@ -340,7 +266,7 @@ def update_header(filepath, mode, exptime, seqnum, **kwargs):
     prihdr['TEMP_SET'] = (float(temp_set), 'Temperature set point')
     prihdr['CCDTEMP'] = (float(ccdtemp), 'Measured temperature')
     prihdr['MONDIODE'] = (float(mondiode), 'Current in monitoring diode')
-    prihdr['MONOWL'] = (monowl, 'Monochromator wavelength')
+    prihdr['MONOWL'] = (float(monowl), 'Monochromator wavelength')
     prihdr['FILTER'] = (filter_name, 'Name of the filter')
     prihdr['EXPTIME'] = (float(exptime), 'Exposure Time in Seconds')
     prihdr['SHUT_DEL'] = (float(shut_del), 'Shutter delay')
@@ -384,8 +310,8 @@ def update_header(filepath, mode, exptime, seqnum, **kwargs):
             ax2max = naxis2
 
         else:
-            ax1min = (15-i)*naxis1 + 1
-            ax1max = (16-i)*naxis1
+            ax1min = (16-i)*naxis1
+            ax1max = (15-i)*naxis1+1
             ax2min = naxis2*2
             ax2max = naxis2 + 1
 

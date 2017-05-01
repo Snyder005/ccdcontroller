@@ -35,7 +35,7 @@
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>719</width>
+        <width>728</width>
         <height>314</height>
        </rect>
       </property>
@@ -199,12 +199,27 @@
          </item>
          <item>
           <property name="text">
+           <string>Flat</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Fe55</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
            <string>Exposure Series</string>
           </property>
          </item>
          <item>
           <property name="text">
            <string>Dark Series</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Voltage Scan</string>
           </property>
          </item>
         </widget>
@@ -348,17 +363,21 @@
         </widget>
        </item>
        <item row="11" column="6" rowspan="2" colspan="2">
-        <spacer name="horizontalSpacer_3">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
+        <widget class="QLineEdit" name="paramfileLineEdit"/>
+       </item>
+       <item row="10" column="6">
+        <widget class="QLabel" name="paramfileLabel">
+         <property name="text">
+          <string>Parameters File:</string>
          </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
+        </widget>
+       </item>
+       <item row="10" column="7">
+        <widget class="QPushButton" name="paramfileButton">
+         <property name="text">
+          <string>Select File</string>
          </property>
-        </spacer>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -418,7 +437,7 @@
        <item row="0" column="4">
         <widget class="QLabel" name="rghiLabel">
          <property name="text">
-          <string>RG HI</string>
+          <string>RGHI</string>
          </property>
         </widget>
        </item>
@@ -445,7 +464,7 @@
        <item row="0" column="5">
         <widget class="QLabel" name="rgloLabel">
          <property name="text">
-          <string>RG LO</string>
+          <string>RGLO</string>
          </property>
         </widget>
        </item>
@@ -499,28 +518,28 @@
        <item row="2" column="0">
         <widget class="QLabel" name="parhiLabel">
          <property name="text">
-          <string>PAR HI</string>
+          <string>PARHI</string>
          </property>
         </widget>
        </item>
        <item row="2" column="1">
         <widget class="QLabel" name="parloLabel">
          <property name="text">
-          <string>PAR LO</string>
+          <string>PARLO</string>
          </property>
         </widget>
        </item>
        <item row="2" column="2">
         <widget class="QLabel" name="serhiLabel">
          <property name="text">
-          <string>SER HI</string>
+          <string>SERHI</string>
          </property>
         </widget>
        </item>
        <item row="2" column="3">
         <widget class="QLabel" name="serloLabel">
          <property name="text">
-          <string>SER LO</string>
+          <string>SERLO</string>
          </property>
         </widget>
        </item>
@@ -578,32 +597,32 @@
          </item>
          <item>
           <property name="text">
-           <string>RG HI</string>
+           <string>RGHI</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>RG LO</string>
+           <string>RGLO</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>PAR HI</string>
+           <string>PARHI</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>PAR LO</string>
+           <string>PARLO</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>SER HI</string>
+           <string>SERHI</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>SER LO</string>
+           <string>SERLO</string>
           </property>
          </item>
         </widget>
@@ -634,78 +653,6 @@
           </size>
          </property>
         </spacer>
-       </item>
-       <item row="6" column="0" colspan="2">
-        <widget class="QPushButton" name="resetvoltageButton">
-         <property name="text">
-          <string>Reset To Defaults</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="tab">
-     <attribute name="title">
-      <string>Scan</string>
-     </attribute>
-     <widget class="QWidget" name="layoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>21</x>
-        <y>40</y>
-        <width>641</width>
-        <height>131</height>
-       </rect>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_4">
-       <item row="0" column="0">
-        <widget class="QLabel" name="parameterLabel">
-         <property name="text">
-          <string>Parameter File:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="3">
-        <widget class="QPushButton" name="parameterButton">
-         <property name="text">
-          <string>Select File</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="3">
-        <widget class="QPushButton" name="scancancelButton">
-         <property name="text">
-          <string>Cancel Scan</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2">
-        <widget class="QPushButton" name="scanstartButton">
-         <property name="text">
-          <string>Start Scan</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <spacer name="horizontalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="0" column="1" colspan="2">
-        <widget class="QLineEdit" name="parameterEdit">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-        </widget>
        </item>
       </layout>
      </widget>

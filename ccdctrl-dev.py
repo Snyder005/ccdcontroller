@@ -9,7 +9,9 @@ import atexit
 import subprocess
 import logging
 from logging.config import fileConfig
+from itertools import product
 import time
+import numpy as np
 
 import design
 import ccdsetup
@@ -52,7 +54,7 @@ class QtHandler(logging.Handler, object):
     def emit(self, status):
         message = str(status.getMessage())
         self.sigEmitter.emit(QtCore.SIGNAL("logMsg(QString)"), message)
-        
+
 ###############################################################################
 ##
 ##  Controller GUI Class
@@ -61,8 +63,9 @@ class QtHandler(logging.Handler, object):
 
 class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
 
+    ## PyQt signals
     image_start = QtCore.pyqtSignal(int)
-    image_taken = QtCore.pyqtSignal(int)
+    image_taken = QtCore.pyqtSignal()
     exposure_cancel = QtCore.pyqtSignal()
     seqnum_inc = QtCore.pyqtSignal(int)
 
@@ -83,19 +86,23 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         self.modedict = {"Exposure" : "exp",
                          "Dark" : "dark",
                          "Bias" : "bias",
+                         "Flat" : "flat",
+                         "Fe55" : "fe55",
                          "Exposure Series" : "exp",
-                         "Dark Series" : "dark"}
+                         "Dark Series" : "dark",
+                         "Voltage Scan" : "scan"}
 
-        self.voltagedict = {"VOD" : (self.vodLineEdit, 0),
+        ## Dictionary holds voltage widget and value information
+        self.voltage_dict = {"VOD" : (self.vodLineEdit, 0),
                             "VOG" : (self.vogLineEdit, 0),
                             "VRD" : (self.vrdLineEdit, 0),
                             "VDD" : (self.vddLineEdit, 0),
-                            "RG HI" : (self.rghiLineEdit, 0),
-                            "RG LO" : (self.rgloLineEdit, 0),
-                            "PAR HI" : (self.parhiLineEdit, 0),
-                            "PAR LO" : (self.parloLineEdit, 0),
-                            "SER HI" : (self.serhiLineEdit, 0),
-                            "SER LO" : (self.serloLineEdit, 0)}
+                            "RGHI" : (self.rghiLineEdit, 0),
+                            "RGLO" : (self.rgloLineEdit, 0),
+                            "PARHI" : (self.parhiLineEdit, 0),
+                            "PARLO" : (self.parloLineEdit, 0),
+                            "SERHI" : (self.serhiLineEdit, 0),
+                            "SERLO" : (self.serloLineEdit, 0)}
 
         ## Signals and slots for thread testing
         self.thread = WorkerThread(self.expose, ())
@@ -104,17 +111,17 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         self.thread.finished.connect(lambda: self.exposeButton.setEnabled(True))
         self.thread.finished.connect(lambda: self.cancelButton.setEnabled(False))
         self.exposure_cancel.connect(self.thread.cancel)
+        self.exposeButton.clicked.connect(self.thread.start)
 
         ## Connect signals and slots for functions
-        self.exposeButton.clicked.connect(self.thread.start)
         self.resetButton.clicked.connect(self.confirmReset)
-        self.exptypeComboBox.currentIndexChanged.connect(self.activateDisplay)
+        self.exptypeComboBox.currentIndexChanged.connect(self.setDisplay)
         self.directoryPushButton.clicked.connect(self.editDirectory)
         self.shutdownButton.clicked.connect(self.close)
         self.filterToggleButton.toggled.connect(self.toggleFilter)
-        self.setvoltageButton.clicked.connect(self.setvoltages)
+        self.setvoltageButton.clicked.connect(lambda: self.setVoltages())
         self.cancelButton.clicked.connect(self.cancelExposure)
-#        self.resetvoltageButton.clicked.connect(self.getvoltagevalues)
+        self.paramfileButton.clicked.connect(self.editParamFile)
 
         ## Progress bar signals
         self.image_start.connect(self.resetProgressBar)
@@ -127,6 +134,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
 
     @QtCore.pyqtSlot(int)
     def autoIncrement(self, seqnum_old):
+        """If auto-increment is on, increase Sequence Number by 1."""
 
         ## Auto-increment only if checked and not test image
         if self.autoincCheckBox.isChecked():
@@ -135,24 +143,32 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
 
     @QtCore.pyqtSlot()
     def cancelExposure(self):
+        """Emit signal to cancel exposure."""
+
         self.logger.info("Finishing current exposure and canceling remaining exposures...")
         self.cancelButton.setEnabled(False)
         self.exposure_cancel.emit()
 
     @QtCore.pyqtSlot(int)
     def resetProgressBar(self, max):
+        """Reset progress bar to 0, and initialize maximum."""
+
         self.progressBar.setValue(0)
         self.progressBar.setMaximum(max)
 
     @QtCore.pyqtSlot(int)
-    def updateProgressBar(self, i):
-        self.progressBar.setValue(i)
+    def updateProgressBar(self):
+        """Set new value of progress bar."""
+        
+        old_value = self.progressBar.value()
+        self.progressBar.setValue(old_value+1)
 
-    def activateDisplay(self):
-        """Activate and deactivate input widgets depending on the necessary arguments."""
+    def setDisplay(self):
+        """Activate and deactivate input widgets depending on exposure type."""
 
         exptype = str(self.exptypeComboBox.currentText())
 
+        ## If a series of exposures, enable exptime limit input widgets
         if exptype in ["Exposure Series", "Dark Series"]:
             self.exptimeSpinBox.setEnabled(False)
             self.imstackSpinBox.setEnabled(False)
@@ -161,6 +177,7 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             self.maxexpSpinBox.setEnabled(True)
             self.tstepSpinBox.setEnabled(True)
 
+        ## Else, disable series input widgets
         else:
             self.imstackSpinBox.setEnabled(True)
             self.imnumSpinBox.setEnabled(True)
@@ -168,25 +185,29 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             self.maxexpSpinBox.setEnabled(False)
             self.tstepSpinBox.setEnabled(False)
 
+            ## Bias has 0.0 exptime automatically
             if exptype == "Bias":
                 self.exptimeSpinBox.setEnabled(False)
             else:
                 self.exptimeSpinBox.setEnabled(True)
 
     def confirmReset(self):
-        """Prompt for confirmation from user to reset the controller."""
+        """Prompt user for confirmation to reset the controller."""
 
-        ## Check if exposure is in progress
+        ## Check if exposure is in progress, and if so, prevent reset
         if self.thread.isRunning():
             QtGui.QMessageBox.warning(self, "Exposure warning.",
                                       "Exposure in progress, unable to close program.",
                                       QtGui.QMessageBox.Ok)
             return
 
+        ## Confirmation box for resetting controller
         else:
-            reply = QtGui.QMessageBox.question(self, 'Confirmation', 'Are you sure you want to reset the STA3800 controller?',
-                                               QtGui.QMessageBox.Yes | QtGui.QMessageBox.No,
-                                               QtGui.QMessageBox.No)
+            reply = QtGui.QMessageBox.\
+                    question(self, 'Confirmation',
+                             'Are you sure you want to reset the STA3800 controller?',
+                             QtGui.QMessageBox.Yes | QtGui.QMessageBox.No,
+                             QtGui.QMessageBox.No)
 
             if reply == QtGui.QMessageBox.Yes:
                 self.reset()
@@ -211,42 +232,28 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             self.imfilenameLineEdit.setText(DATA_DIRECTORY)
             self.logger.info("Data directory changed to {0}.".format(new_directory))
 
+    def editParamFile(self):
+        """Open prompt for user to select a parameter file for a voltage scan."""
+
+        new_file = str(QtGui.QFileDialog.getOpenFileName(self, "Select File"))
+
+        if new_file:
+
+            self.paramfileLineEdit.setText(new_file)
+            self.logger.info("Parameter file selected: {0}.".format(new_file))
+                
     def expose(self):
-        """Execute a shell script to perform a measurement, depending on the desired
-           exposure type."""
+        """Perform exposure using GUI parameters or parameters from file."""
 
-        ## Determine type of exposure (exp, series, stack)
-        exptype = str(self.exptypeComboBox.currentText())
-        mode = self.modedict[exptype]
+        ## Build FITs header information
+        kwargs = self.fitsinfo
 
-        ## Get exposure parameters
-        if mode == "bias":
-            exptime = 0.0
-        else:
-            exptime = self.exptimeSpinBox.value()
-        imcount = self.imstackSpinBox.value()
-        seqnum = self.imnumSpinBox.value()
-        mintime = self.minexpSpinBox.value()
-        maxtime = self.maxexpSpinBox.value()
-        step = self.tstepSpinBox.value()
-        filedir = DATA_DIRECTORY
-
-        ## Determine filter kwargs
         if self.filterToggleButton.isChecked():
-            kwargs = {'filter_name' : str(self.filterComboBox.currentText())}
+            kwargs['filter_name'] = str(self.filterComboBox.currentText())
         else:
-            kwargs = {'monowl' : self.monoSpinBox.value()}
+            kwargs['monowl'] = self.monoSpinBox.value()
 
-        ## Add voltages to kwargs
-        kwargs.update(self.getvoltagevalues())
-
-        ## Get FITs header kwargs
-        self.settings.beginGroup("Settings")
-        for key in self.settings.childKeys():
-            kwargs[str(key)] = str(self.settings.value(key).toString())
-        self.settings.endGroup()
-
-        print kwargs
+        kwargs.update(self.getVoltageValues())
 
         ## Build filepath
         if self.testimCheckBox.isChecked():
@@ -255,108 +262,218 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         else:
             filename = str(self.imtitleLineEdit.text())
             kwargs['is_test'] = False
-                                            
-        ## Check if single exposure
-        if exptype in ["Exposure", "Dark", "Bias"]:
 
-            ## Perform exposure
-            total = seqnum + imcount
-            self.image_start.emit(1)
-            self.thread.reboot()
+        ## Get exposure parameters from GUI
+        exptype = str(self.exptypeComboBox.currentText())
+        mode = self.modedict[exptype]
+        
+        if mode == 'bias':
+            exptime = 0.0
+        else:
+            exptime = self.exptimeSpinBox.value()
+        num_images = self.imstackSpinBox.value()
+        seq_num = self.imnumSpinBox.value()
+        data_dir = DATA_DIRECTORY
+
+        ## Exposure stack processing
+        if exptype in ["Exposure", "Dark", "Bias", "Flat", "Fe55"]:
             
-            ## Begin sequence of exposures
-            for i in range(seqnum, total):
+            ## Prep GUI for exposure
+            self.image_start.emit(num_images)
+            self.thread.reboot()
 
-                ## Check if exposure canceled
+            ## Begin exposure stack
+            for i in range(seq_num, seq_num+num_images):
+
+                ## Check if stack interrupted
                 if not self.thread.status:
                     self.logger.info("Exposure canceled.")
                     self.thread.reboot()
-                    break
+                    return
 
-                ## Perform single exposure
+                ## Perform single exposure and check for errors
                 try:
-                    self.logger.info("Starting image {0} of {1}.".format(i+1-seqnum, imcount))
-                    filepath = exposure.im_acq(mode, filename, exptime, i, filedir, **kwargs)
-                    self.logger.info("Exposure {0} finished successfully.".format(filename))
-                    self.image_taken.emit(i+1-seqnum)
-                    self.seqnum_inc.emit(i)
+                    self.logger.info("Starting image {0} of {1}.".\
+                                     format(i+1-seq_num, num_images))
+                    #filepath = exposure.im_acq(mode, filename, exptime, seq_num+i,
+                    #                           data_dir, **kwargs)
+                    print "filepath = exposure.im_acq({0}, {1}, {2}, {3}, {4}, kwargs)".\
+                           format(mode, filename, exptime, i, data_dir)
+                    time.sleep(1)
                 except subprocess.CalledProcessError:
                     self.logger.exception("Error in executable {0}_acq. Image not taken.".\
                                           format(mode))
-                    break
+                    return
                 except OSError:
-                    self.logger.exception("Executable {0}_acq not found. Image not taken".\
+                    self.logger.exception("Executable {0}_acq not found. Image not taken.".\
                                           format(mode))
-                    break
-                except IOError as e:
+                    return
+                except Exception as e:
                     self.logger.exception("{0}".format(e))
-                    break
+                    return
+                else:
+                    self.logger.info("Exposure finished successfully.")
+                    self.image_taken.emit()
+                    self.seqnum_inc.emit(i)
 
-                ## Perform necessary FITs header corrections
+                ## Perform FITs header corrections
                 try:
-                    exposure.update_header(filepath, mode, exptime, i, **kwargs)
+                    #exposure.update_header(filepath)
+                    print "exposure.update_header(filepath)"
                 except IOError:
-                    self.logger.exception("An error occurred while writing FITs header.")
+                    self.logger.exception("An error occurred while updating the FITs header.")
 
-            ## If no errors, open results of last image
             else:
-                self.logger.info("Exposure finished successfully.")
-                subprocess.Popen(['ds9', '-mosaicimage', 'iraf', filepath, '-zoom', 'to', 'fit', '-cmap', 'b'])
-                
-        ## Check if a series of exposures of increase exposure time
+                self.logger.info("All exposures finished successfully.")
+                #subprocess.Popen(['ds9', '-mosaicimage', 'iraf', filepath,
+                #                  '-zoom', 'to', 'fit', '-cmap', 'b'])
+
+        ## Exposure series processing
         elif exptype in ["Exposure Series", "Dark Series"]:
 
-            ## Parameter checks
+            ## Get additional GUI parameters
+            mintime = self.minexpSpinBox.value()
+            maxtime = self.maxexpSpinBox.value()
+            timestep = self.tstepSpinBox.value()
+
             if mintime > maxtime:
-                self.logger.warning("Minimum time must be less than Maximum time. Series not started.")
+                self.logger.warning("Minimum time must be less than Maximum time. " +
+                                    "Series not started.")
                 return
-            elif step <= 0:
+            elif timestep <= 0.0:
                 self.logger.warning("Time step must be greater than 0. Series not started.")
                 return
 
             ## Construct array of exposure times
-            t = mintime
-            time_array = []
-            while t <= maxtime:
-                time_array.append(t)
-                t += step
-                
-            ## Perform series
-            self.logger.info("Starting {0} series with mintime {1}, maxtime {2}, and step {3}.".format(exptype, mintime, maxtime, step))
-            self.image_start.emit(len(time_array))
+            exptime = mintime
+            exptimes = []
+            while exptime <= maxtime:
+                exptimes.append(exptime)
+                exptime += timestep
+            num_images = len(exptimes)
+
+            ## Prepare GUI for exposure
+            self.image_start.emit(num_images)
             self.thread.reboot()
-            
-            try:
-                for i, expt in enumerate(time_array):
-                    if self.thread.status:
-                        self.logger.info("Starting {0}s {1} image.".format(expt, mode))
-                        filepath = exposure.im_acq(mode, filename, expt, seqnum, **kwargs)
-                        self.logger.info("Exposure {0} finished successfully.".format(filename))
-                        self.image_taken.emit(i+1)
-                    else:
-                        self.logger.info("Exposure series canceled.")
-                        self.seqnum_inc.emit(seqnum)
-                        self.thread.reboot()
-                        return
-            except subprocess.CalledProcessError:
-                self.logger.exception("Error in executable {0}_acq. Image not taken.".format(mode))
-            except OSError:
-                self.logger.exception("Executable {0}_acq not found. Image not taken.".format(mode))
-            except IOError as e:
-                self.logger.exception("{0}".format(e))
+
+            ## Begin exposure series
+            for i, exptime in enumerate(exptimes):
+
+                ## Check if series interrupted
+                if not self.thread.status:
+                    self.logger.info("Exposure series canceled.")
+                    return
+
+                ## Perform single exposure and check for errors
+                try:
+                    self.logger.info("Starting {0}s image.".format(exptime))
+                    #filepath = exposure.im_acq(mode, filename, exptime, seq_num,
+                    #                           data_dir, **kwargs)
+                    print "filepath = exposure.im_acq({0}, {1}, {2}, {3}, {4}, kwargs)".\
+                           format(mode, filename, exptime, seq_num, data_dir)
+                    time.sleep(1)
+                except subprocess.CalledProcessError:
+                    self.logger.exception("Error in executable {0}_acq. Image not taken.".\
+                                          format(mode))
+                    return
+                except OSError:
+                    self.logger.exception("Executable {0}_acq not found. Image not taken.".\
+                                          format(mode))
+                    return
+                except Exception as e:
+                    self.logger.exception("{0}".format(e))
+                    return
+                else:
+                    self.logger.info("Exposure finished successfully.")
+                    self.image_taken.emit()
+
+                ## Perform FITs header corrections
+                try:
+                    #exposure.update_header(filepath)
+                    print "exposure.update_header(filepath)"
+                except IOError:
+                    self.logger.exception("An error occurred while updating the FITs header.")
+
             else:
-                self.seqnum_inc.emit(seqnum)
-                self.logger.info("Exposure series finished successfully.")
-                subprocess.Popen(['ds9', '-mosaicimage', 'iraf', filepath, '-zoom', 'to', 'fit', '-cmap', 'b'])
+                self.seqnum_inc.emit(seq_num)
+                self.logger.info("All exposures finished successfully.")
+                #subprocess.Popen(['ds9', '-mosaicimage', 'iraf', filepath,
+                #                  '-zoom', 'to', 'fit', '-cmap', 'b'])
+
+            
+        elif exptype in ["Voltage Scan"]:
+
+            ## Read file to get voltage parameters
+            paramfile = str(self.paramfileLineEdit.text())
+
+            with open(paramfile) as f:
+                lines = f.readlines()
+
+                values_list = []
+                vnames = []
+
+                for line in lines:
+                    params = line.split()
+                    vname = params[0]
+                    values = list(np.arange(float(params[1]),
+                                            float(params[2]),
+                                            float(params[3])))
+
+                    values_list.append(values)
+                    vnames.append(vname)
+
+            vpoints = list(product(*values_list))
+            num_images = len(vpoints)
+
+            self.image_start.emit(num_images)
+            self.thread.reboot()
+
+            for i, vpoint in enumerate(vpoints):
+
+                if not self.thread.status:
+                    self.logger.info("Exposure canceled.")
+                    self.thread.reboot()
+                    return
+                
+                new_voltage_dict = dict((vnames[j], vpoint[j]) for j in range(len(vnames)))
+                self.setVoltages(new_voltage_dict, update_display=False)
+                kwargs.update(new_voltage_dict)
+
+                try:
+                    self.logger.info("Starting exposure {0} of {1}.".format(i, num_images))
+                    #filepath = exposure.im_acq(mode, filename, exptime, 1, data_dir,
+                    #                           **kwargs)
+                    print "filepath = exposure.im_acq(exp, filename)"
+                    time.sleep(1)
+                except subprocess.CalledProcessError:
+                    self.logger.exception("Error in executable. Image not taken.")
+                    return
+                except OSError:
+                    self.logger.exception("Executable not found. Image not taken.")
+                except Exception as e:
+                    self.logger.exception("{0}".format(e))
+                else:
+                    self.logger.info("Exposure finished successfully.")
+                    self.image_taken.emit()
+
+                try:
+                    #exposure.update_header(filepath)
+                    print "exposure.update_header(filepath)"
+                except IOError:
+                    self.logger.exception("An error occurred while updating the FITs header.")
+
+            else:
+                self.logger.info("All exposures finished successfully.")
+                self.updateVoltageDisplay()
+                                
 
     def resetController(self):
-        """Turn off controller to bring to known state (sta3800_off), then turn on 
-        controller (sta3800_on.)"""
+        """Perform controller off/on cycle (sta3800_off/sta3800_on)."""
 
         ## Turn off controller to bring to a known state
         try:
             self.logger.info("Turning off sta3800 controller (sta3800_off).")
-            #ccdsetup.sta3800_off()
+            print "ccdsetup.sta3800_off()"
         except Exception:
             self.logger.exception("Unable to turn off controller! State may be unknown.")
             raise
@@ -366,12 +483,13 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         ## Initialize controller
         try:
             self.logger.info("Turning on sta3800 controller (sta3800_setup).")
-            #ccdsetup.sta3800_setup()
+            print "ccdsetup.sta3800_setup()"
         except Exception:
             self.logger.exception("Unable to turn on sta3800 controller!")
             raise
         else:
-            self.resetvoltage()
+            ## If controller reset cycle is succesful, set voltage values to nominal values
+            self.defaultVoltages()
             self.logger.info("Controller turned on successfully.")
                                 
     def restoreSettings(self):
@@ -380,19 +498,29 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
         global DATA_DIRECTORY
 
         try:
+
+            ## Restore GUI display
             self.settings = QtCore.QSettings("./settings.ini", 
                                              QtCore.QSettings.IniFormat)
             DATA_DIRECTORY = unicode(self.settings.value("DATA_DIRECTORY").toString())
             restore.guirestore(self, self.settings)
+
+            ## Restore FITs header settings
+            self.fitsinfo = {}
+            self.settings.beginGroup("Settings")
+            for key in self.settings.childKeys():
+                self.fitsinfo[str(key)] = str(self.settings.value(key).toString())
+            self.settings.endGroup()
             
         except:
             self.logger.warning("Failed to restore past settings.")
             DATA_DIRECTORY = "./"
         else:
             self.logger.info("GUI display widget values successfully restored.")
-            self.activateDisplay()
+            self.setDisplay()
 
     def toggleFilter(self):
+        """Toggle filter choice (monochromator/broadband)."""
 
         if self.filterToggleButton.isChecked():
             self.filterToggleButton.setText("Filter")
@@ -403,125 +531,207 @@ class Controller(QtGui.QMainWindow, design.Ui_ccdcontroller):
             self.filterComboBox.setEnabled(False)
             self.monoSpinBox.setEnabled(True)
 
-        
-    def setvoltages(self):
-        """Change the value of the specified voltages."""
+    def scan(self, filename, data_dir, *args, **kwargs):
+        """Perform a scan over voltages provided by arguments."""
 
-        vtype = str(self.voltageComboBox.currentText())
+        ## Get voltage parameters
+        vparams = args[0]
+        vname = vparams[0]
+        values = vparams[1]
 
-        if vtype in ['VOD', 'VRD', 'VOG', 'VDD']:
-        
-            vname = vtype.lower()
-            V = self.voltageSpinBox.value()
+        result = True
 
-            try:
-                output = voltage.set_voltage(V, vname)
-                self.logger.info(output)
-            except subprocess.CalledProcessError:
-                self.logger.exception("Error in executable {0}. Voltage not changed.".format(vname))
-            except OSError:
-                self.logger.exception("Executable {0} not found.  Voltage not changed.".format(vname))
+        ## Iterate through possible values
+        for value in values:
+
+            ## Check if scan interrupted
+            if not self.thread.status:
+                return False
+
+            ## Update the voltage value
+            new_voltage_dict = {vname : value}
+            self.setVoltages(new_voltage_dict, update_display=False)
+            kwargs[vname] = value
+
+            ## If voltage arguments remain, create nested scan
+            if len(args) > 1:
+                result = self.scan(filename, data_dir, *args[1:], **kwargs)
+
             else:
-                ## change voltage display here
-                self.voltagedisplay(vtype, V)
 
-        ## Parallel clocks
-        elif 'PAR' in vtype:
+                ## Perform a single exposure and check for errors
+                self.logger.info("Starting EO Test exposures.")
+                print "filepath = exposure.eotest_acq"
+                time.sleep(1)
+                raise OSError('Test')
+                self.logger.info("Exposure finished successfully.")
+                self.image_taken.emit()
 
-            if 'HI' in vtype:
-                par_lo = float(self.parloLineEdit.text())
-                par_hi = self.voltageSpinBox.value()
-            else:
-                par_lo = self.voltageSpinBox.value()
-                par_hi = float(self.parhiLineEdit.text())
+                ## Perform FITs header corrections
+                try:
+                    print "exposure.update_header(filepath)"
+                except IOError:
+                    self.logger.exception("An error occurred while updating the FITs header.")
+
+            if result is False:
+                return False
+                    
+        return True
+                    
+    def setVoltages(self, new_voltage_dict=None, update_display=True):
+        """Change the value of the specified voltages using an input dictionary."""
+
+        ## If no voltage dictionary given, get values from GUI.
+        if new_voltage_dict is None:
+            new_voltage_dict = {str(self.voltageComboBox.currentText()) :
+                                float(self.voltageSpinBox.value())}
+
+        ## For each voltage, make call to executable
+        for vname, value in new_voltage_dict.iteritems():
+
+            if vname in ['VOD', 'VRD', 'VOG', 'VDD']:
+                
+                try:
+                    print "output = voltage.set_voltage({0}, {1})".format(value, vname)
+                    #output = voltage.set_voltage(value, vname)
+                except subprocess.CalledProcessError:
+                    self.logger.exception("Error in executable {0}." +
+                                          " Voltage not changed.".format(vname))
+                    break
+                except OSError:
+                    self.logger.exception("Executable {0} not found." +
+                                          " Voltage not changed.".format(vname))
+                    break
+                else:
+                    #self.logger.info(output)
+                    self.logger.info("Voltage {0} set to {1}".format(vname, value))
+                    lineedit = self.voltage_dict[vname][0]
+                    self.voltage_dict[vname] = (lineedit, value)
+
+            ## Parallel clocks
+            elif 'PAR' in vname:
+
+                if 'LO' in vname:
+                    par_lo = value
+                    par_hi = self.voltage_dict['PARHI'][1]
+                else:
+                    par_lo = self.voltage_dict['PARLO'][1]
+                    par_hi = value
             
-            try:
-                output = voltage.par_clks(par_lo, par_hi)
-                self.logger.info(output)
-                #print "output = voltage.par_clks({0}, {1}".format(par_lo, par_hi)
-            except subprocess.CalledProcessError:
-                self.logger.exception("Error in executable par_clks. Voltage not changed.")
-            except OSError:
-                self.logger.exception("Executable par_clks not found.  Voltage not changed.")
-            else:
-                ## change voltage display here
-                self.voltagedisplay('PAR HI', par_hi)
-                self.voltagedisplay('PAR LO', par_lo)
+                try:
+                    print "output = voltage.par_clks({0}, {1})".format(par_lo, par_hi)
+                    #output = voltage.par_clks(par_lo, par_hi)
+                except subprocess.CalledProcessError:
+                    self.logger.exception("Error in executable par_clks." +
+                                          " Voltage not changed.")
+                    break
+                except OSError:
+                    self.logger.exception("Executable par_clks not found." +
+                                          " Voltage not changed.")
+                    break
+                else:
+                    #self.logger.info(output)
+                    self.logger.info("Voltage {0} set to {1}".format(vname, value))
+                    lineedit = self.voltage_dict[vname][0]
+                    self.voltage_dict[vname] = (lineedit, value)
 
-        ## Serial clocks
-        elif 'SER' in vtype:
+            ## Serial clocks
+            elif 'SER' in vname:
 
-            if 'HI' in vtype:                
-                ser_lo = float(self.serloLineEdit.text())
-                ser_hi = self.voltageSpinBox.value()
-            else:
-                ser_lo = self.voltageSpinBox.value()
-                ser_hi = float(self.serhiLineEdit.text())
+                if 'LO' in vname:
+                    ser_lo = value
+                    ser_hi = self.voltage_dict['SERHI'][1]
+                else:
+                    ser_lo = self.voltage_dict['SERLO'][1]
+                    ser_hi = value
             
-            try:
-                output = voltage.ser_clks(ser_lo, ser_hi)
-                self.logger.info(output)
-                #print "output = voltage.ser_clks({0}, {1})".format(ser_lo, ser_hi)
-            except subprocess.CalledProcessError:
-                self.logger.exception("Error in executable ser_clks. Voltage not changed.")
-            except OSError:
-                self.logger.exception("Executable ser_clks not found.  Voltage not changed.")
-            else:
-                self.voltagedisplay('SER HI', ser_hi)
-                self.voltagedisplay('SER LO', ser_lo)
+                try:
+                    print "output = voltage.ser_clks({0}, {1})".format(ser_lo, ser_hi)
+                    #output = voltage.ser_clks(ser_lo, ser_hi)
+                except subprocess.CalledProcessError:
+                    self.logger.exception("Error in executable ser_clks." +
+                                          " Voltage not changed.")
+                    break
+                except OSError:
+                    self.logger.exception("Executable ser_clks not found." +
+                                          " Voltage not changed.")
+                    break
+                else:
+                    #self.logger.info(output)
+                    self.logger.info("Voltage {0} set to {1}".format(vname, value))
+                    lineedit = self.voltage_dict[vname][0]
+                    self.voltage_dict[vname] = (lineedit, value)
 
-        ## Reset gain
-        elif 'RG' in vtype:
+            ## Reset clocks
+            elif 'RG' in vname:
 
-            if 'HI' in vtype:
-                rg_lo = float(self.rgloLineEdit.text())
-                rg_hi = self.voltageSpinBox.value()
-            else:
-                rg_lo = self.voltageSpinBox.value()
-                rg_hi = float(self.rghiLineEdit.text())
+                if 'LO' in vname:
+                    rg_lo = value
+                    rg_hi = self.voltage_dict['RGHI'][1]
+                else:
+                    rg_lo = self.voltage_dict['RGLO'][1]
+                    rg_hi = value
             
+                try:
+                    #output = voltage.rg(rg_lo, rg_hi)
+                    print "output = voltage.rg_clks({0}, {1}".format(rg_lo, rg_hi)
+                    break
+                except subprocess.CalledProcessError:
+                    self.logger.exception("Error in executable rg. Voltage not changed.")
+                    break
+                except OSError:
+                    self.logger.exception("Executable rg not found.  Voltage not changed.")
+                    break
+                else:
+                    #self.logger.info(output)
+                    self.logger.info("Voltage {0} set to {1}".format(vname, value))
+                    lineedit = self.voltage_dict[vname][0]
+                    self.voltage_dict[vname] = (lineedit, value)
+
+        ## Optionally update the display
+        if update_display:
+            self.updateVoltageDisplay()
+            
+
+    def updateVoltageDisplay(self):
+        """Updates voltage displays with the current values."""
+
+        for vname, vinfo in self.voltage_dict.iteritems():
+
             try:
-                output = voltage.rg(rg_lo, rg_hi)
-                self.logger.info(output)
-                #print "output = voltage.rg({0}, {1})".format(rg_lo, rg_hi)
-            except subprocess.CalledProcessError:
-                self.logger.exception("Error in executable rg. Voltage not changed.")
-            except OSError:
-                self.logger.exception("Executable rg not found.  Voltage not changed.")
-            else:
-                ## change voltage display here
-                self.voltagedisplay('RG HI', rg_hi)
-                self.voltagedisplay('RG LO', rg_lo)
+                lineedit, value = vinfo
+                lineedit.setText("{0:.2f}".format(value))
+            except KeyError:
+                self.logger.exception("No voltage matching {0} found!".format(vname))
 
-    def voltagedisplay(self, vname, V):
+    def defaultVoltages(self):
+        """Sets voltage display to the default start-up voltages for controller."""
 
-        ## Update voltage dictionary
-        lineedit = self.voltagedict[vname][0]
-        lineedit.setText("{0:.2f}".format(V))
-        self.voltagedict[vname] = (lineedit, V)
-
-    def resetvoltage(self):
-        
+        ## Get default values from INI file
         self.settings.beginGroup("Voltages")
+        voltage_keys = self.settings.childKeys()
 
-        self.voltagedisplay('VDD', self.settings.value('vdd').toFloat()[0])
-        self.voltagedisplay('VOD', self.settings.value('vod').toFloat()[0])
-        self.voltagedisplay('VOG', self.settings.value('vog').toFloat()[0])
-        self.voltagedisplay('VRD', self.settings.value('vrd').toFloat()[0])
-        self.voltagedisplay('RG HI', self.settings.value('rghi').toFloat()[0])
-        self.voltagedisplay('RG LO', self.settings.value('rglo').toFloat()[0])
-        self.voltagedisplay('PAR HI', self.settings.value('parhi').toFloat()[0])
-        self.voltagedisplay('PAR LO', self.settings.value('parlo').toFloat()[0])
-        self.voltagedisplay('SER HI', self.settings.value('serhi').toFloat()[0])
-        self.voltagedisplay('SER LO', self.settings.value('serlo').toFloat()[0])
-        
+        ## Set voltage dictionary to default values
+        for key in voltage_keys:
+            try:
+                lineedit = self.voltage_dict[str(key)][0]
+                self.voltage_dict[str(key)] = (lineedit,
+                                               self.settings.value(key).toFloat()[0])
+
+            except KeyError:
+                self.logger.exception("No voltage matching {0} found!".format(str(key)))
         self.settings.endGroup()
+        
+        ## Update displays
+        self.updateVoltageDisplay()
 
-    def getvoltagevalues(self):
-        voltagevalues = dict()
-        for vname, vitem in self.voltagedict.iteritems():
-            voltagevalues[vname] = float(vitem[0].text())
-        return voltagevalues
+    def getVoltageValues(self):
+        """Return voltage values as a dictionary."""
+
+        voltage_dict = dict()
+        for vname, vinfo in self.voltage_dict.iteritems():
+            voltage_dict[vname] = float(vinfo[1])
+        return voltage_dict
 
     def closeEvent(self, event):
         """Need to reconcile confirmation and guisave settings."""
@@ -562,7 +772,7 @@ def safe_shutdown():
 
     try:
         logger.info("Turning off sta3800 controller (sta3800_off).")
-        #ccdsetup.sta3800_off()
+        print "ccdsetup.sta3800_off()"
     except Exception:
         logger.exception("Unable to turn off controller! State may be unknown.")
     else:

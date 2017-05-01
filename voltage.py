@@ -44,34 +44,31 @@ def set_voltage(V, vname):
     """Set a particular voltage to specified value"""
 
     ## List of acceptable voltage names
-    vlist = ["vdd", "vod", "vog", "vrd", "vv1", "vv2", "vv3", "vv4"]
-
-    ## Check that voltage name is valid
-    if vname in vlist:
-        output = subprocess.check_output([vname, "{0}".format(V)])
+    if vname in ["VDD", "VOD", "VOG", "VRD"]:
+        output = subprocess.check_output([vname.lower(), "{0}".format(V)])
         return output
     else:
         raise KeyError("Voltage name not found.")
 
-def rg(RG_lo, RG_hi):
+def rg(rg_lo, rg_hi):
     """Set reset gate voltages"""
     
-    output = subprocess.check_output(["rg", "{0}".format(RG_lo),
-                                      "{0}".format(RG_hi)])
+    output = subprocess.check_output(["rg", "{0}".format(rg_lo),
+                                      "{0}".format(rg_hi)])
     return output
 
-def par_clks(PAR_lo, PAR_hi):
+def par_clks(par_lo, par_hi):
     """Set parallel clock rails to specified voltages"""
     
-    output = subprocess.check_output(["par_clks", "{0}".format(PAR_lo),
-                                      "{0}".format(PAR_hi)])
+    output = subprocess.check_output(["par_clks", "{0}".format(par_lo),
+                                      "{0}".format(par_hi)])
     return output
 
-def ser_clks(SER_lo, SER_hi):
+def ser_clks(ser_lo, ser_hi):
     """Set parallel clock rails to specified voltages"""
     
-    output = subprocess.check_output(["ser_clks", "{0}".format(SER_lo),
-                                      "{0}".format(SER_hi)])
+    output = subprocess.check_output(["ser_clks", "{0}".format(ser_lo),
+                                      "{0}".format(ser_hi)])
     return output
 
 ###############################################################################
